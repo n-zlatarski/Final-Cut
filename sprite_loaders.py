@@ -148,6 +148,20 @@ def crop_and_fit_height(frame, crop_rect, target_h):
     return pygame.transform.scale(cropped, (new_w, new_h))
 
 
+def scale_crop(frame, crop_rect, scale):
+    """Crop to crop_rect, then scale by a caller-supplied factor (rather
+    than a factor derived from crop_rect's own height). This lets several
+    frames/characters share one scale computed from a reference pose
+    (e.g. idle) even though their full animation set's bounding box
+    (which includes weapon-reach frames) differs in height."""
+    cropped = pygame.Surface(
+        (crop_rect.width, crop_rect.height), pygame.SRCALPHA)
+    cropped.blit(frame, (0, 0), crop_rect)
+    new_w = max(1, round(crop_rect.width * scale))
+    new_h = max(1, round(crop_rect.height * scale))
+    return pygame.transform.scale(cropped, (new_w, new_h))
+
+
 def flip_frames(frames):
     return [pygame.transform.flip(f, True, False) for f in frames]
 

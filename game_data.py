@@ -7,7 +7,7 @@ import it once, early.
 from settings import *
 from sprite_loaders import (
     load_img, load_sheet_all_rows, load_sheet, load_side_sheet_raw,
-    union_bbox, crop_and_fit_height, flip_frames,
+    union_bbox, scale_crop, flip_frames,
 )
 
 # ── Stages ────────────────────────────────────────────────────────────────────
@@ -36,9 +36,9 @@ ENEMY_TYPES = {
     "knight1":           dict(folder="assets/Knight_1",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195)),
     "knight2":           dict(folder="assets/Knight_2",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195)),
     "knight3":           dict(folder="assets/Knight_3",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195)),
-    "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(180, 180), ranged=True, atk_range=520),
-    "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(185, 185)),
-    "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(185, 185)),
+    "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(195, 195), ranged=True, atk_range=520),
+    "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(195, 195)),
+    "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(195, 195)),
 }
 # Vampire boss uses a separate 4-directional sheet pipeline (see below,
 # next to the Warrior sheets) since its sprite pack is laid out like the
@@ -57,15 +57,23 @@ for _etype, _cfg in ENEMY_TYPES.items():
     for _name, _fname in ENEMY_ANIM_FILES.items():
         _path = f"{_cfg['folder']}/{_fname}"
         _raw[_name] = load_side_sheet_raw(_path)
-    # Crop out the empty padding baked into each 128x128 cell, using the
-    # union bbox across EVERY animation (idle/walk/attack/hurt/dead) so a
-    # weapon swing never gets clipped. Scale by height only (not
-    # width-constrained) so there's no letterboxing shrink either — a
-    # wide attack swing just produces a wider frame, which is correct.
+    # Crop region: union bbox across EVERY animation (idle/walk/attack/
+    # hurt/dead) so a weapon swing never gets clipped.
     _crop = union_bbox(_raw.values(), fallback_size=(128, 128))
+    # Scale factor: based on the IDLE pose's own height only. Using the
+    # full crop's height here would make characters whose attack/idle
+    # poses reach further (a spear held overhead, a drawn bow) end up
+    # with a smaller-looking standing body than a compact character
+    # like the knight, even at the same canvas size. Idle is the same
+    # "neutral standing" reference for every character, so scaling off
+    # it keeps everyone's actual height on screen consistent. Attack
+    # frames may still extend beyond the target height/width during a
+    # swing — that's correct, not a bug.
+    _idle_bbox = union_bbox([_raw["idle"]], fallback_size=(128, 128))
     _target_h = _cfg["display"][1]
+    _scale = _target_h / max(1, _idle_bbox.height)
     _right = {
-        _name: [crop_and_fit_height(f, _crop, _target_h) for f in _frames]
+        _name: [scale_crop(f, _crop, _scale) for f in _frames]
         for _name, _frames in _raw.items()
     }
     _left = {_name: flip_frames(_frames) for _name, _frames in _right.items()}
