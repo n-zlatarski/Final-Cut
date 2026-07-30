@@ -1,3 +1,6 @@
+"""
+Entry point. Run this file to play.
+"""
 import pygame
 from game_data import STAGES
 from screens import name_input_screen, class_select_screen

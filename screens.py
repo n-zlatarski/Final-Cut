@@ -60,9 +60,9 @@ def options_menu():
         ("R",             "Recover stamina"),
         ("ESC",           "Pause menu"),
     ]
-    panel_w, panel_h = 460, 240
+    panel_w, panel_h = 460, 290
     panel_x = WIDTH // 2 - panel_w // 2
-    panel_y = HEIGHT // 2 - 140
+    panel_y = HEIGHT // 2 - 165
     while True:
         overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
         overlay.fill((0, 0, 0, 205))
@@ -78,6 +78,14 @@ def options_menu():
                       panel_x + 24, row_y, shadow=False)
             draw_text(screen, action, font_small, DIM_TEXT,
                       panel_x + 220, row_y, shadow=False)
+        vol_y = panel_y + 60 + len(controls) * 28 + 20
+        draw_text(screen, "Music Volume  (←/→)", font_small,
+                  GOLD, panel_x + 24, vol_y, shadow=False)
+        bar_x, bar_y2, bar_w = panel_x + 24, vol_y + 24, panel_w - 48
+        pygame.draw.rect(screen, (30, 25, 28), (bar_x, bar_y2, bar_w, 10))
+        pygame.draw.rect(screen, GOLD, (bar_x, bar_y2,
+                         int(bar_w * audio_state["volume"]), 10))
+        pygame.draw.rect(screen, GOLD_DIM, (bar_x, bar_y2, bar_w, 10), 1)
         mouse = pygame.mouse.get_pos()
         hovered = btn_x < mouse[0] < btn_x + \
             btn_w and btn_y < mouse[1] < btn_y + btn_h
@@ -88,6 +96,10 @@ def options_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                set_music_volume(audio_state["volume"] - 0.1)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                set_music_volume(audio_state["volume"] + 0.1)
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 return
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and hovered:
@@ -99,6 +111,7 @@ def options_menu():
 
 
 def name_input_screen():
+    play_music("menu")
     name = ""
     cursor_visible = True
     cursor_timer = 0
@@ -144,6 +157,7 @@ def name_input_screen():
 
 
 def class_select_screen():
+    play_music("menu")
     classes = ["Warrior"]
 
     warrior_preview_anims = warrior_anims.copy()

@@ -42,6 +42,7 @@ def spawn_enemies(stage):
 def stage_screen(hero_class, hero_name, stage_idx):
     stage = STAGES[stage_idx]
     bg_img = STAGE_BGS[stage["bg"]]
+    play_music(stage["bg"])
 
     stats = CLASS_STATS[hero_class]
     hero_hp = stats["health"]
@@ -230,6 +231,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     enemies.append(boss)
                     state["boss_spawned"] = True
                     add_log("The Vampire emerges!", RED)
+                    play_music("boss")
                 else:
                     state["result"] = "cleared"
 
