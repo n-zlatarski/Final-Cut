@@ -16,6 +16,7 @@ from game_data import (
     STAGES, ENEMY_TYPES, CLASS_STATS, portrait_imgs, STAGE_BGS,
     warrior_anims, _w_idle_rows, _w_walk_rows, _w_run_rows, _w_atk_rows,
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
+    VAMPIRE_STATS,
 )
 from screens import pause_menu, options_menu
 
