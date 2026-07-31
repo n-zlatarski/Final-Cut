@@ -84,6 +84,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
     DIR_VECS = {"left": (-1, 0), "right": (1, 0), "up": (0, -1), "down": (0, 1)}
     last_dash_time = 0
 
+    # ── hitstop / enemy flash / sword trail ──
+    HITSTOP_HIT = 55        # a beat of freeze on a normal connecting hit
+    HITSTOP_FINISHER = 100  # longer freeze for the combo finisher -- sells the weight
+    _trail_base = None      # lazily-built swoosh sprite, cached after first use
+
     direction = "right"
     anim = Animator(warrior_anims.copy(), default="idle", fps=8)
     idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
@@ -122,6 +127,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
         "dash_dir": (0, 0),
         "dash_end_time": 0,
         "dash_finished_at": -100000,
+        "hitstop": 0,
+        "slashes": [],
     }
 
     hero_pos = [120, HEIGHT - 450]
@@ -179,8 +186,36 @@ def stage_screen(hero_class, hero_name, stage_idx):
         # The strike plants your feet -- any leftover dash momentum stops here.
         state["dashing"] = False
         play_dir("attack", atk_rows, one_shot=True, force=True, fps=18)
+        spawn_slash(direction, duration=220)
         queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18)
         add_log("Dash Strike!", GOLD)
+
+    def get_trail_surface():
+        nonlocal _trail_base
+        if _trail_base is None:
+            size = 140
+            surf = pygame.Surface((size, size), pygame.SRCALPHA)
+            rect = pygame.Rect(14, 14, size - 28, size - 28)
+            # A few concentric arcs, each fainter/thinner than the last,
+            # to fake a motion-blur swoosh without needing sprite frames.
+            for i in range(5):
+                alpha = max(30, 210 - i * 40)
+                width = max(1, 6 - i)
+                pygame.draw.arc(surf, (255, 235, 190, alpha), rect,
+                                math.radians(-55), math.radians(55), width)
+                rect = rect.inflate(-6, -6)
+            _trail_base = surf
+        return _trail_base
+
+    def spawn_slash(facing, duration=200):
+        hx, hy = hero_center()
+        dirx, diry = DIR_VECS.get(facing, (1, 0))
+        pos = (hx + dirx * 55, hy + diry * 55)
+        angle = {"right": 0, "left": 180, "up": 90, "down": 270}.get(facing, 0)
+        state["slashes"].append({
+            "pos": pos, "angle": angle,
+            "start": pygame.time.get_ticks(), "duration": duration,
+        })
 
     def do_attack(is_run_atk, is_moving, is_sprinting):
         nonlocal last_attack_time, last_run_atk_time
@@ -205,6 +240,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
             state["combo_index"] = 0
             state["current_recovery"] = 0
             play_dir("run_attack", run_atk_rows, one_shot=True, force=True)
+            spawn_slash(direction, duration=240)
             queue_hit(dmg, knockback=14, atk_range=ATTACK_RANGE + 20, fps=8)
             return
 
@@ -224,6 +260,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         anim_name = "walk_attack" if (is_moving and not is_sprinting) else "attack"
         rows = walk_atk_rows if anim_name == "walk_attack" else atk_rows
         play_dir(anim_name, rows, one_shot=True, force=True, fps=step["fps"])
+        spawn_slash(direction, duration=260 if state["combo_index"] == 2 else 190)
 
         queue_hit(dmg, knockback=step["knockback"],
                   atk_range=step["range"], fps=step["fps"],
@@ -260,8 +297,9 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     dnorm = max(1.0, (dnx * dnx + dny * dny) ** 0.5)
                     e.apply_knockback(dnx / dnorm, dny / dnorm, knockback)
                 hit_any = True
-        state["shake"] = 8
         if hit_any:
+            state["shake"] = 14 if combo_step == 3 else 8
+            state["hitstop"] = HITSTOP_FINISHER if combo_step == 3 else HITSTOP_HIT
             if combo_step == 3:
                 add_log(f"FINISHER! {dmg} dmg!", GOLD)
             elif combo_step:
@@ -276,13 +314,20 @@ def stage_screen(hero_class, hero_name, stage_idx):
         dt = min(now - last_time, 50)
         last_time = now
 
+        if state["hitstop"] > 0:
+            state["hitstop"] -= dt
+        # While hitstop is active, movement/animation freeze for a beat --
+        # everything else (cooldown timers, the pending-hit queue) still
+        # runs on real time, so the freeze itself doesn't delay anything.
+        effective_dt = 0 if state["hitstop"] > 0 else dt
+
         keys = pygame.key.get_pressed()
         sprinting = keys[pygame.K_LSHIFT] and state["stamina"] > 0
         speed = RUN_SPEED if sprinting else WALK_SPEED
         moving = False
 
         if not state["result"]:
-            if state["dashing"]:
+            if state["hitstop"] <= 0 and state["dashing"]:
                 if now >= state["dash_end_time"]:
                     state["dashing"] = False
                     state["dash_finished_at"] = now
@@ -298,7 +343,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     hero_pos[1] = new_y
                     moving = True
 
-            if not state["dashing"]:
+            if state["hitstop"] <= 0 and not state["dashing"]:
                 if keys[pygame.K_a]:
                     hero_pos[0] = max(0, hero_pos[0] - speed)
                     direction = "left"
@@ -335,12 +380,12 @@ def stage_screen(hero_class, hero_name, stage_idx):
             for e in enemies:
                 others = [o.center()
                           for o in enemies if o is not e and not o.dead]
-                e.update(dt, hero_center(), hurt_hero,
+                e.update(effective_dt, hero_center(), hurt_hero,
                          spawn_projectile=_spawn_projectile, other_positions=others)
 
             hx, hy = hero_center()
             for p in projectiles:
-                p.update(dt)
+                p.update(effective_dt)
                 if p.alive:
                     dist = ((p.pos[0] - hx) ** 2 + (p.pos[1] - hy) ** 2) ** 0.5
                     if dist <= 50:
@@ -375,7 +420,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
 
         # ── animation state machine ──
         if anim:
-            anim.update(dt)
+            anim.update(effective_dt)
 
             if not anim.locked:
                 if state["result"] == "lose":
@@ -416,6 +461,21 @@ def stage_screen(hero_class, hero_name, stage_idx):
         name_w = font_small.size(hero_name)[0]
         draw_text(screen, hero_name, font_small, GREEN,
                   hero_x + DISPLAY_SIZE[0]//2 - name_w//2, hero_y + 40)
+
+        # ── Sword trails ──
+        still_slashing = []
+        for sl in state["slashes"]:
+            elapsed = now - sl["start"]
+            if elapsed >= sl["duration"]:
+                continue
+            t = elapsed / sl["duration"]
+            trail_img = pygame.transform.rotate(get_trail_surface(), sl["angle"])
+            trail_img.set_alpha(int(255 * (1 - t)))
+            rect = trail_img.get_rect(
+                center=(sl["pos"][0] + ox, sl["pos"][1] + oy))
+            screen.blit(trail_img, rect)
+            still_slashing.append(sl)
+        state["slashes"] = still_slashing
 
         # ── Stage name — banner, top center ──
         stage_txt = f"{stage['name']}"

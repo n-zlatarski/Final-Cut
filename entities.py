@@ -85,6 +85,9 @@ class Enemy:
         self.knock_vel = [0.0, 0.0]
         self.knock_timer = 0
         self.KNOCK_DURATION = 220
+        # Brief white flash on any hit, independent of the longer hurt stagger.
+        self.flash_timer = 0
+        self.FLASH_DURATION = 90
 
     def set_stats(self, hp, dmg_range):
         self.hp = hp
@@ -114,6 +117,7 @@ class Enemy:
         if self.dead:
             return
         self.hp -= dmg
+        self.flash_timer = self.FLASH_DURATION
         if self.hp <= 0:
             self.hp = 0
             self.dead = True
@@ -125,6 +129,9 @@ class Enemy:
             self.frame_idx = 0
 
     def update(self, dt, hero_center, on_hit_hero, spawn_projectile=None, other_positions=None):
+        if self.flash_timer > 0:
+            self.flash_timer -= dt
+
         if self.knock_timer > 0 and not self.dead:
             self.pos[0] += self.knock_vel[0] * (dt / 16.0)
             self.pos[1] += self.knock_vel[1] * (dt / 16.0)
@@ -217,6 +224,13 @@ class Enemy:
         frame = frames[idx]
         x, y = self.pos[0] + ox, self.pos[1] + oy
         screen.blit(frame, (x, y))
+        if self.flash_timer > 0:
+            mask = pygame.mask.from_surface(frame)
+            flash_alpha = int(220 * min(1.0, self.flash_timer / self.FLASH_DURATION))
+            flash_img = mask.to_surface(
+                setcolor=(255, 255, 255, flash_alpha),
+                unsetcolor=(0, 0, 0, 0))
+            screen.blit(flash_img, (x, y))
         if not self.dead and not self.is_boss:
             bar_w = 64
             bar_x = x + self.display[0] / 2 - bar_w / 2
