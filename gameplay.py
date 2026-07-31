@@ -83,6 +83,10 @@ def stage_screen(hero_class, hero_name, stage_idx):
     DASH_ATTACK_BUFFER = 150
     DIR_VECS = {"left": (-1, 0), "right": (1, 0), "up": (0, -1), "down": (0, 1)}
     last_dash_time = 0
+    # A swing only lands on enemies roughly in front of you -- excludes
+    # anything more than ~100 degrees off your facing direction, so you
+    # can't hit something standing behind your back.
+    FACING_COS_THRESHOLD = math.cos(math.radians(100))
 
     # ── hitstop / enemy flash / sword trail ──
     HITSTOP_HIT = 55        # a beat of freeze on a normal connecting hit
@@ -140,7 +144,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
     }
     TOP_BORDER_Y = HEIGHT - 700
     WALK_SPEED = 3
-    RUN_SPEED = 5
+    RUN_SPEED = 4
 
     def hero_center():
         return (hero_pos[0] + DISPLAY_SIZE[0] / 2, hero_pos[1] + DISPLAY_SIZE[1] / 2)
@@ -187,7 +191,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         state["dashing"] = False
         play_dir("attack", atk_rows, one_shot=True, force=True, fps=18)
         spawn_slash(direction, duration=220)
-        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18)
+        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18, facing=direction)
         add_log("Dash Strike!", GOLD)
 
     def get_trail_surface():
@@ -217,31 +221,12 @@ def stage_screen(hero_class, hero_name, stage_idx):
             "start": pygame.time.get_ticks(), "duration": duration,
         })
 
-    def do_attack(is_run_atk, is_moving, is_sprinting):
-        nonlocal last_attack_time, last_run_atk_time
+    def do_attack(is_moving, is_sprinting):
+        nonlocal last_attack_time
         now = pygame.time.get_ticks()
 
         if is_dash_attack_window():
             do_dash_attack()
-            return
-
-        if is_run_atk and has_run_attack:
-            if now - last_run_atk_time < RUN_ATK_COOLDOWN:
-                return
-            if state["stamina"] < 30:
-                add_log("Not enough stamina!", YELLOW)
-                return
-            state["stamina"] = max(0, state["stamina"] - 30)
-            dmg = random.randint(60, 100)
-            last_run_atk_time = now
-            last_attack_time = now
-            # The dash attack is its own heavy move -- using it always
-            # breaks out of whatever combo you were mid-way through.
-            state["combo_index"] = 0
-            state["current_recovery"] = 0
-            play_dir("run_attack", run_atk_rows, one_shot=True, force=True)
-            spawn_slash(direction, duration=240)
-            queue_hit(dmg, knockback=14, atk_range=ATTACK_RANGE + 20, fps=8)
             return
 
         # ── normal 3-hit combo ──
@@ -264,11 +249,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
 
         queue_hit(dmg, knockback=step["knockback"],
                   atk_range=step["range"], fps=step["fps"],
-                  combo_step=state["combo_index"] + 1)
+                  combo_step=state["combo_index"] + 1, facing=direction)
 
         state["combo_index"] = (state["combo_index"] + 1) % len(COMBO_STEPS)
 
-    def queue_hit(dmg, knockback, atk_range, fps, combo_step=None):
+    def queue_hit(dmg, knockback, atk_range, fps, combo_step=None, facing=None):
         # Land the hit partway through the swing (roughly the 3rd frame)
         # instead of the instant the mouse is clicked, so the damage
         # syncs up with the sword actually connecting on screen.
@@ -279,24 +264,31 @@ def stage_screen(hero_class, hero_name, stage_idx):
             "knockback": knockback,
             "range": atk_range,
             "combo_step": combo_step,
+            "facing": facing,
         })
 
-    def resolve_attack_hit(dmg, knockback, atk_range, combo_step=None):
+    def resolve_attack_hit(dmg, knockback, atk_range, combo_step=None, facing=None):
         state["last_hit_time"] = pygame.time.get_ticks()
         hx, hy = hero_center()
+        fvx, fvy = DIR_VECS.get(facing, (1, 0))
         hit_any = False
         for e in enemies:
             if e.dead:
                 continue
             ex, ey = e.center()
-            dist = ((ex - hx) ** 2 + (ey - hy) ** 2) ** 0.5
-            if dist <= atk_range:
-                e.take_damage(dmg)
-                if knockback:
-                    dnx, dny = ex - hx, ey - hy
-                    dnorm = max(1.0, (dnx * dnx + dny * dny) ** 0.5)
-                    e.apply_knockback(dnx / dnorm, dny / dnorm, knockback)
-                hit_any = True
+            dnx, dny = ex - hx, ey - hy
+            dist = (dnx * dnx + dny * dny) ** 0.5
+            if dist > atk_range:
+                continue
+            if dist > 4:
+                dot = (dnx / dist) * fvx + (dny / dist) * fvy
+                if dot < FACING_COS_THRESHOLD:
+                    continue  # roughly behind the hero -- the swing doesn't reach
+            e.take_damage(dmg)
+            if knockback:
+                dnorm = max(1.0, dist)
+                e.apply_knockback(dnx / dnorm, dny / dnorm, knockback)
+            hit_any = True
         if hit_any:
             state["shake"] = 14 if combo_step == 3 else 8
             state["hitstop"] = HITSTOP_FINISHER if combo_step == 3 else HITSTOP_HIT
@@ -397,7 +389,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
             for ph in state["pending_hits"]:
                 if now >= ph["time"]:
                     resolve_attack_hit(ph["dmg"], ph["knockback"],
-                                       ph["range"], ph.get("combo_step"))
+                                       ph["range"], ph.get("combo_step"),
+                                       ph.get("facing"))
                 else:
                     still_pending.append(ph)
             state["pending_hits"] = still_pending
@@ -585,5 +578,4 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     return "retry"
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and not state["result"]:
-                    do_attack(is_run_atk=keys[pygame.K_LSHIFT],
-                              is_moving=moving, is_sprinting=sprinting)
+                    do_attack(is_moving=moving, is_sprinting=sprinting)
