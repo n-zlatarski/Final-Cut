@@ -5,11 +5,20 @@ Everything here is a plain constant — other modules do
 without repeating the same setup in every file.
 """
 import pygame
+import video
 
 pygame.init()
 
 WIDTH, HEIGHT = 1920, 1080
-screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+
+# 'screen' is a fixed-resolution VIRTUAL canvas — every draw call in the
+# game targets this, regardless of the player's actual chosen resolution.
+# video.apply() creates the real OS window, and video.present(screen)
+# scales this canvas onto it once per frame. This is what lets the video
+# settings menu change resolution/fullscreen freely without any layout
+# code anywhere else needing to know about it.
+screen = pygame.Surface((WIDTH, HEIGHT))
+video.apply()
 pygame.display.set_caption("Mini Fight Game")
 clock = pygame.time.Clock()
 

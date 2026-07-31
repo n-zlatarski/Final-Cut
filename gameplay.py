@@ -6,6 +6,7 @@ import pygame
 import sys
 import random
 import math
+import video
 from settings import *
 from ui import draw_text, draw_panel, draw_stat_bar, draw_ornate_frame
 from audio import play_music
@@ -260,7 +261,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
 
         screen.fill((0, 0, 0))
         screen.blit(bg_img, (ox, oy))
-        mouse = pygame.mouse.get_pos()
+        mouse = video.get_virtual_mouse_pos((WIDTH, HEIGHT))
 
         # ── Enemies (back-to-front by y) ──
         for e in sorted(enemies, key=lambda e: e.pos[1]):
@@ -359,8 +360,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
             draw_text(screen, "Press ESC for menu", font_small,
                       DIM_TEXT, WIDTH//2-80, HEIGHT//2+60, shadow=False)
 
-        pygame.display.flip()
-        clock.tick(60)
+        video.present(screen)
+        clock.tick(video.get_fps_limit())
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
