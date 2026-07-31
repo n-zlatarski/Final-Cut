@@ -71,7 +71,18 @@ def stage_screen(hero_class, hero_name, stage_idx):
     # How long after a hit the player still counts as "mid-combo". Click
     # again within this window to advance to the next step; wait longer
     # and the combo resets back to step 1.
-    COMBO_WINDOW = 900
+    COMBO_WINDOW = 550
+
+    # ── dash ──
+    DASH_SPEED = 16          # px per ~16ms tick -- a fast burst, well above sprint
+    DASH_DURATION = 160      # ms the burst lasts
+    DASH_COOLDOWN = 500
+    DASH_STAMINA_COST = 20
+    # Click within this long after a dash ends (or during it) and it becomes
+    # a dash attack instead of a normal combo swing.
+    DASH_ATTACK_BUFFER = 150
+    DIR_VECS = {"left": (-1, 0), "right": (1, 0), "up": (0, -1), "down": (0, 1)}
+    last_dash_time = 0
 
     direction = "right"
     anim = Animator(warrior_anims.copy(), default="idle", fps=8)
@@ -107,6 +118,10 @@ def stage_screen(hero_class, hero_name, stage_idx):
         # damage/knockback applies when the sword is actually mid-swing,
         # not the instant you click.
         "pending_hits": [],
+        "dashing": False,
+        "dash_dir": (0, 0),
+        "dash_end_time": 0,
+        "dash_finished_at": -100000,
     }
 
     hero_pos = [120, HEIGHT - 450]
@@ -124,7 +139,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         return (hero_pos[0] + DISPLAY_SIZE[0] / 2, hero_pos[1] + DISPLAY_SIZE[1] / 2)
 
     def hurt_hero(dmg):
-        if state["result"]:
+        if state["result"] or state["dashing"]:
             return
         state["hero_hp"] -= dmg
         state["shake"] = 6
@@ -133,9 +148,47 @@ def stage_screen(hero_class, hero_name, stage_idx):
             state["hero_hp"] = 0
             state["result"] = "lose"
 
+    def try_dash():
+        nonlocal last_dash_time
+        now = pygame.time.get_ticks()
+        if state["result"] or state["dashing"]:
+            return
+        if now - last_dash_time < DASH_COOLDOWN:
+            return
+        if state["stamina"] < DASH_STAMINA_COST:
+            add_log("Not enough stamina to dash!", YELLOW)
+            return
+        state["stamina"] -= DASH_STAMINA_COST
+        last_dash_time = now
+        state["dashing"] = True
+        state["dash_dir"] = DIR_VECS.get(direction, (1, 0))
+        state["dash_end_time"] = now + DASH_DURATION
+        play_dir("run", run_rows, one_shot=False, force=True, fps=20)
+
+    def is_dash_attack_window():
+        now = pygame.time.get_ticks()
+        return state["dashing"] or (now - state["dash_finished_at"] <= DASH_ATTACK_BUFFER)
+
+    def do_dash_attack():
+        nonlocal last_attack_time
+        now = pygame.time.get_ticks()
+        dmg = random.randint(28, 42)
+        last_attack_time = now
+        state["current_recovery"] = 260
+        state["combo_index"] = 0
+        # The strike plants your feet -- any leftover dash momentum stops here.
+        state["dashing"] = False
+        play_dir("attack", atk_rows, one_shot=True, force=True, fps=18)
+        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18)
+        add_log("Dash Strike!", GOLD)
+
     def do_attack(is_run_atk, is_moving, is_sprinting):
         nonlocal last_attack_time, last_run_atk_time
         now = pygame.time.get_ticks()
+
+        if is_dash_attack_window():
+            do_dash_attack()
+            return
 
         if is_run_atk and has_run_attack:
             if now - last_run_atk_time < RUN_ATK_COOLDOWN:
@@ -229,28 +282,45 @@ def stage_screen(hero_class, hero_name, stage_idx):
         moving = False
 
         if not state["result"]:
-            if keys[pygame.K_a]:
-                hero_pos[0] = max(0, hero_pos[0] - speed)
-                direction = "left"
-                moving = True
-            elif keys[pygame.K_d]:
-                hero_pos[0] = min(WIDTH - DISPLAY_SIZE[0], hero_pos[0] + speed)
-                direction = "right"
-                moving = True
-            if keys[pygame.K_w]:
-                new_y = hero_pos[1] - speed
-                if new_y + FEET_OFFSET[hero_class] < TOP_BORDER_Y:
-                    new_y = TOP_BORDER_Y - FEET_OFFSET[hero_class]
-                hero_pos[1] = new_y
-                moving = True
-                if not keys[pygame.K_a] and not keys[pygame.K_d]:
-                    direction = "up"
-            elif keys[pygame.K_s]:
-                hero_pos[1] = min(
-                    HEIGHT - FEET_OFFSET[hero_class], hero_pos[1] + speed)
-                moving = True
-                if not keys[pygame.K_a] and not keys[pygame.K_d]:
-                    direction = "down"
+            if state["dashing"]:
+                if now >= state["dash_end_time"]:
+                    state["dashing"] = False
+                    state["dash_finished_at"] = now
+                else:
+                    dx, dy = state["dash_dir"]
+                    hero_pos[0] = max(
+                        0, min(WIDTH - DISPLAY_SIZE[0], hero_pos[0] + dx * DASH_SPEED))
+                    new_y = hero_pos[1] + dy * DASH_SPEED
+                    if dy < 0 and new_y + FEET_OFFSET[hero_class] < TOP_BORDER_Y:
+                        new_y = TOP_BORDER_Y - FEET_OFFSET[hero_class]
+                    elif dy > 0:
+                        new_y = min(HEIGHT - FEET_OFFSET[hero_class], new_y)
+                    hero_pos[1] = new_y
+                    moving = True
+
+            if not state["dashing"]:
+                if keys[pygame.K_a]:
+                    hero_pos[0] = max(0, hero_pos[0] - speed)
+                    direction = "left"
+                    moving = True
+                elif keys[pygame.K_d]:
+                    hero_pos[0] = min(WIDTH - DISPLAY_SIZE[0], hero_pos[0] + speed)
+                    direction = "right"
+                    moving = True
+                if keys[pygame.K_w]:
+                    new_y = hero_pos[1] - speed
+                    if new_y + FEET_OFFSET[hero_class] < TOP_BORDER_Y:
+                        new_y = TOP_BORDER_Y - FEET_OFFSET[hero_class]
+                    hero_pos[1] = new_y
+                    moving = True
+                    if not keys[pygame.K_a] and not keys[pygame.K_d]:
+                        direction = "up"
+                elif keys[pygame.K_s]:
+                    hero_pos[1] = min(
+                        HEIGHT - FEET_OFFSET[hero_class], hero_pos[1] + speed)
+                    moving = True
+                    if not keys[pygame.K_a] and not keys[pygame.K_d]:
+                        direction = "down"
             if sprinting and moving:
                 state["stamina"] = max(0, state["stamina"] - 0.35)
             elif not sprinting:
@@ -313,6 +383,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
                         play_dir("death", death_rows,
                                  one_shot=True, force=True)
                         state["death_played"] = True
+                elif state["dashing"]:
+                    play_dir("run", run_rows, one_shot=False, fps=20)
                 elif moving and sprinting:
                     play_dir("run",  run_rows,  one_shot=False)
                 elif moving:
@@ -445,6 +517,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
                         return "change_class"
                 if event.key == pygame.K_r and not state["result"]:
                     state["stamina"] = min(max_stamina, state["stamina"] + 60)
+                if event.key == pygame.K_SPACE and not state["result"]:
+                    try_dash()
                 if event.key == pygame.K_RETURN and state["result"] == "cleared":
                     return "next"
                 if event.key == pygame.K_RETURN and state["result"] == "lose":
