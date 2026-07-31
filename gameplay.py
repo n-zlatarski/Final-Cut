@@ -174,7 +174,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         state["dashing"] = True
         state["dash_dir"] = DIR_VECS.get(direction, (1, 0))
         state["dash_end_time"] = now + DASH_DURATION
-        play_dir("run", run_rows, one_shot=False, force=True, fps=20)
+        play_dir("dash", run_rows, one_shot=False, force=True, fps=20)
 
     def is_dash_attack_window():
         now = pygame.time.get_ticks()
@@ -422,7 +422,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                                  one_shot=True, force=True)
                         state["death_played"] = True
                 elif state["dashing"]:
-                    play_dir("run", run_rows, one_shot=False, fps=20)
+                    play_dir("dash", run_rows, one_shot=False, fps=20)
                 elif moving and sprinting:
                     play_dir("run",  run_rows,  one_shot=False)
                 elif moving:
