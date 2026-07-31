@@ -52,11 +52,26 @@ def stage_screen(hero_class, hero_name, stage_idx):
     stamina = stats["stamina"]
     max_stamina = stamina
 
-    ATTACK_COOLDOWN = 800
     RUN_ATK_COOLDOWN = 1200
     ATTACK_RANGE = 170
     last_attack_time = 0
     last_run_atk_time = 0
+
+    # ── 3-hit combo ──
+    # Each step: how much it hurts, how hard it shoves the enemy back,
+    # how long you're locked in recovery before the next swing can start,
+    # and how fast the swing animation plays. The finisher (step 3) is
+    # deliberately slower and heavier -- it should feel like a real payoff,
+    # not just "attack #3".
+    COMBO_STEPS = [
+        {"dmg": (15, 28), "knockback": 6,  "recovery": 260, "fps": 14, "range": ATTACK_RANGE},
+        {"dmg": (20, 34), "knockback": 9,  "recovery": 300, "fps": 14, "range": ATTACK_RANGE},
+        {"dmg": (35, 55), "knockback": 16, "recovery": 500, "fps": 11, "range": ATTACK_RANGE + 25},
+    ]
+    # How long after a hit the player still counts as "mid-combo". Click
+    # again within this window to advance to the next step; wait longer
+    # and the combo resets back to step 1.
+    COMBO_WINDOW = 900
 
     direction = "right"
     anim = Animator(warrior_anims.copy(), default="idle", fps=8)
@@ -85,6 +100,13 @@ def stage_screen(hero_class, hero_name, stage_idx):
         "result":  None,
         "shake":   0,
         "boss_spawned": False,
+        "combo_index": 0,
+        "last_hit_time": 0,
+        "current_recovery": 0,
+        # Hits that have been "thrown" by a swing but haven't landed yet --
+        # damage/knockback applies when the sword is actually mid-swing,
+        # not the instant you click.
+        "pending_hits": [],
     }
 
     hero_pos = [120, HEIGHT - 450]
@@ -124,27 +146,53 @@ def stage_screen(hero_class, hero_name, stage_idx):
             state["stamina"] = max(0, state["stamina"] - 30)
             dmg = random.randint(60, 100)
             last_run_atk_time = now
-            anim_name = "run_attack"
-            rows = run_atk_rows
-        elif is_moving and not is_sprinting:
-            if now - last_attack_time < ATTACK_COOLDOWN:
-                return
-            dmg = random.randint(15, 40)
             last_attack_time = now
-            anim_name = "walk_attack"
-            rows = walk_atk_rows
-        else:
-            if now - last_attack_time < ATTACK_COOLDOWN:
-                return
-            dmg = random.randint(15, 40)
-            last_attack_time = now
-            anim_name = "attack"
-            rows = atk_rows
+            # The dash attack is its own heavy move -- using it always
+            # breaks out of whatever combo you were mid-way through.
+            state["combo_index"] = 0
+            state["current_recovery"] = 0
+            play_dir("run_attack", run_atk_rows, one_shot=True, force=True)
+            queue_hit(dmg, knockback=14, atk_range=ATTACK_RANGE + 20, fps=8)
+            return
 
-        play_dir(anim_name, rows, one_shot=True, force=True)
-        resolve_attack_hit(dmg)
+        # ── normal 3-hit combo ──
+        if now - last_attack_time < state["current_recovery"]:
+            return  # still recovering from the last swing
 
-    def resolve_attack_hit(dmg):
+        # Waited too long since the last hit landed? Combo resets to step 1.
+        if now - state["last_hit_time"] > COMBO_WINDOW:
+            state["combo_index"] = 0
+
+        step = COMBO_STEPS[state["combo_index"]]
+        dmg = random.randint(*step["dmg"])
+        last_attack_time = now
+        state["current_recovery"] = step["recovery"]
+
+        anim_name = "walk_attack" if (is_moving and not is_sprinting) else "attack"
+        rows = walk_atk_rows if anim_name == "walk_attack" else atk_rows
+        play_dir(anim_name, rows, one_shot=True, force=True, fps=step["fps"])
+
+        queue_hit(dmg, knockback=step["knockback"],
+                  atk_range=step["range"], fps=step["fps"],
+                  combo_step=state["combo_index"] + 1)
+
+        state["combo_index"] = (state["combo_index"] + 1) % len(COMBO_STEPS)
+
+    def queue_hit(dmg, knockback, atk_range, fps, combo_step=None):
+        # Land the hit partway through the swing (roughly the 3rd frame)
+        # instead of the instant the mouse is clicked, so the damage
+        # syncs up with the sword actually connecting on screen.
+        delay = int(1000 / fps * 3)
+        state["pending_hits"].append({
+            "time": pygame.time.get_ticks() + delay,
+            "dmg": dmg,
+            "knockback": knockback,
+            "range": atk_range,
+            "combo_step": combo_step,
+        })
+
+    def resolve_attack_hit(dmg, knockback, atk_range, combo_step=None):
+        state["last_hit_time"] = pygame.time.get_ticks()
         hx, hy = hero_center()
         hit_any = False
         for e in enemies:
@@ -152,12 +200,21 @@ def stage_screen(hero_class, hero_name, stage_idx):
                 continue
             ex, ey = e.center()
             dist = ((ex - hx) ** 2 + (ey - hy) ** 2) ** 0.5
-            if dist <= ATTACK_RANGE:
+            if dist <= atk_range:
                 e.take_damage(dmg)
+                if knockback:
+                    dnx, dny = ex - hx, ey - hy
+                    dnorm = max(1.0, (dnx * dnx + dny * dny) ** 0.5)
+                    e.apply_knockback(dnx / dnorm, dny / dnorm, knockback)
                 hit_any = True
         state["shake"] = 8
         if hit_any:
-            add_log(f"Attack! {dmg} dmg!", GREEN)
+            if combo_step == 3:
+                add_log(f"FINISHER! {dmg} dmg!", GOLD)
+            elif combo_step:
+                add_log(f"Hit {combo_step}! {dmg} dmg!", GREEN)
+            else:
+                add_log(f"Attack! {dmg} dmg!", GREEN)
         else:
             add_log("Swing and a miss!", YELLOW)
 
@@ -220,6 +277,15 @@ def stage_screen(hero_class, hero_name, stage_idx):
                         hurt_hero(p.dmg)
                         p.alive = False
             projectiles[:] = [p for p in projectiles if p.alive]
+
+            still_pending = []
+            for ph in state["pending_hits"]:
+                if now >= ph["time"]:
+                    resolve_attack_hit(ph["dmg"], ph["knockback"],
+                                       ph["range"], ph.get("combo_step"))
+                else:
+                    still_pending.append(ph)
+            state["pending_hits"] = still_pending
 
             if not state["result"] and enemies and all(e.dead and e.dead_done for e in enemies):
                 boss_type = stage.get("boss")

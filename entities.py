@@ -80,6 +80,11 @@ class Enemy:
         # A fixed random angle around the hero this enemy tries to circle
         # to, instead of every enemy beelining to the exact same point.
         self.approach_angle = random.uniform(0, 2 * math.pi)
+        # Knockback: a short-lived slide applied on hit, independent of
+        # the enemy's own AI movement.
+        self.knock_vel = [0.0, 0.0]
+        self.knock_timer = 0
+        self.KNOCK_DURATION = 220
 
     def set_stats(self, hp, dmg_range):
         self.hp = hp
@@ -97,6 +102,14 @@ class Enemy:
     def center(self):
         return (self.pos[0] + self.display[0] / 2, self.pos[1] + self.display[1] / 2)
 
+    def apply_knockback(self, dirx, diry, force):
+        # Bosses shrug off knockback almost entirely -- shoving a boss
+        # around the screen would feel cheap, not powerful.
+        if self.is_boss:
+            force *= 0.15
+        self.knock_vel = [dirx * force, diry * force]
+        self.knock_timer = self.KNOCK_DURATION
+
     def take_damage(self, dmg):
         if self.dead:
             return
@@ -112,6 +125,16 @@ class Enemy:
             self.frame_idx = 0
 
     def update(self, dt, hero_center, on_hit_hero, spawn_projectile=None, other_positions=None):
+        if self.knock_timer > 0 and not self.dead:
+            self.pos[0] += self.knock_vel[0] * (dt / 16.0)
+            self.pos[1] += self.knock_vel[1] * (dt / 16.0)
+            self.knock_timer -= dt
+            # Exponential-ish decay so the slide eases out instead of
+            # stopping dead or sliding forever.
+            decay = max(0.0, 1 - (dt / self.KNOCK_DURATION))
+            self.knock_vel[0] *= decay
+            self.knock_vel[1] *= decay
+
         if self.dead:
             frames = self._frames()
             self.frame_idx += dt * self.FPS / 1000
