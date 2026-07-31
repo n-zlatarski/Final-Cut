@@ -88,6 +88,16 @@ def stage_screen(hero_class, hero_name, stage_idx):
     # can't hit something standing behind your back.
     FACING_COS_THRESHOLD = math.cos(math.radians(100))
 
+    # ── charged attack (hold right-click) ──
+    CHARGE_MAX_MS = 900       # time to reach a full charge
+    CHARGE_MIN_DMG, CHARGE_MAX_DMG = 25, 90
+    CHARGE_MIN_KNOCK, CHARGE_MAX_KNOCK = 10, 22
+    CHARGE_MIN_COST, CHARGE_MAX_COST = 10, 40
+
+    # ── critical hits ──
+    CRIT_CHANCE = 0.18
+    CRIT_MULT = 1.8
+
     # ── hitstop / enemy flash / sword trail ──
     HITSTOP_HIT = 55        # a beat of freeze on a normal connecting hit
     HITSTOP_FINISHER = 100  # longer freeze for the combo finisher -- sells the weight
@@ -133,6 +143,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
         "dash_finished_at": -100000,
         "hitstop": 0,
         "slashes": [],
+        "charging": False,
+        "charge_start": 0,
     }
 
     hero_pos = [120, HEIGHT - 450]
@@ -152,6 +164,9 @@ def stage_screen(hero_class, hero_name, stage_idx):
     def hurt_hero(dmg):
         if state["result"] or state["dashing"]:
             return
+        if state["charging"]:
+            state["charging"] = False
+            add_log("Charge interrupted!", YELLOW)
         state["hero_hp"] -= dmg
         state["shake"] = 6
         add_log(f"Hit for {dmg}!", RED)
@@ -162,7 +177,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
     def try_dash():
         nonlocal last_dash_time
         now = pygame.time.get_ticks()
-        if state["result"] or state["dashing"]:
+        if state["result"] or state["dashing"] or state["charging"]:
             return
         if now - last_dash_time < DASH_COOLDOWN:
             return
@@ -180,10 +195,16 @@ def stage_screen(hero_class, hero_name, stage_idx):
         now = pygame.time.get_ticks()
         return state["dashing"] or (now - state["dash_finished_at"] <= DASH_ATTACK_BUFFER)
 
+    def roll_crit(dmg, force_crit=False):
+        if force_crit or random.random() < CRIT_CHANCE:
+            return int(dmg * CRIT_MULT), True
+        return dmg, False
+
     def do_dash_attack():
         nonlocal last_attack_time
         now = pygame.time.get_ticks()
         dmg = random.randint(28, 42)
+        dmg, crit = roll_crit(dmg)
         last_attack_time = now
         state["current_recovery"] = 260
         state["combo_index"] = 0
@@ -191,8 +212,50 @@ def stage_screen(hero_class, hero_name, stage_idx):
         state["dashing"] = False
         play_dir("attack", atk_rows, one_shot=True, force=True, fps=18)
         spawn_slash(direction, duration=220)
-        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18, facing=direction)
+        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18,
+                  facing=direction, crit=crit)
         add_log("Dash Strike!", GOLD)
+
+    def start_charge():
+        if state["result"] or state["dashing"] or state["charging"]:
+            return
+        if state["stamina"] < CHARGE_MIN_COST:
+            add_log("Not enough stamina to charge!", YELLOW)
+            return
+        state["charging"] = True
+        state["charge_start"] = pygame.time.get_ticks()
+
+    def release_charge():
+        nonlocal last_attack_time
+        if not state["charging"]:
+            return
+        now = pygame.time.get_ticks()
+        frac = min(1.0, (now - state["charge_start"]) / CHARGE_MAX_MS)
+        state["charging"] = False
+
+        cost = int(CHARGE_MIN_COST + (CHARGE_MAX_COST - CHARGE_MIN_COST) * frac)
+        if state["stamina"] < cost:
+            add_log("Not enough stamina to unleash!", YELLOW)
+            return
+        state["stamina"] -= cost
+
+        dmg = int(CHARGE_MIN_DMG + (CHARGE_MAX_DMG - CHARGE_MIN_DMG) * frac)
+        # A fully-charged hit always crits -- that's the reward for
+        # committing to the whole channel instead of releasing early.
+        dmg, crit = roll_crit(dmg, force_crit=(frac >= 1.0))
+        knockback = CHARGE_MIN_KNOCK + (CHARGE_MAX_KNOCK - CHARGE_MIN_KNOCK) * frac
+        atk_range = ATTACK_RANGE + 15 + int(15 * frac)
+
+        last_attack_time = now
+        state["combo_index"] = 0
+        # Bigger commitment on a fuller charge -- can't immediately combo out of it.
+        state["current_recovery"] = 300 + int(300 * frac)
+
+        fps = 9
+        play_dir("attack", atk_rows, one_shot=True, force=True, fps=fps)
+        spawn_slash(direction, duration=200 + int(160 * frac))
+        queue_hit(dmg, knockback=knockback, atk_range=atk_range, fps=fps,
+                  facing=direction, crit=crit, charged=True)
 
     def get_trail_surface():
         nonlocal _trail_base
@@ -225,6 +288,9 @@ def stage_screen(hero_class, hero_name, stage_idx):
         nonlocal last_attack_time
         now = pygame.time.get_ticks()
 
+        if state["charging"]:
+            return  # channeling the charged attack -- left click does nothing
+
         if is_dash_attack_window():
             do_dash_attack()
             return
@@ -239,6 +305,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
 
         step = COMBO_STEPS[state["combo_index"]]
         dmg = random.randint(*step["dmg"])
+        dmg, crit = roll_crit(dmg)
         last_attack_time = now
         state["current_recovery"] = step["recovery"]
 
@@ -249,11 +316,12 @@ def stage_screen(hero_class, hero_name, stage_idx):
 
         queue_hit(dmg, knockback=step["knockback"],
                   atk_range=step["range"], fps=step["fps"],
-                  combo_step=state["combo_index"] + 1, facing=direction)
+                  combo_step=state["combo_index"] + 1, facing=direction, crit=crit)
 
         state["combo_index"] = (state["combo_index"] + 1) % len(COMBO_STEPS)
 
-    def queue_hit(dmg, knockback, atk_range, fps, combo_step=None, facing=None):
+    def queue_hit(dmg, knockback, atk_range, fps, combo_step=None, facing=None,
+                  crit=False, charged=False):
         # Land the hit partway through the swing (roughly the 3rd frame)
         # instead of the instant the mouse is clicked, so the damage
         # syncs up with the sword actually connecting on screen.
@@ -265,9 +333,12 @@ def stage_screen(hero_class, hero_name, stage_idx):
             "range": atk_range,
             "combo_step": combo_step,
             "facing": facing,
+            "crit": crit,
+            "charged": charged,
         })
 
-    def resolve_attack_hit(dmg, knockback, atk_range, combo_step=None, facing=None):
+    def resolve_attack_hit(dmg, knockback, atk_range, combo_step=None, facing=None,
+                            crit=False, charged=False):
         state["last_hit_time"] = pygame.time.get_ticks()
         hx, hy = hero_center()
         fvx, fvy = DIR_VECS.get(facing, (1, 0))
@@ -290,14 +361,30 @@ def stage_screen(hero_class, hero_name, stage_idx):
                 e.apply_knockback(dnx / dnorm, dny / dnorm, knockback)
             hit_any = True
         if hit_any:
-            state["shake"] = 14 if combo_step == 3 else 8
-            state["hitstop"] = HITSTOP_FINISHER if combo_step == 3 else HITSTOP_HIT
+            shake = 14 if combo_step == 3 else 8
+            stop = HITSTOP_FINISHER if combo_step == 3 else HITSTOP_HIT
+            if charged:
+                shake = max(shake, 16)
+                stop = max(stop, 130)
+            if crit:
+                shake += 6
+                stop += 40
+            state["shake"] = shake
+            state["hitstop"] = stop
+
             if combo_step == 3:
-                add_log(f"FINISHER! {dmg} dmg!", GOLD)
+                label = "FINISHER"
+            elif charged:
+                label = "Charged Strike"
             elif combo_step:
-                add_log(f"Hit {combo_step}! {dmg} dmg!", GREEN)
+                label = f"Hit {combo_step}"
             else:
-                add_log(f"Attack! {dmg} dmg!", GREEN)
+                label = "Attack"
+
+            if crit:
+                add_log(f"CRITICAL {label}! {dmg} dmg!", RED)
+            else:
+                add_log(f"{label}! {dmg} dmg!", GOLD if combo_step == 3 else GREEN)
         else:
             add_log("Swing and a miss!", YELLOW)
 
@@ -335,7 +422,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     hero_pos[1] = new_y
                     moving = True
 
-            if state["hitstop"] <= 0 and not state["dashing"]:
+            if state["hitstop"] <= 0 and not state["dashing"] and not state["charging"]:
                 if keys[pygame.K_a]:
                     hero_pos[0] = max(0, hero_pos[0] - speed)
                     direction = "left"
@@ -390,7 +477,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
                 if now >= ph["time"]:
                     resolve_attack_hit(ph["dmg"], ph["knockback"],
                                        ph["range"], ph.get("combo_step"),
-                                       ph.get("facing"))
+                                       ph.get("facing"), ph.get("crit", False),
+                                       ph.get("charged", False))
                 else:
                     still_pending.append(ph)
             state["pending_hits"] = still_pending
@@ -454,6 +542,22 @@ def stage_screen(hero_class, hero_name, stage_idx):
         name_w = font_small.size(hero_name)[0]
         draw_text(screen, hero_name, font_small, GREEN,
                   hero_x + DISPLAY_SIZE[0]//2 - name_w//2, hero_y + 40)
+
+        # ── Charge glow ──
+        if state["charging"]:
+            frac = min(1.0, (now - state["charge_start"]) / CHARGE_MAX_MS)
+            radius = int(28 + 38 * frac)
+            ring_size = radius * 2 + 8
+            ring_surf = pygame.Surface((ring_size, ring_size), pygame.SRCALPHA)
+            if frac >= 1.0:
+                color = (255, 255, 255, 230)
+            else:
+                color = (255, 210, 110, int(110 + 100 * frac))
+            pygame.draw.circle(ring_surf, color,
+                                (ring_size // 2, ring_size // 2), radius, width=4)
+            cx, cy = hero_center()
+            rect = ring_surf.get_rect(center=(cx + ox, cy + oy))
+            screen.blit(ring_surf, rect)
 
         # ── Sword trails ──
         still_slashing = []
@@ -579,3 +683,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1 and not state["result"]:
                     do_attack(is_moving=moving, is_sprinting=sprinting)
+                if event.button == 3 and not state["result"]:
+                    start_charge()
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 3:
+                    release_charge()
