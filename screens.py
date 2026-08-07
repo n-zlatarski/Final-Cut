@@ -10,7 +10,10 @@ from ui import draw_text, draw_panel, draw_menu_button
 from audio import play_music, set_music_volume, audio_state
 from animator import Animator
 from sprite_loaders import dir_frames
-from game_data import STAGE_BGS, warrior_anims, _w_idle_rows, CLASS_STATS
+from game_data import (
+    STAGE_BGS, warrior_anims, _w_idle_rows,
+    assassin_anims, _a_idle_rows, CLASS_STATS,
+)
 
 def pause_menu():
     options = ["Resume", "Options", "Change Class", "Exit Game"]
@@ -64,6 +67,8 @@ def options_menu():
         ("LShift",        "Sprint"),
         ("LClick",        "Attack"),
         ("LShift+LClick", "Run Attack"),
+        ("Space",         "Dash"),
+        ("Space+LClick",  "Dash Attack"),
         ("R",             "Recover stamina"),
         ("ESC",           "Pause menu"),
     ]
@@ -286,25 +291,30 @@ def name_input_screen():
 
 def class_select_screen():
     play_music("menu")
-    classes = ["Warrior"]
+    classes = ["Warrior", "Assassin"]
 
     warrior_preview_anims = warrior_anims.copy()
     warrior_preview_anims["idle"] = dir_frames(_w_idle_rows, "down")
+    assassin_preview_anims = assassin_anims.copy()
+    assassin_preview_anims["idle"] = dir_frames(_a_idle_rows, "down")
 
     previews = {
         "Warrior": Animator(warrior_preview_anims, default="idle", fps=8),
+        "Assassin": Animator(assassin_preview_anims, default="idle", fps=8),
     }
     descriptions = {
         "Warrior": ["HP: 120  Stamina: 260", "Heavy sword fighter.", "High HP, strong attacks."],
+        "Assassin": ["HP: 100  Stamina: 320", "Fast dual daggers.", "Quick dash attacks."],
     }
     CARD_W = DISPLAY_SIZE[0] + 20
     CARD_H = DISPLAY_SIZE[1] + 110
     GAP = 40
-    total_w = CARD_W * 1
+    total_w = CARD_W * len(classes) + GAP * (len(classes) - 1)
     start_x = WIDTH // 2 - total_w // 2
     card_y = HEIGHT // 2 - CARD_H // 2
     positions = {
-        "Warrior": (start_x, card_y),
+        cls: (start_x + i * (CARD_W + GAP), card_y)
+        for i, cls in enumerate(classes)
     }
     last_time = pygame.time.get_ticks()
     while True:

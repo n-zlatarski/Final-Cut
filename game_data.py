@@ -114,6 +114,37 @@ _w_hurt_rows = load_sheet_all_rows(
 _w_death_rows = load_sheet_all_rows(
     "assets/Swordsman/Swordsman_lvl3_Death_with_shadow.png",         7, 4, DISPLAY_SIZE)
 
+# ── Assassin sheets (4 directions: down, left, right, up) ────────────────────
+# The supplied Assassin art was normalized to transparent 220x220 cells so it
+# can use the exact same directional animation pipeline as the Warrior.
+ASSASSIN_SHEETS = {
+    "idle":        ("assets/Assassin/GameReady/idle.png",         6, 4),
+    "walk":        ("assets/Assassin/GameReady/walk.png",         6, 4),
+    "run":         ("assets/Assassin/GameReady/run.png",          7, 4),
+    "attack":      ("assets/Assassin/GameReady/attack.png",       7, 4),
+    "run_attack":  ("assets/Assassin/GameReady/run_attack.png",   6, 4),
+    "dash":        ("assets/Assassin/GameReady/dash.png",         7, 4),
+    "dash_attack": ("assets/Assassin/GameReady/dash_attack.png",  6, 4),
+    "hurt":        ("assets/Assassin/GameReady/hurt.png",         5, 4),
+    "death":       ("assets/Assassin/GameReady/death.png",        7, 4),
+}
+
+ASSASSIN_ANIM_ROWS = {
+    name: load_sheet_all_rows(path, cols, rows, DISPLAY_SIZE)
+    for name, (path, cols, rows) in ASSASSIN_SHEETS.items()
+}
+assassin_anims = {name: rows[0] for name, rows in ASSASSIN_ANIM_ROWS.items()}
+
+_a_idle_rows = ASSASSIN_ANIM_ROWS["idle"]
+_a_walk_rows = ASSASSIN_ANIM_ROWS["walk"]
+_a_run_rows = ASSASSIN_ANIM_ROWS["run"]
+_a_atk_rows = ASSASSIN_ANIM_ROWS["attack"]
+_a_run_atk_rows = ASSASSIN_ANIM_ROWS["run_attack"]
+_a_dash_rows = ASSASSIN_ANIM_ROWS["dash"]
+_a_dash_atk_rows = ASSASSIN_ANIM_ROWS["dash_attack"]
+_a_hurt_rows = ASSASSIN_ANIM_ROWS["hurt"]
+_a_death_rows = ASSASSIN_ANIM_ROWS["death"]
+
 # ── Vampire boss (4-directional sheets, same layout style as the Swordsman) ──
 VAMPIRE_DISPLAY = (230, 230)
 VAMPIRE_SHEETS = {
@@ -132,9 +163,11 @@ VAMPIRE_ANIMS = {
 # ── Portraits ─────────────────────────────────────────────────────────────────
 portrait_imgs = {
     "Warrior": load_img("assets/Swordsman/swordsmanpic.png", (80, 80)),
+    "Assassin": load_img("assets/Assassin/GameReady/assassinpic.png", (80, 80)),
 }
 
 # ── Game data ─────────────────────────────────────────────────────────────────
 CLASS_STATS = {
     "Warrior": dict(health=120, stamina=260),
+    "Assassin": dict(health=100, stamina=320),
 }

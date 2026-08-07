@@ -17,6 +17,8 @@ from game_data import (
     STAGES, ENEMY_TYPES, CLASS_STATS, portrait_imgs, STAGE_BGS,
     warrior_anims, _w_idle_rows, _w_walk_rows, _w_run_rows, _w_atk_rows,
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
+    assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows, _a_atk_rows,
+    _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows, _a_hurt_rows, _a_death_rows,
     VAMPIRE_STATS,
 )
 from screens import pause_menu, options_menu
@@ -52,58 +54,74 @@ def stage_screen(hero_class, hero_name, stage_idx):
     stamina = stats["stamina"]
     max_stamina = stamina
 
+    # Class-specific combat tuning.  The Assassin art contains more frames
+    # than the Warrior and is meant to feel quick, so its animation speeds and
+    # recovery windows are matched to the supplied sprite sheets instead of
+    # reusing the Warrior timing values.
+    is_assassin = hero_class == "Assassin"
     RUN_ATK_COOLDOWN = 1200
-    ATTACK_RANGE = 170
+    ATTACK_RANGE = 158 if is_assassin else 170
     last_attack_time = 0
     last_run_atk_time = 0
 
     # ── 3-hit combo ──
-    # Each step: how much it hurts, how hard it shoves the enemy back,
-    # how long you're locked in recovery before the next swing can start,
-    # and how fast the swing animation plays. The finisher (step 3) is
-    # deliberately slower and heavier -- it should feel like a real payoff,
-    # not just "attack #3".
-    COMBO_STEPS = [
-        {"dmg": (15, 28), "knockback": 6,  "recovery": 260, "fps": 14, "range": ATTACK_RANGE},
-        {"dmg": (20, 34), "knockback": 9,  "recovery": 300, "fps": 14, "range": ATTACK_RANGE},
-        {"dmg": (35, 55), "knockback": 16, "recovery": 500, "fps": 11, "range": ATTACK_RANGE + 25},
-    ]
-    # How long after a hit the player still counts as "mid-combo". Click
-    # again within this window to advance to the next step; wait longer
-    # and the combo resets back to step 1.
-    COMBO_WINDOW = 550
+    if is_assassin:
+        COMBO_STEPS = [
+            {"dmg": (14, 24), "knockback": 4,  "recovery": 330, "fps": 22, "range": ATTACK_RANGE},
+            {"dmg": (17, 28), "knockback": 6,  "recovery": 330, "fps": 22, "range": ATTACK_RANGE + 5},
+            {"dmg": (28, 42), "knockback": 11, "recovery": 420, "fps": 20, "range": ATTACK_RANGE + 18},
+        ]
+        COMBO_WINDOW = 520
+    else:
+        COMBO_STEPS = [
+            {"dmg": (15, 28), "knockback": 6,  "recovery": 260, "fps": 14, "range": ATTACK_RANGE},
+            {"dmg": (20, 34), "knockback": 9,  "recovery": 300, "fps": 14, "range": ATTACK_RANGE},
+            {"dmg": (35, 55), "knockback": 16, "recovery": 500, "fps": 11, "range": ATTACK_RANGE + 25},
+        ]
+        COMBO_WINDOW = 550
 
     # ── dash ──
-    DASH_SPEED = 16          # px per ~16ms tick -- a fast burst, well above sprint
-    DASH_DURATION = 160      # ms the burst lasts
-    DASH_COOLDOWN = 500
-    DASH_STAMINA_COST = 20
-    # Click within this long after a dash ends (or during it) and it becomes
-    # a dash attack instead of a normal combo swing.
-    DASH_ATTACK_BUFFER = 150
+    # Assassin dash sheet = 7 frames.  32 fps is ~219 ms, so the movement
+    # duration below finishes almost exactly with the final animation frame.
+    DASH_ANIM_FPS = 32 if is_assassin else 20
+    DASH_ATTACK_FPS = 22 if is_assassin else 18
+    DASH_SPEED = 17 if is_assassin else 16
+    DASH_DURATION = 215 if is_assassin else 160
+    DASH_COOLDOWN = 420 if is_assassin else 500
+    DASH_STAMINA_COST = 18 if is_assassin else 20
+    DASH_ATTACK_BUFFER = 170 if is_assassin else 150
     DIR_VECS = {"left": (-1, 0), "right": (1, 0), "up": (0, -1), "down": (0, 1)}
     last_dash_time = 0
-    # A swing only lands on enemies roughly in front of you -- excludes
-    # anything more than ~100 degrees off your facing direction, so you
-    # can't hit something standing behind your back.
     FACING_COS_THRESHOLD = math.cos(math.radians(100))
 
     # ── critical hits ──
-    CRIT_CHANCE = 0.18
+    CRIT_CHANCE = 0.24 if is_assassin else 0.18
     CRIT_MULT = 1.8
 
     # ── hitstop / enemy flash / sword trail ──
-    HITSTOP_HIT = 55        # a beat of freeze on a normal connecting hit
-    HITSTOP_FINISHER = 100  # longer freeze for the combo finisher -- sells the weight
-    _trail_base = None      # lazily-built swoosh sprite, cached after first use
+    HITSTOP_HIT = 45 if is_assassin else 55
+    HITSTOP_FINISHER = 80 if is_assassin else 100
+    _trail_base = None
 
     direction = "right"
-    anim = Animator(warrior_anims.copy(), default="idle", fps=8)
-    idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
-    atk_rows, run_atk_rows = _w_atk_rows,  _w_run_atk_rows
-    walk_atk_rows = _w_walk_atk_rows
-    death_rows = _w_death_rows
-    has_run_attack = True
+    if hero_class == "Assassin":
+        anim = Animator(assassin_anims.copy(), default="idle", fps=8)
+        idle_rows, walk_rows, run_rows = _a_idle_rows, _a_walk_rows, _a_run_rows
+        atk_rows, run_atk_rows = _a_atk_rows, _a_run_atk_rows
+        dash_rows, dash_attack_rows = _a_dash_rows, _a_dash_atk_rows
+        hurt_rows, death_rows = _a_hurt_rows, _a_death_rows
+        walk_atk_rows = None
+        has_walk_attack = False
+        has_run_attack = True
+    else:
+        anim = Animator(warrior_anims.copy(), default="idle", fps=8)
+        idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
+        atk_rows, run_atk_rows = _w_atk_rows, _w_run_atk_rows
+        dash_rows, dash_attack_rows = _w_run_rows, _w_atk_rows
+        walk_atk_rows = _w_walk_atk_rows
+        hurt_rows, death_rows = _w_hurt_rows, _w_death_rows
+        has_walk_attack = True
+        has_run_attack = True
 
     last_time = pygame.time.get_ticks()
     log = []
@@ -145,10 +163,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
 
     FEET_OFFSET = {
         "Warrior": 115,
+        "Assassin": 166,
     }
     TOP_BORDER_Y = HEIGHT - 700
-    WALK_SPEED = 3
-    RUN_SPEED = 4
+    WALK_SPEED = 3.4 if is_assassin else 3
+    RUN_SPEED = 4.7 if is_assassin else 4
 
     def hero_center():
         return (hero_pos[0] + DISPLAY_SIZE[0] / 2, hero_pos[1] + DISPLAY_SIZE[1] / 2)
@@ -162,6 +181,10 @@ def stage_screen(hero_class, hero_name, stage_idx):
         if state["hero_hp"] <= 0:
             state["hero_hp"] = 0
             state["result"] = "lose"
+            play_dir("death", death_rows, one_shot=True, force=True, fps=9)
+            state["death_played"] = True
+        else:
+            play_dir("hurt", hurt_rows, one_shot=True, force=True, fps=12)
 
     def try_dash():
         nonlocal last_dash_time
@@ -178,7 +201,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         state["dashing"] = True
         state["dash_dir"] = DIR_VECS.get(direction, (1, 0))
         state["dash_end_time"] = now + DASH_DURATION
-        play_dir("dash", run_rows, one_shot=False, force=True, fps=20)
+        play_dir("dash", dash_rows, one_shot=True, force=True, fps=DASH_ANIM_FPS)
 
     def is_dash_attack_window():
         now = pygame.time.get_ticks()
@@ -195,13 +218,14 @@ def stage_screen(hero_class, hero_name, stage_idx):
         dmg = random.randint(28, 42)
         dmg, crit = roll_crit(dmg)
         last_attack_time = now
-        state["current_recovery"] = 260
+        state["current_recovery"] = 310 if is_assassin else 260
         state["combo_index"] = 0
         # The strike plants your feet -- any leftover dash momentum stops here.
         state["dashing"] = False
-        play_dir("attack", atk_rows, one_shot=True, force=True, fps=18)
-        spawn_slash(direction, duration=220)
-        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=18,
+        play_dir("dash_attack", dash_attack_rows, one_shot=True, force=True, fps=DASH_ATTACK_FPS)
+        if hero_class == "Warrior":
+            spawn_slash(direction, duration=220)
+        queue_hit(dmg, knockback=12, atk_range=ATTACK_RANGE + 15, fps=DASH_ATTACK_FPS,
                   facing=direction, crit=crit)
         add_log("Dash Strike!", GOLD)
 
@@ -254,10 +278,15 @@ def stage_screen(hero_class, hero_name, stage_idx):
         last_attack_time = now
         state["current_recovery"] = step["recovery"]
 
-        anim_name = "walk_attack" if (is_moving and not is_sprinting) else "attack"
-        rows = walk_atk_rows if anim_name == "walk_attack" else atk_rows
+        if is_moving and is_sprinting and has_run_attack:
+            anim_name, rows = "run_attack", run_atk_rows
+        elif is_moving and has_walk_attack:
+            anim_name, rows = "walk_attack", walk_atk_rows
+        else:
+            anim_name, rows = "attack", atk_rows
         play_dir(anim_name, rows, one_shot=True, force=True, fps=step["fps"])
-        spawn_slash(direction, duration=260 if state["combo_index"] == 2 else 190)
+        if hero_class == "Warrior":
+            spawn_slash(direction, duration=260 if state["combo_index"] == 2 else 190)
 
         queue_hit(dmg, knockback=step["knockback"],
                   atk_range=step["range"], fps=step["fps"],
@@ -448,7 +477,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                                  one_shot=True, force=True)
                         state["death_played"] = True
                 elif state["dashing"]:
-                    play_dir("dash", run_rows, one_shot=False, fps=20)
+                    play_dir("dash", dash_rows, one_shot=False, fps=DASH_ANIM_FPS)
                 elif moving and sprinting:
                     play_dir("run",  run_rows,  one_shot=False)
                 elif moving:
