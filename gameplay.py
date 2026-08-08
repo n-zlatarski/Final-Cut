@@ -17,7 +17,8 @@ from game_data import (
     STAGES, ENEMY_TYPES, CLASS_STATS, portrait_imgs, STAGE_BGS,
     warrior_anims, _w_idle_rows, _w_walk_rows, _w_run_rows, _w_atk_rows,
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
-    assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows, _a_atk_rows,
+    assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows,
+    _a_atk1_rows, _a_atk2_rows, _a_atk3_rows,
     _a_walk_atk_rows, _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
     _a_hurt_rows, _a_death_rows,
     VAMPIRE_STATS,
@@ -68,11 +69,14 @@ def stage_screen(hero_class, hero_name, stage_idx):
     # ── 3-hit combo ──
     if is_assassin:
         COMBO_STEPS = [
-            {"dmg": (14, 24), "knockback": 4,  "recovery": 330, "fps": 22, "range": ATTACK_RANGE},
-            {"dmg": (17, 28), "knockback": 6,  "recovery": 330, "fps": 22, "range": ATTACK_RANGE + 5},
-            {"dmg": (28, 42), "knockback": 11, "recovery": 420, "fps": 20, "range": ATTACK_RANGE + 18},
+            # Keep Jinwoo quick, but leave each pose on screen long enough to
+            # read.  The old 22/22/20 FPS values made the 7-frame attack look
+            # like a flash instead of an actual dagger combo.
+            {"dmg": (14, 24), "knockback": 4,  "recovery": 430, "fps": 14, "range": ATTACK_RANGE},
+            {"dmg": (17, 28), "knockback": 6,  "recovery": 430, "fps": 14, "range": ATTACK_RANGE + 5},
+            {"dmg": (28, 42), "knockback": 11, "recovery": 640, "fps": 11, "range": ATTACK_RANGE + 18},
         ]
-        COMBO_WINDOW = 520
+        COMBO_WINDOW = 700
     else:
         COMBO_STEPS = [
             {"dmg": (15, 28), "knockback": 6,  "recovery": 260, "fps": 14, "range": ATTACK_RANGE},
@@ -108,16 +112,18 @@ def stage_screen(hero_class, hero_name, stage_idx):
     if hero_class == "Assassin":
         anim = Animator(assassin_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _a_idle_rows, _a_walk_rows, _a_run_rows
-        atk_rows, run_atk_rows = _a_atk_rows, _a_run_atk_rows
+        atk_combo_rows = (_a_atk1_rows, _a_atk2_rows, _a_atk3_rows)
+        run_atk_rows = _a_run_atk_rows
         dash_rows, dash_attack_rows = _a_dash_rows, _a_dash_atk_rows
         hurt_rows, death_rows = _a_hurt_rows, _a_death_rows
         walk_atk_rows = _a_walk_atk_rows
     else:
         anim = Animator(warrior_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
-        atk_rows, run_atk_rows = _w_atk_rows, _w_run_atk_rows
+        atk_combo_rows = (_w_atk_rows, _w_atk_rows, _w_atk_rows)
+        run_atk_rows = _w_run_atk_rows
         dash_rows, dash_attack_rows = _w_run_rows, _w_atk_rows
-        walk_atk_rows = _w_walk_atk_rows
+        walk_atk_rows = (_w_walk_atk_rows, _w_walk_atk_rows, _w_walk_atk_rows)
         hurt_rows, death_rows = _w_hurt_rows, _w_death_rows
 
     last_time = pygame.time.get_ticks()
@@ -140,6 +146,10 @@ def stage_screen(hero_class, hero_name, stage_idx):
         "shake":   0,
         "boss_spawned": False,
         "combo_index": 0,
+        # Combo progression follows successful attack INPUTS, not successful
+        # hits.  The old last_hit_time reset meant swinging at empty space
+        # could replay hit 1 forever instead of reaching attacks 2 and 3.
+        "last_combo_time": -100000,
         "last_hit_time": 0,
         "current_recovery": 0,
         # Hits that have been "thrown" by a swing but haven't landed yet --
@@ -217,8 +227,13 @@ def stage_screen(hero_class, hero_name, stage_idx):
         last_attack_time = now
         state["current_recovery"] = 310 if is_assassin else 260
         state["combo_index"] = 0
-        # The strike plants your feet -- any leftover dash momentum stops here.
-        state["dashing"] = False
+        state["last_combo_time"] = -100000
+        # Assassin dash-strikes keep the momentum of the dash that triggered
+        # them.  Previously this line unconditionally stopped dashing, which
+        # is why pressing attack made Jinwoo travel only a tiny distance.
+        # Warrior behavior stays unchanged.
+        if not is_assassin:
+            state["dashing"] = False
         play_dir("dash_attack", dash_attack_rows, one_shot=True, force=True, fps=DASH_ATTACK_FPS)
         if hero_class == "Warrior":
             spawn_slash(direction, duration=220)
@@ -265,31 +280,46 @@ def stage_screen(hero_class, hero_name, stage_idx):
         if now - last_attack_time < state["current_recovery"]:
             return  # still recovering from the last swing
 
-        # Waited too long since the last hit landed? Combo resets to step 1.
-        if now - state["last_hit_time"] > COMBO_WINDOW:
+        # Waited too long since the previous light-attack input? Reset to hit
+        # 1. This deliberately does not depend on whether the swing connected.
+        if now - state["last_combo_time"] > COMBO_WINDOW:
             state["combo_index"] = 0
 
-        step = COMBO_STEPS[state["combo_index"]]
+        combo_index = state["combo_index"]
+        step = COMBO_STEPS[combo_index]
         dmg = random.randint(*step["dmg"])
         dmg, crit = roll_crit(dmg)
         last_attack_time = now
         state["current_recovery"] = step["recovery"]
+        state["last_combo_time"] = now
 
-        if is_moving and is_sprinting:
+        if is_assassin and is_moving and not is_sprinting:
+            # Walking keeps the same three-hit combo identity, but uses
+            # dedicated locomotion-aware art so Jinwoo continues stepping
+            # through each slash instead of playing a standing pose while his
+            # world position slides forward.
+            anim_name = f"walk_attack_{combo_index + 1}"
+            rows = walk_atk_rows[combo_index]
+        elif is_assassin:
+            # Jinwoo's standing LMB chain: right-hand opener -> left-hand
+            # reverse slash -> crossed dual-dagger finisher.
+            anim_name = f"attack_{combo_index + 1}"
+            rows = atk_combo_rows[combo_index]
+        elif is_moving and is_sprinting:
             anim_name, rows = "run_attack", run_atk_rows
         elif is_moving:
-            anim_name, rows = "walk_attack", walk_atk_rows
+            anim_name, rows = "walk_attack", walk_atk_rows[combo_index]
         else:
-            anim_name, rows = "attack", atk_rows
+            anim_name, rows = "attack", atk_combo_rows[combo_index]
         play_dir(anim_name, rows, one_shot=True, force=True, fps=step["fps"])
         if hero_class == "Warrior":
-            spawn_slash(direction, duration=260 if state["combo_index"] == 2 else 190)
+            spawn_slash(direction, duration=260 if combo_index == 2 else 190)
 
         queue_hit(dmg, knockback=step["knockback"],
                   atk_range=step["range"], fps=step["fps"],
-                  combo_step=state["combo_index"] + 1, facing=direction, crit=crit)
+                  combo_step=combo_index + 1, facing=direction, crit=crit)
 
-        state["combo_index"] = (state["combo_index"] + 1) % len(COMBO_STEPS)
+        state["combo_index"] = (combo_index + 1) % len(COMBO_STEPS)
 
     def queue_hit(dmg, knockback, atk_range, fps, combo_step=None, facing=None,
                   crit=False):

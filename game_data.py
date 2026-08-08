@@ -123,7 +123,20 @@ ASSASSIN_SHEETS = {
     "idle":        ("assets/Assassin/GameReady/idle.png",         6, 4),
     "walk":        ("assets/Assassin/GameReady/walk.png",         6, 4),
     "run":         ("assets/Assassin/GameReady/run.png",          8, 4),
-    "attack":      ("assets/Assassin/GameReady/attack.png",       7, 4),
+    # Three genuinely different light attacks.  gameplay.py advances through
+    # these on consecutive LMB presses instead of replaying one sheet three
+    # times with different damage values.
+    "attack_1":    ("assets/Assassin/GameReady/attack_1.png",     6, 4),
+    "attack_2":    ("assets/Assassin/GameReady/attack_2.png",     6, 4),
+    "attack_3":    ("assets/Assassin/GameReady/attack_3.png",     6, 4),
+    # Moving versions of the same 3-hit light combo.  Keeping them separate
+    # prevents the standing attack art from visually sliding over the ground
+    # while the player's world position continues to move.
+    "walk_attack_1": ("assets/Assassin/GameReady/walk_attack_1.png", 6, 4),
+    "walk_attack_2": ("assets/Assassin/GameReady/walk_attack_2.png", 6, 4),
+    "walk_attack_3": ("assets/Assassin/GameReady/walk_attack_3.png", 6, 4),
+    # Kept for backwards compatibility with any menu/preview code that still
+    # asks for the legacy single walk-attack sheet.
     "walk_attack": ("assets/Assassin/GameReady/walk_attack.png",  6, 4),
     "run_attack":  ("assets/Assassin/GameReady/run_attack.png",   8, 4),
     "dash":        ("assets/Assassin/GameReady/dash.png",         7, 4),
@@ -145,8 +158,14 @@ ASSASSIN_ANIM_ROWS = {
 _a_idle_rows = [row + list(reversed(row)) for row in ASSASSIN_ANIM_ROWS["idle"]]
 _a_walk_rows = ASSASSIN_ANIM_ROWS["walk"]
 _a_run_rows = ASSASSIN_ANIM_ROWS["run"]
-_a_atk_rows = ASSASSIN_ANIM_ROWS["attack"]
-_a_walk_atk_rows = ASSASSIN_ANIM_ROWS["walk_attack"]
+_a_atk1_rows = ASSASSIN_ANIM_ROWS["attack_1"]
+_a_atk2_rows = ASSASSIN_ANIM_ROWS["attack_2"]
+_a_atk3_rows = ASSASSIN_ANIM_ROWS["attack_3"]
+_a_walk_atk_rows = (
+    ASSASSIN_ANIM_ROWS["walk_attack_1"],
+    ASSASSIN_ANIM_ROWS["walk_attack_2"],
+    ASSASSIN_ANIM_ROWS["walk_attack_3"],
+)
 _a_run_atk_rows = ASSASSIN_ANIM_ROWS["run_attack"]
 _a_dash_rows = ASSASSIN_ANIM_ROWS["dash"]
 _a_dash_atk_rows = ASSASSIN_ANIM_ROWS["dash_attack"]
