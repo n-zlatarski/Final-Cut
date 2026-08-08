@@ -121,6 +121,9 @@ _w_death_rows = load_sheet_all_rows(
 # drift/bleed from becoming visible character movement.
 ASSASSIN_SHEETS = {
     "idle":        ("assets/Assassin/GameReady/idle.png",         6, 4),
+    # v10 uses a six-phase planted walk.  Both this sheet and idle are packed
+    # to the same feet baseline, matching the root discipline of the Warrior
+    # walk instead of letting generated frame placement move the whole body.
     "walk":        ("assets/Assassin/GameReady/walk.png",         6, 4),
     "run":         ("assets/Assassin/GameReady/run.png",          8, 4),
     # Three genuinely different light attacks.  gameplay.py advances through

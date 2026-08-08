@@ -19,7 +19,7 @@ from game_data import (
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
     assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows,
     _a_atk1_rows, _a_atk2_rows, _a_atk3_rows,
-    _a_walk_atk_rows, _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
+    _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
     _a_hurt_rows, _a_death_rows,
     VAMPIRE_STATS,
 )
@@ -69,12 +69,12 @@ def stage_screen(hero_class, hero_name, stage_idx):
     # ── 3-hit combo ──
     if is_assassin:
         COMBO_STEPS = [
-            # Keep Jinwoo quick, but leave each pose on screen long enough to
-            # read.  The old 22/22/20 FPS values made the 7-frame attack look
-            # like a flash instead of an actual dagger combo.
-            {"dmg": (14, 24), "knockback": 4,  "recovery": 430, "fps": 14, "range": ATTACK_RANGE},
-            {"dmg": (17, 28), "knockback": 6,  "recovery": 430, "fps": 14, "range": ATTACK_RANGE + 5},
-            {"dmg": (28, 42), "knockback": 11, "recovery": 640, "fps": 11, "range": ATTACK_RANGE + 18},
+            # V7 makes the approved three-hit dagger chain a little snappier
+            # without returning to the old blink-and-you-miss-it 20+ FPS
+            # timing.  Recovery tracks the new six-frame animation duration.
+            {"dmg": (14, 24), "knockback": 4,  "recovery": 380, "fps": 16, "range": ATTACK_RANGE},
+            {"dmg": (17, 28), "knockback": 6,  "recovery": 380, "fps": 16, "range": ATTACK_RANGE + 5},
+            {"dmg": (28, 42), "knockback": 11, "recovery": 520, "fps": 13, "range": ATTACK_RANGE + 18},
         ]
         COMBO_WINDOW = 700
     else:
@@ -107,6 +107,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
     HITSTOP_HIT = 45 if is_assassin else 55
     HITSTOP_FINISHER = 80 if is_assassin else 100
     _trail_base = None
+    _assassin_trail_cache = {}
 
     direction = "right"
     if hero_class == "Assassin":
@@ -116,7 +117,6 @@ def stage_screen(hero_class, hero_name, stage_idx):
         run_atk_rows = _a_run_atk_rows
         dash_rows, dash_attack_rows = _a_dash_rows, _a_dash_atk_rows
         hurt_rows, death_rows = _a_hurt_rows, _a_death_rows
-        walk_atk_rows = _a_walk_atk_rows
     else:
         anim = Animator(warrior_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
@@ -162,6 +162,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         "dash_finished_at": -100000,
         "hitstop": 0,
         "slashes": [],
+        "assassin_sparks": [],
     }
 
     hero_pos = [120, HEIGHT - 450]
@@ -258,6 +259,78 @@ def stage_screen(hero_class, hero_name, stage_idx):
             _trail_base = surf
         return _trail_base
 
+    def get_assassin_trail_surface(combo_step):
+        """Load the richer PNG dagger VFX while keeping v10 combat behavior.
+
+        The original v10 procedural trail remains below as a fallback if an
+        effect asset is ever missing from a copied install.
+        """
+        if combo_step in _assassin_trail_cache:
+            return _assassin_trail_cache[combo_step]
+
+        vfx_path = f"assets/Assassin/VFX/slash_hit{combo_step}.png"
+        try:
+            surf = pygame.image.load(vfx_path).convert_alpha()
+            _assassin_trail_cache[combo_step] = surf
+            return surf
+        except Exception as exc:
+            print(f"FAILED to load {vfx_path}: {exc}; using v10 fallback trail")
+
+        size = 190
+        surf = pygame.Surface((size, size), pygame.SRCALPHA)
+        slash_a = [(31, 146), (51, 134), (74, 116),
+                   (98, 94), (121, 69), (145, 40), (157, 26)]
+        slash_b = [(31, 42), (52, 54), (75, 72),
+                   (100, 94), (124, 119), (146, 145), (157, 160)]
+
+        def draw_dagger_stroke(points, strength=1.0):
+            # Soft outer aura -> v9 crimson trail -> hot blade core.
+            pygame.draw.lines(surf, (105, 0, 26, int(30 * strength)),
+                              False, points, 19)
+            glow_alpha = int(62 * strength)
+            red_alpha = int(225 * strength)
+            core_alpha = int(245 * strength)
+            pygame.draw.lines(surf, (150, 0, 24, glow_alpha),
+                              False, points, 13)
+            pygame.draw.lines(surf, (235, 16, 43, red_alpha),
+                              False, points, 6)
+            pygame.draw.lines(surf, (255, 96, 110, core_alpha),
+                              False, points, 3)
+            pygame.draw.aalines(surf, (255, 244, 244, core_alpha),
+                                False, points)
+            # Three narrow echoes add speed/energy without turning the trail
+            # into an opaque hoop.
+            for shift, alpha in ((7, 92), (13, 54), (19, 28)):
+                echo = [(x - shift, y) for x, y in points]
+                pygame.draw.aalines(surf, (220, 10, 40, alpha),
+                                    False, echo)
+
+        if combo_step == 1:
+            draw_dagger_stroke(slash_a)
+            for px, py in ((148, 37), (157, 29), (164, 23)):
+                pygame.draw.circle(surf, (255, 50, 72, 170), (px, py), 2)
+        elif combo_step == 2:
+            draw_dagger_stroke(slash_b)
+            for px, py in ((148, 147), (158, 156), (166, 164)):
+                pygame.draw.circle(surf, (255, 50, 72, 170), (px, py), 2)
+        else:
+            # Finisher uses both physical dagger paths, but keeps the trails
+            # narrow so the character remains readable through the impact.
+            draw_dagger_stroke(slash_a, 1.0)
+            draw_dagger_stroke(slash_b, 1.0)
+            # Compact impact bloom at the crossing point.  It fades/rotates
+            # with the trails, so it remains directional and never covers the
+            # whole character.
+            pygame.draw.circle(surf, (140, 0, 28, 55), (99, 94), 22)
+            pygame.draw.circle(surf, (245, 16, 48, 110), (99, 94), 12)
+            pygame.draw.circle(surf, (255, 220, 220, 225), (99, 94), 4)
+            for px, py in ((161, 28), (166, 38), (162, 151), (169, 160)):
+                pygame.draw.circle(surf, (255, 45, 70, 150), (px, py), 3)
+                pygame.draw.circle(surf, (255, 235, 235, 230), (px, py), 1)
+
+        _assassin_trail_cache[combo_step] = surf
+        return surf
+
     def spawn_slash(facing, duration=200):
         hx, hy = hero_center()
         dirx, diry = DIR_VECS.get(facing, (1, 0))
@@ -267,6 +340,42 @@ def stage_screen(hero_class, hero_name, stage_idx):
             "pos": pos, "angle": angle,
             "start": pygame.time.get_ticks(), "duration": duration,
         })
+
+    def spawn_assassin_sparks(pos, facing, combo_step):
+        """Emit a small directional burst around each dagger impact."""
+        dirx, diry = DIR_VECS.get(facing, (1, 0))
+        sidex, sidey = -diry, dirx
+        count = {1: 8, 2: 12, 3: 22}.get(combo_step, 8)
+        now = pygame.time.get_ticks()
+        for _ in range(count):
+            forward = random.uniform(1.4, 3.2 if combo_step < 3 else 4.4)
+            side = random.uniform(-2.0, 2.0) * (1.25 if combo_step == 3 else 1.0)
+            state["assassin_sparks"].append({
+                "pos": (pos[0] + random.uniform(-8, 8),
+                        pos[1] + random.uniform(-8, 8)),
+                "vel": (dirx * forward + sidex * side,
+                        diry * forward + sidey * side),
+                "start": now,
+                "life": random.randint(190, 270 if combo_step < 3 else 340),
+                "radius": random.choice((1, 1, 2, 2, 3 if combo_step == 3 else 2)),
+            })
+
+    def spawn_assassin_slash(facing, combo_step, duration=180):
+        """Place the red dagger effect in front of the actual facing vector."""
+        hx, hy = hero_center()
+        dirx, diry = DIR_VECS.get(facing, (1, 0))
+        offset = 72 if combo_step == 3 else 64
+        pos = (hx + dirx * offset, hy + diry * offset)
+        angle = {"right": 0, "left": 180, "up": 90, "down": 270}.get(facing, 0)
+        state["slashes"].append({
+            "kind": "assassin",
+            "combo_step": combo_step,
+            "pos": pos,
+            "angle": angle,
+            "start": pygame.time.get_ticks(),
+            "duration": duration,
+        })
+        spawn_assassin_sparks(pos, facing, combo_step)
 
     def do_attack(is_moving, is_sprinting):
         nonlocal last_attack_time
@@ -293,16 +402,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
         state["current_recovery"] = step["recovery"]
         state["last_combo_time"] = now
 
-        if is_assassin and is_moving and not is_sprinting:
-            # Walking keeps the same three-hit combo identity, but uses
-            # dedicated locomotion-aware art so Jinwoo continues stepping
-            # through each slash instead of playing a standing pose while his
-            # world position slides forward.
-            anim_name = f"walk_attack_{combo_index + 1}"
-            rows = walk_atk_rows[combo_index]
-        elif is_assassin:
-            # Jinwoo's standing LMB chain: right-hand opener -> left-hand
-            # reverse slash -> crossed dual-dagger finisher.
+        if is_assassin:
+            # One master character model is used for the entire light combo,
+            # whether the click started from idle, walk or run.  Translation
+            # is deliberately NOT locked: movement keys remain responsive
+            # throughout the attack while the one-shot strike keeps playing.
             anim_name = f"attack_{combo_index + 1}"
             rows = atk_combo_rows[combo_index]
         elif is_moving and is_sprinting:
@@ -340,6 +444,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
     def resolve_attack_hit(dmg, knockback, atk_range, combo_step=None, facing=None,
                             crit=False):
         state["last_hit_time"] = pygame.time.get_ticks()
+        if is_assassin and combo_step:
+            spawn_assassin_slash(
+                facing, combo_step,
+                duration=230 if combo_step == 3 else 175,
+            )
         hx, hy = hero_center()
         fvx, fvy = DIR_VECS.get(facing, (1, 0))
         hit_any = False
@@ -508,7 +617,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
                 elif moving and sprinting:
                     play_dir("run",  run_rows,  one_shot=False)
                 elif moving:
-                    play_dir("walk", walk_rows, one_shot=False)
+                    # Six planted gait phases.  Idle and walk share one feet
+                    # baseline, so the animation changes pose without moving
+                    # the whole character inside its logical cell.
+                    play_dir("walk", walk_rows, one_shot=False,
+                             fps=8 if is_assassin else None)
                 else:
                     play_dir("idle", idle_rows, one_shot=False)
 
@@ -532,10 +645,16 @@ def stage_screen(hero_class, hero_name, stage_idx):
         # ── Hero ──
         hero_x = hero_pos[0] + ox
         hero_y = hero_pos[1] + oy
-        screen.blit(anim.get_frame(), (hero_x, hero_y))
+        hero_frame = anim.get_frame()
+        screen.blit(hero_frame, (hero_x, hero_y))
         name_w = font_small.size(hero_name)[0]
+        visible = hero_frame.get_bounding_rect(min_alpha=30)
+        if visible.height:
+            name_y = hero_y + visible.top - font_small.get_height() - 8
+        else:
+            name_y = hero_y + 8
         draw_text(screen, hero_name, font_small, GREEN,
-                  hero_x + DISPLAY_SIZE[0]//2 - name_w//2, hero_y + 40)
+                  hero_x + DISPLAY_SIZE[0]//2 - name_w//2, name_y)
 
         # ── Sword trails ──
         still_slashing = []
@@ -544,13 +663,47 @@ def stage_screen(hero_class, hero_name, stage_idx):
             if elapsed >= sl["duration"]:
                 continue
             t = elapsed / sl["duration"]
-            trail_img = pygame.transform.rotate(get_trail_surface(), sl["angle"])
+            if sl.get("kind") == "assassin":
+                base_trail = get_assassin_trail_surface(sl.get("combo_step", 1))
+            else:
+                base_trail = get_trail_surface()
+            trail_img = pygame.transform.rotate(base_trail, sl["angle"])
             trail_img.set_alpha(int(255 * (1 - t)))
             rect = trail_img.get_rect(
                 center=(sl["pos"][0] + ox, sl["pos"][1] + oy))
             screen.blit(trail_img, rect)
             still_slashing.append(sl)
         state["slashes"] = still_slashing
+
+        # Extra assassin energy motes.  These are deliberately separate from
+        # the body sprites and inherit the facing vector captured on impact,
+        # so LEFT/RIGHT/UP/DOWN remain correct even if the player turns during
+        # the fade-out.
+        still_sparks = []
+        for sp in state["assassin_sparks"]:
+            elapsed = now - sp["start"]
+            if elapsed >= sp["life"]:
+                continue
+            t = elapsed / sp["life"]
+            steps = elapsed / 16.667
+            px = sp["pos"][0] + sp["vel"][0] * steps + ox
+            py = sp["pos"][1] + sp["vel"][1] * steps + oy
+            radius = sp["radius"]
+            alpha = max(0, int(210 * (1.0 - t)))
+            # A tiny per-particle SRCALPHA surface gives the mote a crimson
+            # glow plus white-hot center without requiring a giant overlay.
+            mote_size = radius * 6 + 8
+            mote = pygame.Surface((mote_size, mote_size), pygame.SRCALPHA)
+            mc = mote_size // 2
+            pygame.draw.circle(mote, (170, 0, 32, alpha // 2),
+                               (mc, mc), radius + 3)
+            pygame.draw.circle(mote, (255, 35, 64, alpha),
+                               (mc, mc), radius + 1)
+            pygame.draw.circle(mote, (255, 225, 225, min(255, alpha + 30)),
+                               (mc, mc), 1)
+            screen.blit(mote, (int(px - mc), int(py - mc)))
+            still_sparks.append(sp)
+        state["assassin_sparks"] = still_sparks
 
         # ── Stage name — banner, top center ──
         stage_txt = f"{stage['name']}"
