@@ -177,6 +177,23 @@ def stage_screen(hero_class, hero_name, stage_idx):
     WALK_SPEED = 3.4 if is_assassin else 3
     RUN_SPEED = 4.7 if is_assassin else 4
 
+    # Locomotion animations need their own explicit rates. Attack playback
+    # temporarily raises Animator.fps (16/16/13 for Jinwoo's combo), so leaving
+    # idle/run at fps=None lets the previous action leak its timing into the
+    # next movement state. The rebuilt walk uses six genuinely distinct gait
+    # phases, so it can use the same natural 8 FPS cadence as the Swordsman.
+    IDLE_ANIM_FPS = 8
+    WALK_ANIM_FPS = 8
+    RUN_ANIM_FPS = 8
+
+    # Once sprint drains the bar completely, holding Shift must not immediately
+    # consume the tiny amount regenerated on the next frame.  Without this
+    # latch the state oscillates RUN -> WALK -> RUN -> WALK at zero stamina.
+    # Require a Shift release and a small recovery buffer before sprint can be
+    # armed again.
+    SPRINT_RESUME_STAMINA = 5.0
+    state["sprint_exhausted"] = False
+
     def hero_center():
         return (hero_pos[0] + DISPLAY_SIZE[0] / 2, hero_pos[1] + DISPLAY_SIZE[1] / 2)
 
@@ -505,7 +522,20 @@ def stage_screen(hero_class, hero_name, stage_idx):
         effective_dt = 0 if state["hitstop"] > 0 else dt
 
         keys = pygame.key.get_pressed()
-        sprinting = keys[pygame.K_LSHIFT] and state["stamina"] > 0
+        shift_held = keys[pygame.K_LSHIFT]
+
+        if state["stamina"] <= 0:
+            state["stamina"] = 0
+            state["sprint_exhausted"] = True
+
+        # A depleted sprint remains disarmed while Shift is held.  Releasing
+        # Shift after recovering a little stamina re-arms sprint cleanly.
+        if (state["sprint_exhausted"] and not shift_held
+                and state["stamina"] >= SPRINT_RESUME_STAMINA):
+            state["sprint_exhausted"] = False
+
+        sprinting = (shift_held and not state["sprint_exhausted"]
+                     and state["stamina"] > 0)
         speed = RUN_SPEED if sprinting else WALK_SPEED
         moving = False
 
@@ -551,6 +581,8 @@ def stage_screen(hero_class, hero_name, stage_idx):
                         direction = "down"
             if sprinting and moving:
                 state["stamina"] = max(0, state["stamina"] - 0.35)
+                if state["stamina"] <= 0:
+                    state["sprint_exhausted"] = True
             elif not sprinting:
                 state["stamina"] = min(max_stamina, state["stamina"] + 0.03)
 
@@ -615,15 +647,15 @@ def stage_screen(hero_class, hero_name, stage_idx):
                 elif state["dashing"]:
                     play_dir("dash", dash_rows, one_shot=False, fps=DASH_ANIM_FPS)
                 elif moving and sprinting:
-                    play_dir("run",  run_rows,  one_shot=False)
+                    play_dir("run", run_rows, one_shot=False,
+                             fps=RUN_ANIM_FPS)
                 elif moving:
-                    # Six planted gait phases.  Idle and walk share one feet
-                    # baseline, so the animation changes pose without moving
-                    # the whole character inside its logical cell.
+                    # Six distinct, planted walk phases; no timing workaround.
                     play_dir("walk", walk_rows, one_shot=False,
-                             fps=8 if is_assassin else None)
+                             fps=WALK_ANIM_FPS)
                 else:
-                    play_dir("idle", idle_rows, one_shot=False)
+                    play_dir("idle", idle_rows, one_shot=False,
+                             fps=IDLE_ANIM_FPS)
 
         ox = random.randint(-5, 5) if state["shake"] > 0 else 0
         oy = random.randint(-4, 4) if state["shake"] > 0 else 0
