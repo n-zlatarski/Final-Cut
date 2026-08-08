@@ -17,9 +17,43 @@ def load_img(path, size):
 # ── Sprite sheet loader ───────────────────────────────────────────────────────
 
 
-def load_sheet_all_rows(path, num_cols, num_rows, display_size=(128, 128)):
+def _remove_flat_background(sheet):
+    """Key out a flat opaque white/green sheet background when present.
+
+    Transparent PNGs are left untouched. The check intentionally only accepts
+    obvious white or chroma-green corner colors so dark sprite/effect colors
+    are never guessed as background.
+    """
+    sw, sh = sheet.get_size()
+    corners = [
+        sheet.get_at((0, 0)),
+        sheet.get_at((sw - 1, 0)),
+        sheet.get_at((0, sh - 1)),
+        sheet.get_at((sw - 1, sh - 1)),
+    ]
+    opaque = [c for c in corners if c.a >= 250]
+    if not opaque:
+        return sheet
+
+    counts = {}
+    for c in opaque:
+        rgb = (c.r, c.g, c.b)
+        counts[rgb] = counts.get(rgb, 0) + 1
+    bg = max(counts, key=counts.get)
+    r, g, b = bg
+    is_white = r >= 235 and g >= 235 and b >= 235
+    is_green = g >= 100 and g >= r * 1.35 and g >= b * 1.35
+    if is_white or is_green:
+        sheet.set_colorkey(bg)
+    return sheet
+
+
+def load_sheet_all_rows(path, num_cols, num_rows, display_size=(128, 128),
+                        remove_flat_background=False):
     try:
         sheet = pygame.image.load(path).convert_alpha()
+        if remove_flat_background:
+            sheet = _remove_flat_background(sheet)
         sw, sh = sheet.get_size()
         frame_w = sw // num_cols
         frame_h = sh // num_rows
@@ -164,5 +198,4 @@ def scale_crop(frame, crop_rect, scale):
 
 def flip_frames(frames):
     return [pygame.transform.flip(f, True, False) for f in frames]
-
 

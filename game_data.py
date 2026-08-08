@@ -115,14 +115,17 @@ _w_death_rows = load_sheet_all_rows(
     "assets/Swordsman/Swordsman_lvl3_Death_with_shadow.png",         7, 4, DISPLAY_SIZE)
 
 # ── Assassin sheets (4 directions: down, left, right, up) ────────────────────
-# The supplied Assassin art was normalized to transparent 220x220 cells so it
-# can use the exact same directional animation pipeline as the Warrior.
+# The supplied Assassin art is normalized to transparent 320x320 cells so every
+# animation uses identical frame geometry before the loader scales it to the
+# game's DISPLAY_SIZE.  Keeping a fixed source cell prevents generated-sheet
+# drift/bleed from becoming visible character movement.
 ASSASSIN_SHEETS = {
     "idle":        ("assets/Assassin/GameReady/idle.png",         6, 4),
     "walk":        ("assets/Assassin/GameReady/walk.png",         6, 4),
-    "run":         ("assets/Assassin/GameReady/run.png",          7, 4),
+    "run":         ("assets/Assassin/GameReady/run.png",          8, 4),
     "attack":      ("assets/Assassin/GameReady/attack.png",       7, 4),
-    "run_attack":  ("assets/Assassin/GameReady/run_attack.png",   6, 4),
+    "walk_attack": ("assets/Assassin/GameReady/walk_attack.png",  6, 4),
+    "run_attack":  ("assets/Assassin/GameReady/run_attack.png",   8, 4),
     "dash":        ("assets/Assassin/GameReady/dash.png",         7, 4),
     "dash_attack": ("assets/Assassin/GameReady/dash_attack.png",  6, 4),
     "hurt":        ("assets/Assassin/GameReady/hurt.png",         5, 4),
@@ -130,20 +133,28 @@ ASSASSIN_SHEETS = {
 }
 
 ASSASSIN_ANIM_ROWS = {
-    name: load_sheet_all_rows(path, cols, rows, DISPLAY_SIZE)
+    name: load_sheet_all_rows(
+        path, cols, rows, DISPLAY_SIZE, remove_flat_background=True)
     for name, (path, cols, rows) in ASSASSIN_SHEETS.items()
 }
-assassin_anims = {name: rows[0] for name, rows in ASSASSIN_ANIM_ROWS.items()}
 
-_a_idle_rows = ASSASSIN_ANIM_ROWS["idle"]
+# The six generated idle poses form only half of a natural breathing cycle.
+# Ping-pong them instead of jumping directly from pose 6 back to pose 1.  This
+# produces a 12-step / 1.5-second idle at the existing 8 FPS, matching the
+# Swordsman's overall idle-loop duration without inventing interpolated art.
+_a_idle_rows = [row + list(reversed(row)) for row in ASSASSIN_ANIM_ROWS["idle"]]
 _a_walk_rows = ASSASSIN_ANIM_ROWS["walk"]
 _a_run_rows = ASSASSIN_ANIM_ROWS["run"]
 _a_atk_rows = ASSASSIN_ANIM_ROWS["attack"]
+_a_walk_atk_rows = ASSASSIN_ANIM_ROWS["walk_attack"]
 _a_run_atk_rows = ASSASSIN_ANIM_ROWS["run_attack"]
 _a_dash_rows = ASSASSIN_ANIM_ROWS["dash"]
 _a_dash_atk_rows = ASSASSIN_ANIM_ROWS["dash_attack"]
 _a_hurt_rows = ASSASSIN_ANIM_ROWS["hurt"]
 _a_death_rows = ASSASSIN_ANIM_ROWS["death"]
+
+assassin_anims = {name: rows[0] for name, rows in ASSASSIN_ANIM_ROWS.items()}
+assassin_anims["idle"] = _a_idle_rows[0]
 
 # ── Vampire boss (4-directional sheets, same layout style as the Swordsman) ──
 VAMPIRE_DISPLAY = (230, 230)
@@ -163,7 +174,7 @@ VAMPIRE_ANIMS = {
 # ── Portraits ─────────────────────────────────────────────────────────────────
 portrait_imgs = {
     "Warrior": load_img("assets/Swordsman/swordsmanpic.png", (80, 80)),
-    "Assassin": load_img("assets/Assassin/GameReady/assassinpic.png", (80, 80)),
+    "Assassin": load_img("assets/Assassin/GameReady/sungjinwoo.png", (80, 80)),
 }
 
 # ── Game data ─────────────────────────────────────────────────────────────────

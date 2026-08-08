@@ -18,7 +18,8 @@ from game_data import (
     warrior_anims, _w_idle_rows, _w_walk_rows, _w_run_rows, _w_atk_rows,
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
     assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows, _a_atk_rows,
-    _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows, _a_hurt_rows, _a_death_rows,
+    _a_walk_atk_rows, _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
+    _a_hurt_rows, _a_death_rows,
     VAMPIRE_STATS,
 )
 from screens import pause_menu, options_menu
@@ -110,9 +111,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         atk_rows, run_atk_rows = _a_atk_rows, _a_run_atk_rows
         dash_rows, dash_attack_rows = _a_dash_rows, _a_dash_atk_rows
         hurt_rows, death_rows = _a_hurt_rows, _a_death_rows
-        walk_atk_rows = None
-        has_walk_attack = False
-        has_run_attack = True
+        walk_atk_rows = _a_walk_atk_rows
     else:
         anim = Animator(warrior_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
@@ -120,8 +119,6 @@ def stage_screen(hero_class, hero_name, stage_idx):
         dash_rows, dash_attack_rows = _w_run_rows, _w_atk_rows
         walk_atk_rows = _w_walk_atk_rows
         hurt_rows, death_rows = _w_hurt_rows, _w_death_rows
-        has_walk_attack = True
-        has_run_attack = True
 
     last_time = pygame.time.get_ticks()
     log = []
@@ -278,9 +275,9 @@ def stage_screen(hero_class, hero_name, stage_idx):
         last_attack_time = now
         state["current_recovery"] = step["recovery"]
 
-        if is_moving and is_sprinting and has_run_attack:
+        if is_moving and is_sprinting:
             anim_name, rows = "run_attack", run_atk_rows
-        elif is_moving and has_walk_attack:
+        elif is_moving:
             anim_name, rows = "walk_attack", walk_atk_rows
         else:
             anim_name, rows = "attack", atk_rows
