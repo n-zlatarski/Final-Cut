@@ -606,8 +606,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
             def _spawn_projectile(enemy, target_center):
                 ex, ey = enemy.center()
                 dmg = random.randint(*enemy.dmg_range)
+                projectile_kind = ENEMY_TYPES[enemy.etype].get(
+                    "projectile", "arrow")
                 projectiles.append(Projectile(
-                    ex, ey, target_center[0], target_center[1], dmg))
+                    ex, ey, target_center[0], target_center[1], dmg,
+                    kind=projectile_kind))
 
             for e in enemies:
                 others = [o.center()
@@ -652,7 +655,10 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     play_music("boss")
                 else:
                     state["exit_unlocked"] = True
-                    enemies.clear()
+                    # Keep each enemy's final death frame in the room. Dead
+                    # enemies are already excluded from attacks, targeting,
+                    # separation and health-bar drawing, so their bodies can
+                    # remain without interfering with stage progression.
                     projectiles.clear()
                     state["pending_hits"].clear()
                     state["slashes"].clear()

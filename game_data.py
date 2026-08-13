@@ -24,7 +24,7 @@ STAGES = [
     {"name": "Dead Forest",  "bg": "dead_forest",
      "enemies": ["skeleton_archer", "graveborn_brute", "shadow_wolf"], "wave_mult": 1.0},
     {"name": "Castle",       "bg": "castle",
-     "enemies": ["skeleton_archer", "skeleton_spearman", "skeleton_warrior"], "wave_mult": 1.4},
+     "enemies": ["knight1", "knight2", "dungeon_magician"], "wave_mult": 1.4},
     {"name": "Terrace",      "bg": "terrace",
      "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.0},
     {"name": "Throne Room",  "bg": "throne_room",
@@ -33,21 +33,36 @@ STAGES = [
 
 # ── Enemy types ───────────────────────────────────────────────────────────────
 ENEMY_TYPES = {
-    "knight1":           dict(folder="assets/Knight_1",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195)),
-    "knight2":           dict(folder="assets/Knight_2",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195)),
-    "knight3":           dict(folder="assets/Knight_3",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195)),
-    "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(195, 195), ranged=True, atk_range=520),
-    "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(195, 195)),
-    "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(195, 195)),
+    "knight1":           dict(folder="assets/Knight_1",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195),
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    "knight2":           dict(folder="assets/Knight_2",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195),
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    "knight3":           dict(folder="assets/Knight_3",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195),
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(195, 195),
+                              ranged=True, atk_range=520,
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(195, 195),
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(195, 195),
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
     # Slow, durable front-line enemy. Its heavy health/damage profile gives the
     # Dead Forest a tank role without requiring special AI behavior yet.
     "graveborn_brute":   dict(folder="assets/Graveborn_Brute",   hp=95, dmg=(13, 21), speed=1.15,
-                              display=(185, 175), atk_range=135, source_facing="left"),
+                              display=(185, 175), atk_range=135, source_facing="left",
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
     # Fast, fragile melee hunter introduced in the Dead Forest.  Its generated
     # source art faces left, so source_facing prevents the generic side-sheet
     # loader from reversing its movement direction in game.
     "shadow_wolf":       dict(folder="assets/Shadow_Wolf",       hp=42, dmg=(8, 15),  speed=2.6,
-                              display=(150, 112), atk_range=125, source_facing="left"),
+                              display=(150, 112), atk_range=125, source_facing="left",
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    # Ranged castle support. The broader 160px source cells preserve the
+    # magician's low collapse pose while the loader still scales by idle height.
+    "dungeon_magician":  dict(folder="assets/Dungeon_Magician",  hp=50, dmg=(8, 15), speed=1.25,
+                              display=(180, 185), ranged=True, atk_range=450,
+                              projectile="magic_orb", source_facing="left", frame_width=160,
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
 }
 # Vampire boss uses a separate 4-directional sheet pipeline (see below,
 # next to the Warrior sheets) since its sprite pack is laid out like the
@@ -62,13 +77,22 @@ ENEMY_ANIM_FILES = {
 ENEMY_ANIM_SETS = {}
 ENEMY_CANVAS_SIZE = {}
 for _etype, _cfg in ENEMY_TYPES.items():
+    _frame_width = _cfg.get("frame_width", 128)
     _raw = {}
     for _name, _fname in ENEMY_ANIM_FILES.items():
         _path = f"{_cfg['folder']}/{_fname}"
-        _raw[_name] = load_side_sheet_raw(_path)
+        _raw[_name] = load_side_sheet_raw(_path, frame_size=_frame_width)
+    _vertical_raw = {}
+    for _direction, _key in (("up", "walk_up"), ("down", "walk_down")):
+        if _cfg.get(_key):
+            _vertical_raw[_direction] = load_side_sheet_raw(
+                f"{_cfg['folder']}/{_cfg[_key]}", frame_size=_frame_width)
     # Crop region: union bbox across EVERY animation (idle/walk/attack/
     # hurt/dead) so a weapon swing never gets clipped.
-    _crop = union_bbox(_raw.values(), fallback_size=(128, 128))
+    _crop = union_bbox(
+        [*_raw.values(), *_vertical_raw.values()],
+        fallback_size=(_frame_width, 128),
+    )
     # Scale factor: based on the IDLE pose's own height only. Using the
     # full crop's height here would make characters whose attack/idle
     # poses reach further (a spear held overhead, a drawn bow) end up
@@ -78,7 +102,7 @@ for _etype, _cfg in ENEMY_TYPES.items():
     # it keeps everyone's actual height on screen consistent. Attack
     # frames may still extend beyond the target height/width during a
     # swing — that's correct, not a bug.
-    _idle_bbox = union_bbox([_raw["idle"]], fallback_size=(128, 128))
+    _idle_bbox = union_bbox([_raw["idle"]], fallback_size=(_frame_width, 128))
     _target_h = _cfg["display"][1]
     _scale = _target_h / max(1, _idle_bbox.height)
     _source_frames = {
@@ -94,6 +118,10 @@ for _etype, _cfg in ENEMY_TYPES.items():
     else:
         _right, _left = _source_frames, _flipped_frames
     ENEMY_ANIM_SETS[_etype] = {"right": _right, "left": _left}
+    for _direction, _frames in _vertical_raw.items():
+        ENEMY_ANIM_SETS[_etype][_direction] = {
+            "walk": [scale_crop(f, _crop, _scale) for f in _frames]
+        }
     ENEMY_CANVAS_SIZE[_etype] = _right["idle"][0].get_size()
 
 ARROW_IMG = load_img("assets/Skeleton_Archer/Arrow.png", (56, 20))

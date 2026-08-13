@@ -15,16 +15,25 @@ class Projectile:
     SPEED = 9
     MAX_LIFETIME = 3000
 
-    def __init__(self, x, y, target_x, target_y, dmg):
+    def __init__(self, x, y, target_x, target_y, dmg, kind="arrow"):
         self.pos = [x, y]
         dx, dy = target_x - x, target_y - y
         dist = max(1.0, (dx * dx + dy * dy) ** 0.5)
-        self.vel = [self.SPEED * dx / dist, self.SPEED * dy / dist]
+        speed = 6.5 if kind == "magic_orb" else self.SPEED
+        self.vel = [speed * dx / dist, speed * dy / dist]
         self.dmg = dmg
         self.alive = True
         self.age = 0
-        angle = -math.degrees(math.atan2(dy, dx))
-        self.image = pygame.transform.rotate(ARROW_IMG, angle)
+        if kind == "magic_orb":
+            # A compact connected projectile: no trails or loose particle pixels.
+            self.image = pygame.Surface((28, 28), pygame.SRCALPHA)
+            pygame.draw.circle(self.image, (19, 38, 82, 255), (14, 14), 12)
+            pygame.draw.circle(self.image, (20, 112, 206, 255), (14, 14), 9)
+            pygame.draw.circle(self.image, (47, 190, 255, 255), (14, 14), 6)
+            pygame.draw.circle(self.image, (214, 248, 255, 255), (12, 11), 3)
+        else:
+            angle = -math.degrees(math.atan2(dy, dx))
+            self.image = pygame.transform.rotate(ARROW_IMG, angle)
 
     def update(self, dt):
         self.pos[0] += self.vel[0] * (dt / 16.0)
@@ -68,6 +77,7 @@ class Enemy:
             self.dmg_range = cfg["dmg"]
             self.speed = cfg["speed"]
             self.facing_left = True
+            self.move_direction = "left"
             self.ranged = cfg.get("ranged", False)
             self.atk_range = cfg.get("atk_range", self.ATTACK_RANGE)
         self.state = "idle"
@@ -99,6 +109,10 @@ class Enemy:
             rows = VAMPIRE_ANIMS.get(self.state, VAMPIRE_ANIMS["idle"])
             return vamp_dir_frames(rows, self.direction)
         side = "left" if self.facing_left else "right"
+        if self.state == "walk" and self.move_direction in ("up", "down"):
+            vertical = ENEMY_ANIM_SETS[self.etype].get(self.move_direction)
+            if vertical:
+                return vertical["walk"]
         anims = ENEMY_ANIM_SETS[self.etype][side]
         return anims.get(self.state, anims["idle"])
 
@@ -210,6 +224,12 @@ class Enemy:
                 vnorm = (vx * vx + vy * vy) ** 0.5
                 if vnorm > 0:
                     vx, vy = vx / vnorm, vy / vnorm
+            if not self.directional and (vx or vy):
+                if abs(vx) >= abs(vy):
+                    self.move_direction = "left" if vx < 0 else "right"
+                    self.facing_left = vx < 0
+                else:
+                    self.move_direction = "up" if vy < 0 else "down"
             self.pos[0] += self.speed * vx
             self.pos[1] += self.speed * vy
 
@@ -239,4 +259,3 @@ class Enemy:
             fill_w = int(bar_w * self.hp / self.max_hp)
             pygame.draw.rect(screen, (200, 50, 50),
                              (bar_x, bar_y, fill_w, 6))
-
