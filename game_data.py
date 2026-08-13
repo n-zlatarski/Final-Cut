@@ -22,7 +22,7 @@ STAGE_BGS = {key: load_img(path, (WIDTH, HEIGHT))
 
 STAGES = [
     {"name": "Dead Forest",  "bg": "dead_forest",
-     "enemies": ["skeleton_archer", "skeleton_spearman", "skeleton_warrior"], "wave_mult": 1.0},
+     "enemies": ["skeleton_archer", "skeleton_spearman", "shadow_wolf"], "wave_mult": 1.0},
     {"name": "Castle",       "bg": "castle",
      "enemies": ["skeleton_archer", "skeleton_spearman", "skeleton_warrior"], "wave_mult": 1.4},
     {"name": "Terrace",      "bg": "terrace",
@@ -39,6 +39,11 @@ ENEMY_TYPES = {
     "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(195, 195), ranged=True, atk_range=520),
     "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(195, 195)),
     "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(195, 195)),
+    # Fast, fragile melee hunter introduced in the Dead Forest.  Its generated
+    # source art faces left, so source_facing prevents the generic side-sheet
+    # loader from reversing its movement direction in game.
+    "shadow_wolf":       dict(folder="assets/Shadow_Wolf",       hp=42, dmg=(8, 15),  speed=2.6,
+                              display=(150, 112), atk_range=125, source_facing="left"),
 }
 # Vampire boss uses a separate 4-directional sheet pipeline (see below,
 # next to the Warrior sheets) since its sprite pack is laid out like the
@@ -72,11 +77,18 @@ for _etype, _cfg in ENEMY_TYPES.items():
     _idle_bbox = union_bbox([_raw["idle"]], fallback_size=(128, 128))
     _target_h = _cfg["display"][1]
     _scale = _target_h / max(1, _idle_bbox.height)
-    _right = {
+    _source_frames = {
         _name: [scale_crop(f, _crop, _scale) for f in _frames]
         for _name, _frames in _raw.items()
     }
-    _left = {_name: flip_frames(_frames) for _name, _frames in _right.items()}
+    _flipped_frames = {
+        _name: flip_frames(_frames)
+        for _name, _frames in _source_frames.items()
+    }
+    if _cfg.get("source_facing", "right") == "left":
+        _left, _right = _source_frames, _flipped_frames
+    else:
+        _right, _left = _source_frames, _flipped_frames
     ENEMY_ANIM_SETS[_etype] = {"right": _right, "left": _left}
     ENEMY_CANVAS_SIZE[_etype] = _right["idle"][0].get_size()
 

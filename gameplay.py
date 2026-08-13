@@ -145,6 +145,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
         "result":  None,
         "shake":   0,
         "boss_spawned": False,
+        "exit_unlocked": False,
         "combo_index": 0,
         # Combo progression follows successful attack INPUTS, not successful
         # hits.  The old last_hit_time reset meant swinging at empty space
@@ -168,6 +169,11 @@ def stage_screen(hero_class, hero_name, stage_idx):
     hero_pos = [120, HEIGHT - 450]
     enemies = spawn_enemies(stage)
     projectiles = []
+
+    # After combat, reaching the true right edge advances silently.  There is
+    # no exit marker or combat-time barrier; the player remains free to move
+    # around the entire room.
+    STAGE_EXIT_X = WIDTH - DISPLAY_SIZE[0]
 
     FEET_OFFSET = {
         "Warrior": 115,
@@ -558,7 +564,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                 else:
                     dx, dy = state["dash_dir"]
                     hero_pos[0] = max(
-                        0, min(WIDTH - DISPLAY_SIZE[0], hero_pos[0] + dx * DASH_SPEED))
+                        0, min(STAGE_EXIT_X, hero_pos[0] + dx * DASH_SPEED))
                     new_y = hero_pos[1] + dy * DASH_SPEED
                     if dy < 0 and new_y + FEET_OFFSET[hero_class] < TOP_BORDER_Y:
                         new_y = TOP_BORDER_Y - FEET_OFFSET[hero_class]
@@ -573,7 +579,7 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     direction = "left"
                     moving = True
                 elif keys[pygame.K_d]:
-                    hero_pos[0] = min(WIDTH - DISPLAY_SIZE[0], hero_pos[0] + speed)
+                    hero_pos[0] = min(STAGE_EXIT_X, hero_pos[0] + speed)
                     direction = "right"
                     moving = True
                 if keys[pygame.K_w]:
@@ -629,7 +635,9 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     still_pending.append(ph)
             state["pending_hits"] = still_pending
 
-            if not state["result"] and enemies and all(e.dead and e.dead_done for e in enemies):
+            if (not state["result"] and not state["exit_unlocked"]
+                    and enemies
+                    and all(e.dead and e.dead_done for e in enemies)):
                 boss_type = stage.get("boss")
                 if boss_type and not state["boss_spawned"]:
                     boss_cfg = VAMPIRE_STATS if boss_type == "vampire" else ENEMY_TYPES[boss_type]
@@ -643,7 +651,19 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     add_log("The Vampire emerges!", RED)
                     play_music("boss")
                 else:
-                    state["result"] = "cleared"
+                    state["exit_unlocked"] = True
+                    enemies.clear()
+                    projectiles.clear()
+                    state["pending_hits"].clear()
+                    state["slashes"].clear()
+                    state["assassin_sparks"].clear()
+                    log.clear()
+
+            if (state["exit_unlocked"]
+                    and hero_pos[0] >= STAGE_EXIT_X):
+                if stage_idx + 1 < len(STAGES):
+                    return "next"
+                state["result"] = "cleared"
 
         # ── animation state machine ──
         if anim:
