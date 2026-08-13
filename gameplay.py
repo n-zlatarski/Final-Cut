@@ -186,6 +186,17 @@ def stage_screen(hero_class, hero_name, stage_idx):
     WALK_ANIM_FPS = 8
     RUN_ANIM_FPS = 8
 
+    # The Assassin's front/back walk art has much subtler leg travel than its
+    # side-facing rows.  At 8 FPS each vertical pose is carried too far across
+    # the ground and reads as a glide.  A slightly tighter cadence plus a tiny
+    # visual weight shift makes the planted/lifted-foot phases readable without
+    # changing movement speed, collision, or the already-good side walk.
+    ASSASSIN_VERTICAL_WALK_FPS = 10
+    ASSASSIN_VERTICAL_WALK_OFFSETS = (
+        (0, 1), (-1, -1), (-1, 0),
+        (0, 1), (1, -1), (1, 0),
+    )
+
     # Once sprint drains the bar completely, holding Shift must not immediately
     # consume the tiny amount regenerated on the next frame.  Without this
     # latch the state oscillates RUN -> WALK -> RUN -> WALK at zero stamina.
@@ -650,9 +661,15 @@ def stage_screen(hero_class, hero_name, stage_idx):
                     play_dir("run", run_rows, one_shot=False,
                              fps=RUN_ANIM_FPS)
                 elif moving:
-                    # Six distinct, planted walk phases; no timing workaround.
+                    # Keep the side gait at its original rate while matching
+                    # the subtler front/back poses more closely to world travel.
+                    walk_fps = (
+                        ASSASSIN_VERTICAL_WALK_FPS
+                        if is_assassin and direction in ("up", "down")
+                        else WALK_ANIM_FPS
+                    )
                     play_dir("walk", walk_rows, one_shot=False,
-                             fps=WALK_ANIM_FPS)
+                             fps=walk_fps)
                 else:
                     play_dir("idle", idle_rows, one_shot=False,
                              fps=IDLE_ANIM_FPS)
@@ -675,8 +692,15 @@ def stage_screen(hero_class, hero_name, stage_idx):
             p.draw(screen, ox, oy)
 
         # ── Hero ──
-        hero_x = hero_pos[0] + ox
-        hero_y = hero_pos[1] + oy
+        walk_draw_x = 0
+        walk_draw_y = 0
+        if (is_assassin and anim.current == "walk" and moving
+                and direction in ("up", "down")):
+            walk_phase = anim.frame_idx % len(ASSASSIN_VERTICAL_WALK_OFFSETS)
+            walk_draw_x, walk_draw_y = ASSASSIN_VERTICAL_WALK_OFFSETS[walk_phase]
+
+        hero_x = hero_pos[0] + ox + walk_draw_x
+        hero_y = hero_pos[1] + oy + walk_draw_y
         hero_frame = anim.get_frame()
         screen.blit(hero_frame, (hero_x, hero_y))
         name_w = font_small.size(hero_name)[0]
