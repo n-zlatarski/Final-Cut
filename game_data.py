@@ -22,7 +22,7 @@ STAGE_BGS = {key: load_img(path, (WIDTH, HEIGHT))
 
 STAGES = [
     {"name": "Dead Forest",  "bg": "dead_forest",
-     "enemies": ["skeleton_archer", "skeleton_spearman", "shadow_wolf"], "wave_mult": 1.0},
+     "enemies": ["skeleton_archer", "graveborn_brute", "shadow_wolf"], "wave_mult": 1.0},
     {"name": "Castle",       "bg": "castle",
      "enemies": ["skeleton_archer", "skeleton_spearman", "skeleton_warrior"], "wave_mult": 1.4},
     {"name": "Terrace",      "bg": "terrace",
@@ -39,6 +39,10 @@ ENEMY_TYPES = {
     "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(195, 195), ranged=True, atk_range=520),
     "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(195, 195)),
     "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(195, 195)),
+    # Slow, durable front-line enemy. Its heavy health/damage profile gives the
+    # Dead Forest a tank role without requiring special AI behavior yet.
+    "graveborn_brute":   dict(folder="assets/Graveborn_Brute",   hp=95, dmg=(13, 21), speed=1.15,
+                              display=(185, 175), atk_range=135, source_facing="left"),
     # Fast, fragile melee hunter introduced in the Dead Forest.  Its generated
     # source art faces left, so source_facing prevents the generic side-sheet
     # loader from reversing its movement direction in game.
