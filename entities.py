@@ -69,6 +69,7 @@ class Enemy:
             self.direction = "down"
             self.ranged = False
             self.atk_range = self.ATTACK_RANGE
+            self.attack_cooldown = self.ATTACK_COOLDOWN
         else:
             cfg = ENEMY_TYPES[etype]
             self.display = ENEMY_CANVAS_SIZE[etype]
@@ -87,6 +88,7 @@ class Enemy:
             self.attack_direction = "left"
             self.ranged = cfg.get("ranged", False)
             self.atk_range = cfg.get("atk_range", self.ATTACK_RANGE)
+            self.attack_cooldown = cfg.get("attack_cooldown", self.ATTACK_COOLDOWN)
         self.state = "idle"
         self.frame_idx = 0.0
         self.attack_cd = random.randint(0, 400)
@@ -213,7 +215,7 @@ class Enemy:
         if dist <= self.atk_range:
             self.state = "attack"
             if self.attack_cd <= 0:
-                self.attack_cd = self.ATTACK_COOLDOWN
+                self.attack_cd = self.attack_cooldown
                 if self.ranged and spawn_projectile is not None:
                     spawn_projectile(self, hero_center)
                 elif not self.ranged:
