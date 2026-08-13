@@ -32,6 +32,7 @@ def spawn_enemies(stage):
         (WIDTH - 750, HEIGHT - 620),
         (WIDTH - 520, HEIGHT - 500),
         (WIDTH - 750, HEIGHT - 350),
+        (WIDTH - 390, HEIGHT - 690),
     ]
     for i, etype in enumerate(stage["enemies"]):
         cfg = ENEMY_TYPES[etype]

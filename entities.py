@@ -72,12 +72,19 @@ class Enemy:
         else:
             cfg = ENEMY_TYPES[etype]
             self.display = ENEMY_CANVAS_SIZE[etype]
+            # Most sprites use the full animation canvas as their logical
+            # height. Castle Archer reserves extra transparent space above the
+            # body for the rear-facing raised bow, while keeping the old feet
+            # position and gameplay center.
+            self.anchor_height = cfg.get("anchor_height", self.display[1])
+            self.render_offset_y = self.anchor_height - self.display[1]
             self.hp = cfg["hp"]
             self.max_hp = cfg["hp"]
             self.dmg_range = cfg["dmg"]
             self.speed = cfg["speed"]
             self.facing_left = True
             self.move_direction = "left"
+            self.attack_direction = "left"
             self.ranged = cfg.get("ranged", False)
             self.atk_range = cfg.get("atk_range", self.ATTACK_RANGE)
         self.state = "idle"
@@ -108,16 +115,25 @@ class Enemy:
         if self.directional:
             rows = VAMPIRE_ANIMS.get(self.state, VAMPIRE_ANIMS["idle"])
             return vamp_dir_frames(rows, self.direction)
-        side = "left" if self.facing_left else "right"
-        if self.state == "walk" and self.move_direction in ("up", "down"):
-            vertical = ENEMY_ANIM_SETS[self.etype].get(self.move_direction)
-            if vertical:
-                return vertical["walk"]
+        vertical_direction = None
+        if self.state == "walk":
+            vertical_direction = self.move_direction
+        elif self.state == "attack":
+            vertical_direction = self.attack_direction
+        if vertical_direction in ("up", "down"):
+            vertical = ENEMY_ANIM_SETS[self.etype].get(vertical_direction)
+            if vertical and self.state in vertical:
+                return vertical[self.state]
+        if self.state == "attack" and self.attack_direction in ("left", "right"):
+            side = self.attack_direction
+        else:
+            side = "left" if self.facing_left else "right"
         anims = ENEMY_ANIM_SETS[self.etype][side]
         return anims.get(self.state, anims["idle"])
 
     def center(self):
-        return (self.pos[0] + self.display[0] / 2, self.pos[1] + self.display[1] / 2)
+        height = self.display[1] if self.directional else self.anchor_height
+        return (self.pos[0] + self.display[0] / 2, self.pos[1] + height / 2)
 
     def apply_knockback(self, dirx, diry, force):
         # Bosses shrug off knockback almost entirely -- shoving a boss
@@ -185,7 +201,11 @@ class Enemy:
                 else:
                     self.direction = "up" if dy < 0 else "down"
             else:
-                self.facing_left = dx < 0
+                if abs(dx) >= abs(dy):
+                    self.attack_direction = "left" if dx < 0 else "right"
+                    self.facing_left = dx < 0
+                else:
+                    self.attack_direction = "up" if dy < 0 else "down"
 
         if self.attack_cd > 0:
             self.attack_cd -= dt
@@ -242,7 +262,9 @@ class Enemy:
         frames = self._frames()
         idx = min(int(self.frame_idx), len(frames) - 1)
         frame = frames[idx]
-        x, y = self.pos[0] + ox, self.pos[1] + oy
+        x = self.pos[0] + ox
+        logical_y = self.pos[1] + oy
+        y = logical_y if self.directional else logical_y + self.render_offset_y
         screen.blit(frame, (x, y))
         if self.flash_timer > 0:
             mask = pygame.mask.from_surface(frame)
@@ -254,7 +276,9 @@ class Enemy:
         if not self.dead and not self.is_boss:
             bar_w = 64
             bar_x = x + self.display[0] / 2 - bar_w / 2
-            bar_y = y - 14
+            # Keep the health bar above the logical standing body rather than
+            # moving it upward with Castle Archer's reserved bow space.
+            bar_y = logical_y - 14
             pygame.draw.rect(screen, (30, 10, 10), (bar_x, bar_y, bar_w, 6))
             fill_w = int(bar_w * self.hp / self.max_hp)
             pygame.draw.rect(screen, (200, 50, 50),

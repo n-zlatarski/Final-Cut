@@ -24,7 +24,7 @@ STAGES = [
     {"name": "Dead Forest",  "bg": "dead_forest",
      "enemies": ["skeleton_archer", "graveborn_brute", "shadow_wolf"], "wave_mult": 1.0},
     {"name": "Castle",       "bg": "castle",
-     "enemies": ["knight1", "knight2", "dungeon_magician"], "wave_mult": 1.4},
+     "enemies": ["knight1", "knight2", "dungeon_magician", "castle_archer"], "wave_mult": 1.4},
     {"name": "Terrace",      "bg": "terrace",
      "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.0},
     {"name": "Throne Room",  "bg": "throne_room",
@@ -39,9 +39,11 @@ ENEMY_TYPES = {
                               walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
     "knight3":           dict(folder="assets/Knight_3",           hp=70, dmg=(10, 18), speed=1.8, display=(195, 195),
                               walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
-    "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(195, 195),
+    "skeleton_archer":   dict(folder="assets/Skeleton_Archer",   hp=40, dmg=(6, 12),  speed=1.4, display=(165, 165),
                               ranged=True, atk_range=520,
-                              walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+                              anchor_height=165,
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png",
+                              attack_up="Attack_Up.png", attack_down="Attack_Down.png"),
     "skeleton_spearman": dict(folder="assets/Skeleton_Spearman", hp=50, dmg=(8, 14),  speed=1.6, display=(195, 195),
                               walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
     "skeleton_warrior":  dict(folder="assets/Skeleton_Warrior",  hp=55, dmg=(9, 16),  speed=1.7, display=(195, 195),
@@ -63,6 +65,14 @@ ENEMY_TYPES = {
                               display=(180, 185), ranged=True, atk_range=450,
                               projectile="magic_orb", source_facing="left", frame_width=160,
                               walk_up="Walk_Up.png", walk_down="Walk_Down.png"),
+    # Armored ranged support for the Castle. Wider source cells preserve the
+    # full bow draw and the low corpse pose without clipping.
+    "castle_archer":     dict(folder="assets/Castle_Archer",     hp=48, dmg=(8, 14), speed=1.45,
+                              display=(180, 185), ranged=True, atk_range=520,
+                              source_facing="left", frame_width=160,
+                              anchor_height=185,
+                              walk_up="Walk_Up.png", walk_down="Walk_Down.png",
+                              attack_up="Attack_Up.png", attack_down="Attack_Down.png"),
 }
 # Vampire boss uses a separate 4-directional sheet pipeline (see below,
 # next to the Warrior sheets) since its sprite pack is laid out like the
@@ -83,14 +93,26 @@ for _etype, _cfg in ENEMY_TYPES.items():
         _path = f"{_cfg['folder']}/{_fname}"
         _raw[_name] = load_side_sheet_raw(_path, frame_size=_frame_width)
     _vertical_raw = {}
-    for _direction, _key in (("up", "walk_up"), ("down", "walk_down")):
-        if _cfg.get(_key):
-            _vertical_raw[_direction] = load_side_sheet_raw(
-                f"{_cfg['folder']}/{_cfg[_key]}", frame_size=_frame_width)
+    for _direction in ("up", "down"):
+        _direction_anims = {}
+        for _state in ("walk", "attack"):
+            _key = f"{_state}_{_direction}"
+            if _cfg.get(_key):
+                _direction_anims[_state] = load_side_sheet_raw(
+                    f"{_cfg['folder']}/{_cfg[_key]}", frame_size=_frame_width)
+        if _direction_anims:
+            _vertical_raw[_direction] = _direction_anims
     # Crop region: union bbox across EVERY animation (idle/walk/attack/
     # hurt/dead) so a weapon swing never gets clipped.
     _crop = union_bbox(
-        [*_raw.values(), *_vertical_raw.values()],
+        [
+            *_raw.values(),
+            *(
+                _frames
+                for _direction_anims in _vertical_raw.values()
+                for _frames in _direction_anims.values()
+            ),
+        ],
         fallback_size=(_frame_width, 128),
     )
     # Scale factor: based on the IDLE pose's own height only. Using the
@@ -118,9 +140,10 @@ for _etype, _cfg in ENEMY_TYPES.items():
     else:
         _right, _left = _source_frames, _flipped_frames
     ENEMY_ANIM_SETS[_etype] = {"right": _right, "left": _left}
-    for _direction, _frames in _vertical_raw.items():
+    for _direction, _direction_anims in _vertical_raw.items():
         ENEMY_ANIM_SETS[_etype][_direction] = {
-            "walk": [scale_crop(f, _crop, _scale) for f in _frames]
+            _state: [scale_crop(f, _crop, _scale) for f in _frames]
+            for _state, _frames in _direction_anims.items()
         }
     ENEMY_CANVAS_SIZE[_etype] = _right["idle"][0].get_size()
 
