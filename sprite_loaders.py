@@ -198,4 +198,3 @@ def scale_crop(frame, crop_rect, scale):
 
 def flip_frames(frames):
     return [pygame.transform.flip(f, True, False) for f in frames]
-

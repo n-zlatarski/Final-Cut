@@ -1,50 +1,101 @@
-"""
-Menu screens: pause menu, options/controls, name entry, and class
-selection.
-"""
-import pygame
+"""Menus, options, class selection, and between-stage rewards."""
 import sys
+import math
+
+import pygame
+
 import video
 from settings import *
-from ui import draw_text, draw_panel, draw_menu_button
-from audio import play_music, set_music_volume, audio_state
-from animator import Animator
-from sprite_loaders import dir_frames
-from game_data import (
-    STAGE_BGS, warrior_anims, _w_idle_rows,
-    assassin_anims, _a_idle_rows, CLASS_STATS,
+from ui import (
+    draw_text, draw_panel, draw_menu_button, draw_segmented_bar,
+    draw_vignette, draw_corner_marks,
 )
+from audio import play_music, set_music_volume, audio_state
+from game_data import STAGE_BGS, STAGES
+from progression import BOONS, boon_choices, apply_boon
+
+
+def _quit():
+    pygame.quit()
+    sys.exit()
+
+
+def _menu_backdrop(bg_key="terrace", darkness=165):
+    screen.blit(STAGE_BGS[bg_key], (0, 0))
+    shade = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+    for y in range(0, HEIGHT, 12):
+        t = y / HEIGHT
+        alpha = int(darkness + 45 * (1 - abs(t - 0.5) * 2))
+        pygame.draw.rect(shade, (5, 5, 9, min(235, alpha)), (0, y, WIDTH, 12))
+    screen.blit(shade, (0, 0))
+    draw_vignette(screen, 150)
+    pygame.draw.line(screen, (198, 165, 92, 80), (120, 82), (WIDTH - 120, 82), 1)
+    pygame.draw.line(screen, (198, 165, 92, 45), (120, HEIGHT - 82),
+                     (WIDTH - 120, HEIGHT - 82), 1)
+
+
+def _draw_brand(y=92, compact=False):
+    font = font_title if compact else font_huge
+    title = font.render("FINAL CUT", True, GOLD_BRIGHT)
+    shadow = font.render("FINAL CUT", True, (0, 0, 0))
+    x = WIDTH // 2 - title.get_width() // 2
+    screen.blit(shadow, (x + 4, y + 6))
+    screen.blit(title, (x, y))
+    line_y = y + title.get_height() + 12
+    pygame.draw.line(screen, GOLD_DIM, (x - 45, line_y),
+                     (x + title.get_width() + 45, line_y), 1)
+    diamond = [(WIDTH // 2, line_y - 5), (WIDTH // 2 + 7, line_y),
+               (WIDTH // 2, line_y + 5), (WIDTH // 2 - 7, line_y)]
+    pygame.draw.polygon(screen, GOLD, diamond)
+
 
 def pause_menu():
-    options = ["Resume", "Options", "Change Class", "Exit Game"]
-    btn_w, btn_h = 320, 58
+    options = ["Resume", "Restart Stage", "Options", "Exit Game"]
+    selected = 0
+    snapshot = screen.copy()
+    panel_w, panel_h = 460, 500
+    panel_x, panel_y = WIDTH // 2 - panel_w // 2, HEIGHT // 2 - panel_h // 2
+    btn_w, btn_h = 350, 54
     btn_x = WIDTH // 2 - btn_w // 2
-    spacing = 74
-    start_y = HEIGHT // 2 - (len(options) * spacing) // 2
+    start_y = panel_y + 125
 
     while True:
+        screen.blit(snapshot, (0, 0))
         overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
-        overlay.fill((0, 0, 0, 185))
+        overlay.fill((3, 3, 7, 205))
         screen.blit(overlay, (0, 0))
-        title = font_title.render("PAUSED", True, GOLD)
-        screen.blit(title, (WIDTH//2 - title.get_width()//2, start_y - 100))
+        draw_vignette(screen, 160)
+        draw_panel(screen, panel_x, panel_y, panel_w, panel_h)
+        draw_corner_marks(screen, panel_x, panel_y, panel_w, panel_h, GOLD)
+        title = font_title.render("PAUSED", True, GOLD_BRIGHT)
+        screen.blit(title, (WIDTH // 2 - title.get_width() // 2, panel_y + 30))
+        draw_text(screen, "THE FIGHT WAITS", font_micro, DIM_TEXT,
+                  WIDTH // 2 - 58, panel_y + 94, shadow=False)
+
         mouse = video.get_virtual_mouse_pos((WIDTH, HEIGHT))
         clicked = False
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                return "Resume"
+                _quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return "Resume"
+                if event.key in (pygame.K_w, pygame.K_UP):
+                    selected = (selected - 1) % len(options)
+                elif event.key in (pygame.K_s, pygame.K_DOWN):
+                    selected = (selected + 1) % len(options)
+                elif event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    return options[selected]
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 clicked = True
 
         for i, label in enumerate(options):
-            bx = btn_x
-            by = start_y + i * spacing
-            hovered = bx < mouse[0] < bx + btn_w and by < mouse[1] < by + btn_h
-            draw_menu_button(screen, bx, by, btn_w, btn_h, label, hovered)
+            by = start_y + i * 66
+            hovered = btn_x < mouse[0] < btn_x + btn_w and by < mouse[1] < by + btn_h
+            if hovered:
+                selected = i
+            draw_menu_button(screen, btn_x, by, btn_w, btn_h, label,
+                             i == selected)
             if clicked and hovered:
                 return label
 
@@ -52,314 +103,320 @@ def pause_menu():
         clock.tick(video.get_fps_limit())
 
 
-def _cycle(lst, current, direction):
-    idx = lst.index(current) if current in lst else 0
-    idx = (idx + direction) % len(lst)
-    return lst[idx]
+def _cycle(values, current, direction):
+    idx = values.index(current) if current in values else 0
+    return values[(idx + direction) % len(values)]
 
 
 def options_menu():
     tabs = ["Controls", "Audio", "Video"]
     state = {"tab": "Controls", "row": 0, "msg": "", "msg_timer": 0}
-
+    snapshot = screen.copy()
     controls = [
-        ("WASD",          "Move"),
-        ("LShift",        "Sprint"),
-        ("LClick",        "Attack"),
-        ("LShift+LClick", "Run Attack"),
-        ("Space",         "Dash"),
-        ("Space+LClick",  "Dash Attack"),
-        ("R",             "Recover stamina"),
-        ("ESC",           "Pause menu"),
+        ("W A S D", "Move"), ("SHIFT", "Sprint"),
+        ("LMB", "Three-hit light combo"), ("SPACE", "Dash / evade"),
+        ("SPACE + LMB", "Dash strike"), ("Q", "Class ability"),
+        ("R", "Focus: recover stamina"), ("ESC", "Pause"),
     ]
 
     def video_rows():
         vs = video.video_state
-        res_txt = f"{vs['resolution'][0]} x {vs['resolution'][1]}"
         return [
-            ("Resolution",  res_txt),
-            ("Fullscreen",  "ON" if vs["fullscreen"] else "OFF"),
-            ("VSync",       "ON" if vs["vsync"] else "OFF"),
-            ("FPS Limit",   "Unlimited" if vs["fps_limit"] is None else str(vs["fps_limit"])),
+            ("Resolution", f"{vs['resolution'][0]} x {vs['resolution'][1]}"),
+            ("Fullscreen", "ON" if vs["fullscreen"] else "OFF"),
+            ("VSync", "ON" if vs["vsync"] else "OFF"),
+            ("FPS Limit", "Unlimited" if vs["fps_limit"] is None else str(vs["fps_limit"])),
         ]
 
     def change_video_row(row, direction):
+        before = dict(video.video_state)
         vs = video.video_state
-        before = dict(vs)
         if row == 0:
-            vs["resolution"] = _cycle(
-                video.RESOLUTIONS, vs["resolution"], direction)
+            vs["resolution"] = _cycle(video.RESOLUTIONS, vs["resolution"], direction)
         elif row == 1:
             vs["fullscreen"] = not vs["fullscreen"]
         elif row == 2:
             vs["vsync"] = not vs["vsync"]
         elif row == 3:
-            vs["fps_limit"] = _cycle(
-                video.FPS_OPTIONS, vs["fps_limit"], direction)
+            vs["fps_limit"] = _cycle(video.FPS_OPTIONS, vs["fps_limit"], direction)
         try:
             video.apply()
-            state["msg"], state["msg_timer"] = "", 0
-        except pygame.error as e:
+            state["msg"] = ""
+        except pygame.error as exc:
             vs.update(before)
             video.apply()
-            state["msg"] = f"Couldn't apply that setting: {e}"
+            state["msg"] = f"Could not apply: {exc}"
             state["msg_timer"] = 3000
 
-    panel_w, panel_h = 520, 320
-    panel_x = WIDTH // 2 - panel_w // 2
-    panel_y = HEIGHT // 2 - 190
-    tab_w, tab_h = 140, 40
-    btn_w, btn_h = 300, 55
-    btn_x = WIDTH // 2 - btn_w // 2
-    btn_y = panel_y + panel_h + 30
+    panel_w, panel_h = 760, 470
+    panel_x, panel_y = WIDTH // 2 - panel_w // 2, HEIGHT // 2 - 215
+    tab_w, tab_h = 190, 42
     last_time = pygame.time.get_ticks()
 
     while True:
         now = pygame.time.get_ticks()
         dt = min(now - last_time, 50)
         last_time = now
-        if state["msg_timer"] > 0:
-            state["msg_timer"] -= dt
-
+        state["msg_timer"] = max(0, state["msg_timer"] - dt)
+        screen.blit(snapshot, (0, 0))
         overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
-        overlay.fill((0, 0, 0, 205))
+        overlay.fill((3, 3, 7, 220))
         screen.blit(overlay, (0, 0))
-        title = font_title.render("OPTIONS", True, GOLD)
-        screen.blit(title, (WIDTH//2 - title.get_width()//2, panel_y - 90))
+        draw_vignette(screen, 150)
 
+        title = font_title.render("OPTIONS", True, GOLD_BRIGHT)
+        screen.blit(title, (WIDTH // 2 - title.get_width() // 2, panel_y - 90))
+        draw_panel(screen, panel_x, panel_y, panel_w, panel_h)
         mouse = video.get_virtual_mouse_pos((WIDTH, HEIGHT))
         clicked = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                _quit()
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 clicked = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return
                 if event.key == pygame.K_TAB:
-                    state["tab"] = tabs[(tabs.index(
-                        state["tab"]) + 1) % len(tabs)]
+                    state["tab"] = tabs[(tabs.index(state["tab"]) + 1) % len(tabs)]
                     state["row"] = 0
-                if state["tab"] == "Audio":
-                    if event.key == pygame.K_LEFT:
-                        set_music_volume(audio_state["volume"] - 0.1)
-                    if event.key == pygame.K_RIGHT:
-                        set_music_volume(audio_state["volume"] + 0.1)
+                if state["tab"] == "Audio" and event.key in (pygame.K_LEFT, pygame.K_RIGHT):
+                    set_music_volume(audio_state["volume"] + (0.1 if event.key == pygame.K_RIGHT else -0.1))
                 if state["tab"] == "Video":
-                    if event.key == pygame.K_UP:
+                    if event.key in (pygame.K_UP, pygame.K_w):
                         state["row"] = (state["row"] - 1) % len(video_rows())
-                    if event.key == pygame.K_DOWN:
+                    elif event.key in (pygame.K_DOWN, pygame.K_s):
                         state["row"] = (state["row"] + 1) % len(video_rows())
-                    if event.key == pygame.K_LEFT:
-                        change_video_row(state["row"], -1)
-                    if event.key == pygame.K_RIGHT:
-                        change_video_row(state["row"], 1)
+                    elif event.key in (pygame.K_LEFT, pygame.K_RIGHT):
+                        change_video_row(state["row"], 1 if event.key == pygame.K_RIGHT else -1)
 
-        # ── Tab bar ──
-        for i, t in enumerate(tabs):
-            tx = panel_x + i * tab_w
-            ty = panel_y - 46
-            is_active = t == state["tab"]
-            t_hovered = tx < mouse[0] < tx + \
-                tab_w and ty < mouse[1] < ty + tab_h
-            base = (52, 40, 34) if (is_active or t_hovered) else (28, 23, 25)
-            pygame.draw.rect(screen, base, (tx, ty, tab_w -
-                             4, tab_h), border_radius=6)
-            pygame.draw.rect(screen, GOLD if is_active else GOLD_DIM,
-                             (tx, ty, tab_w - 4, tab_h), 2, border_radius=6)
-            lbl = font_med.render(
-                t, True, GOLD if is_active else CREAM)
-            screen.blit(lbl, (tx + (tab_w-4)//2 - lbl.get_width()//2,
-                             ty + tab_h//2 - lbl.get_height()//2))
-            if clicked and t_hovered:
-                state["tab"] = t
-                state["row"] = 0
+        total_tabs_w = tab_w * len(tabs)
+        tab_x0 = WIDTH // 2 - total_tabs_w // 2
+        for i, tab in enumerate(tabs):
+            tx, ty = tab_x0 + i * tab_w, panel_y - 48
+            hovered = tx < mouse[0] < tx + tab_w - 5 and ty < mouse[1] < ty + tab_h
+            active = tab == state["tab"]
+            pygame.draw.rect(screen, (50, 39, 34) if active or hovered else (20, 18, 23),
+                             (tx, ty, tab_w - 5, tab_h), border_radius=5)
+            pygame.draw.rect(screen, GOLD if active else GOLD_DIM,
+                             (tx, ty, tab_w - 5, tab_h), 2, border_radius=5)
+            lbl = font_med.render(tab, True, GOLD_BRIGHT if active else CREAM)
+            screen.blit(lbl, (tx + (tab_w - 5 - lbl.get_width()) // 2,
+                              ty + (tab_h - lbl.get_height()) // 2))
+            if clicked and hovered:
+                state["tab"], state["row"] = tab, 0
 
-        draw_panel(screen, panel_x, panel_y, panel_w, panel_h)
-
+        content_x, content_y = panel_x + 44, panel_y + 38
         if state["tab"] == "Controls":
-            hdr = font_header.render("Controls", True, GOLD)
-            screen.blit(hdr, (panel_x + 24, panel_y + 16))
+            draw_text(screen, "COMBAT CONTROLS", font_header, GOLD,
+                      content_x, content_y, shadow=False)
             for i, (key, action) in enumerate(controls):
-                row_y = panel_y + 60 + i * 30
-                draw_text(screen, key,    font_small, CREAM,
-                          panel_x + 24, row_y, shadow=False)
+                y = content_y + 58 + i * 42
+                pygame.draw.line(screen, (80, 68, 58),
+                                 (content_x, y + 28), (panel_x + panel_w - 44, y + 28), 1)
+                draw_text(screen, key, font_small, CREAM, content_x, y, shadow=False)
                 draw_text(screen, action, font_small, DIM_TEXT,
-                          panel_x + 240, row_y, shadow=False)
-
+                          content_x + 260, y, shadow=False)
         elif state["tab"] == "Audio":
-            hdr = font_header.render("Audio", True, GOLD)
-            screen.blit(hdr, (panel_x + 24, panel_y + 16))
-            draw_text(screen, "Music Volume  (←/→)", font_small,
-                      GOLD, panel_x + 24, panel_y + 64, shadow=False)
-            bar_x, bar_y2, bar_w = panel_x + 24, panel_y + 92, panel_w - 48
-            pygame.draw.rect(screen, (30, 25, 28), (bar_x, bar_y2, bar_w, 12))
-            pygame.draw.rect(screen, GOLD, (bar_x, bar_y2,
-                             int(bar_w * audio_state["volume"]), 12))
-            pygame.draw.rect(
-                screen, GOLD_DIM, (bar_x, bar_y2, bar_w, 12), 1)
-            pct = font_small.render(
-                f"{int(audio_state['volume']*100)}%", True, CREAM)
-            screen.blit(pct, (bar_x, bar_y2 + 20))
-
-        elif state["tab"] == "Video":
-            hdr = font_header.render("Video", True, GOLD)
-            screen.blit(hdr, (panel_x + 24, panel_y + 16))
-            rows = video_rows()
-            for i, (label, value) in enumerate(rows):
-                row_y = panel_y + 64 + i * 46
-                is_sel = i == state["row"]
-                if is_sel:
-                    pygame.draw.rect(
-                        screen, (40, 32, 28), (panel_x + 14, row_y - 6, panel_w - 28, 36), border_radius=4)
-                draw_text(screen, label, font_small,
-                          GOLD if is_sel else CREAM, panel_x + 24, row_y, shadow=False)
-                val_txt = f"◀  {value}  ▶" if is_sel else value
-                vlbl = font_small.render(
-                    val_txt, True, CREAM if is_sel else DIM_TEXT)
-                screen.blit(vlbl, (panel_x + panel_w -
-                            24 - vlbl.get_width(), row_y))
-            hint = font_small.render(
-                "↑↓ select   ←→ change", True, DIM_TEXT)
-            screen.blit(hint, (panel_x + 24, panel_y + panel_h - 30))
+            draw_text(screen, "MUSIC", font_header, GOLD, content_x, content_y, shadow=False)
+            draw_text(screen, "Use LEFT / RIGHT to adjust", font_small, DIM_TEXT,
+                      content_x, content_y + 40, shadow=False)
+            bx, by, bw = content_x, content_y + 100, panel_w - 88
+            draw_segmented_bar(screen, bx, by, bw, 18, audio_state["volume"], 1.0,
+                               GOLD, (38, 31, 28), segments=10)
+            pct = font_big.render(f"{int(audio_state['volume'] * 100)}%", True, CREAM)
+            screen.blit(pct, (bx + bw // 2 - pct.get_width() // 2, by + 40))
+        else:
+            draw_text(screen, "DISPLAY", font_header, GOLD, content_x, content_y, shadow=False)
+            for i, (label, value) in enumerate(video_rows()):
+                y = content_y + 64 + i * 66
+                selected = i == state["row"]
+                if selected:
+                    pygame.draw.rect(screen, (48, 38, 34),
+                                     (content_x - 12, y - 12, panel_w - 64, 48),
+                                     border_radius=5)
+                draw_text(screen, label, font_small, GOLD if selected else CREAM,
+                          content_x, y, shadow=False)
+                value_lbl = font_small.render((f"<  {value}  >" if selected else value),
+                                              True, CREAM if selected else DIM_TEXT)
+                screen.blit(value_lbl, (panel_x + panel_w - 44 - value_lbl.get_width(), y))
             if state["msg_timer"] > 0:
-                msg_lbl = font_small.render(state["msg"], True, RED)
-                screen.blit(
-                    msg_lbl, (panel_x + panel_w//2 - msg_lbl.get_width()//2, panel_y + panel_h - 30))
+                draw_text(screen, state["msg"], font_small, COL_DANGER,
+                          content_x, panel_y + panel_h - 40, shadow=False)
 
-        hovered = btn_x < mouse[0] < btn_x + \
-            btn_w and btn_y < mouse[1] < btn_y + btn_h
-        draw_menu_button(screen, btn_x, btn_y, btn_w, btn_h, "Back", hovered)
-        if clicked and hovered:
+        back_hover = WIDTH // 2 - 150 < mouse[0] < WIDTH // 2 + 150 and \
+            panel_y + panel_h + 28 < mouse[1] < panel_y + panel_h + 82
+        draw_menu_button(screen, WIDTH // 2 - 150, panel_y + panel_h + 28,
+                         300, 54, "Back", back_hover)
+        if clicked and back_hover:
             return
-
         video.present(screen)
         clock.tick(video.get_fps_limit())
-
-# ══════════════════════════════════════════════════════════════════════════════
-# SCREEN 0 — Name input
-# ══════════════════════════════════════════════════════════════════════════════
 
 
 def name_input_screen():
     play_music("menu")
     name = ""
-    cursor_visible = True
     cursor_timer = 0
+    cursor_visible = True
     while True:
-        screen.blit(STAGE_BGS["terrace"], (0, 0))
-        overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
-        overlay.fill((0, 0, 0, 150))
-        screen.blit(overlay, (0, 0))
-        title = font_title.render("Final Cut", True, GOLD)
-        screen.blit(title, (WIDTH//2 - title.get_width()//2, HEIGHT//2 - 200))
-        draw_text(screen, "Enter your name", font_label,
-                  CREAM, WIDTH//2 - 90, HEIGHT//2 - 100, shadow=False)
-        box_w, box_h = 420, 58
-        box_x = WIDTH//2 - box_w//2
-        box_y = HEIGHT//2 - 20
-        draw_panel(screen, box_x, box_y, box_w, box_h)
+        _menu_backdrop("terrace", 158)
+        _draw_brand(96)
+        draw_text(screen, "ENTER THE HUNT", font_micro, DIM_TEXT,
+                  WIDTH // 2 - 61, 222, shadow=False)
+
+        panel_w, panel_h = 650, 310
+        panel_x, panel_y = WIDTH // 2 - panel_w // 2, 330
+        draw_panel(screen, panel_x, panel_y, panel_w, panel_h)
+        draw_corner_marks(screen, panel_x, panel_y, panel_w, panel_h, GOLD)
+        prompt = font_header.render("Name your fighter", True, CREAM)
+        screen.blit(prompt, (WIDTH // 2 - prompt.get_width() // 2, panel_y + 42))
+        draw_text(screen, "This name appears above your character in battle.",
+                  font_small, DIM_TEXT, WIDTH // 2 - 204, panel_y + 82,
+                  shadow=False)
+
+        box_w, box_h = 480, 62
+        box_x, box_y = WIDTH // 2 - box_w // 2, panel_y + 125
+        pygame.draw.rect(screen, (7, 7, 10), (box_x, box_y, box_w, box_h), border_radius=5)
+        pygame.draw.rect(screen, GOLD if name else GOLD_DIM,
+                         (box_x, box_y, box_w, box_h), 2, border_radius=5)
         cursor_timer += clock.get_time()
-        if cursor_timer > 500:
+        if cursor_timer >= 500:
             cursor_visible = not cursor_visible
             cursor_timer = 0
-        display_text = name + ("|" if cursor_visible else " ")
-        screen.blit(font_big.render(display_text, True, CREAM),
-                    (box_x + 16, box_y + 12))
-        draw_text(screen, "Press ENTER to continue", font_small,
-                  DIM_TEXT, WIDTH//2 - 120, HEIGHT//2 + 60, shadow=False)
+        shown = name + ("|" if cursor_visible else " ")
+        label = font_big.render(shown, True, GOLD_BRIGHT if name else CREAM)
+        screen.blit(label, (box_x + 18, box_y + 14))
+        hint = "ENTER  Continue" if name.strip() else "Type a name to continue"
+        hint_col = GOLD if name.strip() else DIM_TEXT
+        draw_text(screen, hint, font_small, hint_col,
+                  WIDTH // 2 - font_small.size(hint)[0] // 2,
+                  panel_y + 220, shadow=False)
+
         video.present(screen)
         clock.tick(video.get_fps_limit())
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                _quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN and name.strip():
                     return name.strip()
-                elif event.key == pygame.K_BACKSPACE:
+                if event.key == pygame.K_ESCAPE:
+                    _quit()
+                if event.key == pygame.K_BACKSPACE:
                     name = name[:-1]
                 elif len(name) < 16 and event.unicode.isprintable():
                     name += event.unicode
 
-# ══════════════════════════════════════════════════════════════════════════════
-# SCREEN 1 — Class selection
-# ══════════════════════════════════════════════════════════════════════════════
 
-
-def class_select_screen():
+def run_upgrade_screen(hero_class, run_state, cleared_stage_idx):
+    """Offer a permanent run upgrade before the next stage."""
     play_music("menu")
-    classes = ["Warrior", "Assassin"]
+    choices = boon_choices(cleared_stage_idx, hero_class)
+    selected = 0
+    summary = run_state.get("last_summary", {})
+    next_stage = STAGES[min(cleared_stage_idx + 1, len(STAGES) - 1)]
+    card_w, card_h, gap = 390, 315, 34
+    total = card_w * 3 + gap * 2
+    start_x = WIDTH // 2 - total // 2
+    card_y = 445
 
-    warrior_preview_anims = warrior_anims.copy()
-    warrior_preview_anims["idle"] = dir_frames(_w_idle_rows, "down")
-    assassin_preview_anims = assassin_anims.copy()
-    assassin_preview_anims["idle"] = dir_frames(_a_idle_rows, "down")
-
-    previews = {
-        "Warrior": Animator(warrior_preview_anims, default="idle", fps=8),
-        "Assassin": Animator(assassin_preview_anims, default="idle", fps=8),
-    }
-    descriptions = {
-        "Warrior": ["HP: 120  Stamina: 260", "Heavy sword fighter.", "High HP, strong attacks."],
-        "Assassin": ["HP: 100  Stamina: 320", "Fast dual daggers.", "Quick dash attacks."],
-    }
-    CARD_W = DISPLAY_SIZE[0] + 20
-    CARD_H = DISPLAY_SIZE[1] + 110
-    GAP = 40
-    total_w = CARD_W * len(classes) + GAP * (len(classes) - 1)
-    start_x = WIDTH // 2 - total_w // 2
-    card_y = HEIGHT // 2 - CARD_H // 2
-    positions = {
-        cls: (start_x + i * (CARD_W + GAP), card_y)
-        for i, cls in enumerate(classes)
-    }
-    last_time = pygame.time.get_ticks()
     while True:
-        now = pygame.time.get_ticks()
-        dt = min(now - last_time, 50)
-        last_time = pygame.time.get_ticks()
-        for p in previews.values():
-            p.update(dt)
-        screen.blit(STAGE_BGS["terrace"], (0, 0))
-        overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
-        overlay.fill((0, 0, 0, 140))
-        screen.blit(overlay, (0, 0))
-        title = font_title.render("Final Cut", True, GOLD)
-        screen.blit(title, (WIDTH//2 - title.get_width()//2, 50))
-        draw_text(screen, "Choose your class", font_label,
-                  CREAM, WIDTH//2 - 80, 122, shadow=False)
+        _menu_backdrop(next_stage["bg"], 188)
+        title = font_title.render("CLAIM YOUR REWARD", True, GOLD_BRIGHT)
+        # Center the visible letters, not the font surface's asymmetric side
+        # bearings.  This fixes the title's apparent rightward shift.
+        visible = title.get_bounding_rect(min_alpha=1)
+        title_x = round(WIDTH / 2 - (visible.left + visible.width / 2))
+        screen.blit(title, (title_x, 66))
+        draw_text(screen, f"{STAGES[cleared_stage_idx]['name'].upper()} CLEARED",
+                  font_micro, DIM_TEXT, WIDTH // 2 - 86, 132, shadow=False)
+
+        panel_w, panel_h = 850, 150
+        panel_x = WIDTH // 2 - panel_w // 2
+        draw_panel(screen, panel_x, 195, panel_w, panel_h)
+        stats = [
+            ("TIME", summary.get("time", "--:--")),
+            ("DAMAGE", str(summary.get("damage_dealt", 0))),
+            ("KILLS", str(summary.get("kills", 0))),
+            ("BEST COMBO", str(summary.get("best_combo", 0))),
+        ]
+        cell_w = panel_w // len(stats)
+        for i, (label, value) in enumerate(stats):
+            cx = panel_x + i * cell_w
+            if i:
+                pygame.draw.line(screen, (76, 65, 57), (cx, 220), (cx, 320), 1)
+            v = font_big.render(value, True, CREAM)
+            screen.blit(v, (cx + cell_w // 2 - v.get_width() // 2, 230))
+            draw_text(screen, label, font_micro, DIM_TEXT,
+                      cx + cell_w // 2 - font_micro.size(label)[0] // 2,
+                      280, shadow=False)
+
         mouse = video.get_virtual_mouse_pos((WIDTH, HEIGHT))
-        for cls in classes:
-            cx, cy = positions[cls]
-            frame = previews[cls].get_frame()
-            _, ih = frame.get_size()
-            card_x, card_y2, card_w, card_h = cx, cy, CARD_W, CARD_H
-            is_hovered = card_x < mouse[0] < card_x + \
-                card_w and card_y2 < mouse[1] < card_y2+card_h
-            draw_panel(screen, card_x, card_y2, card_w, card_h,
-                      border_col=GOLD if is_hovered else GOLD_DIM)
-            screen.blit(frame, (cx + 10, cy + 10))
-            lbl = font_header.render(cls, True, GOLD if is_hovered else CREAM)
-            screen.blit(
-                lbl, (cx + CARD_W//2 - lbl.get_width()//2, cy + ih + 14))
-            for di, line in enumerate(descriptions[cls]):
-                dl = font_small.render(line, True, DIM_TEXT)
-                screen.blit(dl, (cx + CARD_W//2 - dl.get_width() //
-                            2, cy + ih + 40 + di * 18))
-        draw_text(screen, "Click a class to begin", font_small,
-                  DIM_TEXT, WIDTH//2-100, HEIGHT-50, shadow=False)
-        video.present(screen)
-        clock.tick(video.get_fps_limit())
+        clicked = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                for cls in classes:
-                    cx, cy = positions[cls]
-                    if cx < mouse[0] < cx+CARD_W and cy < mouse[1] < cy+CARD_H:
-                        return cls
+                _quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_LEFT, pygame.K_a):
+                    selected = (selected - 1) % 3
+                elif event.key in (pygame.K_RIGHT, pygame.K_d):
+                    selected = (selected + 1) % 3
+                elif event.key in (pygame.K_1, pygame.K_KP1):
+                    selected = 0
+                    apply_boon(run_state, choices[selected])
+                    return
+                elif event.key in (pygame.K_2, pygame.K_KP2):
+                    selected = 1
+                    apply_boon(run_state, choices[selected])
+                    return
+                elif event.key in (pygame.K_3, pygame.K_KP3):
+                    selected = 2
+                    apply_boon(run_state, choices[selected])
+                    return
+                elif event.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    apply_boon(run_state, choices[selected])
+                    return
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                clicked = True
 
+        for i, boon_id in enumerate(choices):
+            x = start_x + i * (card_w + gap)
+            hovered = x < mouse[0] < x + card_w and card_y < mouse[1] < card_y + card_h
+            if hovered:
+                selected = i
+            active = i == selected
+            boon = BOONS[boon_id]
+            accent = (136, 82, 204) if boon["tag"] == "ABILITY" else \
+                (108, 166, 205) if boon["tag"] == "MOBILITY" else \
+                (190, 65, 72) if boon["tag"] == "OFFENSE" else (126, 168, 116)
+            draw_panel(screen, x, card_y, card_w, card_h,
+                       border_col=accent if active else GOLD_DIM)
+            draw_text(screen, f"0{i + 1}", font_micro, accent,
+                      x + 24, card_y + 22, shadow=False)
+            draw_text(screen, boon["tag"], font_micro, DIM_TEXT,
+                      x + card_w - 24 - font_micro.size(boon["tag"])[0],
+                      card_y + 22, shadow=False)
+            pygame.draw.line(screen, accent, (x + 24, card_y + 55),
+                             (x + card_w - 24, card_y + 55), 2)
+            name = font_header.render(boon["name"], True, CREAM)
+            screen.blit(name, (x + card_w // 2 - name.get_width() // 2, card_y + 96))
+            desc = font_med.render(boon["description"], True, accent)
+            screen.blit(desc, (x + card_w // 2 - desc.get_width() // 2, card_y + 158))
+            owned = sum(1 for b in run_state.get("boons", []) if b == boon_id)
+            if owned:
+                draw_text(screen, f"Already owned x{owned}", font_small, DIM_TEXT,
+                          x + card_w // 2 - 66, card_y + 210, shadow=False)
+            if active:
+                draw_text(screen, "ENTER TO CLAIM", font_micro, GOLD_BRIGHT,
+                          x + card_w // 2 - 57, card_y + 266, shadow=False)
+            if clicked and hovered:
+                apply_boon(run_state, boon_id)
+                return
+
+        destination = f"NEXT: {next_stage['name'].upper()}"
+        draw_text(screen, destination, font_micro, DIM_TEXT,
+                  WIDTH // 2 - font_micro.size(destination)[0] // 2,
+                  HEIGHT - 105, shadow=False)
+        video.present(screen)
+        clock.tick(video.get_fps_limit())
