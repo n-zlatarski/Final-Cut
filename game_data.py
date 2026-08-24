@@ -247,9 +247,9 @@ ASSASSIN_SHEETS = {
     "deaths_dance": ("assets/Assassin/GameReady/deaths_dance_spin.png", 10, 4),
     # Sonic Stream is the E-key target-entry barrage: launch, chained crossing
     # cuts, overhead finisher, landing skid, and recovery.  Its eleven poses
-    # are original body animation, normalized to the regular Jinwoo root and
-    # display scale; gameplay.py renders the fiery trails as a separate layer
-    # so the character sheet stays clean and reusable.
+    # are original body animation, normalized to Q's action scale, Jinwoo's
+    # normal head/torso proportions, and the regular planted root. gameplay.py
+    # renders its trails separately so the character sheet stays reusable.
     "sonic_stream": ("assets/Assassin/GameReady/sonic_stream.png", 11, 4),
     "hurt":        ("assets/Assassin/GameReady/hurt.png",         5, 4),
     "death":       ("assets/Assassin/GameReady/death.png",        7, 4),

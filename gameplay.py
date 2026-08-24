@@ -736,7 +736,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             "sonic_stream", sonic_stream_rows,
             one_shot=True, force=True, fps=8.3,
         )
-        add_log("SONIC STREAM", (255, 94, 38))
+        add_log("SONIC STREAM", (245, 48, 62))
 
     def queue_hit(dmg, knockback, atk_range, fps, combo_step=None, facing=None,
                   crit=False, omni=False, special=False):
@@ -1558,14 +1558,15 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         fx = pygame.Surface((fx_w, fx_h), pygame.SRCALPHA)
 
         def draw_fire_stroke(points, alpha, strength=1.0, echo=False):
+            """Use Q's exact aura -> crimson -> hot edge -> pale core stack."""
             if alpha <= 0 or len(points) < 2:
                 return
             layers = (
-                ((70, 4, 8), 30, 0.30),
-                ((148, 12, 6), 21, 0.58),
-                ((236, 42, 10), 13, 0.90),
-                ((255, 104, 22), 8, 1.00),
-                ((255, 205, 122), 4, 1.00),
+                ((76, 0, 18), 27, 0.33),
+                ((150, 0, 24), 18, 0.60),
+                ((235, 16, 43), 11, 0.91),
+                ((255, 70, 88), 7, 1.00),
+                ((255, 155, 165), 4, 1.00),
             )
             if echo:
                 layers = layers[:3]
@@ -1573,18 +1574,18 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             for color, base_width, opacity in layers:
                 for index, (start, end) in enumerate(zip(points, points[1:])):
                     phase = (index + 0.5) / segment_count
-                    taper = max(0.12, math.sin(phase * math.pi) ** 0.48)
+                    taper = max(0.14, math.sin(phase * math.pi) ** 0.45)
                     width = max(1, int(base_width * strength * taper))
+                    layer_alpha = min(
+                        255,
+                        int(alpha * opacity * (0.70 + phase * 0.30)),
+                    )
                     pygame.draw.line(
-                        fx,
-                        (*color, min(255, int(alpha * opacity))),
-                        start,
-                        end,
-                        width,
+                        fx, (*color, layer_alpha), start, end, width,
                     )
             if not echo:
                 pygame.draw.aalines(
-                    fx, (255, 244, 208, min(255, int(alpha * 0.94))),
+                    fx, (255, 240, 242, min(255, int(alpha * 0.96))),
                     False, points,
                 )
 
@@ -1595,16 +1596,16 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             px, py = point
             outer_radius = max(3, int(34 * strength))
             pygame.draw.circle(
-                fx, (92, 0, 8, int(84 * strength)),
+                fx, (76, 0, 18, int(84 * strength)),
                 (px, py), outer_radius,
             )
             pygame.draw.circle(
-                fx, (255, 35, 12, int(205 * strength)),
+                fx, (235, 16, 43, int(205 * strength)),
                 (px, py), max(2, int(22 * strength)),
                 max(1, int(3 * strength)),
             )
             pygame.draw.circle(
-                fx, (255, 146, 36, int(245 * strength)),
+                fx, (255, 70, 88, int(245 * strength)),
                 (px, py), max(2, int(11 * strength)),
             )
             for ray_index in range(8):
@@ -1620,11 +1621,11 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                     int(py + math.sin(angle) * ray_len * 0.72),
                 )
                 pygame.draw.line(
-                    fx, (255, 76, 22, int(225 * strength)),
+                    fx, (255, 86, 104, int(225 * strength)),
                     start, end, max(1, int(3 * strength)),
                 )
             pygame.draw.circle(
-                fx, (255, 246, 220, min(255, int(255 * strength))),
+                fx, (255, 244, 244, min(255, int(255 * strength))),
                 (px, py), max(2, int(5 * strength)),
             )
 
@@ -1640,13 +1641,13 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                 (int(tip_x), int(tip_y)),
                 (int(px + wing_x), int(py + wing_y)),
             ]
-            pygame.draw.polygon(fx, (116, 2, 10, int(alpha * 0.48)), points)
+            pygame.draw.polygon(fx, (150, 0, 24, int(alpha * 0.48)), points)
             pygame.draw.line(
-                fx, (255, 58, 16, alpha),
+                fx, (255, 34, 57, alpha),
                 (px, py), (int(tip_x), int(tip_y)), 2,
             )
             pygame.draw.line(
-                fx, (255, 176, 72, min(255, int(alpha * 0.76))),
+                fx, (255, 155, 165, min(255, int(alpha * 0.76))),
                 (px, py), (int(tip_x), int(tip_y)), 1,
             )
 
@@ -1674,7 +1675,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                     0.58 - trail_index * 0.045,
                     echo=trail_index > 1,
                 )
-            # Hot fragments peel away from the converging dash lanes.  Their
+            # Crimson fragments peel away from the converging dash lanes. Their
             # positions are deterministic so the effect never flickers.
             for spark_index in range(14):
                 phase = spark_index / 13.0
@@ -1801,13 +1802,13 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             radius = int((34 + wave_index * 8) * (0.55 + math.sin(t * math.pi)))
             pygame.draw.ellipse(
                 fx,
-                (160, 18, 4, int(100 * fade)),
+                (150, 0, 24, int(100 * fade)),
                 pygame.Rect(bx - radius, by - radius // 3,
                             radius * 2, max(8, radius // 2)),
             )
             pygame.draw.ellipse(
                 fx,
-                (255, 48, 10, int(190 * fade)),
+                (235, 16, 43, int(190 * fade)),
                 pygame.Rect(
                     bx - radius,
                     by - max(5, radius // 5),
@@ -1832,11 +1833,11 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                         - (18 + spike_index % 3 * 7) * fade),
                 )
                 pygame.draw.line(
-                    fx, (230, 35, 6, int(190 * fade)),
+                    fx, (235, 16, 43, int(190 * fade)),
                     base, tip_point, max(2, 7 - spike_index // 2),
                 )
                 pygame.draw.line(
-                    fx, (255, 144, 38, int(235 * fade)),
+                    fx, (255, 70, 88, int(235 * fade)),
                     base, tip_point, 3,
                 )
                 if spike_index % 2 == 0:
@@ -1849,18 +1850,14 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                         int(215 * fade),
                     )
             pygame.draw.circle(
-                fx, (255, 236, 176, int(245 * fade)),
+                fx, (255, 244, 244, int(245 * fade)),
                 (bx, by), max(2, int(7 * fade)),
             )
 
         world_center = (anchor[0] + ox, anchor[1] + oy + 8)
         rect = fx.get_rect(center=world_center)
-        deep_bloom = fx.copy()
-        deep_bloom.fill((214, 28, 16, 255), special_flags=pygame.BLEND_RGBA_MULT)
-        deep_bloom.set_alpha(42)
-        screen.blit(deep_bloom, rect, special_flags=pygame.BLEND_RGBA_ADD)
         bloom = fx.copy()
-        bloom.set_alpha(92)
+        bloom.set_alpha(82)
         screen.blit(bloom, rect, special_flags=pygame.BLEND_RGBA_ADD)
         screen.blit(fx, rect)
 
@@ -2145,7 +2142,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                 for echo_index in range(3, 0, -1):
                     echo = hero_frame.copy()
                     echo.fill(
-                        (255, 72, 28, 255),
+                        (255, 48, 62, 255),
                         special_flags=pygame.BLEND_RGBA_MULT,
                     )
                     echo.set_alpha(int((17 + echo_index * 13) * travel_fade))
