@@ -245,6 +245,12 @@ ASSASSIN_SHEETS = {
     # already packed into transparent 384px cells, so it uses the same stable
     # four-direction loader as Jinwoo's other production-ready sheets.
     "deaths_dance": ("assets/Assassin/GameReady/deaths_dance_spin.png", 10, 4),
+    # Sonic Stream is the E-key target-entry barrage: launch, chained crossing
+    # cuts, overhead finisher, landing skid, and recovery.  Its eleven poses
+    # are original body animation, normalized to the regular Jinwoo root and
+    # display scale; gameplay.py renders the fiery trails as a separate layer
+    # so the character sheet stays clean and reusable.
+    "sonic_stream": ("assets/Assassin/GameReady/sonic_stream.png", 11, 4),
     "hurt":        ("assets/Assassin/GameReady/hurt.png",         5, 4),
     "death":       ("assets/Assassin/GameReady/death.png",        7, 4),
 }
@@ -266,6 +272,7 @@ _a_atk1_rows = ASSASSIN_ANIM_ROWS["attack_1"]
 _a_atk2_rows = ASSASSIN_ANIM_ROWS["attack_2"]
 _a_atk3_rows = ASSASSIN_ANIM_ROWS["attack_3"]
 _a_deaths_dance_rows = ASSASSIN_ANIM_ROWS["deaths_dance"]
+_a_sonic_stream_rows = ASSASSIN_ANIM_ROWS["sonic_stream"]
 # Six transparent, game-sized frames for the restored red ground finisher.
 # They are intentionally separate from the character sheet so the approved
 # ten-frame dash/spin body animation remains untouched.

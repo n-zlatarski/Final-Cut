@@ -115,7 +115,8 @@ def options_menu():
     controls = [
         ("W A S D", "Move"), ("SHIFT", "Sprint"),
         ("LMB", "Three-hit light combo"), ("SPACE", "Dash / evade"),
-        ("SPACE + LMB", "Dash strike"), ("Q", "Class ability"),
+        ("SPACE + LMB", "Dash strike"), ("Q", "Death's Dance"),
+        ("E", "Sonic Stream"),
         ("R", "Focus: recover stamina"), ("ESC", "Pause"),
     ]
 

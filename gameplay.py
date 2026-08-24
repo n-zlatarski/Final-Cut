@@ -22,7 +22,7 @@ from game_data import (
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
     assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows,
     _a_atk1_rows, _a_atk2_rows, _a_atk3_rows,
-    _a_deaths_dance_rows, _a_deaths_dance_fx,
+    _a_deaths_dance_rows, _a_deaths_dance_fx, _a_sonic_stream_rows,
     _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
     _a_hurt_rows, _a_death_rows,
     VAMPIRE_STATS,
@@ -131,6 +131,16 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
     DEATHS_DANCE_TRAVEL_SPEED = 8.2
     DEATHS_DANCE_SPIN_TIMES = (155, 335, 515)
     DEATHS_DANCE_ERUPTION_TIMES = (690, 845, 1000)
+    SONIC_STREAM_NAME = "Sonic Stream"
+    SONIC_STREAM_COOLDOWN = int(
+        9200 * run_state.get("special_cooldown_mult", 1.0)
+    )
+    SONIC_STREAM_COST = 60
+    SONIC_STREAM_DURATION = 1320
+    SONIC_STREAM_DASH_END = 310
+    SONIC_STREAM_DASH_SPEED = 13.4
+    SONIC_STREAM_HIT_TIMES = (330, 475, 620, 765, 910)
+    SONIC_STREAM_WAVE_TIMES = (1010, 1125, 1240)
 
     # ── hitstop / enemy flash / sword trail ──
     HITSTOP_HIT = 45 if is_assassin else 55
@@ -143,6 +153,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         anim = Animator(assassin_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _a_idle_rows, _a_walk_rows, _a_run_rows
         atk_combo_rows = (_a_atk1_rows, _a_atk2_rows, _a_atk3_rows)
+        sonic_stream_rows = _a_sonic_stream_rows
         run_atk_rows = _a_run_atk_rows
         dash_rows, dash_attack_rows = _a_dash_rows, _a_dash_atk_rows
         hurt_rows, death_rows = _a_hurt_rows, _a_death_rows
@@ -150,6 +161,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         anim = Animator(warrior_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _w_idle_rows, _w_walk_rows, _w_run_rows
         atk_combo_rows = (_w_atk_rows, _w_atk_rows, _w_atk_rows)
+        sonic_stream_rows = _w_atk_rows
         run_atk_rows = _w_run_atk_rows
         dash_rows, dash_attack_rows = _w_run_rows, _w_atk_rows
         walk_atk_rows = (_w_walk_atk_rows, _w_walk_atk_rows, _w_walk_atk_rows)
@@ -195,6 +207,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         "assassin_sparks": [],
         "shockwaves": [],
         "deaths_dance": None,
+        "sonic_stream": None,
         "eruption_fx": [],
         "floaters": [],
         "buffered_attack_until": 0,
@@ -202,6 +215,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         "dash_started_at": -100000,
         "evaded_this_dash": False,
         "last_special_time": -100000,
+        "last_sonic_stream_time": -100000,
         "last_focus_time": -100000,
         "damage_flash": 0,
         "low_hp_pulse": 0,
@@ -337,7 +351,8 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
     def try_dash():
         nonlocal last_dash_time
         now = pygame.time.get_ticks()
-        if state["result"] or state["dashing"] or state.get("deaths_dance"):
+        if (state["result"] or state["dashing"]
+                or state.get("deaths_dance") or state.get("sonic_stream")):
             return
         if now - last_dash_time < DASH_COOLDOWN:
             return
@@ -525,7 +540,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         nonlocal last_attack_time
         now = pygame.time.get_ticks()
 
-        if state.get("deaths_dance"):
+        if state.get("deaths_dance") or state.get("sonic_stream"):
             return
 
         if is_dash_attack_window():
@@ -575,7 +590,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
 
     def request_attack(is_moving, is_sprinting):
         """Keep clicks made near the end of recovery instead of dropping them."""
-        if state.get("deaths_dance"):
+        if state.get("deaths_dance") or state.get("sonic_stream"):
             return
         now = pygame.time.get_ticks()
         if is_dash_attack_window():
@@ -606,7 +621,8 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         nonlocal last_attack_time
         now = pygame.time.get_ticks()
         elapsed = now - state["last_special_time"]
-        if state["result"] or elapsed < SPECIAL_COOLDOWN:
+        if (state["result"] or state.get("sonic_stream")
+                or elapsed < SPECIAL_COOLDOWN):
             if elapsed < SPECIAL_COOLDOWN:
                 add_log(f"{SPECIAL_NAME} is recharging", DIM_TEXT)
             return
@@ -656,6 +672,71 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             "omni": is_assassin, "facing": direction,
         })
         add_log(SPECIAL_NAME.upper(), wave_col)
+
+    def use_sonic_stream():
+        """Start the E-key lock-on dash and chained dagger barrage."""
+        nonlocal last_attack_time, direction
+        now = pygame.time.get_ticks()
+        elapsed = now - state["last_sonic_stream_time"]
+        if (state["result"] or not is_assassin or state.get("deaths_dance")
+                or state.get("sonic_stream") or state["dashing"]):
+            return
+        if elapsed < SONIC_STREAM_COOLDOWN:
+            add_log(f"{SONIC_STREAM_NAME} is recharging", DIM_TEXT)
+            return
+        if state["stamina"] < SONIC_STREAM_COST:
+            add_log("Not enough stamina for Sonic Stream", YELLOW)
+            return
+
+        hx, hy = hero_center()
+        living = [enemy for enemy in enemies if not enemy.dead]
+        target = min(
+            living,
+            key=lambda enemy: math.hypot(
+                enemy.center()[0] - hx, enemy.center()[1] - hy
+            ),
+            default=None,
+        )
+        if target is not None:
+            tx, ty = target.center()
+            target_dx, target_dy = tx - hx, ty - hy
+            target_distance = math.hypot(target_dx, target_dy)
+            if target_distance > 650:
+                target = None
+        if target is not None:
+            tx, ty = target.center()
+            target_dx, target_dy = tx - hx, ty - hy
+            target_distance = max(1.0, math.hypot(target_dx, target_dy))
+            travel_vec = (target_dx / target_distance, target_dy / target_distance)
+            if abs(target_dx) >= abs(target_dy):
+                direction = "right" if target_dx >= 0 else "left"
+            else:
+                direction = "down" if target_dy >= 0 else "up"
+        else:
+            travel_vec = DIR_VECS.get(direction, (1, 0))
+
+        state["stamina"] -= SONIC_STREAM_COST
+        state["last_sonic_stream_time"] = now
+        last_attack_time = now
+        state["stats"]["attacks"] += 1
+        state["combo_index"] = 0
+        state["last_combo_time"] = -100000
+        state["current_recovery"] = SONIC_STREAM_DURATION
+        state["sonic_stream"] = {
+            "start": now,
+            "direction": direction,
+            "vec": travel_vec,
+            "target": target,
+            "strike_pos": None,
+            "hit_done": set(),
+            "wave_done": set(),
+        }
+        state["invulnerable_until"] = now + SONIC_STREAM_DURATION - 90
+        play_dir(
+            "sonic_stream", sonic_stream_rows,
+            one_shot=True, force=True, fps=8.3,
+        )
+        add_log("SONIC STREAM", (255, 94, 38))
 
     def queue_hit(dmg, knockback, atk_range, fps, combo_step=None, facing=None,
                   crit=False, omni=False, special=False):
@@ -857,6 +938,117 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
 
         if elapsed >= DEATHS_DANCE_DURATION:
             state["deaths_dance"] = None
+        return True
+
+    def update_sonic_stream(now, frame_dt):
+        """Advance Sonic Stream's lock-on entry, barrage, and fire wave."""
+        sonic = state.get("sonic_stream")
+        if not sonic:
+            return False
+
+        elapsed = now - sonic["start"]
+        dx, dy = sonic["vec"]
+
+        # The reference move first snaps Jinwoo into dagger range.  If an
+        # enemy was close enough when E was pressed, travel ends just before
+        # its center; otherwise Sonic Stream fires in the captured direction.
+        if (elapsed < SONIC_STREAM_DASH_END and frame_dt > 0
+                and sonic["strike_pos"] is None):
+            target = sonic.get("target")
+            if target is not None and not target.dead:
+                tx, ty = target.center()
+                hx, hy = hero_center()
+                toward_x, toward_y = tx - hx, ty - hy
+                distance = math.hypot(toward_x, toward_y)
+                if distance > 112:
+                    dx, dy = toward_x / distance, toward_y / distance
+                    sonic["vec"] = (dx, dy)
+                    step = min(
+                        distance - 112,
+                        SONIC_STREAM_DASH_SPEED * frame_dt / 16.667,
+                    )
+                else:
+                    step = 0
+                    sonic["strike_pos"] = hero_center()
+            else:
+                step = SONIC_STREAM_DASH_SPEED * frame_dt / 16.667
+
+            hero_pos[0] = max(0, min(STAGE_EXIT_X, hero_pos[0] + dx * step))
+            new_y = hero_pos[1] + dy * step
+            if dy < 0 and new_y + FEET_OFFSET[hero_class] < TOP_BORDER_Y:
+                new_y = TOP_BORDER_Y - FEET_OFFSET[hero_class]
+            elif dy > 0:
+                new_y = min(HEIGHT - FEET_OFFSET[hero_class], new_y)
+            hero_pos[1] = new_y
+
+        if elapsed >= SONIC_STREAM_DASH_END and sonic["strike_pos"] is None:
+            sonic["strike_pos"] = hero_center()
+
+        strike_pos = sonic["strike_pos"] or hero_center()
+
+        # Five tight cuts happen around the target without reusing any LMB or
+        # Death's Dance slash asset.  The last barrage hit is the launch into
+        # the large finishing sweep.
+        for hit_index, hit_time in enumerate(SONIC_STREAM_HIT_TIMES):
+            if elapsed < hit_time or hit_index in sonic["hit_done"]:
+                continue
+            sonic["hit_done"].add(hit_index)
+            final_barrage = hit_index == len(SONIC_STREAM_HIT_TIMES) - 1
+            damage_range = (12, 17) if final_barrage else (6, 10)
+            dmg = int(random.randint(*damage_range) * damage_mult)
+            dmg, crit = roll_crit(
+                dmg,
+                force_crit=final_barrage and state["hit_streak"] >= 8,
+            )
+            resolve_attack_hit(
+                dmg,
+                knockback=10 if final_barrage else 3,
+                atk_range=190 if final_barrage else 166,
+                facing=sonic["direction"],
+                crit=crit,
+                omni=True,
+                special=True,
+                origin=strike_pos,
+                quiet=True,
+            )
+            state["shake"] = max(
+                state["shake"], 12 if final_barrage else 5 + hit_index
+            )
+
+        # The finishing cut launches the same advancing fire line shown in the
+        # reference clip.  Each beat owns a forward world position so damage
+        # and visuals cannot drift back underneath Jinwoo.
+        for wave_index, wave_time in enumerate(SONIC_STREAM_WAVE_TIMES):
+            if elapsed < wave_time or wave_index in sonic["wave_done"]:
+                continue
+            sonic["wave_done"].add(wave_index)
+            distance = 76 + wave_index * 92
+            origin = (
+                strike_pos[0] + dx * distance,
+                strike_pos[1] + dy * distance,
+            )
+            final_wave = wave_index == len(SONIC_STREAM_WAVE_TIMES) - 1
+            damage_range = (18, 26) if final_wave else (9, 14)
+            dmg = int(random.randint(*damage_range) * damage_mult)
+            dmg, crit = roll_crit(
+                dmg,
+                force_crit=final_wave and state["hit_streak"] >= 8,
+            )
+            resolve_attack_hit(
+                dmg,
+                knockback=24 if final_wave else 10 + wave_index * 4,
+                atk_range=112 + wave_index * 7,
+                facing=sonic["direction"],
+                crit=crit,
+                omni=True,
+                special=True,
+                origin=origin,
+                quiet=True,
+            )
+            state["shake"] = max(state["shake"], 11 + wave_index * 3)
+
+        if elapsed >= SONIC_STREAM_DURATION:
+            state["sonic_stream"] = None
         return True
 
     def draw_deaths_dance_vfx(now, dance):
@@ -1352,6 +1544,326 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         screen.blit(bloom, fx_rect, special_flags=pygame.BLEND_RGBA_ADD)
         screen.blit(fx, fx_rect)
 
+    def draw_sonic_stream_vfx(now, sonic):
+        """Draw the ARISE-inspired Sonic Stream without reusing Q/LMB art."""
+        elapsed = now - sonic["start"]
+        dx, dy = sonic["vec"]
+        length = max(0.001, math.hypot(dx, dy))
+        dx, dy = dx / length, dy / length
+        side_x, side_y = -dy, dx
+        anchor = sonic["strike_pos"] or hero_center()
+
+        fx_w, fx_h = 760, 560
+        cx, cy = fx_w // 2, fx_h // 2
+        fx = pygame.Surface((fx_w, fx_h), pygame.SRCALPHA)
+
+        def draw_fire_stroke(points, alpha, strength=1.0, echo=False):
+            if alpha <= 0 or len(points) < 2:
+                return
+            layers = (
+                ((70, 4, 8), 30, 0.30),
+                ((148, 12, 6), 21, 0.58),
+                ((236, 42, 10), 13, 0.90),
+                ((255, 104, 22), 8, 1.00),
+                ((255, 205, 122), 4, 1.00),
+            )
+            if echo:
+                layers = layers[:3]
+            segment_count = len(points) - 1
+            for color, base_width, opacity in layers:
+                for index, (start, end) in enumerate(zip(points, points[1:])):
+                    phase = (index + 0.5) / segment_count
+                    taper = max(0.12, math.sin(phase * math.pi) ** 0.48)
+                    width = max(1, int(base_width * strength * taper))
+                    pygame.draw.line(
+                        fx,
+                        (*color, min(255, int(alpha * opacity))),
+                        start,
+                        end,
+                        width,
+                    )
+            if not echo:
+                pygame.draw.aalines(
+                    fx, (255, 244, 208, min(255, int(alpha * 0.94))),
+                    False, points,
+                )
+
+        def draw_impact_flare(point, strength, rotation=0.0):
+            """Layered red hit-flash with a hot core and expanding ring."""
+            if strength <= 0:
+                return
+            px, py = point
+            outer_radius = max(3, int(34 * strength))
+            pygame.draw.circle(
+                fx, (92, 0, 8, int(84 * strength)),
+                (px, py), outer_radius,
+            )
+            pygame.draw.circle(
+                fx, (255, 35, 12, int(205 * strength)),
+                (px, py), max(2, int(22 * strength)),
+                max(1, int(3 * strength)),
+            )
+            pygame.draw.circle(
+                fx, (255, 146, 36, int(245 * strength)),
+                (px, py), max(2, int(11 * strength)),
+            )
+            for ray_index in range(8):
+                angle = rotation + ray_index * math.pi / 4
+                ray_len = (22 + (ray_index % 2) * 18) * strength
+                ray_start = 5 * strength
+                start = (
+                    int(px + math.cos(angle) * ray_start),
+                    int(py + math.sin(angle) * ray_start * 0.72),
+                )
+                end = (
+                    int(px + math.cos(angle) * ray_len),
+                    int(py + math.sin(angle) * ray_len * 0.72),
+                )
+                pygame.draw.line(
+                    fx, (255, 76, 22, int(225 * strength)),
+                    start, end, max(1, int(3 * strength)),
+                )
+            pygame.draw.circle(
+                fx, (255, 246, 220, min(255, int(255 * strength))),
+                (px, py), max(2, int(5 * strength)),
+            )
+
+        def draw_crimson_shard(forward, sideways, angle, length, alpha):
+            """A compact motion fragment that reads as shattered blade-light."""
+            px, py = local_point(forward, sideways)
+            tip_x = px + math.cos(angle) * length
+            tip_y = py + math.sin(angle) * length * 0.72
+            wing_x = math.cos(angle + math.pi * 0.5) * length * 0.14
+            wing_y = math.sin(angle + math.pi * 0.5) * length * 0.10
+            points = [
+                (int(px - wing_x), int(py - wing_y)),
+                (int(tip_x), int(tip_y)),
+                (int(px + wing_x), int(py + wing_y)),
+            ]
+            pygame.draw.polygon(fx, (116, 2, 10, int(alpha * 0.48)), points)
+            pygame.draw.line(
+                fx, (255, 58, 16, alpha),
+                (px, py), (int(tip_x), int(tip_y)), 2,
+            )
+            pygame.draw.line(
+                fx, (255, 176, 72, min(255, int(alpha * 0.76))),
+                (px, py), (int(tip_x), int(tip_y)), 1,
+            )
+
+        def local_point(forward, sideways):
+            return (
+                int(cx + dx * forward + side_x * sideways),
+                int(cy + dy * forward + side_y * sideways * 0.72),
+            )
+
+        # Entry dash: several thin converging streaks, not the circular Q spin.
+        if elapsed < SONIC_STREAM_DASH_END + 70:
+            dash_t = min(1.0, elapsed / (SONIC_STREAM_DASH_END + 70))
+            fade = min(1.0, dash_t * 5.0) * (1.0 - dash_t) ** 0.45
+            for trail_index, lateral in enumerate((-42, -15, 16, 43)):
+                points = []
+                for point_index in range(16):
+                    t = point_index / 15.0
+                    forward = -245 + 228 * t
+                    sideways = lateral * (1.0 - t * 0.62)
+                    sideways += math.sin(t * math.pi) * (8 - trail_index)
+                    points.append(local_point(forward, sideways))
+                draw_fire_stroke(
+                    points,
+                    int((210 - trail_index * 22) * fade),
+                    0.58 - trail_index * 0.045,
+                    echo=trail_index > 1,
+                )
+            # Hot fragments peel away from the converging dash lanes.  Their
+            # positions are deterministic so the effect never flickers.
+            for spark_index in range(14):
+                phase = spark_index / 13.0
+                spark_forward = -226 + phase * 205
+                spark_side = math.sin(
+                    spark_index * 2.18 + elapsed * 0.014
+                ) * (18 + (spark_index % 4) * 7) * (1.0 - phase * 0.54)
+                spark_angle = math.atan2(dy, dx) + math.pi
+                spark_angle += (spark_index % 3 - 1) * 0.18
+                draw_crimson_shard(
+                    spark_forward,
+                    spark_side,
+                    spark_angle,
+                    (9 + spark_index % 5 * 3) * fade,
+                    int((135 + spark_index % 4 * 22) * fade),
+                )
+
+        # The central Sonic Stream: alternating diagonal cuts build a dense
+        # star around the target while leaving Jinwoo readable at its center.
+        for cut_index, hit_time in enumerate(SONIC_STREAM_HIT_TIMES):
+            age = elapsed - (hit_time - 95)
+            life = 235
+            if not 0 <= age < life:
+                continue
+            t = age / life
+            fade = math.sin(t * math.pi) ** 0.42
+            extend = 1.0 - (1.0 - min(1.0, t * 1.75)) ** 3
+            sign = -1 if cut_index % 2 else 1
+            reach = 82 + 105 * extend + cut_index * 5
+            across = 75 + 58 * extend
+            points = []
+            for point_index in range(23):
+                phase = point_index / 22.0
+                forward = -reach + reach * 2 * phase
+                sideways = sign * across * (1.0 - phase * 2)
+                sideways += math.sin(phase * math.pi) * sign * 24
+                points.append(local_point(forward, sideways))
+            echo = [
+                (int(x - dx * 11 - side_x * sign * 8),
+                 int(y - dy * 11 - side_y * sign * 8))
+                for x, y in points
+            ]
+            far_echo = [
+                (int(x - dx * 19 + side_x * sign * 13),
+                 int(y - dy * 19 + side_y * sign * 13))
+                for x, y in points
+            ]
+            draw_fire_stroke(far_echo, int(62 * fade), 0.48, echo=True)
+            draw_fire_stroke(echo, int(92 * fade), 0.78, echo=True)
+            draw_fire_stroke(points, int(255 * fade), 1.0)
+
+            # Small red splinters continue the cut beyond its clean main arc.
+            cut_angle = math.atan2(dy, dx) - sign * 0.62
+            for shard_index in range(5):
+                shard_phase = shard_index / 4.0
+                draw_crimson_shard(
+                    -70 + shard_phase * 170 + cut_index * 4,
+                    sign * (-72 + shard_index * 27),
+                    cut_angle + (shard_index - 2) * 0.11,
+                    (12 + shard_index * 4) * fade,
+                    int((122 + shard_index * 20) * fade),
+                )
+
+            impact_age = elapsed - hit_time
+            if 0 <= impact_age < 130:
+                flash = (1.0 - impact_age / 130.0) ** 0.65
+                impact = local_point(35 + cut_index * 7, sign * 16)
+                draw_impact_flare(impact, flash, cut_index * 0.38)
+
+        # One huge two-dagger sweep launches the ground fire line.
+        if 820 <= elapsed < 1120:
+            finish_t = (elapsed - 820) / 300.0
+            fade = min(1.0, finish_t * 6.0)
+            if finish_t > 0.60:
+                fade *= max(0.0, (1.0 - finish_t) / 0.40)
+            tip = math.atan2(dy, dx) + (-2.55 + finish_t * 3.25)
+            points = []
+            for index in range(33):
+                phase = index / 32.0
+                angle = tip - 3.75 + phase * 3.75
+                radial_x = math.cos(angle) * 224
+                radial_y = math.sin(angle) * 108
+                points.append((
+                    int(cx + dx * radial_x + side_x * radial_y),
+                    int(cy + dy * radial_x + side_y * radial_y * 0.72),
+                ))
+            inner_points = []
+            for x, y in points:
+                inner_points.append((
+                    int(cx + (x - cx) * 0.82 - dx * 8),
+                    int(cy + (y - cy) * 0.82 - dy * 8),
+                ))
+            draw_fire_stroke(inner_points, int(142 * fade), 0.68, echo=True)
+            draw_fire_stroke(points, int(255 * fade), 1.25)
+            if 0.10 < finish_t < 0.78:
+                pulse = math.sin(min(1.0, finish_t / 0.78) * math.pi)
+                draw_impact_flare(
+                    local_point(18, 0), pulse * fade,
+                    finish_t * math.pi * 2,
+                )
+                for shard_index in range(12):
+                    shard_angle = (
+                        math.atan2(dy, dx) - 1.4
+                        + shard_index * (2.8 / 11.0)
+                    )
+                    draw_crimson_shard(
+                        22 + (shard_index % 4) * 21,
+                        (shard_index - 5.5) * 13,
+                        shard_angle,
+                        (15 + shard_index % 4 * 6) * pulse,
+                        int(210 * pulse * fade),
+                    )
+
+        # Three travelling ground bursts follow the finisher from the fixed
+        # strike point.  Their flame tips lean forward like the reference.
+        for wave_index, wave_time in enumerate(SONIC_STREAM_WAVE_TIMES):
+            age = elapsed - wave_time
+            if not 0 <= age < 360:
+                continue
+            t = age / 360.0
+            fade = (1.0 - t) ** 0.48
+            distance = 76 + wave_index * 92
+            bx, by = local_point(distance, 0)
+            radius = int((34 + wave_index * 8) * (0.55 + math.sin(t * math.pi)))
+            pygame.draw.ellipse(
+                fx,
+                (160, 18, 4, int(100 * fade)),
+                pygame.Rect(bx - radius, by - radius // 3,
+                            radius * 2, max(8, radius // 2)),
+            )
+            pygame.draw.ellipse(
+                fx,
+                (255, 48, 10, int(190 * fade)),
+                pygame.Rect(
+                    bx - radius,
+                    by - max(5, radius // 5),
+                    radius * 2,
+                    max(10, radius // 2),
+                ),
+                max(1, int(3 * fade)),
+            )
+            for spike_index in range(9):
+                spread = (spike_index - 4) * 0.20
+                spike_len = radius * (1.15 + (spike_index % 3) * 0.32)
+                base_side = (spike_index - 4) * radius * 0.17
+                base = (
+                    int(bx + side_x * base_side),
+                    int(by + side_y * base_side * 0.72),
+                )
+                tip_point = (
+                    int(base[0] + dx * spike_len
+                        + side_x * math.sin(spread) * spike_len * 0.48),
+                    int(base[1] + dy * spike_len
+                        + side_y * math.sin(spread) * spike_len * 0.34
+                        - (18 + spike_index % 3 * 7) * fade),
+                )
+                pygame.draw.line(
+                    fx, (230, 35, 6, int(190 * fade)),
+                    base, tip_point, max(2, 7 - spike_index // 2),
+                )
+                pygame.draw.line(
+                    fx, (255, 144, 38, int(235 * fade)),
+                    base, tip_point, 3,
+                )
+                if spike_index % 2 == 0:
+                    ember_angle = math.atan2(dy, dx) - 0.34 + spike_index * 0.08
+                    draw_crimson_shard(
+                        distance + 12 + spike_index * 5,
+                        (spike_index - 4) * radius * 0.18,
+                        ember_angle,
+                        (12 + spike_index * 2) * fade,
+                        int(215 * fade),
+                    )
+            pygame.draw.circle(
+                fx, (255, 236, 176, int(245 * fade)),
+                (bx, by), max(2, int(7 * fade)),
+            )
+
+        world_center = (anchor[0] + ox, anchor[1] + oy + 8)
+        rect = fx.get_rect(center=world_center)
+        deep_bloom = fx.copy()
+        deep_bloom.fill((214, 28, 16, 255), special_flags=pygame.BLEND_RGBA_MULT)
+        deep_bloom.set_alpha(42)
+        screen.blit(deep_bloom, rect, special_flags=pygame.BLEND_RGBA_ADD)
+        bloom = fx.copy()
+        bloom.set_alpha(92)
+        screen.blit(bloom, rect, special_flags=pygame.BLEND_RGBA_ADD)
+        screen.blit(fx, rect)
+
     while True:
         now = pygame.time.get_ticks()
         dt = min(now - last_time, 50)
@@ -1387,11 +1899,13 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
 
         if not state["result"]:
             dance_active = update_deaths_dance(now, effective_dt)
-            if dance_active:
+            sonic_active = update_sonic_stream(now, effective_dt)
+            ability_active = dance_active or sonic_active
+            if ability_active:
                 moving = True
                 sprinting = False
 
-            if (not dance_active and state["hitstop"] <= 0
+            if (not ability_active and state["hitstop"] <= 0
                     and state["dashing"]):
                 if now >= state["dash_end_time"]:
                     state["dashing"] = False
@@ -1408,7 +1922,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                     hero_pos[1] = new_y
                     moving = True
 
-            if (not dance_active and state["hitstop"] <= 0
+            if (not ability_active and state["hitstop"] <= 0
                     and not state["dashing"]):
                 if keys[pygame.K_a]:
                     hero_pos[0] = max(0, hero_pos[0] - speed)
@@ -1607,6 +2121,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         # They disappear before the main spin so the newly animated body turn
         # remains readable instead of becoming a solid crimson silhouette.
         dance = state.get("deaths_dance")
+        sonic = state.get("sonic_stream")
         if dance:
             dance_elapsed = now - dance["start"]
             if dance_elapsed < DEATHS_DANCE_TRAVEL_END:
@@ -1622,9 +2137,26 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                         echo,
                         (hero_x - ddx * offset, hero_y - ddy * offset),
                     )
+        if sonic:
+            sonic_elapsed = now - sonic["start"]
+            if sonic_elapsed < SONIC_STREAM_DASH_END:
+                sdx, sdy = sonic["vec"]
+                travel_fade = 1.0 - sonic_elapsed / SONIC_STREAM_DASH_END
+                for echo_index in range(3, 0, -1):
+                    echo = hero_frame.copy()
+                    echo.fill(
+                        (255, 72, 28, 255),
+                        special_flags=pygame.BLEND_RGBA_MULT,
+                    )
+                    echo.set_alpha(int((17 + echo_index * 13) * travel_fade))
+                    offset = 16 * echo_index
+                    screen.blit(
+                        echo,
+                        (hero_x - sdx * offset, hero_y - sdy * offset),
+                    )
         screen.blit(hero_frame, (hero_x, hero_y))
         if (now < state["invulnerable_until"] and not state["result"]
-                and not dance):
+                and not dance and not sonic):
             shimmer = 70 + int(45 * (1 + math.sin(now * 0.035)))
             hero_mask = pygame.mask.from_surface(hero_frame)
             aura = hero_mask.to_surface(setcolor=(112, 205, 255, shimmer),
@@ -1634,6 +2166,8 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         # palette as the normal attacks but using no LMB animation or asset.
         if dance:
             draw_deaths_dance_vfx(now, dance)
+        if sonic:
+            draw_sonic_stream_vfx(now, sonic)
 
         # Keep the world-space name readable above combat effects.
         name_w = font_small.size(hero_name)[0]
@@ -1793,6 +2327,10 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
 
         # Ability strip directly under the main panel.
         special_remaining = max(0, SPECIAL_COOLDOWN - (now - state["last_special_time"]))
+        sonic_remaining = max(
+            0,
+            SONIC_STREAM_COOLDOWN - (now - state["last_sonic_stream_time"]),
+        )
         focus_remaining = max(0, FOCUS_COOLDOWN - (now - state["last_focus_time"]))
         ability_y = panel_y + panel_h + 10
         draw_keycap(screen, panel_x + 10, ability_y, "Q", special_remaining == 0)
@@ -1800,11 +2338,18 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         draw_text(screen, special_text, font_micro,
                   GOLD_BRIGHT if special_remaining == 0 else DIM_TEXT,
                   panel_x + 52, ability_y + 9, shadow=False)
-        draw_keycap(screen, panel_x + 248, ability_y, "R", focus_remaining == 0)
+        draw_keycap(screen, panel_x + 274, ability_y, "E", sonic_remaining == 0)
+        sonic_text = (SONIC_STREAM_NAME if sonic_remaining == 0 else
+                      f"{SONIC_STREAM_NAME}  {sonic_remaining / 1000:.1f}s")
+        draw_text(screen, sonic_text, font_micro,
+                  (255, 112, 42) if sonic_remaining == 0 else DIM_TEXT,
+                  panel_x + 316, ability_y + 9, shadow=False)
+        focus_y = ability_y + 38
+        draw_keycap(screen, panel_x + 10, focus_y, "R", focus_remaining == 0)
         focus_text = "Focus" if focus_remaining == 0 else f"Focus  {focus_remaining / 1000:.1f}s"
         draw_text(screen, focus_text, font_micro,
                   (120, 196, 235) if focus_remaining == 0 else DIM_TEXT,
-                  panel_x + 290, ability_y + 9, shadow=False)
+                  panel_x + 52, focus_y + 9, shadow=False)
 
         # ── Stage/objective HUD ──
         living_count = sum(1 for e in enemies if not e.dead)
@@ -1950,6 +2495,8 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                     try_focus()
                 if event.key == pygame.K_q and not state["result"]:
                     use_special()
+                if event.key == pygame.K_e and not state["result"]:
+                    use_sonic_stream()
                 if event.key == pygame.K_SPACE and not state["result"]:
                     try_dash()
                 if event.key == pygame.K_RETURN and state["result"] == "cleared":
