@@ -22,7 +22,7 @@ from game_data import (
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
     assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows,
     _a_atk1_rows, _a_atk2_rows, _a_atk3_rows,
-    _a_deaths_dance_rows,
+    _a_deaths_dance_rows, _a_deaths_dance_fx,
     _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
     _a_hurt_rows, _a_death_rows,
     VAMPIRE_STATS,
@@ -126,10 +126,11 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
     SPECIAL_COST = 52 if is_assassin else 58
     FOCUS_COOLDOWN = 2600
     FOCUS_RESTORE = 72 if is_assassin else 64
-    DEATHS_DANCE_DURATION = 900
-    DEATHS_DANCE_TRAVEL_END = 740
-    DEATHS_DANCE_TRAVEL_SPEED = 7.4
-    DEATHS_DANCE_SPIN_TIMES = (135, 315, 495, 690)
+    DEATHS_DANCE_DURATION = 1120
+    DEATHS_DANCE_TRAVEL_END = 560
+    DEATHS_DANCE_TRAVEL_SPEED = 8.2
+    DEATHS_DANCE_SPIN_TIMES = (155, 335, 515)
+    DEATHS_DANCE_ERUPTION_TIMES = (690, 845, 1000)
 
     # ── hitstop / enemy flash / sword trail ──
     HITSTOP_HIT = 45 if is_assassin else 55
@@ -194,6 +195,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         "assassin_sparks": [],
         "shockwaves": [],
         "deaths_dance": None,
+        "eruption_fx": [],
         "floaters": [],
         "buffered_attack_until": 0,
         "invulnerable_until": 0,
@@ -627,12 +629,14 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                 "direction": direction,
                 "vec": dash_vec,
                 "spin_done": set(),
+                "eruption_done": set(),
+                "landing_pos": None,
             }
             state["dashing"] = False
-            state["invulnerable_until"] = now + DEATHS_DANCE_DURATION - 45
+            state["invulnerable_until"] = now + DEATHS_DANCE_DURATION - 80
             play_dir("deaths_dance", _a_deaths_dance_rows, one_shot=True,
-                     force=True, fps=12)
-            add_log("DEATH'S DANCE", (174, 86, 255))
+                     force=True, fps=9)
+            add_log("DEATH'S DANCE: CRIMSON ERUPTION", (245, 48, 62))
             return
         else:
             last_special_damage = int(random.randint(45, 62) * damage_mult)
@@ -755,8 +759,17 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         elif not quiet:
             add_log("Swing and a miss!", YELLOW)
 
+    def spawn_eruption_fx(pos, eruption_index):
+        """Create one persistent red ground burst for the Q finisher."""
+        state["eruption_fx"].append({
+            "pos": pos,
+            "start": pygame.time.get_ticks(),
+            "life": 620,
+            "index": eruption_index,
+        })
+
     def update_deaths_dance(now, frame_dt):
-        """Advance Death's Dance movement and its four spinning dagger hits."""
+        """Advance the unique dash/spin hits and correctly anchored eruptions."""
         dance = state.get("deaths_dance")
         if not dance:
             return False
@@ -781,31 +794,563 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                 new_y = min(HEIGHT - FEET_OFFSET[hero_class], new_y)
             hero_pos[1] = new_y
 
-        # Four close-range cuts travel with Jinwoo. The final crossing slash is
-        # the payoff now that the unrelated ground-eruption phase is removed.
+        if elapsed >= DEATHS_DANCE_TRAVEL_END and dance["landing_pos"] is None:
+            # Ground effects anchor to the feet, not the body-center position.
+            # This is captured once, so later frames and camera shake cannot
+            # make the eruption chain drift away from the actual landing spot.
+            dance["landing_pos"] = (
+                hero_center()[0],
+                hero_pos[1] + FEET_OFFSET[hero_class],
+            )
+
+        # Three damage beats follow Jinwoo's unique horizontal spin and final
+        # ground strike. The VFX is rendered separately in the red light-combo
+        # palette; no LMB slash image is spawned here.
         for hit_index, hit_time in enumerate(DEATHS_DANCE_SPIN_TIMES):
             if elapsed < hit_time or hit_index in dance["spin_done"]:
                 continue
             dance["spin_done"].add(hit_index)
             final_cut = hit_index == len(DEATHS_DANCE_SPIN_TIMES) - 1
-            damage_range = (18, 25) if final_cut else (9, 13)
+            damage_range = (13, 18) if final_cut else (8, 12)
             dmg = int(random.randint(*damage_range) * damage_mult)
             dmg, crit = roll_crit(
                 dmg,
                 force_crit=final_cut and state["hit_streak"] >= 8,
             )
             resolve_attack_hit(
-                dmg, knockback=18 if final_cut else 4 + hit_index * 2,
-                atk_range=168 if final_cut else 150,
+                dmg, knockback=12 if final_cut else 4 + hit_index * 2,
+                atk_range=166 if final_cut else 150,
                 facing=dance["direction"], crit=crit, omni=True,
                 special=True, quiet=True,
             )
             if final_cut:
-                state["shake"] = max(state["shake"], 13)
+                state["shake"] = max(state["shake"], 12)
+
+        # Restore the three advancing ground eruptions from the earlier Q.
+        # Each owns its position, damage, and red animation frame sequence.
+        landing_x, landing_y = dance["landing_pos"] or (
+            hero_center()[0], hero_pos[1] + FEET_OFFSET[hero_class]
+        )
+        for eruption_index, eruption_time in enumerate(
+                DEATHS_DANCE_ERUPTION_TIMES):
+            if (elapsed < eruption_time
+                    or eruption_index in dance["eruption_done"]):
+                continue
+            dance["eruption_done"].add(eruption_index)
+            # Burst one is exactly at the landing point. Bursts two and three
+            # continue forward from that fixed origin.
+            distance = eruption_index * 78
+            pos = (landing_x + dx * distance, landing_y + dy * distance)
+            spawn_eruption_fx(pos, eruption_index)
+            dmg = int(random.randint(13, 18) * damage_mult)
+            dmg, crit = roll_crit(
+                dmg,
+                force_crit=(eruption_index == 2 and state["hit_streak"] >= 8),
+            )
+            resolve_attack_hit(
+                dmg, knockback=10 + eruption_index * 4,
+                atk_range=92 + eruption_index * 5,
+                facing=dance["direction"], crit=crit, omni=True,
+                special=True, origin=pos, quiet=True,
+            )
+            state["shake"] = max(state["shake"], 9 + eruption_index * 3)
 
         if elapsed >= DEATHS_DANCE_DURATION:
             state["deaths_dance"] = None
         return True
+
+    def draw_deaths_dance_vfx(now, dance):
+        """Render the ARISE-style dash/spin using Jinwoo's crimson palette.
+
+        This is unique Q choreography: accelerating dash streaks, a horizontal
+        multi-ring spin, then one large rotating ground-strike crescent. It
+        shares the normal attacks' layered red/white visual language without
+        drawing or recoloring any of their three slash images.
+        """
+        elapsed = now - dance["start"]
+        dx, dy = dance["vec"]
+        side_x, side_y = -dy, dx
+        world_cx = hero_center()[0] + ox
+        world_cy = hero_center()[1] + oy + 12
+
+        fx_w, fx_h = 540, 420
+        cx, cy = fx_w // 2, fx_h // 2
+        fx = pygame.Surface((fx_w, fx_h), pygame.SRCALPHA)
+
+        def orbit_points(rx, ry, tip_angle, span, steps=30):
+            return [
+                (
+                    int(cx + math.cos(tip_angle - span + span * i / steps) * rx),
+                    int(cy + math.sin(tip_angle - span + span * i / steps) * ry),
+                )
+                for i in range(steps + 1)
+            ]
+
+        def curve_points(start, control, end, steps=24):
+            points = []
+            for i in range(steps + 1):
+                t = i / steps
+                inv = 1.0 - t
+                points.append((
+                    int(inv * inv * start[0] + 2 * inv * t * control[0]
+                        + t * t * end[0]),
+                    int(inv * inv * start[1] + 2 * inv * t * control[1]
+                        + t * t * end[1]),
+                ))
+            return points
+
+        def draw_red_ribbon(points, alpha, strength=1.0, echo=False):
+            """Use the same aura -> crimson -> hot edge -> white core stack."""
+            if alpha <= 0 or len(points) < 2:
+                return
+            layers = (
+                ((76, 0, 18), 27, 0.33),
+                ((150, 0, 24), 18, 0.60),
+                ((235, 16, 43), 11, 0.91),
+                ((255, 70, 88), 7, 1.00),
+                ((255, 155, 165), 4, 1.00),
+            )
+            if echo:
+                layers = layers[:3]
+            segment_count = len(points) - 1
+            for color, base_width, opacity in layers:
+                for index, (p1, p2) in enumerate(zip(points, points[1:])):
+                    phase = (index + 0.5) / segment_count
+                    taper = max(0.14, math.sin(phase * math.pi) ** 0.45)
+                    width = max(1, int(base_width * strength * taper))
+                    layer_alpha = min(255, int(alpha * opacity
+                                               * (0.70 + phase * 0.30)))
+                    pygame.draw.line(fx, (*color, layer_alpha), p1, p2, width)
+            if not echo:
+                pygame.draw.aalines(
+                    fx, (255, 240, 242, min(255, int(alpha * 0.96))),
+                    False, points,
+                )
+
+        def draw_shard(px, py, angle, length, width, alpha):
+            ux, uy = math.cos(angle), math.sin(angle)
+            nx, ny = -uy, ux
+            points = [
+                (int(px + ux * length), int(py + uy * length)),
+                (int(px + nx * width), int(py + ny * width)),
+                (int(px - ux * length * 0.58), int(py - uy * length * 0.58)),
+                (int(px - nx * width), int(py - ny * width)),
+            ]
+            pygame.draw.polygon(fx, (255, 34, 57, max(0, int(alpha))), points)
+
+        # Red speed ribbons carry Jinwoo into the spin without borrowing a
+        # light-attack pose or slash image.
+        if 18 <= elapsed < 430:
+            dash_t = (elapsed - 18) / 412.0
+            dash_fade = min(1.0, dash_t * 5.0) * (1.0 - dash_t) ** 0.66
+            for trail_index, lateral in enumerate((-27, 0, 27)):
+                trail = []
+                length = 172 - trail_index * 12
+                gap = 20 + trail_index * 5
+                for point_index in range(16):
+                    t = point_index / 15.0
+                    along = -length + (length - gap) * t
+                    curl = math.sin(t * math.pi) * (10 - trail_index * 2)
+                    lateral_now = lateral * (1.0 - t * 0.36) + curl
+                    trail.append((
+                        int(cx + dx * along + side_x * lateral_now),
+                        int(cy + dy * along + side_y * lateral_now * 0.58),
+                    ))
+                draw_red_ribbon(
+                    trail,
+                    int((205 - trail_index * 28) * dash_fade),
+                    0.62 - trail_index * 0.08,
+                    echo=trail_index > 0,
+                )
+
+        # ARISE reference: Jinwoo rotates horizontally while advancing. Three
+        # broken elliptical ribbons overlap without becoming one opaque hoop.
+        if 62 <= elapsed < 590:
+            spin_t = (elapsed - 62) / 528.0
+            spin_fade = min(1.0, spin_t * 5.5) * (1.0 - spin_t) ** 0.34
+            facing_angle = math.atan2(dy, dx)
+            tip_angle = facing_angle + spin_t * math.tau * 2.35
+            ring_specs = (
+                (146, 62, 4.05, 1.00, 1.00, 0.00),
+                (130, 52, 3.45, 0.72, 0.76, -0.42),
+                (114, 44, 2.90, 0.48, 0.62, -0.78),
+            )
+            for ring_index, (rx, ry, span, opacity, strength, delay) in enumerate(
+                    ring_specs):
+                points = orbit_points(rx, ry, tip_angle + delay, span, 30)
+                draw_red_ribbon(
+                    points,
+                    int(250 * spin_fade * opacity),
+                    strength,
+                    echo=ring_index > 0,
+                )
+
+                # Small torn fragments trail the leading blade edge, matching
+                # the texture of the approved red normal attacks.
+                tip_x, tip_y = points[-1]
+                tangent = tip_angle + delay + math.pi / 2
+                for shard_index in range(3 if ring_index == 0 else 2):
+                    distance = 12 + shard_index * 10 + ring_index * 4
+                    sx = tip_x - math.cos(tangent) * distance
+                    sy = tip_y - math.sin(tangent) * distance * 0.55
+                    draw_shard(
+                        sx, sy, tangent - 0.12 * shard_index,
+                        5 + shard_index * 3, 1 + shard_index,
+                        185 * spin_fade * opacity,
+                    )
+
+            # Each actual spin hit gets a short white-hot contact star.
+            for hit_index, hit_time in enumerate(DEATHS_DANCE_SPIN_TIMES[:2]):
+                hit_age = elapsed - hit_time
+                if not 0 <= hit_age < 82:
+                    continue
+                flash = (1.0 - hit_age / 82.0) ** 0.72
+                angle = facing_angle + (hit_time - 62) / 528.0 * math.tau * 2.35
+                impact = (
+                    int(cx + math.cos(angle) * 146),
+                    int(cy + math.sin(angle) * 62),
+                )
+                for ray in range(4):
+                    ray_angle = angle + ray * math.pi / 2 + 0.28
+                    ray_len = (13 + ray * 5) * flash
+                    pygame.draw.line(
+                        fx, (255, 164, 174, int(225 * flash)), impact,
+                        (int(impact[0] + math.cos(ray_angle) * ray_len),
+                         int(impact[1] + math.sin(ray_angle) * ray_len)),
+                        3 if ray < 2 else 2,
+                    )
+
+        # ARISE reference payoff: the horizontal rotation rises into one large
+        # red crescent, then drives down at the exact landing point.
+        if 430 <= elapsed < 710:
+            strike_t = (elapsed - 430) / 280.0
+            extend = 1.0 - (1.0 - min(1.0, strike_t * 1.7)) ** 3
+            strike_fade = (min(1.0, strike_t * 6.0)
+                           if strike_t < 0.58
+                           else max(0.0, (1.0 - strike_t) / 0.42))
+            reach = 74 + 92 * extend
+            sweep = 78 + 48 * extend
+            start = (
+                cx - dx * 74 - side_x * sweep,
+                cy - dy * 74 - side_y * sweep,
+            )
+            control = (
+                cx + dx * 36 - side_x * (110 + 28 * extend),
+                cy + dy * 36 - side_y * (110 + 28 * extend),
+            )
+            end = (
+                cx + dx * reach + side_x * (28 + 35 * extend),
+                cy + dy * reach + side_y * (28 + 35 * extend),
+            )
+            strike = curve_points(start, control, end, 28)
+            echo = [(int(x - dx * 12 - side_x * 7),
+                     int(y - dy * 12 - side_y * 7)) for x, y in strike]
+            draw_red_ribbon(echo, int(105 * strike_fade), 1.08, echo=True)
+            draw_red_ribbon(strike, int(255 * strike_fade), 1.18)
+
+            tip_x, tip_y = strike[-1]
+            for shard_index in range(10):
+                spread = (shard_index - 4.5) * 0.13
+                shard_angle = math.atan2(dy, dx) + spread
+                distance = 14 + (shard_index % 4) * 10 + 22 * extend
+                draw_shard(
+                    tip_x - math.cos(shard_angle) * distance,
+                    tip_y - math.sin(shard_angle) * distance * 0.62,
+                    shard_angle,
+                    6 + (shard_index % 4) * 3,
+                    1 + (shard_index % 3),
+                    220 * strike_fade,
+                )
+
+            impact_age = elapsed - DEATHS_DANCE_SPIN_TIMES[-1]
+            if 0 <= impact_age < 115:
+                impact = (1.0 - impact_age / 115.0) ** 0.68
+                impact_x = cx + dx * 76
+                impact_y = cy + dy * 76
+                for ray_index in range(8):
+                    angle = ray_index * math.pi / 4
+                    ray_len = (22 + (ray_index % 3) * 11) * impact
+                    pygame.draw.line(
+                        fx, (255, 86, 104, int(215 * impact)),
+                        (int(impact_x), int(impact_y)),
+                        (int(impact_x + math.cos(angle) * ray_len),
+                         int(impact_y + math.sin(angle) * ray_len * 0.62)),
+                        3,
+                    )
+                pygame.draw.circle(
+                    fx, (255, 244, 244, int(250 * impact)),
+                    (int(impact_x), int(impact_y)), max(2, int(6 * impact)),
+                )
+
+        fx_rect = fx.get_rect(center=(world_cx, world_cy))
+        bloom = fx.copy()
+        bloom.set_alpha(82)
+        screen.blit(bloom, fx_rect, special_flags=pygame.BLEND_RGBA_ADD)
+        screen.blit(fx, fx_rect)
+        return
+        elapsed = now - dance["start"]
+        dx, dy = dance["vec"]
+        side_x, side_y = -dy, dx
+        world_cx = hero_center()[0] + ox
+        world_cy = hero_center()[1] + oy + 14
+
+        fx_w, fx_h = 520, 390
+        cx, cy = fx_w // 2, fx_h // 2
+        fx = pygame.Surface((fx_w, fx_h), pygame.SRCALPHA)
+
+        def arc_points(rx, ry, tip_angle, span, steps=20):
+            """Return a pointed elliptical ribbon ending at tip_angle."""
+            return [
+                (
+                    int(cx + math.cos(tip_angle - span + span * i / steps) * rx),
+                    int(cy + math.sin(tip_angle - span + span * i / steps) * ry),
+                )
+                for i in range(steps + 1)
+            ]
+
+        def quadratic_points(start, control, end, steps=18):
+            points = []
+            for i in range(steps + 1):
+                t = i / steps
+                inv = 1.0 - t
+                points.append((
+                    int(inv * inv * start[0] + 2 * inv * t * control[0]
+                        + t * t * end[0]),
+                    int(inv * inv * start[1] + 2 * inv * t * control[1]
+                        + t * t * end[1]),
+                ))
+            return points
+
+        def draw_ribbon(points, alpha, strength=1.0, echo=False):
+            """Layer one tapered energy cut like Jinwoo's red dagger trails."""
+            if alpha <= 0 or len(points) < 2:
+                return
+            layers = (
+                ((38, 0, 82), 25, 0.34),
+                ((86, 3, 180), 17, 0.58),
+                ((166, 12, 246), 11, 0.86),
+                ((236, 35, 255), 7, 1.00),
+                ((255, 126, 255), 4, 1.00),
+            )
+            if echo:
+                layers = layers[:3]
+            segment_count = len(points) - 1
+            for color, base_width, opacity in layers:
+                for index, (p1, p2) in enumerate(zip(points, points[1:])):
+                    phase = (index + 0.5) / segment_count
+                    taper = max(0.16, math.sin(phase * math.pi) ** 0.46)
+                    width = max(1, int(base_width * strength * taper))
+                    layer_alpha = int(alpha * opacity * (0.72 + 0.28 * phase))
+                    pygame.draw.line(fx, (*color, min(255, layer_alpha)),
+                                     p1, p2, width)
+            if not echo:
+                pygame.draw.aalines(
+                    fx, (255, 239, 255, min(255, int(alpha * 0.96))),
+                    False, points,
+                )
+
+        def draw_fragment(px, py, angle, length, width, color):
+            ux, uy = math.cos(angle), math.sin(angle)
+            nx, ny = -uy, ux
+            points = [
+                (int(px + ux * length), int(py + uy * length)),
+                (int(px + nx * width), int(py + ny * width)),
+                (int(px - ux * length * 0.62), int(py - uy * length * 0.62)),
+                (int(px - nx * width), int(py - ny * width)),
+            ]
+            pygame.draw.polygon(fx, color, points)
+
+        # Opening dash: three curved dagger-speed ribbons. They are pointed,
+        # layered strokes rather than a recolored light-attack sprite.
+        if 18 <= elapsed < 390:
+            dash_t = (elapsed - 18) / 372.0
+            dash_fade = min(1.0, dash_t * 5.2) * (1.0 - dash_t) ** 0.62
+            for trail_index, lateral in enumerate((-31, 0, 30)):
+                points = []
+                length = 176 - trail_index * 13
+                gap = 21 + trail_index * 5
+                for point_index in range(15):
+                    t = point_index / 14.0
+                    along = -length + (length - gap) * t
+                    curl = math.sin(t * math.pi) * (11 - trail_index * 2)
+                    wobble = math.sin(dash_t * math.tau * 1.8
+                                      + trail_index * 1.7) * (1.0 - t) * 5
+                    lateral_now = lateral * (1.0 - t * 0.34) + curl + wobble
+                    points.append((
+                        int(cx + dx * along + side_x * lateral_now),
+                        int(cy + dy * along + side_y * lateral_now * 0.58),
+                    ))
+                alpha = int((205 - trail_index * 26) * dash_fade)
+                draw_ribbon(points, alpha, 0.62 - trail_index * 0.08)
+
+                # Broken flecks give the dash the same sharp, energized edge
+                # as the normal attacks without forming a purple fog.
+                for fleck in range(3):
+                    phase = 0.20 + fleck * 0.23
+                    px, py = points[int(phase * (len(points) - 1))]
+                    px += int(side_x * (7 + fleck * 4) * (-1 if fleck % 2 else 1))
+                    py += int(side_y * (7 + fleck * 4) * (-1 if fleck % 2 else 1))
+                    draw_fragment(
+                        px, py, math.atan2(dy, dx) + 0.18 * (fleck - 1),
+                        5 + fleck * 2, 1 + fleck // 2,
+                        (220, 27, 255, int(alpha * 0.72)),
+                    )
+
+        # Four twin-dagger spin beats. Each beat has one dominant blade ribbon,
+        # a shorter counter-cut and two delayed echoes, so it reads as a rapid
+        # dance rather than one circular aura around Jinwoo.
+        facing_angle = math.atan2(dy, dx)
+        for cut_index, hit_time in enumerate(DEATHS_DANCE_SPIN_TIMES):
+            cut_age = elapsed - (hit_time - 92)
+            cut_life = 245 if cut_index == 3 else 220
+            if not 0 <= cut_age < cut_life:
+                continue
+            t = cut_age / cut_life
+            ease = 1.0 - (1.0 - t) ** 3
+            fade = math.sin(t * math.pi) ** 0.48
+            spin_sign = 1 if cut_index % 2 == 0 else -1
+            tip_angle = (
+                facing_angle + cut_index * 0.72
+                + spin_sign * (-0.48 + ease * 2.75)
+            )
+            span = 1.02 + 0.40 * math.sin(t * math.pi)
+            rx = 139 + cut_index * 7 + int(13 * ease)
+            ry = 62 + cut_index * 3 + int(7 * ease)
+            alpha = int(255 * fade)
+
+            # Fast delayed copies supply motion without hiding the character.
+            for echo_index, echo_offset in enumerate((0.34, 0.18), start=1):
+                echo_tip = tip_angle - spin_sign * echo_offset
+                echo_points = arc_points(
+                    rx - echo_index * 7, ry - echo_index * 3,
+                    echo_tip,
+                    spin_sign * (span * (0.76 - echo_index * 0.08)),
+                    15,
+                )
+                draw_ribbon(
+                    echo_points,
+                    int(alpha * (0.20 + echo_index * 0.09)),
+                    0.72 - echo_index * 0.08,
+                    echo=True,
+                )
+
+            primary = arc_points(rx, ry, tip_angle, spin_sign * span, 22)
+            draw_ribbon(primary, alpha, 1.0)
+
+            counter_tip = tip_angle + math.pi - spin_sign * 0.20
+            counter = arc_points(
+                rx - 31, ry - 13, counter_tip,
+                -spin_sign * (span * 0.66), 16,
+            )
+            draw_ribbon(counter, int(alpha * 0.74), 0.76)
+
+            # Deterministic torn fragments at both dagger tips keep every
+            # recorded frame stable while matching the normal attacks' debris.
+            for blade_index, (tip, radius_x, radius_y) in enumerate((
+                    (tip_angle, rx, ry),
+                    (counter_tip, rx - 31, ry - 13))):
+                tip_x = cx + math.cos(tip) * radius_x
+                tip_y = cy + math.sin(tip) * radius_y
+                tangent = tip + (math.pi / 2) * (spin_sign if blade_index == 0 else -spin_sign)
+                for shard_index in range(5 if blade_index == 0 else 3):
+                    spread = (shard_index - 2) * 0.12
+                    distance = 13 + shard_index * 8 + ease * 18
+                    sx = tip_x - math.cos(tangent + spread) * distance
+                    sy = tip_y - math.sin(tangent + spread) * distance * 0.58
+                    draw_fragment(
+                        sx, sy, tangent + spread,
+                        5 + shard_index * 1.7,
+                        1 + shard_index * 0.36,
+                        (231, 37 + shard_index * 10, 255,
+                         int((190 - shard_index * 19) * fade)),
+                    )
+
+            # A very brief blade-contact star marks each damage beat. No ring,
+            # ground circle, or reused left-click impact is involved.
+            impact_age = elapsed - hit_time
+            if 0 <= impact_age < 82:
+                impact_fade = (1.0 - impact_age / 82.0) ** 0.7
+                impact_x, impact_y = primary[-1]
+                for ray_index in range(4):
+                    angle = tip_angle + ray_index * math.pi / 2 + 0.38
+                    ray_len = (13 + ray_index * 5) * impact_fade
+                    end = (int(impact_x + math.cos(angle) * ray_len),
+                           int(impact_y + math.sin(angle) * ray_len))
+                    pygame.draw.line(
+                        fx, (255, 178, 255, int(225 * impact_fade)),
+                        (impact_x, impact_y), end,
+                        3 if ray_index < 2 else 2,
+                    )
+                pygame.draw.circle(
+                    fx, (255, 246, 255, int(250 * impact_fade)),
+                    (impact_x, impact_y), max(1, int(4 * impact_fade)),
+                )
+
+        # The fourth hit resolves into two long, curved crossing dagger cuts.
+        # Their layered edge and fracture burst mirror the quality of the red
+        # combo finisher, while the preceding four-orbit dance stays unique.
+        if 610 <= elapsed < 890:
+            finish_t = (elapsed - 610) / 280.0
+            extend = 1.0 - (1.0 - min(1.0, finish_t * 1.62)) ** 3
+            fade = 1.0 if finish_t < 0.54 else max(0.0, (1.0 - finish_t) / 0.46)
+            half_len = 52 + int(139 * extend)
+            half_w = 18 + int(52 * extend)
+            front_shift = 18 + int(34 * extend)
+            cross_cx = cx + dx * front_shift
+            cross_cy = cy + dy * front_shift * 0.55
+
+            for slash_index, sign in enumerate((-1, 1)):
+                start = (
+                    cross_cx - dx * half_len - side_x * half_w * sign,
+                    cross_cy - dy * half_len - side_y * half_w * sign,
+                )
+                end = (
+                    cross_cx + dx * half_len + side_x * half_w * sign,
+                    cross_cy + dy * half_len + side_y * half_w * sign,
+                )
+                control = (
+                    cross_cx + side_x * sign * (22 + slash_index * 8),
+                    cross_cy + side_y * sign * (22 + slash_index * 8),
+                )
+                points = quadratic_points(start, control, end, 24)
+                alpha = int((255 - slash_index * 18) * fade)
+                draw_ribbon(points, int(alpha * 0.25), 1.34, echo=True)
+                draw_ribbon(points, alpha, 1.08)
+
+            burst = max(0.0, 1.0 - abs(finish_t - 0.42) / 0.23)
+            if burst > 0:
+                for shard_index in range(18):
+                    angle = shard_index * math.tau / 18 + 0.17 * (shard_index % 3)
+                    distance = 22 + (shard_index % 5) * 11 + 24 * extend
+                    sx = cross_cx + math.cos(angle) * distance
+                    sy = cross_cy + math.sin(angle) * distance * 0.57
+                    draw_fragment(
+                        sx, sy, angle,
+                        6 + (shard_index % 4) * 3,
+                        1.2 + (shard_index % 3),
+                        (235, 34 + (shard_index % 3) * 30, 255,
+                         int(205 * burst)),
+                    )
+                for ray_index in range(8):
+                    angle = ray_index * math.pi / 4
+                    ray_len = (26 + (ray_index % 3) * 14) * burst
+                    pygame.draw.line(
+                        fx, (255, 152, 255, int(210 * burst)),
+                        (int(cross_cx), int(cross_cy)),
+                        (int(cross_cx + math.cos(angle) * ray_len),
+                         int(cross_cy + math.sin(angle) * ray_len * 0.62)),
+                        3,
+                    )
+                pygame.draw.circle(
+                    fx, (255, 247, 255, int(250 * burst)),
+                    (int(cross_cx), int(cross_cy)), max(2, int(6 * burst)),
+                )
+
+        fx_rect = fx.get_rect(center=(world_cx, world_cy))
+        bloom = fx.copy()
+        bloom.set_alpha(88)
+        screen.blit(bloom, fx_rect, special_flags=pygame.BLEND_RGBA_ADD)
+        screen.blit(fx, fx_rect)
 
     while True:
         now = pygame.time.get_ticks()
@@ -990,6 +1535,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                     state["pending_hits"].clear()
                     state["slashes"].clear()
                     state["assassin_sparks"].clear()
+                    state["eruption_fx"].clear()
                     log.clear()
 
             if (state["exit_unlocked"]
@@ -1059,16 +1605,16 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
 
         # The opening burst leaves only two short-lived copies behind Jinwoo.
         # They disappear before the main spin so the newly animated body turn
-        # remains readable instead of becoming a purple silhouette cloud.
+        # remains readable instead of becoming a solid crimson silhouette.
         dance = state.get("deaths_dance")
         if dance:
             dance_elapsed = now - dance["start"]
-            if dance_elapsed < 330:
+            if dance_elapsed < DEATHS_DANCE_TRAVEL_END:
                 ddx, ddy = dance["vec"]
-                travel_fade = 1.0 - dance_elapsed / 330.0
+                travel_fade = 1.0 - dance_elapsed / DEATHS_DANCE_TRAVEL_END
                 for echo_index in range(2, 0, -1):
                     echo = hero_frame.copy()
-                    echo.fill((142, 62, 255, 255),
+                    echo.fill((255, 48, 62, 255),
                               special_flags=pygame.BLEND_RGBA_MULT)
                     echo.set_alpha(int((22 + echo_index * 19) * travel_fade))
                     offset = 14 * echo_index
@@ -1084,6 +1630,12 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             aura = hero_mask.to_surface(setcolor=(112, 205, 255, shimmer),
                                         unsetcolor=(0, 0, 0, 0))
             screen.blit(aura, (hero_x, hero_y))
+        # Unique ARISE-style Q choreography, colored with the same layered red
+        # palette as the normal attacks but using no LMB animation or asset.
+        if dance:
+            draw_deaths_dance_vfx(now, dance)
+
+        # Keep the world-space name readable above combat effects.
         name_w = font_small.size(hero_name)[0]
         visible = hero_frame.get_bounding_rect(min_alpha=30)
         if visible.height:
@@ -1092,66 +1644,6 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             name_y = hero_y + 8
         draw_text(screen, hero_name, font_small, GREEN,
                   hero_x + DISPLAY_SIZE[0]//2 - name_w//2, name_y)
-
-        # Compact blade crescents reinforce the actual body rotation. They are
-        # deliberately short and separated: no complete circle, no aura, and
-        # no effect large enough to hide Jinwoo's new spinning poses.
-        if dance:
-            dance_elapsed = now - dance["start"]
-            if 155 <= dance_elapsed < 770:
-                phase = (dance_elapsed - 155) / 615.0
-                fx_w, fx_h = 310, 170
-                spin_fx = pygame.Surface((fx_w, fx_h), pygame.SRCALPHA)
-                phase_angle = phase * math.tau * 2.35
-                bands = (
-                    ((126, 42, 220), 0, 7, 1.08),
-                    ((194, 83, 255), 13, 5, 0.88),
-                    ((218, 225, 255), 25, 2, 0.66),
-                )
-                for band_index, (color, inset, width, span) in enumerate(bands):
-                    rect = pygame.Rect(
-                        18 + inset,
-                        31 + inset // 2,
-                        fx_w - 36 - inset * 2,
-                        fx_h - 62 - inset,
-                    )
-                    pulse = 0.72 + 0.28 * math.sin(phase * math.pi * 4) ** 2
-                    alpha = int((190 - band_index * 34) * pulse)
-                    start = phase_angle + band_index * 0.72
-                    pygame.draw.arc(
-                        spin_fx, (*color, alpha), rect,
-                        start, start + span, width,
-                    )
-                    pygame.draw.arc(
-                        spin_fx, (*color, max(28, alpha // 2)), rect,
-                        start + math.pi + 0.22,
-                        start + math.pi + 0.22 + span * 0.48,
-                        max(2, width - 2),
-                    )
-
-                ddx, ddy = dance["vec"]
-                sx, sy = fx_w // 2, fx_h // 2
-                side_x, side_y = -ddy, ddx
-                for streak_index, lateral in enumerate((-18, 18)):
-                    tail = 108 - streak_index * 15
-                    head = 66 + streak_index * 10
-                    p1 = (
-                        int(sx - ddx * tail + side_x * lateral),
-                        int(sy - ddy * tail + side_y * lateral * 0.44),
-                    )
-                    p2 = (
-                        int(sx + ddx * head + side_x * lateral),
-                        int(sy + ddy * head + side_y * lateral * 0.44),
-                    )
-                    pygame.draw.line(
-                        spin_fx,
-                        (151, 79, 255, 54 - streak_index * 10),
-                        p1, p2, 3 - streak_index,
-                    )
-                spin_rect = spin_fx.get_rect(
-                    center=(hero_center()[0] + ox, hero_center()[1] + oy + 14)
-                )
-                screen.blit(spin_fx, spin_rect)
 
         # ── Sword trails ──
         still_slashing = []
@@ -1221,6 +1713,32 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             screen.blit(fx, (int(cx), int(cy)))
             still_waves.append(wave)
         state["shockwaves"] = still_waves
+
+        # ── Death's Dance crimson ground eruptions ──
+        still_eruptions = []
+        for burst in state["eruption_fx"]:
+            elapsed = now - burst["start"]
+            if elapsed >= burst["life"]:
+                continue
+            frame_time = burst["life"] / len(_a_deaths_dance_fx)
+            frame_index = min(
+                len(_a_deaths_dance_fx) - 1,
+                int(elapsed / frame_time),
+            )
+            fx = _a_deaths_dance_fx[frame_index]
+            scale = 1.0 + burst["index"] * 0.07
+            if scale != 1.0:
+                fx = pygame.transform.scale(
+                    fx,
+                    (round(fx.get_width() * scale),
+                     round(fx.get_height() * scale)),
+                )
+            bounds = fx.get_bounding_rect(min_alpha=8)
+            draw_x = burst["pos"][0] + ox - (bounds.left + bounds.width / 2)
+            draw_y = burst["pos"][1] + oy - bounds.bottom
+            screen.blit(fx, (int(draw_x), int(draw_y)))
+            still_eruptions.append(burst)
+        state["eruption_fx"] = still_eruptions
 
         # ── World-space damage and status numbers ──
         still_floaters = []

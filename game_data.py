@@ -266,6 +266,12 @@ _a_atk1_rows = ASSASSIN_ANIM_ROWS["attack_1"]
 _a_atk2_rows = ASSASSIN_ANIM_ROWS["attack_2"]
 _a_atk3_rows = ASSASSIN_ANIM_ROWS["attack_3"]
 _a_deaths_dance_rows = ASSASSIN_ANIM_ROWS["deaths_dance"]
+# Six transparent, game-sized frames for the restored red ground finisher.
+# They are intentionally separate from the character sheet so the approved
+# ten-frame dash/spin body animation remains untouched.
+_a_deaths_dance_fx = load_sheet_all_rows(
+    "assets/Assassin/VFX/deaths_dance_eruption_red.png", 6, 1, (260, 260)
+)[0]
 _a_walk_atk_rows = (
     ASSASSIN_ANIM_ROWS["walk_attack_1"],
     ASSASSIN_ANIM_ROWS["walk_attack_2"],
@@ -311,6 +317,6 @@ CLASS_STATS = {
     "Assassin": dict(
         health=105, stamina=320,
         title="SHADOW HUNTER", special="Death's Dance",
-        special_desc="A fast forward dash with a full spinning dagger assault",
+        special_desc="Three crimson dagger cuts ending in ground eruptions",
     ),
 }
