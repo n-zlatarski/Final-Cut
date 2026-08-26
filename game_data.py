@@ -23,16 +23,16 @@ STAGE_BGS = {key: load_img(path, (WIDTH, HEIGHT))
 
 STAGES = [
     {"name": "Dead Forest", "subtitle": "Where the buried refuse to sleep",
-     "bg": "dead_forest", "accent": (126, 164, 108),
+     "bg": "dead_forest", "accent": (126, 164, 108), "floor_top": 500,
      "enemies": ["graveborn_brute", "shadow_wolf", "graveborn_butcher"], "wave_mult": 1.0},
     {"name": "Castle", "subtitle": "Break the outer guard",
-     "bg": "castle", "accent": (190, 151, 92),
+     "bg": "castle", "accent": (190, 151, 92), "floor_top": 450,
      "enemies": ["knight1", "knight2", "dungeon_magician", "castle_archer"], "wave_mult": 1.4},
     {"name": "Terrace", "subtitle": "No cover. No retreat.",
-     "bg": "terrace", "accent": (160, 174, 198),
+     "bg": "terrace", "accent": (160, 174, 198), "floor_top": 480,
      "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.0},
     {"name": "Throne Room", "subtitle": "The master awaits",
-     "bg": "throne_room", "accent": (176, 54, 74),
+     "bg": "throne_room", "accent": (176, 54, 74), "floor_top": 560,
      "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.4, "boss": "vampire"},
 ]
 

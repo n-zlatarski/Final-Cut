@@ -270,7 +270,11 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         "Warrior": 115,
         "Assassin": 166,
     }
-    TOP_BORDER_Y = HEIGHT - 700
+    # Clamp by the hero's feet at the first walkable row of this background.
+    # A shared value let Jinwoo stand inside the forest fence, castle/terrace
+    # railings, and the throne platform because those props sit at different Y
+    # positions in each image.
+    TOP_BORDER_Y = stage["floor_top"]
     WALK_SPEED = 3.4 if is_assassin else 3
     RUN_SPEED = 4.7 if is_assassin else 4
     _portrait = portrait_imgs.get(hero_class)
@@ -337,7 +341,11 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             force = 22 if heavy else 11
             hero_pos[0] = max(0, min(STAGE_EXIT_X,
                                     hero_pos[0] + dx / dist * force))
-            hero_pos[1] += dy / dist * force * 0.65
+            knocked_y = hero_pos[1] + dy / dist * force * 0.65
+            hero_pos[1] = max(
+                TOP_BORDER_Y - FEET_OFFSET[hero_class],
+                min(HEIGHT - FEET_OFFSET[hero_class], knocked_y),
+            )
         if state["hero_hp"] <= 0:
             state["hero_hp"] = 0
             state["result"] = "lose"
@@ -2350,7 +2358,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
 
         # ── Stage/objective HUD ──
         living_count = sum(1 for e in enemies if not e.dead)
-        objective = ("PATH OPEN  /  MOVE RIGHT" if state["exit_unlocked"] else
+        objective = (None if state["exit_unlocked"] else
                      "DEFEAT THE VAMPIRE" if state["boss_spawned"] else
                      f"HOSTILES REMAINING  {living_count}")
         stage_w, stage_h = 430, 88
@@ -2360,9 +2368,10 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                   stage["accent"], stage_x + 20, 32, shadow=False)
         stage_name_lbl = font_header.render(stage["name"].upper(), True, CREAM)
         screen.blit(stage_name_lbl, (stage_x + 20, 53))
-        objective_lbl = font_micro.render(objective, True,
-                                         GOLD_BRIGHT if state["exit_unlocked"] else DIM_TEXT)
-        screen.blit(objective_lbl, (stage_x + stage_w - 20 - objective_lbl.get_width(), 71))
+        if objective:
+            objective_lbl = font_micro.render(objective, True, DIM_TEXT)
+            screen.blit(objective_lbl,
+                        (stage_x + stage_w - 20 - objective_lbl.get_width(), 71))
 
         if state["hit_streak"] > 1:
             combo_w, combo_h = 220, 88
@@ -2378,17 +2387,6 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             draw_segmented_bar(screen, combo_x + 90, 67, 108, 7,
                                remaining, 2600, COL_FOCUS, COL_FOCUS_DARK,
                                segments=8)
-
-        # Exit arrow only appears after the room is truly safe.
-        if state["exit_unlocked"] and not state["result"]:
-            pulse = int(18 * (1 + math.sin(now * 0.008)))
-            ax, ay = WIDTH - 70 + pulse // 3, HEIGHT // 2
-            arrow = [(ax - 34, ay - 34), (ax + 4, ay), (ax - 34, ay + 34),
-                     (ax - 34, ay + 15), (ax - 62, ay + 15),
-                     (ax - 62, ay - 15), (ax - 34, ay - 15)]
-            pygame.draw.polygon(screen, (226, 195, 112), arrow)
-            draw_text(screen, "NEXT AREA", font_micro, CREAM,
-                      WIDTH - 142, ay + 48, shadow=False)
 
         # ── Boss HP, phase, and readable identity ──
         boss_enemy = next((e for e in enemies if e.is_boss), None)
