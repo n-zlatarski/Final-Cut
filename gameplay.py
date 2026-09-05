@@ -18,10 +18,11 @@ from sprite_loaders import dir_frames
 from entities import Enemy, Projectile
 from game_data import (
     STAGES, ENEMY_TYPES, CLASS_STATS, portrait_imgs, STAGE_BGS,
+    ASSASSIN_DRAW_OFFSET,
     warrior_anims, _w_idle_rows, _w_walk_rows, _w_run_rows, _w_atk_rows,
     _w_run_atk_rows, _w_walk_atk_rows, _w_hurt_rows, _w_death_rows,
     assassin_anims, _a_idle_rows, _a_walk_rows, _a_run_rows,
-    _a_atk1_rows, _a_atk2_rows, _a_atk3_rows,
+    _a_atk1_rows, _a_atk2_rows, _a_atk3_rows, _a_walk_atk_rows,
     _a_deaths_dance_rows, _a_deaths_dance_fx, _a_sonic_stream_rows,
     _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
     _a_hurt_rows, _a_death_rows,
@@ -163,6 +164,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=
         anim = Animator(assassin_anims.copy(), default="idle", fps=8)
         idle_rows, walk_rows, run_rows = _a_idle_rows, _a_walk_rows, _a_run_rows
         atk_combo_rows = (_a_atk1_rows, _a_atk2_rows, _a_atk3_rows)
+        walk_atk_rows = _a_walk_atk_rows
         sonic_stream_rows = _a_sonic_stream_rows
         run_atk_rows = _a_run_atk_rows
         dash_rows, dash_attack_rows = _a_dash_rows, _a_dash_atk_rows
@@ -305,15 +307,9 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=
     RUN_ANIM_FPS = 8
 
     # The Assassin's front/back walk art has much subtler leg travel than its
-    # side-facing rows.  At 8 FPS each vertical pose is carried too far across
-    # the ground and reads as a glide.  A slightly tighter cadence plus a tiny
-    # visual weight shift makes the planted/lifted-foot phases readable without
-    # changing movement speed, collision, or the already-good side walk.
+    # side-facing rows. Keep the established vertical cadence. The new artwork
+    # supplies its own planted/passing poses without a second artificial bob.
     ASSASSIN_VERTICAL_WALK_FPS = 10
-    ASSASSIN_VERTICAL_WALK_OFFSETS = (
-        (0, 1), (-1, -1), (-1, 0),
-        (0, 1), (1, -1), (1, 0),
-    )
 
     # Once sprint drains the bar completely, holding Shift must not immediately
     # consume the tiny amount regenerated on the next frame.  Without this
@@ -596,20 +592,27 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=
         state["current_recovery"] = step["recovery"]
         state["last_combo_time"] = now
 
+        visual_fps = step["fps"]
         if is_assassin:
-            # One master character model is used for the entire light combo,
-            # whether the click started from idle, walk or run.  Translation
-            # is deliberately NOT locked: movement keys remain responsive
-            # throughout the attack while the one-shot strike keeps playing.
-            anim_name = f"attack_{combo_index + 1}"
-            rows = atk_combo_rows[combo_index]
+            # The remake shares one model across standing and moving poses.
+            # Select the matching legs while retaining the combo's existing
+            # damage, hit delay, recovery and unrestricted movement.
+            if is_moving and is_sprinting:
+                anim_name, rows = "run_attack", run_atk_rows
+                # Eight running poses occupy the same time as six combo poses;
+                # the fifth running pose coincides with the existing hit time.
+                visual_fps *= len(dir_frames(rows, direction)) / len(
+                    dir_frames(atk_combo_rows[combo_index], direction))
+            else:
+                anim_name = f"attack_{combo_index + 1}"
+                rows = (walk_atk_rows if is_moving else atk_combo_rows)[combo_index]
         elif is_moving and is_sprinting:
             anim_name, rows = "run_attack", run_atk_rows
         elif is_moving:
             anim_name, rows = "walk_attack", walk_atk_rows[combo_index]
         else:
             anim_name, rows = "attack", atk_combo_rows[combo_index]
-        play_dir(anim_name, rows, one_shot=True, force=True, fps=step["fps"])
+        play_dir(anim_name, rows, one_shot=True, force=True, fps=visual_fps)
         if hero_class == "Warrior":
             spawn_slash(direction, duration=260 if combo_index == 2 else 190)
 
@@ -2135,15 +2138,9 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=
             p.draw(screen, ox, oy)
 
         # ── Hero ──
-        walk_draw_x = 0
-        walk_draw_y = 0
-        if (is_assassin and anim.current == "walk" and moving
-                and direction in ("up", "down")):
-            walk_phase = anim.frame_idx % len(ASSASSIN_VERTICAL_WALK_OFFSETS)
-            walk_draw_x, walk_draw_y = ASSASSIN_VERTICAL_WALK_OFFSETS[walk_phase]
-
-        hero_x = hero_pos[0] + ox + walk_draw_x
-        hero_y = hero_pos[1] + oy + walk_draw_y
+        draw_dx, draw_dy = ASSASSIN_DRAW_OFFSET if is_assassin else (0, 0)
+        hero_x = hero_pos[0] + ox + draw_dx
+        hero_y = hero_pos[1] + oy + draw_dy
         hero_frame = anim.get_frame()
 
         # The opening burst leaves only two short-lived copies behind Jinwoo.
@@ -2206,7 +2203,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=
         else:
             name_y = hero_y + 8
         draw_text(screen, hero_name, font_small, GREEN,
-                  hero_x + DISPLAY_SIZE[0]//2 - name_w//2, name_y)
+                  hero_x + hero_frame.get_width()//2 - name_w//2, name_y)
 
         # ── Sword trails ──
         still_slashing = []

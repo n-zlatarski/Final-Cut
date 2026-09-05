@@ -243,53 +243,54 @@ _w_death_rows = load_sheet_all_rows(
     "assets/Swordsman/Swordsman_lvl3_Death_with_shadow.png",         7, 4, DISPLAY_SIZE)
 
 # ── Assassin sheets (4 directions: down, left, right, up) ────────────────────
-# The supplied Assassin art is normalized to transparent 320x320 cells so every
-# animation uses identical frame geometry before the loader scales it to the
-# game's DISPLAY_SIZE.  Keeping a fixed source cell prevents generated-sheet
-# drift/bleed from becoming visible character movement.
+# The Igris-style remake uses fixed 120px cells at exact 2x pixel scale.
+# Extra transparent padding keeps long dagger thrusts inside the canvas; the
+# draw offset preserves the original world center and feet at (110, 164).
+ASSASSIN_DISPLAY_SIZE = (240, 240)
+ASSASSIN_DRAW_OFFSET = (-10, -12)
 ASSASSIN_SHEETS = {
-    "idle":        ("assets/Assassin/GameReady/idle.png",         6, 4),
+    "idle":        ("assets/Assassin/PixelRemake/sheets/idle.png",         6, 4),
     # v10 uses a six-phase planted walk.  Both this sheet and idle are packed
     # to the same feet baseline, matching the root discipline of the Warrior
     # walk instead of letting generated frame placement move the whole body.
-    "walk":        ("assets/Assassin/GameReady/walk.png",         6, 4),
-    "run":         ("assets/Assassin/GameReady/run.png",          8, 4),
+    "walk":        ("assets/Assassin/PixelRemake/sheets/walk.png",         6, 4),
+    "run":         ("assets/Assassin/PixelRemake/sheets/run.png",          8, 4),
     # Three genuinely different light attacks.  gameplay.py advances through
     # these on consecutive LMB presses instead of replaying one sheet three
     # times with different damage values.
-    "attack_1":    ("assets/Assassin/GameReady/attack_1.png",     6, 4),
-    "attack_2":    ("assets/Assassin/GameReady/attack_2.png",     6, 4),
-    "attack_3":    ("assets/Assassin/GameReady/attack_3.png",     6, 4),
+    "attack_1":    ("assets/Assassin/PixelRemake/sheets/attack_1.png",     6, 4),
+    "attack_2":    ("assets/Assassin/PixelRemake/sheets/attack_2.png",     6, 4),
+    "attack_3":    ("assets/Assassin/PixelRemake/sheets/attack_3.png",     6, 4),
     # Moving versions of the same 3-hit light combo.  Keeping them separate
     # prevents the standing attack art from visually sliding over the ground
     # while the player's world position continues to move.
-    "walk_attack_1": ("assets/Assassin/GameReady/walk_attack_1.png", 6, 4),
-    "walk_attack_2": ("assets/Assassin/GameReady/walk_attack_2.png", 6, 4),
-    "walk_attack_3": ("assets/Assassin/GameReady/walk_attack_3.png", 6, 4),
+    "walk_attack_1": ("assets/Assassin/PixelRemake/sheets/walk_attack_1.png", 6, 4),
+    "walk_attack_2": ("assets/Assassin/PixelRemake/sheets/walk_attack_2.png", 6, 4),
+    "walk_attack_3": ("assets/Assassin/PixelRemake/sheets/walk_attack_3.png", 6, 4),
     # Kept for backwards compatibility with any menu/preview code that still
     # asks for the legacy single walk-attack sheet.
-    "walk_attack": ("assets/Assassin/GameReady/walk_attack.png",  6, 4),
-    "run_attack":  ("assets/Assassin/GameReady/run_attack.png",   8, 4),
-    "dash":        ("assets/Assassin/GameReady/dash.png",         7, 4),
-    "dash_attack": ("assets/Assassin/GameReady/dash_attack.png",  6, 4),
+    "walk_attack": ("assets/Assassin/PixelRemake/sheets/walk_attack.png",  6, 4),
+    "run_attack":  ("assets/Assassin/PixelRemake/sheets/run_attack.png",   8, 4),
+    "dash":        ("assets/Assassin/PixelRemake/sheets/dash.png",         7, 4),
+    "dash_attack": ("assets/Assassin/PixelRemake/sheets/dash_attack.png",  6, 4),
     # Death's Dance is a completely separate ten-phase action: ignition,
     # accelerating dash, full-body rotation, braking skid, and recovery. The source is
-    # already packed into transparent 384px cells, so it uses the same stable
+    # packed into the same transparent 120px cells, so it uses the same stable
     # four-direction loader as Jinwoo's other production-ready sheets.
-    "deaths_dance": ("assets/Assassin/GameReady/deaths_dance_spin.png", 10, 4),
+    "deaths_dance": ("assets/Assassin/PixelRemake/sheets/deaths_dance_spin.png", 10, 4),
     # Sonic Stream is the E-key target-entry barrage: launch, chained crossing
     # cuts, overhead finisher, landing skid, and recovery.  Its eleven poses
     # are original body animation, normalized to Q's action scale, Jinwoo's
     # normal head/torso proportions, and the regular planted root. gameplay.py
     # renders its trails separately so the character sheet stays reusable.
-    "sonic_stream": ("assets/Assassin/GameReady/sonic_stream.png", 11, 4),
-    "hurt":        ("assets/Assassin/GameReady/hurt.png",         5, 4),
-    "death":       ("assets/Assassin/GameReady/death.png",        7, 4),
+    "sonic_stream": ("assets/Assassin/PixelRemake/sheets/sonic_stream.png", 11, 4),
+    "hurt":        ("assets/Assassin/PixelRemake/sheets/hurt.png",         5, 4),
+    "death":       ("assets/Assassin/PixelRemake/sheets/death.png",        7, 4),
 }
 
 ASSASSIN_ANIM_ROWS = {
     name: load_sheet_all_rows(
-        path, cols, rows, DISPLAY_SIZE, remove_flat_background=True)
+        path, cols, rows, ASSASSIN_DISPLAY_SIZE, remove_flat_background=True)
     for name, (path, cols, rows) in ASSASSIN_SHEETS.items()
 }
 
@@ -328,7 +329,7 @@ assassin_anims["idle"] = _a_idle_rows[0]
 # ── Portraits ─────────────────────────────────────────────────────────────────
 portrait_imgs = {
     "Warrior": load_img("assets/Swordsman/swordsmanpic.png", (80, 80)),
-    "Assassin": load_img("assets/Assassin/GameReady/sungjinwoo.png", (80, 80)),
+    "Assassin": load_img("assets/Assassin/PixelRemake/sungjinwoo.png", (80, 80)),
 }
 
 # ── Game data ─────────────────────────────────────────────────────────────────

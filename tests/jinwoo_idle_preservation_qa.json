@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "preserved_files": 293,
+  "changed_files": [
+    "README.md",
+    "tools/build_jinwoo_assets.py",
+    "assets/Assassin/PixelRemake/frame_metrics.json",
+    "assets/Assassin/PixelRemake/manifest.json",
+    "assets/Assassin/PixelRemake/ART_NOTES.md",
+    "assets/Assassin/PixelRemake/sheets/idle.png",
+    "tests/screenshots/jinwoo/contact_1.png"
+  ],
+  "checks": [
+    "All 16 generated source atlases are unchanged",
+    "Every non-idle Jinwoo animation sheet is byte-identical",
+    "Igris art, effects, runtime logic and gameplay rules are unchanged",
+    "Original Jinwoo artwork and the approved portrait are unchanged"
+  ]
+}

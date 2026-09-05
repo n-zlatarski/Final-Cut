@@ -1,0 +1,262 @@
+{
+  "status": "passed",
+  "directions": {
+    "down": {
+      "sole_positions": [
+        [
+          119.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          117.5,
+          175
+        ],
+        [
+          117.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 0,
+      "horizontal_center_range_px": 2.0
+    },
+    "left": {
+      "sole_positions": [
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          173
+        ]
+      ],
+      "vertical_travel_px": 0,
+      "horizontal_center_range_px": 0.0
+    },
+    "right": {
+      "sole_positions": [
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 0,
+      "horizontal_center_range_px": 0.0
+    },
+    "up": {
+      "sole_positions": [
+        [
+          120.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          120.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 0,
+      "horizontal_center_range_px": 1.0
+    }
+  },
+  "playback_cases": 12,
+  "before": {
+    "down": {
+      "sole_positions": [
+        [
+          119.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          117.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 0,
+      "horizontal_center_range_px": 2.0
+    },
+    "left": {
+      "sole_positions": [
+        [
+          119.5,
+          173
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          173
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          117.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 2,
+      "horizontal_center_range_px": 2.0
+    },
+    "right": {
+      "sole_positions": [
+        [
+          119.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          118.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 0,
+      "horizontal_center_range_px": 1.0
+    },
+    "up": {
+      "sole_positions": [
+        [
+          120.5,
+          183
+        ],
+        [
+          119.5,
+          175
+        ],
+        [
+          120.5,
+          183
+        ],
+        [
+          120.5,
+          183
+        ],
+        [
+          120.5,
+          183
+        ],
+        [
+          120.5,
+          175
+        ]
+      ],
+      "vertical_travel_px": 8,
+      "horizontal_center_range_px": 1.0
+    }
+  },
+  "stage_probe": {
+    "seconds": 16,
+    "stationary_samples": 956,
+    "directions": [
+      "up",
+      "left",
+      "down",
+      "right"
+    ],
+    "world_position_drift_px": 0,
+    "vertical_sole_drift_px": 0,
+    "conditions": "SDL dummy; terrace stage with no enemies; one movement frame per direction then released input"
+  },
+  "preview_frames": 660
+}

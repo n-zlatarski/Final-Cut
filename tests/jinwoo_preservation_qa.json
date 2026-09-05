@@ -1,0 +1,8 @@
+{
+  "protected_files": 93,
+  "checks": [
+    "Igris sprite assets, VFX, boss AI, animation timing and combat data are byte-identical to the approved build",
+    "Original Jinwoo art, existing red VFX, progression and class stats retained"
+  ],
+  "status": "passed"
+}

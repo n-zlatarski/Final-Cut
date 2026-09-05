@@ -1,0 +1,250 @@
+{
+  "format_version": 1,
+  "character": "Sung Jinwoo",
+  "style_reference": "Approved Igris GameReadyDetail model",
+  "cell_size": [
+    120,
+    120
+  ],
+  "display_size": [
+    240,
+    240
+  ],
+  "draw_offset": [
+    -10,
+    -12
+  ],
+  "world_pivot_from_hero_position": [
+    110,
+    164
+  ],
+  "pivot": [
+    60,
+    88
+  ],
+  "standing_height_px": 54,
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "palette": [
+    "#080b12",
+    "#10121d",
+    "#171b2b",
+    "#22273c",
+    "#30364d",
+    "#444c64",
+    "#5c6680",
+    "#79859a",
+    "#929caf",
+    "#b5bac7",
+    "#d6d9df",
+    "#f1efeb",
+    "#4a2530",
+    "#703543",
+    "#985347",
+    "#bd7759",
+    "#e4a47b",
+    "#f8c89a",
+    "#ffe0b1",
+    "#482126",
+    "#711e2e",
+    "#9d2236",
+    "#cb2b41",
+    "#ee4352",
+    "#ff746c",
+    "#715235",
+    "#a37a49",
+    "#d0a26b",
+    "#15568d",
+    "#238fc2",
+    "#48cde6",
+    "#bbf4fb"
+  ],
+  "animations": {
+    "idle": {
+      "sheet": "sheets/idle.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.3312883435582822,
+        "left": 0.3103448275862069,
+        "right": 0.30857142857142855,
+        "up": 0.3
+      },
+      "alignment": "fixed source grid; one ground anchor per direction"
+    },
+    "walk": {
+      "sheet": "sheets/walk.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.32142857142857145,
+        "left": 0.30337078651685395,
+        "right": 0.3016759776536313,
+        "up": 0.29508196721311475
+      }
+    },
+    "run": {
+      "sheet": "sheets/run.png",
+      "frames_per_direction": 8,
+      "scale_by_direction": {
+        "down": 0.33962264150943394,
+        "left": 0.34394904458598724,
+        "right": 0.33962264150943394,
+        "up": 0.3103448275862069
+      }
+    },
+    "attack_1": {
+      "sheet": "sheets/attack_1.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.3312883435582822,
+        "left": 0.3103448275862069,
+        "right": 0.31213872832369943,
+        "up": 0.3
+      }
+    },
+    "attack_2": {
+      "sheet": "sheets/attack_2.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.3312883435582822,
+        "left": 0.3103448275862069,
+        "right": 0.30857142857142855,
+        "up": 0.3
+      }
+    },
+    "attack_3": {
+      "sheet": "sheets/attack_3.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.3312883435582822,
+        "left": 0.3103448275862069,
+        "right": 0.30857142857142855,
+        "up": 0.3
+      }
+    },
+    "walk_attack_1": {
+      "sheet": "sheets/walk_attack_1.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.32727272727272727,
+        "left": 0.31213872832369943,
+        "right": 0.30857142857142855,
+        "up": 0.3
+      }
+    },
+    "walk_attack_2": {
+      "sheet": "sheets/walk_attack_2.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.3176470588235294,
+        "left": 0.30337078651685395,
+        "right": 0.3016759776536313,
+        "up": 0.3
+      }
+    },
+    "walk_attack_3": {
+      "sheet": "sheets/walk_attack_3.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.32926829268292684,
+        "left": 0.30857142857142855,
+        "right": 0.30857142857142855,
+        "up": 0.3016759776536313
+      }
+    },
+    "run_attack": {
+      "sheet": "sheets/run_attack.png",
+      "frames_per_direction": 8,
+      "scale_by_direction": {
+        "down": 0.3375,
+        "left": 0.34838709677419355,
+        "right": 0.34615384615384615,
+        "up": 0.32335329341317365
+      }
+    },
+    "dash": {
+      "sheet": "sheets/dash.png",
+      "frames_per_direction": 7,
+      "scale_by_direction": {
+        "down": 0.3157894736842105,
+        "left": 0.3068181818181818,
+        "right": 0.3103448275862069,
+        "up": 0.30857142857142855
+      }
+    },
+    "dash_attack": {
+      "sheet": "sheets/dash_attack.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.32335329341317365,
+        "left": 0.3103448275862069,
+        "right": 0.3068181818181818,
+        "up": 0.3
+      }
+    },
+    "deaths_dance_spin": {
+      "sheet": "sheets/deaths_dance_spin.png",
+      "frames_per_direction": 10,
+      "scale_by_direction": {
+        "down": 0.35064935064935066,
+        "left": 0.34394904458598724,
+        "right": 0.34615384615384615,
+        "up": 0.35526315789473684
+      }
+    },
+    "sonic_stream": {
+      "sheet": "sheets/sonic_stream.png",
+      "frames_per_direction": 11,
+      "scale_by_direction": {
+        "down": 0.40601503759398494,
+        "left": 0.3776223776223776,
+        "right": 0.3776223776223776,
+        "up": 0.391304347826087
+      }
+    },
+    "hurt": {
+      "sheet": "sheets/hurt.png",
+      "frames_per_direction": 5,
+      "scale_by_direction": {
+        "down": 0.3312883435582822,
+        "left": 0.3103448275862069,
+        "right": 0.3103448275862069,
+        "up": 0.3016759776536313
+      }
+    },
+    "death": {
+      "sheet": "sheets/death.png",
+      "frames_per_direction": 7,
+      "scale_by_direction": {
+        "down": 0.313953488372093,
+        "left": 0.3050847457627119,
+        "right": 0.30337078651685395,
+        "up": 0.3
+      }
+    }
+  },
+  "aliases": {
+    "walk_attack": "walk_attack_1"
+  },
+  "source_sha256": {
+    "idle": "a9ca63dedb6258380eda4e354a9ee1d57904124d2a797de69670d322b83ffede",
+    "walk": "ea589f57b02bb2047461863c9b1ff447f96f1c8b68fec07337de53b86cd5dae5",
+    "run": "9a34144eed2f988d08a31bb5d2dda6bda7e73cdde50dfbccd587534e081ab0d9",
+    "attack_1": "767a4db2828afd255608106ff9ccc083af98e6d675dd59f5945e8a2c8e388fd9",
+    "attack_2": "6fd47c0d9813e22abd5ee0e7ca5f7cef7c91c68184d52edd3bfb782d3fd6f8ce",
+    "attack_3": "b951027280465bd5af2863c1675afe785e8fcd9d5f196103d29d1c56c442e968",
+    "walk_attack_1": "e894bcdb60debed6f06a6275c847aa90b6e6b2ddcdb33974f371d6e91bef6957",
+    "walk_attack_2": "f11f2144f18773d23fc4402027910271fa81e4e91a5cae34c79af652506609fb",
+    "walk_attack_3": "77b8b1ceff731f1928dc840ce3d60f930d2ccf14625372c8f465df9a476e7748",
+    "run_attack": "d49cf16614550355fca958b56fded4c65b5e3fd43815b9e922a098f753bc725e",
+    "dash": "26eb4c32543887a3a3d881fcaced903ee45864b13a91b42d4640805ab6364f46",
+    "dash_attack": "08f0169962b7843f4a89c8bde0dbfb2ea4d4fea96d123121705c8b8270e99bc3",
+    "deaths_dance_spin": "c867ec246685504d1e608017b5406ab6792a8e521d69f5f32016f0deacd41b80",
+    "sonic_stream": "5affdf2ddf0a5b13600d2f628e8d3517bd81d498c84691f9d2dbc1be1fccd8ff",
+    "hurt": "eb5aa4e3a054db6bc65155aa5d72dec528e3c1c72cc908b668afa79256ec6823",
+    "death": "c12e3c1c996490850a024c957fc6ae9d65a4553ea6f60a92890d4a49314a312b"
+  }
+}

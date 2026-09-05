@@ -1,0 +1,38 @@
+{
+  "checks": [
+    "Real name entry, pause/options, all four campaign rooms, boss spawn, terminal boss death and exit progression",
+    "Real movement, running attack, all three standing/moving combo clips, dash and buffered dash attack, Q Deaths Dance and E Sonic Stream",
+    "Player defeat triggers the seven-frame collapse, holds its final pose, and supports Retry stage"
+  ],
+  "loaded_clips_in_game": [
+    "attack_1",
+    "attack_2",
+    "attack_3",
+    "dash",
+    "dash_attack",
+    "deaths_dance",
+    "hurt",
+    "idle",
+    "run",
+    "run_attack",
+    "sonic_stream",
+    "walk",
+    "walk_attack_1",
+    "walk_attack_2",
+    "walk_attack_3"
+  ],
+  "hero_directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "boss_phases": [
+    1,
+    2,
+    3
+  ],
+  "fight_seconds": 37.0,
+  "status": "passed",
+  "conditions": "SDL dummy video/audio, scripted input and boss HP/stagger transitions; bonus fighter health/stamina and 25% test-only fighter damage for continuous coverage"
+}
