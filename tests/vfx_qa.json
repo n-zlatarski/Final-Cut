@@ -1,0 +1,10 @@
+{
+  "cases": 28,
+  "checks": [
+    "All seven actions show effects in four directions; sword ribbons start at the swing; dash copies follow real travel; dust and afterimages fully expire",
+    "Contact sparks appear only when the hit callback accepts damage, including dodge/invulnerability rejection",
+    "Hitstop freezes effects; hurt/death immediately clear active effects; no persistent idle aura",
+    "352 unique detailed source frames without clipping, unchanged render pivot, and 18 distinct transparent effect texture frames"
+  ],
+  "status": "passed"
+}

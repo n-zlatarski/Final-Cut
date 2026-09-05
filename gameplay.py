@@ -25,7 +25,6 @@ from game_data import (
     _a_deaths_dance_rows, _a_deaths_dance_fx, _a_sonic_stream_rows,
     _a_run_atk_rows, _a_dash_rows, _a_dash_atk_rows,
     _a_hurt_rows, _a_death_rows,
-    VAMPIRE_STATS,
 )
 from screens import pause_menu, options_menu
 
@@ -50,7 +49,18 @@ def spawn_enemies(stage):
     return enemies
 
 
-def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
+def spawn_boss(stage):
+    boss_type = stage["boss"]
+    cfg = ENEMY_TYPES[boss_type]
+    mult = stage.get("wave_mult", 1.0)
+    boss = Enemy(boss_type, WIDTH - 640, HEIGHT - 520)
+    boss.set_stats(int(cfg["hp"] * mult),
+                   (int(cfg["dmg"][0] * mult), int(cfg["dmg"][1] * mult)))
+    boss.is_boss = True
+    return boss
+
+
+def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=False):
     stage = STAGES[stage_idx]
     bg_img = STAGE_BGS[stage["bg"]]
     play_music(stage["bg"])
@@ -239,6 +249,10 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
     previous_hero_pos = list(hero_pos)
     hero_velocity = [0.0, 0.0]
     enemies = spawn_enemies(stage)
+    if boss_only:
+        enemies = [spawn_boss(stage)]
+        state["boss_spawned"] = True
+        play_music("boss")
     projectiles = []
 
     def add_floater(text, pos, color=CREAM, size="small", life=720):
@@ -326,7 +340,16 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             return False
         state["hero_hp"] -= dmg
         state["stats"]["damage_taken"] += dmg
-        state["invulnerable_until"] = now + (620 if heavy else 480)
+        commander_combo = (
+            source is not None and getattr(source, "role", None) == "commander"
+            and getattr(source, "boss_action", None) in {
+                "light_combo", "overhead_slash", "ground_slam",
+                "ranged_thrust",
+            }
+        )
+        state["invulnerable_until"] = now + (
+            95 if commander_combo else 620 if heavy else 480
+        )
         state["damage_flash"] = 280 if heavy else 190
         state["shake"] = 12 if heavy else 7
         state["hit_streak"] = 0
@@ -1969,14 +1992,20 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
             elif state["buffered_attack_until"] and state["buffered_attack_until"] < now:
                 state["buffered_attack_until"] = 0
 
-            def _spawn_projectile(enemy, target_center):
-                ex, ey = enemy.center()
-                dmg = random.randint(*enemy.dmg_range)
-                projectile_kind = ENEMY_TYPES[enemy.etype].get(
-                    "projectile", "arrow")
+            def _spawn_projectile(enemy, target_center, kind=None,
+                                  damage_mult=1.0):
+                projectile_kind = (kind or ENEMY_TYPES[enemy.etype].get(
+                    "projectile", "arrow"))
+                if projectile_kind == "igris_shockwave":
+                    ex, ey = enemy.feet()
+                else:
+                    ex, ey = enemy.center()
+                dmg = int(random.randint(*enemy.dmg_range) * damage_mult)
                 projectiles.append(Projectile(
                     ex, ey, target_center[0], target_center[1], dmg,
-                    kind=projectile_kind))
+                    kind=projectile_kind,
+                    source=(enemy if projectile_kind.startswith("igris_") else None),
+                    heavy=projectile_kind == "igris_shockwave"))
 
             living = [e for e in enemies if not e.dead]
             committed_melee = sum(1 for e in living if not e.ranged and e.is_committed)
@@ -2014,7 +2043,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                 if p.alive:
                     dist = ((p.pos[0] - hx) ** 2 + (p.pos[1] - hy) ** 2) ** 0.5
                     if dist <= p.hit_radius + 22:
-                        hurt_hero(p.dmg)
+                        hurt_hero(p.dmg, source=p.source, heavy=p.heavy)
                         p.alive = False
             projectiles[:] = [p for p in projectiles if p.alive]
 
@@ -2034,15 +2063,10 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
                     and all(e.dead and e.dead_done for e in enemies)):
                 boss_type = stage.get("boss")
                 if boss_type and not state["boss_spawned"]:
-                    boss_cfg = VAMPIRE_STATS if boss_type == "vampire" else ENEMY_TYPES[boss_type]
-                    mult = stage.get("wave_mult", 1.0)
-                    boss = Enemy(boss_type, WIDTH - 640, HEIGHT - 520)
-                    boss.set_stats(int(boss_cfg["hp"] * mult),
-                                   (int(boss_cfg["dmg"][0] * mult), int(boss_cfg["dmg"][1] * mult)))
-                    boss.is_boss = True
+                    boss = spawn_boss(stage)
                     enemies.append(boss)
                     state["boss_spawned"] = True
-                    add_log("The Vampire emerges!", RED)
+                    add_log(f"{boss.name} enters the throne room!", RED)
                     play_music("boss")
                 else:
                     state["exit_unlocked"] = True
@@ -2359,7 +2383,7 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None):
         # ── Stage/objective HUD ──
         living_count = sum(1 for e in enemies if not e.dead)
         objective = (None if state["exit_unlocked"] else
-                     "DEFEAT THE VAMPIRE" if state["boss_spawned"] else
+                     "DEFEAT COMMANDER IGRIS" if state["boss_spawned"] else
                      f"HOSTILES REMAINING  {living_count}")
         stage_w, stage_h = 430, 88
         stage_x = WIDTH // 2 - stage_w // 2

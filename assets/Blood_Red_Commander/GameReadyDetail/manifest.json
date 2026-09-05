@@ -1,0 +1,355 @@
+{
+  "format_version": 1,
+  "character": "Igris",
+  "cell_size": [
+    128,
+    128
+  ],
+  "sheet_grid": [
+    8,
+    4
+  ],
+  "pivot": [
+    64,
+    96
+  ],
+  "standing_height_px": 66.66666666666667,
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "palette": [
+    "#140e16",
+    "#260d17",
+    "#390d18",
+    "#510f1b",
+    "#6c1220",
+    "#881420",
+    "#a21b24",
+    "#bc2027",
+    "#d62b2e",
+    "#eb3d32",
+    "#f7593f",
+    "#fa7953",
+    "#321c1c",
+    "#4b2821",
+    "#653a28",
+    "#805031",
+    "#a1683d",
+    "#bb8249",
+    "#28242d",
+    "#44404a",
+    "#625c67",
+    "#8a8085",
+    "#277d99",
+    "#39bfd6",
+    "#79e5f0",
+    "#b4f9f6",
+    "#ff9148",
+    "#ffb650",
+    "#ffd374",
+    "#fff0b0",
+    "#ffa68a",
+    "#e97763"
+  ],
+  "animations": {
+    "Idle": {
+      "sheet": "sheets/Igris_Idle_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Idle.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        580,
+        190,
+        320,
+        180,
+        200,
+        320,
+        180,
+        480
+      ],
+      "loop": true,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.33333333333333337,
+        "left": 0.33003300330033003,
+        "right": 0.33333333333333337,
+        "up": 0.34722222222222227
+      }
+    },
+    "Walk": {
+      "sheet": "sheets/Igris_Walk_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Walk.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        115,
+        95,
+        100,
+        105,
+        115,
+        95,
+        100,
+        105
+      ],
+      "loop": true,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.32679738562091504,
+        "left": 0.33003300330033003,
+        "right": 0.33500837520938026,
+        "up": 0.3436426116838488
+      }
+    },
+    "Run": {
+      "sheet": "sheets/Igris_Run_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Run.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        75,
+        65,
+        65,
+        65,
+        75,
+        65,
+        65,
+        65
+      ],
+      "loop": true,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.32760032760032765,
+        "left": 0.32760032760032765,
+        "right": 0.32760032760032765,
+        "up": 0.32760032760032765
+      }
+    },
+    "Dash": {
+      "sheet": "sheets/Igris_Dash_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Dash.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        45,
+        65,
+        40,
+        55,
+        55,
+        45,
+        55,
+        65
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.38986354775828463,
+        "left": 0.3546099290780142,
+        "right": 0.3546099290780142,
+        "up": 0.3703703703703704
+      }
+    },
+    "Run_Attack": {
+      "sheet": "sheets/Igris_Run_Attack_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Run_Attack.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        65,
+        75,
+        90,
+        55,
+        65,
+        70,
+        60,
+        70
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.34275921165381323,
+        "left": 0.34275921165381323,
+        "right": 0.34275921165381323,
+        "up": 0.34275921165381323
+      }
+    },
+    "Dash_Attack": {
+      "sheet": "sheets/Igris_Dash_Attack_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Dash_Attack.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        45,
+        85,
+        45,
+        50,
+        55,
+        60,
+        70,
+        85
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.5291005291005292,
+        "left": 0.5050505050505051,
+        "right": 0.5012531328320803,
+        "up": 0.5208333333333334
+      }
+    },
+    "Attack1": {
+      "sheet": "sheets/Igris_Attack1_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Attack1.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        55,
+        75,
+        80,
+        50,
+        65,
+        70,
+        65,
+        80
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.33500837520938026,
+        "left": 0.3316749585406302,
+        "right": 0.3316749585406302,
+        "up": 0.34722222222222227
+      }
+    },
+    "Attack2": {
+      "sheet": "sheets/Igris_Attack2_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Attack2.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        60,
+        80,
+        100,
+        55,
+        70,
+        90,
+        75,
+        85
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.33500837520938026,
+        "left": 0.32840722495894914,
+        "right": 0.3316749585406302,
+        "up": 0.34722222222222227
+      }
+    },
+    "Attack3": {
+      "sheet": "sheets/Igris_Attack3_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Attack3.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        75,
+        110,
+        190,
+        65,
+        90,
+        150,
+        100,
+        100
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.4566210045662101,
+        "left": 0.447427293064877,
+        "right": 0.4444444444444445,
+        "up": 0.46620046620046623
+      }
+    },
+    "Hurt": {
+      "sheet": "sheets/Igris_Hurt_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Hurt.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        30,
+        50,
+        70,
+        70,
+        65,
+        55,
+        55,
+        55
+      ],
+      "loop": false,
+      "terminal": false,
+      "scales_by_direction": {
+        "down": 0.33500837520938026,
+        "left": 0.3316749585406302,
+        "right": 0.3316749585406302,
+        "up": 0.34904013961605584
+      }
+    },
+    "Death": {
+      "sheet": "sheets/Igris_Death_with_shadow.png",
+      "sheet_no_shadow": "sheets_no_shadow/Igris_Death.png",
+      "frames_per_direction": 8,
+      "durations_ms": [
+        110,
+        130,
+        170,
+        190,
+        150,
+        180,
+        230,
+        900
+      ],
+      "loop": false,
+      "terminal": true,
+      "scales_by_direction": {
+        "down": 0.3603603603603604,
+        "left": 0.34904013961605584,
+        "right": 0.34722222222222227,
+        "up": 0.3603603603603604
+      }
+    }
+  },
+  "variants": {
+    "Idle_Alert": {
+      "source": "Idle",
+      "frame_indices": [
+        0,
+        1,
+        3,
+        4,
+        6,
+        7
+      ],
+      "durations_ms": [
+        400,
+        180,
+        160,
+        220,
+        180,
+        400
+      ],
+      "loop": true
+    }
+  },
+  "art_fixes": [
+    {
+      "animation": "Attack2",
+      "direction": "up",
+      "frame_index": 4,
+      "change": "Removed duplicate lowered sword; raised sword and unaffected pixels preserved."
+    }
+  ],
+  "source_sha256": {
+    "Idle": "9eca37c9af7c64ddccece7f0a4ec057604856ed8af9dd84b3d6034406748a2c1",
+    "Walk": "2e99dc21879a50af4e823ec6a2abd65413f46875d76f51042a6b103aeec37732",
+    "Run": "6fa3ce2f6989b52056f0bda79547b1a565754bd322eb2141be23dfb087c718a1",
+    "Dash": "5944b2b6fcf9fed25ed7a3cce298f24b745194edbfdbcc85c1dd45c7da0d7ca9",
+    "Run_Attack": "29afb5729be5a6c4ace4ba9117c07d54e00b197240d37f7079ba2a4e838563c1",
+    "Dash_Attack": "de8d706d20c7ab8e5dc29727a211611eba7dc93e0a15a58edc6c30536dba095f",
+    "Attack1": "ba0603bf89ecfb11f7280df03d4a36e880a1b7571994a1ca045f2b5c7a7c44f9",
+    "Attack2": "e4f94503873a686ac0dce536fbb619bc7db1d8e4c40968f6a28210191e37b364",
+    "Attack3": "2415c90c50b54076b75f29cad3daa83c8cb6f3c30b11bdd4769aef3cda04c17d",
+    "Hurt": "cd6b1954186a1d824c3c57f995f686e6b39543ab5dcdf63caab9a38cff7b3b92",
+    "Death": "82d140b2c26b8a45ae98d9e86016ef48042bda99b074eda82e1003a7cb8824e2"
+  }
+}

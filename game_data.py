@@ -1,10 +1,11 @@
 """
 All game configuration and asset loading: stage backgrounds, enemy
-sprite packs, the Warrior and Vampire sheets, and class stats. This
+sprite packs, player sheets, boss effects, and class stats. This
 module has side effects at import time (it loads every image) —
 import it once, early.
 """
 from settings import *
+from igris_data import load_igris_frames, IGRIS_SCALE, IGRIS_BANK
 from sprite_loaders import (
     load_img, load_sheet_all_rows,
     load_sheet, load_side_sheet_raw,
@@ -31,9 +32,10 @@ STAGES = [
     {"name": "Terrace", "subtitle": "No cover. No retreat.",
      "bg": "terrace", "accent": (160, 174, 198), "floor_top": 480,
      "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.0},
-    {"name": "Throne Room", "subtitle": "The master awaits",
+    {"name": "Throne Room", "subtitle": "The commander awaits",
      "bg": "throne_room", "accent": (176, 54, 74), "floor_top": 560,
-     "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.4, "boss": "vampire"},
+     "enemies": ["knight1", "knight2", "knight3"], "wave_mult": 1.4,
+     "boss": "blood_red_commander"},
 ]
 
 # ── Enemy types ───────────────────────────────────────────────────────────────
@@ -98,15 +100,19 @@ ENEMY_TYPES = {
                               anchor_height=185,
                               walk_up="Walk_Up.png", walk_down="Walk_Down.png",
                               attack_up="Attack_Up.png", attack_down="Attack_Down.png"),
+    "blood_red_commander": dict(
+        folder="assets/Blood_Red_Commander",
+        name="Blood-Red Commander Igris", role="commander",
+        hp=360, dmg=(16, 25), speed=1.95,
+        display=(205, 205), anchor_height=205,
+        # Start committed attacks at sword range.  The previous 560px trigger
+        # made every grounded combo get replaced by another gap-closing dash.
+        atk_range=198, engage_range=225, windup=390, recovery=360,
+        attack_cooldown=820, poise=145,
+        detection_range=720, forget_range=900, floor_top=560,
+        dash_speed=15.2,
+    ),
 }
-# Vampire boss uses a separate 4-directional sheet pipeline (see below,
-# next to the Warrior sheets) since its sprite pack is laid out like the
-# Swordsman's, not like the single-row knight/skeleton packs.
-VAMPIRE_STATS = dict(
-    name="The Vampire", role="boss", hp=300, dmg=(14, 22), speed=1.7,
-    atk_range=138, windup=520, recovery=500, attack_cooldown=1050,
-    poise=120,
-)
 
 ENEMY_ANIM_FILES = {
     "idle": "Idle.png", "walk": "Walk.png", "attack": "Attack_1.png",
@@ -115,16 +121,30 @@ ENEMY_ANIM_FILES = {
 # Each entry: {"right": {anim_name: [frames]}, "left": {anim_name: [frames]}}
 ENEMY_ANIM_SETS = {}
 ENEMY_CANVAS_SIZE = {}
+ENEMY_CROP_REGIONS = {}
+ENEMY_SCALE_FACTORS = {}
 for _etype, _cfg in ENEMY_TYPES.items():
+    if _cfg.get("role") == "commander":
+        ENEMY_ANIM_SETS[_etype] = load_igris_frames()
+        # Logical body geometry remains independent of the 384px render cell.
+        ENEMY_CANVAS_SIZE[_etype] = _cfg["display"]
+        ENEMY_CROP_REGIONS[_etype] = pygame.Rect(0, 0, *IGRIS_BANK.cell_size)
+        ENEMY_SCALE_FACTORS[_etype] = IGRIS_SCALE
+        continue
     _frame_width = _cfg.get("frame_width", 128)
     _raw = {}
     for _name, _fname in ENEMY_ANIM_FILES.items():
         _path = f"{_cfg['folder']}/{_fname}"
         _raw[_name] = load_side_sheet_raw(_path, frame_size=_frame_width)
+    _special_raw = {
+        _state: load_side_sheet_raw(
+            f"{_cfg['folder']}/{_filename}", frame_size=_frame_width)
+        for _state, _filename in _cfg.get("special_anims", {}).items()
+    }
     _vertical_raw = {}
     for _direction in ("up", "down"):
         _direction_anims = {}
-        for _state in ("walk", "attack"):
+        for _state in ("walk", "attack", *_special_raw.keys()):
             _key = f"{_state}_{_direction}"
             if _cfg.get(_key):
                 _direction_anims[_state] = load_side_sheet_raw(
@@ -136,6 +156,7 @@ for _etype, _cfg in ENEMY_TYPES.items():
     _crop = union_bbox(
         [
             *_raw.values(),
+            *_special_raw.values(),
             *(
                 _frames
                 for _direction_anims in _vertical_raw.values()
@@ -156,9 +177,12 @@ for _etype, _cfg in ENEMY_TYPES.items():
     _idle_bbox = union_bbox([_raw["idle"]], fallback_size=(_frame_width, 128))
     _target_h = _cfg["display"][1]
     _scale = _target_h / max(1, _idle_bbox.height)
+    ENEMY_CROP_REGIONS[_etype] = _crop
+    ENEMY_SCALE_FACTORS[_etype] = _scale
+    _all_side_raw = {**_raw, **_special_raw}
     _source_frames = {
         _name: [scale_crop(f, _crop, _scale) for f in _frames]
-        for _name, _frames in _raw.items()
+        for _name, _frames in _all_side_raw.items()
     }
     _flipped_frames = {
         _name: flip_frames(_frames)
@@ -177,6 +201,14 @@ for _etype, _cfg in ENEMY_TYPES.items():
     ENEMY_CANVAS_SIZE[_etype] = _right["idle"][0].get_size()
 
 ARROW_IMG = load_img("assets/Castle_Archer/Arrow.png", (56, 20))
+_IGRIS_CRESCENT_ROWS = load_sheet_all_rows(
+    "assets/Blood_Red_Commander/Igris_Crescent_Anim.png", 4, 1,
+    (208, 116))
+IGRIS_CRESCENT_FRAMES = _IGRIS_CRESCENT_ROWS[0]
+_IGRIS_SHOCKWAVE_ROWS = load_sheet_all_rows(
+    "assets/Blood_Red_Commander/Igris_Shockwave_Anim.png", 4, 1,
+    (196, 86))
+IGRIS_SHOCKWAVE_FRAMES = _IGRIS_SHOCKWAVE_ROWS[0]
 
 # ── Warrior sheets (256x256, 4 rows) ─────────────────────────────────────────
 WARRIOR_SHEETS = {
@@ -292,21 +324,6 @@ _a_death_rows = ASSASSIN_ANIM_ROWS["death"]
 
 assassin_anims = {name: rows[0] for name, rows in ASSASSIN_ANIM_ROWS.items()}
 assassin_anims["idle"] = _a_idle_rows[0]
-
-# ── Vampire boss (4-directional sheets, same layout style as the Swordsman) ──
-VAMPIRE_DISPLAY = (230, 230)
-VAMPIRE_SHEETS = {
-    "idle":   ("assets/vampire/Vampires2_Idle_with_shadow.png",   4,  4),
-    "walk":   ("assets/vampire/Vampires2_Walk_with_shadow.png",   6,  4),
-    "run":    ("assets/vampire/Vampires2_Run_with_shadow.png",    8,  4),
-    "attack": ("assets/vampire/Vampires2_Attack_with_shadow.png", 12, 4),
-    "hurt":   ("assets/vampire/Vampires2_Hurt_with_shadow.png",   4,  4),
-    "dead":   ("assets/vampire/Vampires2_Death_with_shadow.png",  11, 4),
-}
-VAMPIRE_ANIMS = {
-    name: load_sheet_all_rows(path, cols, rows, VAMPIRE_DISPLAY)
-    for name, (path, cols, rows) in VAMPIRE_SHEETS.items()
-}
 
 # ── Portraits ─────────────────────────────────────────────────────────────────
 portrait_imgs = {

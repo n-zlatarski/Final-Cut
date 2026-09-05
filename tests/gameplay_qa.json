@@ -1,0 +1,47 @@
+{
+  "checks": [
+    "Name entry, pause/resume and options render and accept input",
+    "All four stages load; wave deaths, throne boss spawn, full boss death, exit unlock and final result progress correctly",
+    "Actual boss-only stage runs through all Igris states and phases, player movement/attacks/dodges, corpse hold and HUNT COMPLETE"
+  ],
+  "boss_states": [
+    "attack",
+    "dash",
+    "dash_attack",
+    "dead",
+    "ground_slam",
+    "hurt",
+    "idle",
+    "idle_alert",
+    "overhead_slash",
+    "ranged_thrust",
+    "run",
+    "run_attack",
+    "walk"
+  ],
+  "boss_directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "boss_phases": [
+    1,
+    2,
+    3
+  ],
+  "hero_states": [
+    "attack_1",
+    "attack_2",
+    "attack_3",
+    "dash",
+    "dash_attack",
+    "hurt",
+    "idle",
+    "run",
+    "walk"
+  ],
+  "fight_seconds": 37.0,
+  "conditions": "SDL dummy video/audio; scripted inputs, HP phase transitions and stagger; extra player health for uninterrupted coverage",
+  "status": "passed"
+}

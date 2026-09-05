@@ -1,0 +1,22 @@
+{
+  "frames_checked_including_alert_idle": 376,
+  "source_cell_size": [
+    128,
+    128
+  ],
+  "previous_source_cell_size": [
+    96,
+    96
+  ],
+  "render_canvas": [
+    384,
+    384
+  ],
+  "feet_pivot": [
+    192,
+    288
+  ],
+  "average_width_ratio_to_original_unslimmed_build": 0.9016,
+  "max_neutral_height_difference_from_original_px": 5,
+  "status": "passed"
+}
