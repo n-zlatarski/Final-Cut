@@ -538,7 +538,8 @@ class Enemy:
             self.move_direction = self.attack_direction
             self._set_anim("idle_alert", reset=True)
 
-    def _update_committed(self, dt, hero_center, on_hit_hero, spawn_projectile):
+    def _update_committed(self, dt, hero_center, on_hit_hero, spawn_projectile,
+                          other_positions=None, hero_velocity=(0, 0)):
         if self.role == "commander":
             self._update_commander_action(dt, hero_center, on_hit_hero, spawn_projectile)
             return
@@ -555,11 +556,22 @@ class Enemy:
             if self.phase_timer <= 0:
                 self.combat_state = "recover"
                 self.phase_timer = self.current_recovery
-        elif self.combat_state == "recover" and self.phase_timer <= 0:
-            self.combat_state = "approach"
-            self.attack_cd = self.attack_cooldown
-            self.approach_angle += random.uniform(-0.8, 0.8)
-            self._set_anim("idle", reset=True)
+                if self.cfg.get("mobile_recovery"):
+                    # The Craftpix strike ends on its slash pose. Resume
+                    # animated footwork immediately after the active window;
+                    # recovery still blocks another attack for its full time.
+                    self._update_melee(0, hero_center, False, other_positions,
+                                       hero_velocity)
+        elif self.combat_state == "recover":
+            if self.cfg.get("mobile_recovery"):
+                self._update_melee(dt, hero_center, False, other_positions,
+                                   hero_velocity)
+            if self.phase_timer <= 0:
+                self.combat_state = "approach"
+                self.attack_cd = self.attack_cooldown
+                self.approach_angle += random.uniform(-0.8, 0.8)
+                if not self.cfg.get("mobile_recovery"):
+                    self._set_anim("idle", reset=True)
 
     def _separation(self, vx, vy, other_positions):
         ex, ey = self.center()
@@ -723,7 +735,8 @@ class Enemy:
             self._face_vector(hx - ex, hy - ey, attack=False)
 
         if self.is_committed:
-            self._update_committed(dt, hero_center, on_hit_hero, spawn_projectile)
+            self._update_committed(dt, hero_center, on_hit_hero, spawn_projectile,
+                                   other_positions, hero_velocity)
         elif self.ranged:
             self._update_ranged(dt, hero_center, allow_attack,
                                 other_positions, hero_velocity)
@@ -749,9 +762,21 @@ class Enemy:
                                          else self.move_direction)
             return
         frames = self._frames()
+        hit_frame = self.cfg.get("attack_hit_frame")
+        if hit_frame is not None and self.state == "attack" and self.is_committed:
+            # Keep anticipation frames on the windup clock and show the
+            # actual slash when damage resolves. A fixed 8 FPS previously
+            # exhausted this five-frame strip long before recovery finished.
+            if self.combat_state == "windup":
+                progress = 1.0 - self.phase_timer / max(1, self.current_windup)
+                self.frame_idx = min(hit_frame - 1, max(0, int(progress * hit_frame)))
+            else:
+                self.frame_idx = min(hit_frame, len(frames) - 1)
+            return
         self.frame_idx += dt * self._state_fps() / 1000
         if self.frame_idx >= len(frames):
-            if self.is_committed or self.combat_state in ("hurt", "dead"):
+            if ((self.is_committed and self.state not in ("idle", "walk", "run"))
+                    or self.combat_state in ("hurt", "dead")):
                 self.frame_idx = len(frames) - 1
             else:
                 self.frame_idx = 0

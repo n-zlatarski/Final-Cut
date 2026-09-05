@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "preserved_files": 293,
+  "changed_files": [
+    "game_data.py",
+    "entities.py",
+    "README.md",
+    "assets/Knight_2/Walk_Up.png",
+    "assets/Knight_2/Walk_Down.png",
+    "assets/Knight_1/Walk_Up.png",
+    "assets/Knight_1/Walk_Down.png",
+    "assets/Knight_3/Walk_Up.png",
+    "assets/Knight_3/Walk_Down.png"
+  ],
+  "qa_image_changes": [
+    "tests/screenshots/boss_18.png"
+  ],
+  "checks": [
+    "All knight idle, side-walk, attack, hurt and death source PNGs are byte-identical",
+    "Every Jinwoo and Igris asset is byte-identical, including the fixed Jinwoo idle",
+    "Other enemy artwork, game stages, player movement, skills and combat effects are byte-identical"
+  ],
+  "originals_sha256": {
+    "assets/Knight_2/Dead.png": "abad208628fb9ebcafd705ed806e31647849c310becaa98de67991564995f0b2",
+    "assets/Knight_2/Run+Attack.png": "53112b4f39813e43ecc9a35648fd4893395ce1dc838e86108014b3e67e922c02",
+    "assets/Knight_2/Attack 2.png": "be928375f7ffb2247b2bf1ad94e632c8e2a9edd8e5a6855438e43fd6cb6d6ae4",
+    "assets/Knight_2/Defend.png": "8fdf79b8c8bca614e50a19b18ab19d58aee6aaec0d480f263e02efeb337ab4f0",
+    "assets/Knight_2/Hurt.png": "8259b029ac40580040f8468159158d2094180312bd7b376cea97daa1ea9fdbdd",
+    "assets/Knight_2/Attack 1.png": "81c75f1dc8c849847401576e0e953b9626e6c301f50b71b54cf9d6d36bc4b4fa",
+    "assets/Knight_2/Jump.png": "6cb61c7614407b9ab6db007fda9a181471aa9576b0475c55ee03b5f1c442917d",
+    "assets/Knight_2/Walk.png": "8f436164232fe2aab32677cd40e96be18f3368dec086c3163d4db94736d5e8cf",
+    "assets/Knight_2/Run.png": "248527632f3dfa7be176498030f37603903a0dccc4a79e171281f42e5d4d453c",
+    "assets/Knight_2/Protect.png": "061eb4e679832bdc0018aea3b0da01473f54b748e17727f344a6da9e86418fa0",
+    "assets/Knight_2/Idle.png": "00fc7ceb2b1bcd4ce5d2d2e5b1f3a22733c77728b66e5924124c82df96368899",
+    "assets/Knight_2/Attack 3.png": "fefca42ad0c24a3f39eace109581b361be274eb284d05b4b2c7bec742967cbca",
+    "assets/Knight_1/Dead.png": "4a3966a6ac0787f7c157ae037f15d5434749551fd51458c6d9bad2a90d9be338",
+    "assets/Knight_1/Run+Attack.png": "2b6e1908fa1e7f6fa8b95ea4e64483b8de97025d5140a0bc21464084e7403cc7",
+    "assets/Knight_1/Attack 2.png": "0e697148e967d8ee5ceea2dd0531b9a4431dad083704ea0723185244f5da5c17",
+    "assets/Knight_1/Defend.png": "25ea1adf97bdcd9d56676a6647d5aa0b897869afd26db9a5a550f50bd6148ff9",
+    "assets/Knight_1/Hurt.png": "69b9360cae997696c393970552d47a1888023d9da934ae2ef46e608107711728",
+    "assets/Knight_1/Attack 1.png": "9c46ba6126f31184b920e346dc04c0590c979316a072c3bc6448b647a5ba39bc",
+    "assets/Knight_1/Jump.png": "c7149db29c2e92aabeccca2b8464e3beee37cf50c7b56d6ac0e40a7c72788ce1",
+    "assets/Knight_1/Walk.png": "f7c0278055d655a041ff19183af72c4a124d9f49bda4a1ed7f6ddc5d3483a7c0",
+    "assets/Knight_1/Run.png": "f117ecbe67d6f320562b4ccfc8a7e9a9f4968c40a0af421f2c1754480ba17531",
+    "assets/Knight_1/Protect.png": "e53931dda50c0a70db63337b155a52be7c58a0da3b810024b25f476dd29390a2",
+    "assets/Knight_1/Idle.png": "103207807dc6ff79b3ed9ae470c48d942c33fe794f9100ee34b82176e93daa86",
+    "assets/Knight_1/Attack 3.png": "a81ea6d36fd280683694b1dcaed73af524d38061484b366ba87c50d90f937466",
+    "assets/Knight_3/Dead.png": "c97e5331b532ab2bb50367e6e8f4390d4ea3b314913151cbb19575f94e66b9ee",
+    "assets/Knight_3/Run+Attack.png": "b3d93370106e6fac83c67d40d4b6b53386e9cdbc002f42e242843b39a27fbaf5",
+    "assets/Knight_3/Attack 2.png": "6fb8c6866a2c770dd524dce5e518845cf9cbe8029e176f5c5716ed43d2ec05de",
+    "assets/Knight_3/Defend.png": "299364d442489ed6680c6b63e38fe06730ce2996b6ffc2e18ee68ac6410c9087",
+    "assets/Knight_3/Hurt.png": "5d65734b7fde994ffc9c2b9b7efdc9c3284de146361525a1e61b4878f572b27d",
+    "assets/Knight_3/Attack 1.png": "081520b7a861f42886103f9b800f173ccb03a05cee5221756882a25a2ca2f845",
+    "assets/Knight_3/Jump.png": "6d5d15dd95ec4005b9c5f78c4899635aebb9d747712ba1e5a0b9e0610fc1cc23",
+    "assets/Knight_3/Walk.png": "eb3d7fe7c9ed38588a66cc52718ad9754c7096ac25c4c279aa3cf65b22d398a6",
+    "assets/Knight_3/Run.png": "ff66be8825bbf2fe3d5397d0dbc17680d3c2811d66d6eed76a96ae99e90c1ad4",
+    "assets/Knight_3/Protect.png": "cb9b204a8d0069bbb55937684efd13ee9911e3e74e929d270c1faf34974820d0",
+    "assets/Knight_3/Idle.png": "c05bd8910683eea2d87940ddc93cd1e8f5aac5375e506860d321a45060a71659",
+    "assets/Knight_3/Attack 3.png": "d6923df0d56ba04725906dd45fe245a4c351ac7da1ed059b503f98dc60b06155"
+  }
+}
