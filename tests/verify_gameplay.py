@@ -57,6 +57,7 @@ class Harness:
         self.exit_time = None
         self.boss_spawned = False
         self.record = record
+        self.recorded_frames = 0
         if record:
             self.writer = subprocess.Popen([
                 'ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo',
@@ -145,6 +146,7 @@ class Harness:
                 self.once.add(tag)
         if self.writer and self.frames % 2 == 0:
             self.writer.stdin.write(pygame.image.tobytes(surface, 'RGB'))
+            self.recorded_frames += 1
 
     def events(self):
         if self.mode == 'name' and self.frames == 1:
@@ -182,6 +184,10 @@ class Harness:
         if self.writer:
             self.writer.stdin.close()
             assert self.writer.wait(timeout=30) == 0
+            probe=json.loads(subprocess.check_output([
+                'ffprobe','-v','error','-select_streams','v:0',
+                '-show_entries','stream=nb_frames','-of','json',str(self.record)]))
+            assert int(probe['streams'][0]['nb_frames']) == self.recorded_frames > 0
 
 
 def run(record=None):

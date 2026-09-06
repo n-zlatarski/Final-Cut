@@ -1,5 +1,14 @@
 # Igris effect textures
 
+The current build also loads `Crimson_Attacks.png`, described by
+`crimson_manifest.json`: six frames each for a broad sword crescent, diagonal
+finisher, ground-impact ring and contact flash. These are sliced from
+`Crimson_Attacks_Source.png`. The new contact flash replaces the old spark
+row at runtime; the original dash wake and dust remain active. The complete
+generation and chroma cleanup prompts are in
+`../RunRefinement/ART_NOTES.md`. The build script is
+`tools/build_igris_refinement.py` at the game root.
+
 Created with the built-in imagegen tool for this game. The original generated
 sheet is `Igris_Effects_Source.png`. The runtime atlas is `Igris_Effects.png`:
 six frames across, with spark, dash wake, and dust rows. Equal-cell slicing,

@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "32 unique run frames at consistent 60-70px projected height; opposite half-strides change the legs",
+    "36 actual AI chases: every direction, all boss phases, 30/60/144 FPS; all poses play and stride rate matches travel",
+    "Walk/run preserve stride phase; diagonal steering does not flicker; clear turns respond immediately; blocked movement stops gait advancement",
+    "New cuts follow all four attack directions; two-cut and rising impact events match their newly authored poses",
+    "All approved Jinwoo and three-knight assets match their pre-change SHA256 hashes"
+  ],
+  "chase_cases": 36,
+  "protected_assets": 106,
+  "status": "passed"
+}

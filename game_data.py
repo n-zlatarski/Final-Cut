@@ -205,12 +205,12 @@ for _etype, _cfg in ENEMY_TYPES.items():
 
 ARROW_IMG = load_img("assets/Castle_Archer/Arrow.png", (56, 20))
 _IGRIS_CRESCENT_ROWS = load_sheet_all_rows(
-    "assets/Blood_Red_Commander/Igris_Crescent_Anim.png", 4, 1,
-    (208, 116))
+    "assets/Blood_Red_Commander/AttackOverhaul/VFX/blood_wave.png", 6, 1,
+    (256, 256))
 IGRIS_CRESCENT_FRAMES = _IGRIS_CRESCENT_ROWS[0]
 _IGRIS_SHOCKWAVE_ROWS = load_sheet_all_rows(
-    "assets/Blood_Red_Commander/Igris_Shockwave_Anim.png", 4, 1,
-    (196, 86))
+    "assets/Blood_Red_Commander/AttackOverhaul/VFX/ground_wave.png", 6, 1,
+    (256, 256))
 IGRIS_SHOCKWAVE_FRAMES = _IGRIS_SHOCKWAVE_ROWS[0]
 
 # ── Warrior sheets (256x256, 4 rows) ─────────────────────────────────────────

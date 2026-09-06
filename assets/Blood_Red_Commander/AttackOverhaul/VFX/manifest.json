@@ -1,0 +1,150 @@
+{
+  "sheet": "Igris_Attacks.png",
+  "cell_size": [
+    128,
+    128
+  ],
+  "grid": [
+    6,
+    9
+  ],
+  "rows": [
+    "forehand",
+    "rising_cut",
+    "sweep",
+    "plunge",
+    "rupture",
+    "pierce",
+    "blood_wave",
+    "ground_wave",
+    "spark"
+  ],
+  "origins": {
+    "forehand": [
+      64,
+      64
+    ],
+    "rising_cut": [
+      64,
+      64
+    ],
+    "sweep": [
+      64,
+      64
+    ],
+    "plunge": [
+      64,
+      64
+    ],
+    "rupture": [
+      64,
+      96
+    ],
+    "pierce": [
+      64,
+      64
+    ],
+    "blood_wave": [
+      64,
+      64
+    ],
+    "ground_wave": [
+      64,
+      96
+    ],
+    "spark": [
+      64,
+      64
+    ]
+  },
+  "durations_ms": {
+    "forehand": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "rising_cut": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "sweep": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "plunge": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "rupture": [
+      25,
+      35,
+      65,
+      80,
+      100,
+      115
+    ],
+    "pierce": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "blood_wave": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "ground_wave": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "spark": [
+      20,
+      25,
+      30,
+      40,
+      45,
+      60
+    ]
+  },
+  "scales": {
+    "forehand": 0.32,
+    "rising_cut": 0.32,
+    "sweep": 0.32,
+    "plunge": 0.3,
+    "rupture": 0.32,
+    "pierce": 0.32,
+    "blood_wave": 0.32,
+    "ground_wave": 0.32,
+    "spark": 0.32
+  },
+  "source_sha256": {
+    "VFX_Cuts": "9d1593f7cf5ae2c53c7680561b2ab5604d75123f5d52acc38dc10be605f8c20b",
+    "VFX_Force": "4639fff318cdf56a0e9791cd9b3d35c81c98e1660475173a2567aa525f68ff89",
+    "VFX_Waves": "1d067d3744e9c965b70295e867d657817e87b12624b174c63cf659dbae24d40f"
+  }
+}

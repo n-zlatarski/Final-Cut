@@ -74,7 +74,7 @@ def check_rendering():
             e.state = state
             e.sprite_direction = direction
             for frame_index, frame in enumerate(e._frames()):
-                assert frame.get_size() == (384, 384)
+                assert frame.get_size() == (576, 576)
                 assert frame.get_bounding_rect().width > 0
                 e.frame_idx = frame_index
                 canvas.fill((0, 0, 0, 0))
@@ -86,7 +86,7 @@ def check_rendering():
                 assert pygame.image.tobytes(canvas, 'RGBA') == pygame.image.tobytes(expected, 'RGBA')
                 report['render_cases'] += 1
     assert e.display == (205, 205)
-    report['checks'].append('Every loaded frame uses the fixed feet pivot on a 384px render canvas; padded render size is separate from body geometry')
+    report['checks'].append('Every loaded frame uses the fixed feet pivot on a 576px render canvas; padded render size is separate from body geometry')
 
 
 def check_lifecycle():

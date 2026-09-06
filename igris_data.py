@@ -11,14 +11,14 @@ IGRIS_SCALE = 3
 # A small presentation adjustment, applied uniformly to every authored pose.
 IGRIS_WIDTH_RATIO = 0.90
 IGRIS_BANK = IgrisAnimator(
-    Path(__file__).resolve().parent / "assets/Blood_Red_Commander/GameReadyDetail")
+    Path(__file__).resolve().parent / "assets/Blood_Red_Commander/AttackOverhaul/GameReady")
 IGRIS_PIVOT = tuple(value * IGRIS_SCALE for value in IGRIS_BANK.pivot)
 IGRIS_STATE_CLIPS = {
     "idle": "Idle", "idle_alert": "Idle_Alert",
     "walk": "Walk", "run": "Run", "dash": "Dash",
     "run_attack": "Run_Attack", "dash_attack": "Dash_Attack",
     "attack": "Attack1", "overhead_slash": "Attack2",
-    "ground_slam": "Attack3", "ranged_thrust": "Attack1",
+    "ground_slam": "Attack3", "ranged_thrust": "Ranged_Attack",
     "hurt": "Hurt", "dead": "Death",
 }
 IGRIS_DURATIONS = {

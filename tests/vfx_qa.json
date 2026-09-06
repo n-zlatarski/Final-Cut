@@ -1,10 +1,11 @@
 {
   "cases": 28,
   "checks": [
-    "All seven actions show effects in four directions; sword ribbons start at the swing; dash copies follow real travel; dust and afterimages fully expire",
+    "All seven actions show effects in four directions; crimson cuts start at the swing; dash copies follow real travel; impacts, dust and afterimages fully expire",
     "Contact sparks appear only when the hit callback accepts damage, including dodge/invulnerability rejection",
     "Hitstop freezes effects; hurt/death immediately clear active effects; no persistent idle aura",
-    "352 unique detailed source frames without clipping, unchanged render pivot, and 18 distinct transparent effect texture frames"
+    "Vertical ground waves are foreshortened and layer behind Igris when moving away; collision radius is unchanged",
+    "384 character frames without clipping, fixed feet alignment, and 60 distinct transparent effect texture frames"
   ],
   "status": "passed"
 }

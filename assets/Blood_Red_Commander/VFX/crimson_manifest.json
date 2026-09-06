@@ -1,0 +1,70 @@
+{
+  "sheet": "Crimson_Attacks.png",
+  "cell_size": [
+    128,
+    128
+  ],
+  "grid": [
+    6,
+    4
+  ],
+  "rows": [
+    "sword_cut",
+    "finisher_cut",
+    "slam_impact",
+    "spark"
+  ],
+  "durations_ms": {
+    "sword_cut": [
+      20,
+      25,
+      40,
+      40,
+      35,
+      40
+    ],
+    "finisher_cut": [
+      20,
+      25,
+      45,
+      40,
+      40,
+      45
+    ],
+    "slam_impact": [
+      25,
+      35,
+      60,
+      65,
+      85,
+      90
+    ],
+    "spark": [
+      15,
+      25,
+      30,
+      40,
+      45,
+      60
+    ]
+  },
+  "origins": {
+    "sword_cut": [
+      64,
+      64
+    ],
+    "finisher_cut": [
+      64,
+      64
+    ],
+    "slam_impact": [
+      64,
+      64
+    ],
+    "spark": [
+      64,
+      64
+    ]
+  },
+  "source_sha256": "3fffba1f94e0d4acdf7dcda076abda40564e36e252a96b2626e0b810e8940bba"
+}

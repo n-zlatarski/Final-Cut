@@ -21,8 +21,8 @@ COMMANDER_STATES = (
 
 COMMANDER_ACTIONS = {
     "light_combo": dict(
-        state="attack", active_frames=(3, 5), hit_frames=(3,),
-        attack_range=235, damage=1.08, cooldown=460, heavy=False, dash_speed=0,
+        state="attack", active_frames=(3, 6), hit_frames=(3, 5),
+        attack_range=235, damage=0.54, cooldown=460, heavy=False, dash_speed=0,
     ),
     "shadow_dash": dict(
         state="dash", active_frames=(2, 6), hit_frames=(), move_frames=(2, 6),
@@ -30,30 +30,30 @@ COMMANDER_ACTIONS = {
         cooldown=320, heavy=False, dash_speed=15.2,
     ),
     "overhead_slash": dict(
-        state="overhead_slash", active_frames=(3, 5), hit_frames=(3,),
+        state="overhead_slash", active_frames=(3, 6), hit_frames=(4,),
         attack_range=255, damage=1.30,
         cooldown=620, heavy=True, dash_speed=0,
     ),
     "ground_slam": dict(
-        state="ground_slam", active_frames=(3, 5), hit_frames=(4,),
+        state="ground_slam", active_frames=(3, 6), hit_frames=(4,),
         attack_range=235, damage=1.05,
         projectile_frames=((4, "igris_shockwave", 0.78),),
         cooldown=720, heavy=True, dash_speed=0,
     ),
     "ranged_thrust": dict(
-        state="ranged_thrust", active_frames=(3, 5), hit_frames=(3,),
+        state="ranged_thrust", active_frames=(3, 6), hit_frames=(4,),
         attack_range=220, damage=0.58,
-        projectile_frames=((3, "igris_crescent", 0.84),),
+        projectile_frames=((4, "igris_crescent", 0.84),),
         cooldown=660, heavy=False, dash_speed=0,
     ),
     "run_attack": dict(
-        state="run_attack", active_frames=(3, 5), hit_frames=(3,),
-        move_frames=(0, 5), attack_range=235, damage=0.95,
+        state="run_attack", active_frames=(3, 6), hit_frames=(4,),
+        move_frames=(0, 4), attack_range=235, damage=0.95,
         cooldown=520, heavy=False, dash_speed=5.4,
     ),
     "dash_attack": dict(
-        state="dash_attack", active_frames=(3, 5), hit_frames=(4,),
-        move_frames=(2, 6), attack_range=235, damage=1.10,
+        state="dash_attack", active_frames=(3, 6), hit_frames=(4,),
+        move_frames=(2, 5), attack_range=235, damage=1.10,
         cooldown=580, heavy=True, dash_speed=15.2,
     ),
 }
@@ -127,6 +127,13 @@ class Projectile:
                 pygame.transform.rotate(frame, angle)
                 for frame in source_frames
             ]
+            if kind == "igris_shockwave":
+                # Ground effects stay flat in the arena's perspective even
+                # when traveling vertically; rotation must not make a wall.
+                depth_scale = 1.0 - .5 * abs(math.sin(math.radians(angle)))
+                self.frames = [pygame.transform.scale(frame,
+                    (frame.get_width(), max(1, round(frame.get_height()*depth_scale))))
+                    for frame in self.frames]
             self.image = self.frames[0]
         else:
             angle = -math.degrees(math.atan2(dy, dx))
@@ -144,8 +151,8 @@ class Projectile:
             self.trail.append((self.pos[0], self.pos[1], self.age))
             trail_length = {
                 "magic_orb": 7,
-                "igris_shockwave": 5,
-                "igris_crescent": 7,
+                "igris_shockwave": 3,
+                "igris_crescent": 3,
             }[self.kind]
             self.trail = self.trail[-trail_length:]
         if self.age > self.max_lifetime:
@@ -153,6 +160,11 @@ class Projectile:
         if not (-100 <= self.pos[0] <= WIDTH + 100 and
                 -100 <= self.pos[1] <= HEIGHT + 100):
             self.alive = False
+
+    @property
+    def behind_source(self):
+        return (self.kind == "igris_shockwave" and self.source is not None
+                and self.pos[1] < self.source.feet()[1])
 
     def draw(self, screen, ox, oy):
         if self.kind == "magic_orb":
@@ -167,7 +179,7 @@ class Projectile:
         elif self.kind in ("igris_shockwave", "igris_crescent"):
             for index, (tx, ty, _) in enumerate(self.trail[:-1]):
                 echo = self.image.copy()
-                echo.set_alpha(min(126, 18 + index * 18))
+                echo.set_alpha(24 + index * 20)
                 rect = echo.get_rect(center=(tx + ox, ty + oy))
                 screen.blit(echo, rect)
         rect = self.image.get_rect(center=(self.pos[0] + ox, self.pos[1] + oy))
@@ -222,6 +234,7 @@ class Enemy:
         self.guard_timer = 0.0
         self.boss_playback_rate = 1.0
         self._commander_clock_advanced = False
+        self._commander_locomotion_ms = None
         self.attack_cd = random.randint(180, 650)
         self.phase_timer = 0.0
         self.current_windup = self.windup_ms
@@ -288,9 +301,14 @@ class Enemy:
         if self.role == "commander" and self.dead and state != "dead":
             return
         if self.state != state or reset:
+            gait_phase = None
+            if (self.role == "commander" and not reset
+                    and self.state in ("walk", "run") and state in ("walk", "run")):
+                gait_phase = self.anim_elapsed_ms / IGRIS_FRAME_ENDS[self.state][-1]
             self.state = state
             self.frame_idx = 0.0
-            self.anim_elapsed_ms = 0.0
+            self.anim_elapsed_ms = (gait_phase * IGRIS_FRAME_ENDS[state][-1]
+                                    if gait_phase is not None else 0.0)
         if self.role == "commander" and state not in ("hurt", "dead"):
             self.sprite_direction = (self.attack_direction if state in COMMANDER_STATES
                                      else self.move_direction)
@@ -344,6 +362,13 @@ class Enemy:
             return
         direction = ("left" if dx < 0 else "right") if abs(dx) >= abs(dy) \
             else ("up" if dy < 0 else "down")
+        if self.role == "commander" and not attack and self.state in ("walk", "run"):
+            # Keep a small angular dead band around diagonals. Small steering
+            # changes must not flicker between a profile and a front/back row.
+            if self.move_direction in ("left", "right") and abs(dy) < abs(dx) * 1.20:
+                direction = "left" if dx < 0 else "right"
+            elif self.move_direction in ("up", "down") and abs(dx) < abs(dy) * 1.20:
+                direction = "up" if dy < 0 else "down"
         if attack:
             self.attack_direction = direction
         else:
@@ -352,8 +377,11 @@ class Enemy:
             self.facing_left = direction == "left"
 
     def _move(self, vx, vy, dt, speed_mult=1.0):
+        before = tuple(self.pos)
         mag = math.hypot(vx, vy)
         if mag <= 0.001:
+            if self.role == "commander" and self.state in ("walk", "run"):
+                self._commander_locomotion_ms = 0.0
             return
         vx, vy = vx / mag, vy / mag
         self._face_vector(vx, vy, attack=False)
@@ -361,6 +389,9 @@ class Enemy:
         self.pos[0] += vx * step
         self.pos[1] += vy * step
         self._clamp_position()
+        if self.role == "commander" and self.state in ("walk", "run"):
+            reference_speed = self.base_speed * (1.65 if self.state == "run" else 1.0)
+            self._commander_locomotion_ms = math.dist(before, self.pos) * 16.0 / max(.01, reference_speed)
 
     def _clamp_position(self):
         max_x = WIDTH - self.display[0]
@@ -731,7 +762,8 @@ class Enemy:
             self.enemy_detected = math.hypot(hx - ex, hy - ey) <= radius
         # Lock the selected attack direction for the full authored move.
         # Switching directional sheets mid-combo looks like a skipped frame.
-        if not self.is_committed and (self.role != "commander" or self.enemy_detected):
+        if (not self.is_committed and (self.role != "commander" or self.enemy_detected)
+                and not (self.role == "commander" and self.state in ("walk", "run"))):
             self._face_vector(hx - ex, hy - ey, attack=False)
 
         if self.is_committed:
@@ -750,7 +782,10 @@ class Enemy:
     def _advance_animation(self, dt):
         if self.role == "commander":
             if not self.is_committed and not self._commander_clock_advanced:
-                self.anim_elapsed_ms += dt
+                motion_ms = getattr(self, "_commander_locomotion_ms", None)
+                self.anim_elapsed_ms += (motion_ms if motion_ms is not None
+                                        and self.state in ("walk", "run") else dt)
+            self._commander_locomotion_ms = None
             ends = IGRIS_FRAME_ENDS[self.state]
             if self.state in IGRIS_LOOP_STATES:
                 self.anim_elapsed_ms %= ends[-1]

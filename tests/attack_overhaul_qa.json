@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "All 192 non-attack poses, with and without shadows, are byte-identical after removing transparent padding",
+    "144 core attack poses are unique across all six moves and four directions; all 192 attack cells have clear margins and no green-key residue",
+    "900 ms run and 1050 ms walk cycles retain longer planted-foot contacts",
+    "54 imported attack/VFX frames have real transparency; both projectile strips contain six frames"
+  ],
+  "status": "passed"
+}

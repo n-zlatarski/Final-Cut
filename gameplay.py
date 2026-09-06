@@ -2130,12 +2130,17 @@ def stage_screen(hero_class, hero_name, stage_idx, run_state=None, *, boss_only=
         mouse = video.get_virtual_mouse_pos((WIDTH, HEIGHT))
 
         # ── Enemies (back-to-front by y) ──
+        # A ground wave traveling away from Igris passes behind his body.
+        for p in projectiles:
+            if p.behind_source:
+                p.draw(screen, ox, oy)
         for e in sorted(enemies, key=lambda e: e.pos[1]):
             e.draw(screen, ox, oy)
 
         # ── Projectiles ──
         for p in projectiles:
-            p.draw(screen, ox, oy)
+            if not p.behind_source:
+                p.draw(screen, ox, oy)
 
         # ── Hero ──
         draw_dx, draw_dy = ASSASSIN_DRAW_OFFSET if is_assassin else (0, 0)

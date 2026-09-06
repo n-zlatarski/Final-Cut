@@ -435,29 +435,12 @@
       "recovery_movement_px": 107.62
     }
   ],
-  "baseline": {
-    "before_last_slash_hold_ms": {
-      "knight1": 500.0,
-      "knight2": 633.33,
-      "knight3": 383.33
-    },
-    "other_enemies_unchanged": [
-      "blood_red_commander",
-      "castle_archer",
-      "dungeon_magician",
-      "graveborn_brute",
-      "graveborn_butcher",
-      "shadow_wolf",
-      "skeleton_spearman",
-      "skeleton_warrior"
-    ]
-  },
   "stage_probe": {
     "seconds": 18,
     "recovery_movement_px": {
-      "knight1": 375.0749999999995,
-      "knight2": 398.6812500000005,
-      "knight3": 477.8088750000001
+      "knight1": 375.1875,
+      "knight2": 398.88749999999993,
+      "knight3": 477.6704999999995
     },
     "conditions": "Real terrace gameplay, three knight placements, scripted movement, extra test player health"
   },

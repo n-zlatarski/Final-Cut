@@ -3,7 +3,7 @@
   "render_cases": 408,
   "checks": [
     "All 7 actions: exact impact frames, one hit/projectile per event, all directions/phases; 30/60/144 FPS and 250ms spikes",
-    "Every loaded frame uses the fixed feet pivot on a 384px render canvas; padded render size is separate from body geometry",
+    "Every loaded frame uses the fixed feet pivot on a 576px render canvas; padded render size is separate from body geometry",
     "Search/alert idle, run detection, direction changes without phase reset, full hurt across HP phase changes, terminal death at 2060ms",
     "Committed moves survive phase/target changes; arena floor clamps; every other enemy still loads and updates"
   ],

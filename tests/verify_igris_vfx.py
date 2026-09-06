@@ -9,7 +9,7 @@ os.chdir(ROOT);sys.path.insert(0,str(ROOT))
 os.environ.setdefault('SDL_VIDEODRIVER','dummy')
 os.environ.setdefault('SDL_AUDIODRIVER','dummy')
 import pygame
-from entities import Enemy,COMMANDER_ACTIONS
+from entities import Enemy,COMMANDER_ACTIONS,Projectile
 from igris_vfx import effect_assets
 from igris_data import IGRIS_BANK,IGRIS_PIVOT
 
@@ -43,12 +43,13 @@ for action,cfg in COMMANDER_ACTIONS.items():
             fx=e.igris_effects
             shown |= bool(pixels(e).get_bounding_rect().width)
             contact |= any(b['kind']=='spark' for b in fx.bursts)
-            dust |= any(b['kind']=='dust' for b in fx.bursts)
+            dust |= any(b['kind'] in ('dust','rupture') for b in fx.bursts)
             echo |= bool(fx.echoes)
             assert len(fx.echoes)<=5 and len(fx.bursts)<=18
             if fx.swing:
                 assert fx.swing[1]==direction
-                assert e.anim_elapsed_ms>=cfg['windup']
+                start=cfg['windup'] if action in ('ground_slam','dash_attack') else min(cfg['hit_times'])
+                assert e.anim_elapsed_ms>=start
         assert shown,(action,direction)
         assert contact==bool(cfg['hit_frames']),(action,direction,contact)
         assert echo==(action in ('shadow_dash','dash_attack')),(action,direction,echo)
@@ -57,17 +58,17 @@ for action,cfg in COMMANDER_ACTIONS.items():
         e.igris_effects.update(e,600,None)
         assert not pixels(e).get_bounding_rect().width,action
         report['cases']+=1
-report['checks'].append('All seven actions show effects in four directions; sword ribbons start at the swing; dash copies follow real travel; dust and afterimages fully expire')
+report['checks'].append('All seven actions show effects in four directions; crimson cuts start at the swing; dash copies follow real travel; impacts, dust and afterimages fully expire')
 
 for landed in (False,True):
     e,target=make()
-    for _ in range(22):e.update(10,target,lambda *a,**k:landed)
+    for _ in range(35):e.update(10,target,lambda *a,**k:landed)
     assert any(b['kind']=='spark' for b in e.igris_effects.bursts)==landed
 report['checks'].append('Contact sparks appear only when the hit callback accepts damage, including dodge/invulnerability rejection')
 
 for cancel in ('hurt','dead'):
     e,target=make('dash_attack')
-    for _ in range(24):e.update(10,target,lambda *a,**k:True)
+    for _ in range(34):e.update(10,target,lambda *a,**k:True)
     assert pixels(e).get_bounding_rect().width
     before=pygame.image.tobytes(pixels(e),'RGBA')
     e.update(0,target,lambda *a,**k:True)
@@ -78,8 +79,18 @@ for cancel in ('hurt','dead'):
     assert not pixels(e).get_bounding_rect().width
 report['checks'].append('Hitstop freezes effects; hurt/death immediately clear active effects; no persistent idle aura')
 
-assert IGRIS_BANK.cell_size==(128,128)
-assert IGRIS_PIVOT==(192,288)
+e,_=make('ground_slam')
+up=Projectile(*e.feet(),e.feet()[0],e.feet()[1]-190,1,kind='igris_shockwave',source=e)
+down=Projectile(*e.feet(),e.feet()[0],e.feet()[1]+190,1,kind='igris_shockwave',source=e)
+for p in (up,down):
+    assert len(p.frames)==6 and p.frames[0].get_height()==128
+    p.update(16)
+assert up.behind_source and not down.behind_source
+assert up.hit_radius==down.hit_radius==52
+report['checks'].append('Vertical ground waves are foreshortened and layer behind Igris when moving away; collision radius is unchanged')
+
+assert IGRIS_BANK.cell_size==(192,192)
+assert IGRIS_PIVOT==(288,384)
 unique=0
 for name,clip in IGRIS_BANK.clips.items():
     if name=='Idle_Alert':continue
@@ -88,13 +99,13 @@ for name,clip in IGRIS_BANK.clips.items():
         for f in row:
             bbox=f.get_bounding_rect(min_alpha=128)
             assert bbox.width>0 and bbox.left>0 and bbox.top>0
-            assert bbox.right<128 and bbox.bottom<128
+            assert bbox.right<192 and bbox.bottom<192
             unique+=1
-assert unique==352
+assert unique==384
 for data in effect_assets().values():
     assert len(data['frames'])==6
     assert len({pygame.image.tobytes(f,'RGBA') for f in data['frames']})==6
-report['checks'].append('352 unique detailed source frames without clipping, unchanged render pivot, and 18 distinct transparent effect texture frames')
+report['checks'].append(f'384 character frames without clipping, fixed feet alignment, and {sum(len(data["frames"]) for data in effect_assets().values())} distinct transparent effect texture frames')
 report['status']='passed'
 (ROOT/'tests/vfx_qa.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))
