@@ -1,0 +1,678 @@
+[
+  {
+    "direction": "down",
+    "frame": 0,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 0,
+    "bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "031e99c79802c193bbcac75d92ce2ce72cee0010c3d55b65edc7b2f545d5cb6f"
+  },
+  {
+    "direction": "down",
+    "frame": 1,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 1,
+    "bounds": [
+      28,
+      54,
+      81,
+      90
+    ],
+    "sha256": "7b5397d06043115a670d9c943b9e9c9846e6e72935a9db7a91015b1811a60002"
+  },
+  {
+    "direction": "down",
+    "frame": 2,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 2,
+    "bounds": [
+      27,
+      43,
+      84,
+      90
+    ],
+    "sha256": "769468a830cd6026f7ecd31eabed744b74c0186ce080d46153b8b0005c2613b2"
+  },
+  {
+    "direction": "down",
+    "frame": 3,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 3,
+    "bounds": [
+      41,
+      36,
+      86,
+      90
+    ],
+    "sha256": "0ad9b1a1ca1d09b8eff06eea1b481496e636da0e2f0003e4858e699e7b77e69f"
+  },
+  {
+    "direction": "down",
+    "frame": 4,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 4,
+    "bounds": [
+      27,
+      46,
+      82,
+      90
+    ],
+    "sha256": "d79f3b2e461524e5247bb52703b9810df564a2eaf44747023af6dff16e282c6e"
+  },
+  {
+    "direction": "down",
+    "frame": 5,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 5,
+    "bounds": [
+      42,
+      26,
+      85,
+      90
+    ],
+    "sha256": "283d9662c9405a013144339023ea26f508ee7a873f823f1c95b25aa3b876fba8"
+  },
+  {
+    "direction": "down",
+    "frame": 6,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 6,
+    "bounds": [
+      24,
+      42,
+      95,
+      90
+    ],
+    "sha256": "ec3c21b1357e04db33ddd5ff85c31ce5c10bb60c33732b77d92bb7776fd99cf9"
+  },
+  {
+    "direction": "down",
+    "frame": 7,
+    "source": "../VideoMatch/sheets/attack_1.png",
+    "source_column": 3,
+    "bounds": [
+      20,
+      43,
+      79,
+      90
+    ],
+    "sha256": "a930f8181659c841a4c729e30c3a346adc34aa30cfc85d86e2329feb5e297216"
+  },
+  {
+    "direction": "down",
+    "frame": 8,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 3,
+    "bounds": [
+      36,
+      25,
+      87,
+      90
+    ],
+    "sha256": "6738cfa3d507b7a35f2220d3927948ce20566c7aafcd2219e0a2c288254a3776"
+  },
+  {
+    "direction": "down",
+    "frame": 9,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 3,
+    "bounds": [
+      33,
+      44,
+      87,
+      90
+    ],
+    "sha256": "bab2e22c96a0d4ce5d8a0890da7cede320f26c175baf709d29c343675c03e9ea"
+  },
+  {
+    "direction": "down",
+    "frame": 10,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 4,
+    "bounds": [
+      40,
+      27,
+      78,
+      90
+    ],
+    "sha256": "9eb2bd53e8be2b1eb3e18c10bf55a685c527f0c4838e993e3f5e4f96135d6433"
+  },
+  {
+    "direction": "down",
+    "frame": 11,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 4,
+    "bounds": [
+      24,
+      48,
+      94,
+      90
+    ],
+    "sha256": "3823bed7e868ff4d6f26b282cc42359e78d2cd0f247a44322c89bf02af7b6b05"
+  },
+  {
+    "direction": "down",
+    "frame": 12,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 11,
+    "bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "direction": "left",
+    "frame": 0,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 0,
+    "bounds": [
+      45,
+      35,
+      76,
+      89
+    ],
+    "sha256": "793d933aab92e5b6c49b36d3e627de6e83accad30421167d99456aed2565219c"
+  },
+  {
+    "direction": "left",
+    "frame": 1,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 1,
+    "bounds": [
+      30,
+      47,
+      85,
+      89
+    ],
+    "sha256": "4cecabbe2c4361f38adce5dae6a0816bcdece1e7d630ce2077c900a64f640fad"
+  },
+  {
+    "direction": "left",
+    "frame": 2,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 2,
+    "bounds": [
+      8,
+      35,
+      86,
+      89
+    ],
+    "sha256": "b9d350bc93908a4dc328febdce0eb311f215b405302c02ec81b3f66c05f09cf7"
+  },
+  {
+    "direction": "left",
+    "frame": 3,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 3,
+    "bounds": [
+      31,
+      33,
+      89,
+      89
+    ],
+    "sha256": "aa007fbbbcde91a1f1eba5aac86aa4a44b518ff4bb6c6febba4ad55397547ebe"
+  },
+  {
+    "direction": "left",
+    "frame": 4,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 4,
+    "bounds": [
+      21,
+      46,
+      89,
+      89
+    ],
+    "sha256": "08a9b456bb06b6d44b1fa600eacbeb579d487a10630968a476a57654a02b9a02"
+  },
+  {
+    "direction": "left",
+    "frame": 5,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 5,
+    "bounds": [
+      33,
+      28,
+      90,
+      89
+    ],
+    "sha256": "c1be812d96dd96929788c00c0e52b8296765084cdf36cf7a7aa6d22f71a9cce5"
+  },
+  {
+    "direction": "left",
+    "frame": 6,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 6,
+    "bounds": [
+      27,
+      36,
+      87,
+      89
+    ],
+    "sha256": "cdb94cddc0b42dbcdb35e3e34f69a2fde215bd02ae69c994d60d687fda7186c3"
+  },
+  {
+    "direction": "left",
+    "frame": 7,
+    "source": "../VideoMatch/sheets/attack_1.png",
+    "source_column": 3,
+    "bounds": [
+      17,
+      38,
+      87,
+      89
+    ],
+    "sha256": "22f31d43c92ccc24c05da34d2569d600da63cc058e5cdd2666248e1827998fff"
+  },
+  {
+    "direction": "left",
+    "frame": 8,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 3,
+    "bounds": [
+      43,
+      21,
+      85,
+      88
+    ],
+    "sha256": "2c7e3b140d0d6493229286b58a6f6a49b8a8c467c109372b87122b44930fd2db"
+  },
+  {
+    "direction": "left",
+    "frame": 9,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 3,
+    "bounds": [
+      29,
+      44,
+      87,
+      89
+    ],
+    "sha256": "4434b617af1046192b84a35adab5c5ef68afa201e87440df7a6e8c7f3ae0a26a"
+  },
+  {
+    "direction": "left",
+    "frame": 10,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 4,
+    "bounds": [
+      45,
+      19,
+      83,
+      89
+    ],
+    "sha256": "471073f650e5ba6357625b28a79bce0f2cfd4c73ef90266a8c244e0b8e703521"
+  },
+  {
+    "direction": "left",
+    "frame": 11,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 4,
+    "bounds": [
+      22,
+      47,
+      93,
+      89
+    ],
+    "sha256": "7ac01902ba2adcff2d4fb047806ebe2f510bb7478ea8d133c2e4cf4927c8c924"
+  },
+  {
+    "direction": "left",
+    "frame": 12,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 11,
+    "bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "direction": "right",
+    "frame": 0,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 0,
+    "bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "3aef8253eb560956d9b9f805518d2ffd809d1b20469c5a4f4ff7ec96b45ba202"
+  },
+  {
+    "direction": "right",
+    "frame": 1,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 1,
+    "bounds": [
+      38,
+      49,
+      89,
+      90
+    ],
+    "sha256": "e698271852b62a856e86cfa895837153dd352a2bfbe3903b65f59e8383607868"
+  },
+  {
+    "direction": "right",
+    "frame": 2,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 2,
+    "bounds": [
+      33,
+      36,
+      111,
+      90
+    ],
+    "sha256": "9e932ebde8c0f21922f0ff86479f63a278b5ffdffb731ccabdeebfb9c477695c"
+  },
+  {
+    "direction": "right",
+    "frame": 3,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 3,
+    "bounds": [
+      30,
+      34,
+      87,
+      90
+    ],
+    "sha256": "727f789d32dca2ccb30bd967e6d12ce9b0061397a7427e4d5a108310be85ab59"
+  },
+  {
+    "direction": "right",
+    "frame": 4,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 4,
+    "bounds": [
+      31,
+      46,
+      96,
+      90
+    ],
+    "sha256": "ace2c844b5e6cef86d618821a2f2275019cb3c339d7fd478550ae97faa1850e7"
+  },
+  {
+    "direction": "right",
+    "frame": 5,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 5,
+    "bounds": [
+      31,
+      30,
+      89,
+      90
+    ],
+    "sha256": "706fa0806326b73a8ddededa90e37e3012dee6304cf79b9200767798de0cf11b"
+  },
+  {
+    "direction": "right",
+    "frame": 6,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 6,
+    "bounds": [
+      35,
+      37,
+      92,
+      90
+    ],
+    "sha256": "bccc8cbd833f57caf2639340bea2d2d2e7e97f42335cea91528c46d1541aa5c3"
+  },
+  {
+    "direction": "right",
+    "frame": 7,
+    "source": "../VideoMatch/sheets/attack_1.png",
+    "source_column": 3,
+    "bounds": [
+      34,
+      39,
+      104,
+      90
+    ],
+    "sha256": "f8f10ecaae875ae4d49ba7826af93c3ebd1ab5323f40e839e406b2ad94142f56"
+  },
+  {
+    "direction": "right",
+    "frame": 8,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 3,
+    "bounds": [
+      36,
+      20,
+      78,
+      90
+    ],
+    "sha256": "5583a1839b3e9fb9396163872be6fd468dc8238c7753bc92aba17d0bca92b9aa"
+  },
+  {
+    "direction": "right",
+    "frame": 9,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 3,
+    "bounds": [
+      34,
+      44,
+      92,
+      90
+    ],
+    "sha256": "b6c02ebc000f758145f21190d602b8dbf1daabb16266283c7c9b7679b77f0d75"
+  },
+  {
+    "direction": "right",
+    "frame": 10,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 4,
+    "bounds": [
+      39,
+      20,
+      76,
+      91
+    ],
+    "sha256": "8427ae85b68c2026bcaf0e497f831955044009514295272c0538cb87aa06502b"
+  },
+  {
+    "direction": "right",
+    "frame": 11,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 4,
+    "bounds": [
+      28,
+      47,
+      100,
+      90
+    ],
+    "sha256": "5f539efe57df444b9f8aa9feaeb2fb0c53e0b2c44a493f324006bf4789ebb21a"
+  },
+  {
+    "direction": "right",
+    "frame": 12,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 11,
+    "bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "direction": "up",
+    "frame": 0,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 0,
+    "bounds": [
+      42,
+      36,
+      78,
+      89
+    ],
+    "sha256": "3cebb54f211e163083f56b9827e12f45c244834d92549cc92b86ad52cb7ef83f"
+  },
+  {
+    "direction": "up",
+    "frame": 1,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 1,
+    "bounds": [
+      33,
+      48,
+      86,
+      89
+    ],
+    "sha256": "a078c84c1df6a943566b1d8c98815a2f5799587a6e65be187c80ee513104aa31"
+  },
+  {
+    "direction": "up",
+    "frame": 2,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 2,
+    "bounds": [
+      39,
+      28,
+      78,
+      89
+    ],
+    "sha256": "502d5fe902ca9b36adeeb79252d9938a7f89e691aceb5954333067a0c15515c6"
+  },
+  {
+    "direction": "up",
+    "frame": 3,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 3,
+    "bounds": [
+      43,
+      38,
+      74,
+      89
+    ],
+    "sha256": "85018020363a13a75ff2552906dc81acb571f290fd76e1293a9cfce6809e6d75"
+  },
+  {
+    "direction": "up",
+    "frame": 4,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 4,
+    "bounds": [
+      41,
+      47,
+      85,
+      89
+    ],
+    "sha256": "c04073b7ee377e0471f0714fbabbb5016d0f9c4047a3393f2ed237227ff2f850"
+  },
+  {
+    "direction": "up",
+    "frame": 5,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 5,
+    "bounds": [
+      40,
+      28,
+      88,
+      89
+    ],
+    "sha256": "6cf5a0b72c51e7989ea0e40ff8270ed2234c6f0ba4078444bffc96486c2b7fe9"
+  },
+  {
+    "direction": "up",
+    "frame": 6,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 6,
+    "bounds": [
+      31,
+      34,
+      92,
+      89
+    ],
+    "sha256": "70ccbc1e749e20d6619cd98f4d40f532e63a0ffe692796f042fccd250c791bd5"
+  },
+  {
+    "direction": "up",
+    "frame": 7,
+    "source": "../VideoMatch/sheets/attack_1.png",
+    "source_column": 3,
+    "bounds": [
+      35,
+      44,
+      100,
+      90
+    ],
+    "sha256": "0a428c82409a5170aa3ee867242d5d968a7a03e6f609108aa61d04ac27278f39"
+  },
+  {
+    "direction": "up",
+    "frame": 8,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 3,
+    "bounds": [
+      36,
+      16,
+      87,
+      89
+    ],
+    "sha256": "3a2f2d72e511ca15041f00bda6d1a930dfd4c7eba642687f57febb35459c0abc"
+  },
+  {
+    "direction": "up",
+    "frame": 9,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 3,
+    "bounds": [
+      33,
+      41,
+      88,
+      90
+    ],
+    "sha256": "8571844ffd1917953fd88fdeeaf3989b3b6d40541af97dd2caf08759a33b7e13"
+  },
+  {
+    "direction": "up",
+    "frame": 10,
+    "source": "../VideoMatch/sheets/attack_2.png",
+    "source_column": 4,
+    "bounds": [
+      40,
+      20,
+      80,
+      89
+    ],
+    "sha256": "fbf362c49f70201a659d1a9e44cf0690d856b385029e1749e5380a532459d7a9"
+  },
+  {
+    "direction": "up",
+    "frame": 11,
+    "source": "../VideoMatch/sheets/attack_3.png",
+    "source_column": 4,
+    "bounds": [
+      24,
+      46,
+      96,
+      90
+    ],
+    "sha256": "30041c30ad125bf04b895fc52ed9cf2c5345d4d9198c9b785dfea01191a97895"
+  },
+  {
+    "direction": "up",
+    "frame": 12,
+    "source": "../VideoMatch/sheets/sonic_stream.png",
+    "source_column": 11,
+    "bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  }
+]

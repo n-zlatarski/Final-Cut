@@ -1,0 +1,299 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "name": "dash",
+      "direction": "down",
+      "mode": "open",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "down",
+      "mode": "wall",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "left",
+      "mode": "open",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "left",
+      "mode": "wall",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "right",
+      "mode": "open",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "right",
+      "mode": "wall",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "up",
+      "mode": "open",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "up",
+      "mode": "wall",
+      "rate": 30,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 2
+    },
+    {
+      "name": "dash",
+      "direction": "down",
+      "mode": "open",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "down",
+      "mode": "wall",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "left",
+      "mode": "open",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "left",
+      "mode": "wall",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "right",
+      "mode": "open",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "right",
+      "mode": "wall",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "up",
+      "mode": "open",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 2,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "up",
+      "mode": "wall",
+      "rate": 60,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 5
+    },
+    {
+      "name": "dash",
+      "direction": "down",
+      "mode": "open",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 3,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "down",
+      "mode": "wall",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "left",
+      "mode": "open",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 3,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "left",
+      "mode": "wall",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "right",
+      "mode": "open",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 3,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "right",
+      "mode": "wall",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "up",
+      "mode": "open",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst",
+        "blue_dash_stream",
+        "blue_wake"
+      ],
+      "max_afterimages": 3,
+      "paused_frames": 12
+    },
+    {
+      "name": "dash",
+      "direction": "up",
+      "mode": "wall",
+      "rate": 144,
+      "effects": [
+        "blue_dash_burst"
+      ],
+      "max_afterimages": 0,
+      "paused_frames": 12
+    }
+  ],
+  "checks": [
+    "Blue body tint, launch/landing bursts, slipstreams and sampled afterimages in all four directions",
+    "Stationary wall dashes emit no movement trails or afterimages",
+    "Effects expire after the move; simulation-clock hit-stop pauses their lifetimes",
+    "Original dash and dash-attack frame bytes remain unchanged"
+  ]
+}

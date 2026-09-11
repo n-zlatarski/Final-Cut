@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "recording": "Jinwoo_Video_Matched_Abilities.mp4",
+  "duration_seconds": 28.7,
+  "video_frames": 861,
+  "video_size": [
+    1280,
+    880
+  ],
+  "video_fps": 30,
+  "source_game_fps": 60,
+  "source": "Actual stage loop, native pixel crop, no enemies, scripted controls, 85ms hit-stop injected once per move",
+  "clips": 21,
+  "visual_review": [
+    "Three new auto-attacks, separate moving variants and all four Q/E directions reviewed",
+    "Q red ring, elevated turn and grounded crimson eruptions remain within frame",
+    "E backstep, released dagger and red-orange ground blast remain within frame",
+    "Packed right-facing poses inspected after final one-pixel alignment correction"
+  ],
+  "related_reports": [
+    "jinwoo_qa.json",
+    "jinwoo_attack_qa.json",
+    "jinwoo_interruption_qa.json",
+    "jinwoo_gameplay_qa.json",
+    "jinwoo_idle_qa.json",
+    "jinwoo_alignment_qa.json",
+    "jinwoo_attack_preservation_qa.json"
+  ],
+  "limitations": "Automated SDL dummy playback; desktop display and live audio not tested in this environment"
+}

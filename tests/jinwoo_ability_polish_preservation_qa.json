@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "baseline_version": 12,
+  "baseline_files": 600,
+  "protected_files_unchanged": 504,
+  "scope": "All earlier assets, shared Animator, enemy behavior and Igris configuration/effects",
+  "missing_files": []
+}

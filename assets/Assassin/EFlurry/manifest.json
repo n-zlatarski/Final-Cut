@@ -1,0 +1,501 @@
+{
+  "version": 3,
+  "character": "Sung Jinwoo",
+  "cell_size": [
+    120,
+    120
+  ],
+  "pivot": [
+    60,
+    88
+  ],
+  "standing_height_px": 54,
+  "sole_y_by_direction": {
+    "down": 87,
+    "left": 86,
+    "right": 87,
+    "up": 87
+  },
+  "display_size": [
+    240,
+    240
+  ],
+  "draw_offset": [
+    -10,
+    -12
+  ],
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "palette": [
+    "#080b12",
+    "#10121d",
+    "#171b2b",
+    "#22273c",
+    "#30364d",
+    "#444c64",
+    "#5c6680",
+    "#79859a",
+    "#929caf",
+    "#b5bac7",
+    "#d6d9df",
+    "#f1efeb",
+    "#4a2530",
+    "#703543",
+    "#985347",
+    "#bd7759",
+    "#e4a47b",
+    "#f8c89a",
+    "#ffe0b1",
+    "#482126",
+    "#711e2e",
+    "#9d2236",
+    "#cb2b41",
+    "#ee4352",
+    "#ff746c",
+    "#715235",
+    "#a37a49",
+    "#d0a26b",
+    "#15568d",
+    "#238fc2",
+    "#48cde6",
+    "#bbf4fb"
+  ],
+  "animations": {
+    "attack_1": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/attack_1.png",
+      "frames_per_direction": 6,
+      "source": "attack1.png",
+      "scale_by_direction": {
+        "down": 0.31736526946107785,
+        "left": 0.3192771084337349,
+        "right": 0.3192771084337349,
+        "up": 0.3045977011494253
+      }
+    },
+    "attack_2": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/attack_2.png",
+      "frames_per_direction": 6,
+      "source": "attack2.png",
+      "scale_by_direction": {
+        "down": 0.31736526946107785,
+        "left": 0.3192771084337349,
+        "right": 0.3192771084337349,
+        "up": 0.3192771084337349
+      },
+      "pose_corrections": {
+        "up:1": 3,
+        "up:2": 4
+      }
+    },
+    "attack_3": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/attack_3.png",
+      "frames_per_direction": 6,
+      "source": "attack3.png",
+      "scale_by_direction": {
+        "down": 0.31547619047619047,
+        "left": 0.3192771084337349,
+        "right": 0.3192771084337349,
+        "up": 0.3192771084337349
+      }
+    },
+    "walk_attack_1": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/walk_attack_1.png",
+      "frames_per_direction": 6,
+      "source": "moving1.png",
+      "scale_by_direction": {
+        "down": 0.3063583815028902,
+        "left": 0.3045977011494253,
+        "right": 0.30113636363636365,
+        "up": 0.2896174863387978
+      }
+    },
+    "walk_attack_2": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/walk_attack_2.png",
+      "frames_per_direction": 6,
+      "source": "moving2.png",
+      "scale_by_direction": {
+        "down": 0.33125,
+        "left": 0.3063583815028902,
+        "right": 0.31547619047619047,
+        "up": 0.3063583815028902
+      }
+    },
+    "walk_attack_3": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/walk_attack_3.png",
+      "frames_per_direction": 6,
+      "source": "moving3.png",
+      "scale_by_direction": {
+        "down": 0.29775280898876405,
+        "left": 0.3028571428571429,
+        "right": 0.3045977011494253,
+        "up": 0.2994350282485876
+      }
+    },
+    "deaths_dance": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/deaths_dance.png",
+      "frames_per_direction": 12,
+      "scale_by_direction": {
+        "down": 0.2264957264957265,
+        "left": 0.22268907563025211,
+        "right": 0.22268907563025211,
+        "up": 0.22268907563025211
+      }
+    },
+    "sonic_stream": {
+      "sheet": "sheets/sonic_stream.png",
+      "frames_per_direction": 13,
+      "scale_by_direction": {
+        "down": 0.22083333333333333,
+        "left": 0.22362869198312235,
+        "right": 0.2245762711864407,
+        "up": 0.2217573221757322
+      },
+      "pose_sources": [
+        {
+          "animation": "sonic_stream",
+          "column": 0
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 1
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 2
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 3
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 4
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 5
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 6
+        },
+        {
+          "animation": "attack_1",
+          "column": 3
+        },
+        {
+          "animation": "attack_2",
+          "column": 3
+        },
+        {
+          "animation": "attack_3",
+          "column": 3
+        },
+        {
+          "animation": "attack_2",
+          "column": 4
+        },
+        {
+          "animation": "attack_3",
+          "column": 4
+        },
+        {
+          "animation": "sonic_stream",
+          "column": 11
+        }
+      ]
+    },
+    "dash_attack": {
+      "sheet": "../AbilityPolish/../VideoMatch/sheets/dash_attack.png",
+      "frames_per_direction": 6,
+      "scale_by_direction": {
+        "down": 0.14713896457765668,
+        "left": 0.29508196721311475,
+        "right": 0.29508196721311475,
+        "up": 0.29508196721311475
+      },
+      "sources": {
+        "down": "dash_down_correction.png",
+        "left": "dash_attack.png",
+        "right": "dash_attack.png",
+        "up": "dash_attack.png"
+      }
+    }
+  },
+  "vfx": {
+    "quick_arc": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/quick_arc.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "cross_slash": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/cross_slash.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "lunge_streak": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/lunge_streak.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "dance_cut": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/dance_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "echo_cut": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/echo_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "contact": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/contact.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "blue_wake": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/blue_wake.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "stabbing_trail": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/stabbing_trail.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "piercing_wave": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/piercing_wave.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "sweep_cut": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/sweep_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "rising_cut": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/rising_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "cross_finish": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/cross_finish.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "flame_cut": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/flame_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "spin_ring": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/spin_ring.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": false,
+      "scale": 3
+    },
+    "red_eruption": {
+      "sheet": "../AbilityPolish/../VideoMatch/VFX/red_eruption.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        89
+      ],
+      "directional": false,
+      "scale": 3
+    },
+    "blue_dash_burst": {
+      "sheet": "../AbilityPolish/VFX/blue_dash_burst.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        77
+      ],
+      "directional": false,
+      "scale": 2,
+      "ground": true
+    },
+    "blue_dash_stream": {
+      "sheet": "../AbilityPolish/VFX/blue_dash_stream.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": true,
+      "scale": 2,
+      "ground": false
+    },
+    "blue_dash_cut": {
+      "sheet": "../AbilityPolish/VFX/blue_dash_cut.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": true,
+      "scale": 2,
+      "ground": false
+    },
+    "blue_dash_sparks": {
+      "sheet": "../AbilityPolish/VFX/blue_dash_sparks.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": true,
+      "scale": 1,
+      "ground": false
+    }
+  },
+  "aliases": {
+    "walk_attack": "walk_attack_1",
+    "run_attack": "walk_attack_1"
+  },
+  "q_motion": "advancing spin, aerial turn, one centered eruption 96px ahead of landing",
+  "e_motion": "short forward entry, ten rapid slashes, larger cross-cut finisher",
+  "source_sha256": {},
+  "previous_bank": "../AbilityPolish",
+  "blue_dash_palette": [
+    "071c52",
+    "103798",
+    "155ee8",
+    "188eff",
+    "28c9ff",
+    "8defff",
+    "edffff"
+  ],
+  "previous_source_manifest": "../AbilityPolish/manifest.json"
+}

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "revision": "Ten-cut E flurry with paired red trails and cross-slash finisher",
+  "checks": {
+    "loaded_character_frames": 448,
+    "animator_playback_cases": 192,
+    "real_attack_cases": 144,
+    "dash_wall_cases": 24,
+    "frame_rates": [30, 60, 144],
+    "directions": ["down", "left", "right", "up"],
+    "interruption_checks": 5,
+    "protected_files_unchanged_from_version_13": 514,
+    "E_poses_copied_without_changes": 52,
+    "E_poses_per_direction": 13,
+    "E_slashes_per_use": 10,
+    "E_effect_layers_per_use": 21,
+    "E_duration_ms_excluding_hitstop": 925,
+    "E_contact_times_ms": [140, 205, 270, 335, 400, 465, 530, 595, 660, 725],
+    "Q_eruptions_per_use": 1,
+    "Q_eruption_distance_forward_px": 96
+  },
+  "preview": {
+    "file": "Jinwoo_E_Flurry.mp4",
+    "seconds": 5.333333,
+    "frames": 160,
+    "fps": 30,
+    "resolution": [1280, 880],
+    "source": "Actual stage loop at 60 FPS with native game pixels; one E cast in each direction; scripted controls in an empty room; one injected 85 ms hit-stop per cast"
+  },
+  "validation": "SDL dummy display/audio; scripted combat covers campaign, menus, all boss phases, defeat and retry. Directional preview frames inspected visually. Desktop display and live audio were not tested.",
+  "reports": [
+    "jinwoo_qa.json",
+    "jinwoo_attack_qa.json",
+    "jinwoo_blue_dash_qa.json",
+    "jinwoo_interruption_qa.json",
+    "jinwoo_gameplay_qa.json",
+    "jinwoo_e_flurry_preservation_qa.json"
+  ]
+}

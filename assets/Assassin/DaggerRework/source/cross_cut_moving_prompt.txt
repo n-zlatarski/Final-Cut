@@ -1,0 +1,22 @@
+Use case: stylized-concept.
+Asset: actual production character animation sprite sheet for a 2D pixel RPG, not concept illustration.
+Reference image role: EXACT APPROVED JINWOO MODEL. Preserve this character's small narrow head, tall slim silhouette, short spiky black hair, open ankle-length navy coat, pale gray shirt, narrow black trousers, pale boot soles, and TWO curved CRIMSON RED daggers. The head including hair is only about one fifth of standing height. Slim long legs, narrow shoulders, slim arms, adult proportions. Every dagger has a visible skin-colored gripping hand. Both hands remain attached to arms. Coat tails stay two narrow panels. Do not inflate the head, body or coat.
+Style: the same coarse pixel density as the reference, approximately 54 native pixels from hair to ground. Clean 16-bit game pixel clusters. Black outline; only 3 navy shades, 2 gray shirt shades, 2 skin shades, and 3 red blade shades. No painted detail, texture, tiny folds, gradients, glow or antialiasing. Precise restrained shapes. Do not turn him into a chibi character.
+Backdrop: flat bright green #00FF00, no scenery, no shadow, no text, no labels, no lines, no VFX, no motion trails. Show just body and physical daggers.
+Layout: EXACTLY EIGHT columns and FOUR rows, 32 complete figures in a uniform grid. Every cell has equal dimensions and generous clear margins. Same standing body scale and shared foot ground line throughout. Keep dagger tips inside their own cells. Do not fill each cell by enlarging crouched poses.
+ROW 1: DOWN, front-facing toward viewer, face and gray shirt visible. Arms strike toward viewer with foreshortening. Never show his back.
+ROW 2: LEFT, true left-facing profile, all faces, toes and strikes aimed to image LEFT throughout.
+ROW 3: RIGHT, true right-facing profile, all faces, toes and strikes aimed to image RIGHT throughout.
+ROW 4: UP, back-facing away from viewer. Back of head and navy coat visible in ALL frames. NO face, NO gray shirt; arms strike away with foreshortening. No sideways figures.
+
+Animation: LMB 2 — CROSS CUT. Two short crossing dagger cuts, wrists loading at opposite sides of the waist then snapping outward. Eight chronological poses in EACH direction:
+1 reference ready stance, both daggers low.
+2 lead foot pivots inward, both elbows bend; daggers draw toward the center of the chest without merging.
+3 forearms cross at different heights, two separate red blades pointing outward in opposing diagonals.
+4 shoulders and hips begin to unwind, arms opening in a short crossing slash.
+5 CONTACT: both arms snap apart into two strong compact diagonals in front of the body, a readable dual-dagger X cut. Exactly two daggers, each in its own visible hand.
+6 follow-through with one blade high near the shoulder and one low beside the thigh, hips rotating back.
+7 arms lower, lead foot recovers.
+8 reference low-dagger guard.
+Keep the body slender, feet grounded, fast compact knife technique, no big sword-wielding poses.
+MOVING VARIANT: Retain these eight upper-body attack phases, but use advancing footwork throughout: planted lead foot, passing knees, opposite lead foot, braking contact step, and recovery step. The legs must visibly alternate as the actor advances; no standing feet sliding over the ground. Keep each figure rooted at its cell center; actual world translation is handled by the game. Do not move the figures between cells to fake animation.

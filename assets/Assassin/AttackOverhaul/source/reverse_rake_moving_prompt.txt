@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: production 2D RPG pixel-art character animation sprite atlas.
+Input image role: exact approved Sung Jinwoo character-model and pixel-style reference. Make NEW attack joint poses using this same character.
+Character invariants: slim adult build, short spiky black hair, simple long open dark navy-black coat, plain pale grey shirt, black slim trousers, small pale shoe soles. TWO matching short curved crimson-red daggers, each attached to one clearly visible skin-colored gripping hand with a short dark handle. No extra weapon, no missing hand, no body redesign.
+Style: crisp chunky 16-bit pixel art that reads like a character only about 54 native pixels tall. Broad flat pixel clusters, black outline, only three dark navy coat shades, two skin shades, restrained crimson blade highlights. Simplify the clothing and hair exactly like the reference. No fine fabric texture, no tiny folds, no smooth shading, no realistic rendering, no glow, no antialiasing. Keep adult proportions; do not enlarge the head.
+Flat pure bright green #00FF00 background. No shadows, text, labels, borders, grid lines, scenery, speed lines or effects. Effects will be separate game assets.
+EXACTLY SIX equal-width columns and THREE equal-height rows: 18 separate full-body figures. Each row is one six-pose sequence. Row 1 is RIGHT-facing profile, all attacks toward image right. Row 2 is DOWN/front view facing the viewer, shoulders square to camera, attacks foreshortened toward the viewer. Row 3 is UP/back view: back of head and coat to camera, no face or shirt, attacks away from viewer. Never replace a front/back attack with a sideways profile.
+Keep the same body scale, a stable ground-contact baseline, and a consistent stance center through each row. Actual changing arm, torso and leg poses; no duplicated pose merely shifted. Generous empty margins around all coat tails and dagger tips. Every figure fully contained.
+
+Animation: MOVING VERSION OF  LMB COMBO 2 — REVERSE RAKE. A high-to-low diagonal cut with the OTHER hand, clearly different from the first low horizontal cut. Six chronological columns:
+1. Neutral low-dagger guard.
+2. The offhand dagger lifts beside and behind the head, opposite dagger protects the low waist, rear knee bent.
+3. Strong high chamber with the lifted curved red dagger above the shoulder, torso rotated and both feet planted.
+4. CONTACT: offhand arm cuts decisively downward across the front of the torso toward the enemy, the blade ends low and forward. Other dagger guards near the ribs. A clear descending slice, no stab.
+5. Bent knees absorb the follow-through, offhand blade finishes beside the opposite knee, coat tails settle.
+6. Recover to low-dagger guard.
+Always two short curved red daggers and attached gripping hands. Same dark coat, pale shirt and simple pixel clusters. The UP row must show the back of the coat throughout, and DOWN row the front shirt; a small combat torso twist is fine, no sideways replacement.
+
+Input image 2 is the standing version of this exact move. Keep its six upper-body dagger phases, hair, clothes and pixel simplicity, but redraw the LEGS and weight transfer as advancing combat footwork. Columns 1 and 2 take a controlled forward step and pass the rear foot, column 3 brakes into the loaded stance, column 4 plants a wide attacking step, column 5 brings the trailing leg forward, column 6 settles into a forward step with daggers lowered. Distinct left/right leg poses, no planted standing legs sliding through the whole sequence. Row 1 travels right, row 2 down toward camera, row 3 up away from camera. Front/back remain front/back. Preserve one stable projected ground plane and body scale; world travel will be handled in code. No painted trails or shadows.

@@ -1,0 +1,27 @@
+Use case: stylized-concept.
+Asset type: production 2D RPG pixel-art character animation sprite atlas.
+Input image role: exact approved Sung Jinwoo character-model and pixel-style reference. Make NEW attack joint poses using this same character.
+Character invariants: slim adult build, short spiky black hair, simple long open dark navy-black coat, plain pale grey shirt, black slim trousers, small pale shoe soles. TWO matching short curved crimson-red daggers, each attached to one clearly visible skin-colored gripping hand with a short dark handle. No extra weapon, no missing hand, no body redesign.
+Style: crisp chunky 16-bit pixel art that reads like a character only about 54 native pixels tall. Broad flat pixel clusters, black outline, only three dark navy coat shades, two skin shades, restrained crimson blade highlights. Simplify the clothing and hair exactly like the reference. No fine fabric texture, no tiny folds, no smooth shading, no realistic rendering, no glow, no antialiasing. Keep adult proportions; do not enlarge the head.
+Flat pure bright green #00FF00 background. No shadows, text, labels, borders, grid lines, scenery, speed lines or effects. Effects will be separate game assets.
+
+EXACT GRID: SIX columns by SIX rows = 36 separate full-body figures. Each direction has TWELVE chronological poses wrapped across TWO rows of six.
+Rows 1 and 2: RIGHT-facing profile; poses 1–6 then 7–12. Move and strike to image RIGHT.
+Rows 3 and 4: DOWN/front, face and shirt toward the viewer; poses 1–6 then 7–12. Move and strike toward viewer with true foreshortening.
+Rows 5 and 6: UP/back, back of head and coat toward viewer, no face or shirt; poses 1–6 then 7–12. Move and strike away from viewer, never turn these into side-facing poses.
+Equal cell sizes, same body scale throughout, fully contained dagger tips and coat tails, generous margins, feet on each row's shared ground line. No grids or labels printed on image. Distinct actual joint poses, never a translated duplicate. Keep 36 figures, no omissions.
+Animation: Q — DEATH'S DANCE, completely rebuilt as three grounded advancing cuts and a double-dagger ground plunge. It should look like a nimble shadow hunter with planted footwork, not a flying pinwheel. Keep exactly two red daggers held in physical hands.
+The TWELVE sequential poses for EACH direction:
+1 low-dagger ready guard.
+2 low coiled forward step, daggers loaded behind the hips.
+3 first sweeping low cut while stepping forward, lead dagger forward, offhand guards.
+4 torso turns back to load the other hand, bent knees and distinct passing leg pose.
+5 second reverse rising cut, offhand blade at shoulder level, other dagger near hip.
+6 both dagger hands load back near the shoulders, lead foot preparing to plant.
+7 third powerful scissoring cut forward with both separate blades, wide braking stance.
+8 both daggers raised overhead in two distinct hands, both feet firmly planted, no travel.
+9 kneeling double-dagger ground stab: both hands thrust down, both red tips touch the ground in front of the knees.
+10 low kneeling hold, arms absorbing the impact, coat settling.
+11 retrieve both daggers and rise halfway, one foot braces under the body.
+12 recover to low-dagger neutral guard.
+These poses will be synchronized with three blade contacts followed by three advancing ground bursts; draw ONLY the character and actual daggers, absolutely no burst, trail, aura or particles baked into the sheet. Different choreography from normal attacks, same simple coat and pixel density.

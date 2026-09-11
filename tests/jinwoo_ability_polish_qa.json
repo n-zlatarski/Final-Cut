@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "revision": "Q/E and blue dash fixes",
+  "checks": {
+    "animation_frames": 428,
+    "animator_playback_cases": 192,
+    "real_attack_cases": 144,
+    "dash_wall_cases": 24,
+    "frame_rates": [
+      30,
+      60,
+      144
+    ],
+    "interruption_checks": 5,
+    "earlier_assets_and_enemy_files_unchanged": 504,
+    "E_poses_copied_without_changes": 32,
+    "Q_eruptions_per_use": 1,
+    "Q_eruption_distance_forward_px": 96,
+    "E_slashes_per_use": 5,
+    "E_duration_ms_excluding_hitstop": 680
+  },
+  "preview": {
+    "file": "Jinwoo_Q_E_Blue_Dash_Fixes.mp4",
+    "seconds": 25.5,
+    "frames": 765,
+    "fps": 30,
+    "resolution": [
+      1280,
+      880
+    ],
+    "source": "Actual stage loop at 60 FPS; scripted controls in an empty room; attack segment injects one 85ms hit-stop per move"
+  },
+  "validation": "SDL dummy display/audio; automated combat includes campaign, menus, boss phases, defeat and retry. Desktop display and live audio were not tested.",
+  "reports": [
+    "jinwoo_qa.json",
+    "jinwoo_attack_qa.json",
+    "jinwoo_blue_dash_qa.json",
+    "jinwoo_interruption_qa.json",
+    "jinwoo_gameplay_qa.json",
+    "jinwoo_ability_polish_preservation_qa.json"
+  ]
+}

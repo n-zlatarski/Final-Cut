@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "baseline_version": 13,
+  "protected_files_unchanged": 514,
+  "missing_files": [],
+  "new_E_frames": 52,
+  "checks": [
+    "Every pre-existing asset and all enemy/Animator code unchanged",
+    "All 52 selected E poses match their source bytes and approved ground alignment"
+  ]
+}

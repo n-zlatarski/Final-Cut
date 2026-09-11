@@ -1,0 +1,17 @@
+Use case: stylized-concept.
+Asset type: production 2D RPG pixel-art character animation sprite atlas.
+Input image role: exact approved Sung Jinwoo character-model and pixel-style reference. Make NEW attack joint poses using this same character.
+Character invariants: slim adult build, short spiky black hair, simple long open dark navy-black coat, plain pale grey shirt, black slim trousers, small pale shoe soles. TWO matching short curved crimson-red daggers, each attached to one clearly visible skin-colored gripping hand with a short dark handle. No extra weapon, no missing hand, no body redesign.
+Style: crisp chunky 16-bit pixel art that reads like a character only about 54 native pixels tall. Broad flat pixel clusters, black outline, only three dark navy coat shades, two skin shades, restrained crimson blade highlights. Simplify the clothing and hair exactly like the reference. No fine fabric texture, no tiny folds, no smooth shading, no realistic rendering, no glow, no antialiasing. Keep adult proportions; do not enlarge the head.
+Flat pure bright green #00FF00 background. No shadows, text, labels, borders, grid lines, scenery, speed lines or effects. Effects will be separate game assets.
+EXACTLY SIX equal-width columns and THREE equal-height rows: 18 separate full-body figures. Each row is one six-pose sequence. Row 1 is RIGHT-facing profile, all attacks toward image right. Row 2 is DOWN/front view facing the viewer, shoulders square to camera, attacks foreshortened toward the viewer. Row 3 is UP/back view: back of head and coat to camera, no face or shirt, attacks away from viewer. Never replace a front/back attack with a sideways profile.
+Keep the same body scale, a stable ground-contact baseline, and a consistent stance center through each row. Actual changing arm, torso and leg poses; no duplicated pose merely shifted. Generous empty margins around all coat tails and dagger tips. Every figure fully contained.
+
+Animation: LMB COMBO 3 — TWIN-FANG PLUNGE. A powerful compact overhead double-dagger finisher with a lowered landing stance, distinctly different from a horizontal cut or crossed X pose. Six chronological columns:
+1. Neutral low-dagger guard.
+2. Knees compress as both hands draw their short red curved daggers up toward the shoulders.
+3. Both daggers held overhead in two distinct visible hands, elbows bent, torso tall with a small heel lift, preparing to drive downward. NO large jump.
+4. CONTACT: forceful forward-and-down double-dagger strike into the facing direction, deep low lunge, front knee bent, both hands forward and low, both short red blades distinct. Strike an imaginary enemy at waist level, not the floor.
+5. Low follow-through with both dagger hands retracting beside the front hip, coat tail swinging.
+6. Return toward neutral guard.
+Maintain stable body proportions and a common ground plane. Front and back views are foreshortened directly toward/away from camera. No painted VFX, duplicate limbs or hidden detached weapons.

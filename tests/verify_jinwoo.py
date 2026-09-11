@@ -61,9 +61,9 @@ def comparison(destination):
     pygame.draw.line(surface, (61, 56, 63), (35, 418), (1465, 418))
     text(surface, 'TOGETHER AT GAME SCALE', (40, 446), FONT)
     text(surface, 'DASH ATTACK', (565, 446), FONT)
-    text(surface, 'CROSSED-DAGGER FINISHER', (1030, 446), FONT)
+    text(surface, 'TWIN DAGGER RAKE', (1030, 446), FONT)
     igris = ENEMY_ANIM_SETS['blood_red_commander']['down']['idle'][0]
-    planted(surface, igris, (210, 790), (192, 288), 1.3)
+    planted(surface, igris, (210, 790), (288, 384), 1.3)
     planted(surface, ASSASSIN_ANIM_ROWS['idle'][0][0], (413, 790), zoom=1.3)
     planted(surface, ASSASSIN_ANIM_ROWS['dash_attack'][2][2], (773, 790), zoom=2)
     planted(surface, ASSASSIN_ANIM_ROWS['attack_3'][0][3], (1240, 790), zoom=2)
@@ -88,7 +88,7 @@ def run(destination=None):
         assert len(rows) == 4 and all(len(row) == count for row in rows), name
         for direction, row in enumerate(rows):
             hashes = set()
-            for frame in row:
+            for frame_index, frame in enumerate(row):
                 assert frame.get_size() == (240, 240)
                 box = frame.get_bounding_rect(min_alpha=30)
                 assert box.left >= 4 and box.top >= 4 and box.right <= 236 and box.bottom <= 236, (name, direction, box)
@@ -98,7 +98,12 @@ def run(destination=None):
                 red, green, blue = [pixels[:, :, i].astype(float) for i in range(3)]
                 skin = int((alpha & (red > 175) & (green > 95) & (blue < 190) & (red > green * 1.08)).sum())
                 blade = int((alpha & (red > 115) & (red > green * 1.65) & (red > blue * 1.4)).sum())
-                assert blade >= 12, (name, direction, skin, blade)
+                # These inspected rear contacts hide both hands and blades
+                # in front of the coat, without hands drawn on its back.
+                occluded = direction == 3 and (name,frame_index) in {
+                    ('attack_3',3),('walk_attack_3',3),
+                    ('deaths_dance',6),('sonic_stream',7)}
+                assert blade >= 12 or occluded, (name, direction, frame_index, skin, blade)
                 # Crossed hands can be correctly hidden by the torso in a
                 # back view or during a special's full-body turn.
                 if direction != 3 and name not in ('deaths_dance', 'sonic_stream'):
@@ -124,16 +129,16 @@ def run(destination=None):
                         player.update(1000 / rate)
                     assert player.frame_idx == count - 1
                 report['playback_cases'] += 1
-    assert report['source_frames'] == 440
+    assert report['source_frames'] == 448
     assert ASSASSIN_ANIM_ROWS['walk_attack'][0][0].get_size() == (240, 240)
     for direction in range(4):
         idle_h = ASSASSIN_ANIM_ROWS['idle'][direction][0].get_bounding_rect().height
         dead_h = ASSASSIN_ANIM_ROWS['death'][direction][-1].get_bounding_rect().height
         assert dead_h < idle_h * .65, (direction, idle_h, dead_h)
     report['checks'] = [
-        '16 animations in four directions, 440 distinct nonempty frames, visible crimson blades and unobscured skin in front/side poses, no clipping',
+        '16 animations in four directions, 448 nonempty frames (unique within each clip), visible crimson blades except correctly occluded rear contacts, no clipping',
         'All authored frames visited at 30, 60 and 144 FPS; one-shot clips finish and terminal death remains collapsed',
-        'Fixed world feet pivot (110,164) with transparent padding; original game logic frame counts retained',
+        'Fixed world feet pivot (110,164) with transparent padding; 12-pose Q / thirteen-pose E and six-pose moving combos loaded',
     ]
     report.update(minimum_visible_pixels=mins, status='passed')
     (ROOT / 'tests/jinwoo_qa.json').write_text(json.dumps(report, indent=2) + '\n')

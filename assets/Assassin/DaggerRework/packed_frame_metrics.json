@@ -1,0 +1,3842 @@
+[
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "031e99c79802c193bbcac75d92ce2ce72cee0010c3d55b65edc7b2f545d5cb6f"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      37,
+      83,
+      90
+    ],
+    "sha256": "61b3be78b65ddf9450db1b287ad6053f11c0241846c9b1a27188967b5df58d42"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      44,
+      37,
+      83,
+      90
+    ],
+    "sha256": "9877f575bea731a456717677c0351157c2749cc54b781e7885d98d425a6b957a"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      43,
+      36,
+      88,
+      90
+    ],
+    "sha256": "093402f2cab491d8df2edcba72a242172ff05d8985635c1b0dd2cc0c8980e774"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      42,
+      36,
+      85,
+      90
+    ],
+    "sha256": "1e01e07de34b169476462f55195f7cb01c0b2fe0911b04ecd183b592e3329b79"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      43,
+      38,
+      96,
+      90
+    ],
+    "sha256": "4ac0654182bcb4eba782a144f2ff100b59be71d2ff8837f5f561c49106b29f69"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      41,
+      37,
+      83,
+      90
+    ],
+    "sha256": "cb15a2588cb7d512afc675718dd552a1c2de24e84e63d95c667c7855a2386e60"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      45,
+      35,
+      76,
+      89
+    ],
+    "sha256": "793d933aab92e5b6c49b36d3e627de6e83accad30421167d99456aed2565219c"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      38,
+      81,
+      89
+    ],
+    "sha256": "0b6c4b01e9d87cda10c371c45023a031721f90c246beb6066a45f42424634f8d"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      41,
+      38,
+      76,
+      89
+    ],
+    "sha256": "a54464cb88b706ee6bbf8144b1042257c84e14fb54bd58048fe198af127fa7f9"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      24,
+      36,
+      82,
+      89
+    ],
+    "sha256": "f2c9926909c24c167224ce9bb52df4dd48232f264a422193a8eac74a23ad7830"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      29,
+      37,
+      82,
+      89
+    ],
+    "sha256": "ef15811b9fcc865f8747de5d3abb78e6c734b7a0535df7ed6af27cf1588ed68b"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      23,
+      38,
+      79,
+      89
+    ],
+    "sha256": "6ea0ca6273952d722ebed30b9847ec8f0c5192247357a15fa36c015b6bf386b2"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      42,
+      38,
+      79,
+      89
+    ],
+    "sha256": "31149cdc6a79a70edb7589acfb914bc45554680dc9f544dfe4b7599bdcfb3854"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "3aef8253eb560956d9b9f805518d2ffd809d1b20469c5a4f4ff7ec96b45ba202"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      38,
+      80,
+      90
+    ],
+    "sha256": "76850a4b07d1de97447df6d48f6b73961780e56c973dffa379bbb30fbdbb3c10"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      45,
+      38,
+      79,
+      90
+    ],
+    "sha256": "4c28406fa0930e9ce6eb3b693c488078d34f4d43cb2338152e2b209b44131913"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      39,
+      36,
+      93,
+      90
+    ],
+    "sha256": "b55de7b3d4e5ff731190a5c8a0bef8ff68ab14c35948e26a6fd1ae03b5f0f5aa"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      39,
+      35,
+      91,
+      90
+    ],
+    "sha256": "73cdcd1902bc39fa240e5e6a2e4e52921f7ea9125f25662afc1aaa318617fd08"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      41,
+      37,
+      98,
+      90
+    ],
+    "sha256": "f5334b8122a18a7f709c362f7913e34e3d525de53093d221d9f131b33ae29697"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      41,
+      38,
+      78,
+      90
+    ],
+    "sha256": "e8fa837d4c24219153cbe6ef19c8a7caa9bf8233012ae43415d5c87b8dff6b25"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      42,
+      36,
+      78,
+      89
+    ],
+    "sha256": "3cebb54f211e163083f56b9827e12f45c244834d92549cc92b86ad52cb7ef83f"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      37,
+      37,
+      78,
+      89
+    ],
+    "sha256": "250881be0ee81572436154ac976fe44f48a9e92e1b66f1d0022394dbda179efe"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      41,
+      36,
+      76,
+      89
+    ],
+    "sha256": "86debb8e91e543f47780a80a8423887ae25c9d0e74b37df4503469a933ad1b76"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      36,
+      35,
+      88,
+      89
+    ],
+    "sha256": "59c24855141ffdce1a6c66b6a749aba002de79c90c7a2b11dbeb6c4a6ec48a65"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      39,
+      34,
+      85,
+      89
+    ],
+    "sha256": "3609a74900763353ffa05ef97e7c6eea27f81374cad15bfbf2940d0250154647"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      24,
+      36,
+      79,
+      89
+    ],
+    "sha256": "8b9ffc2599c23cbb1fe6c163151fc9d78bbca3e96ed33db43449c1ae7a4373f5"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      37,
+      84,
+      89
+    ],
+    "sha256": "529015c1750a5e139f74e82a34de7300adab4bda817299cff837b1a7a87b7768"
+  },
+  {
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "031e99c79802c193bbcac75d92ce2ce72cee0010c3d55b65edc7b2f545d5cb6f"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      41,
+      34,
+      80,
+      90
+    ],
+    "sha256": "bbf03fe2cfb44f845ea2b9e0fe770f3a93739c6229d854aa0f425629a566c2cc"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "dfd1de1d906eb162e275c327e5f4b66875924ac1e25a3972a7b9013c6bb98c60"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      35,
+      35,
+      79,
+      90
+    ],
+    "sha256": "a347f4b8d99bade4115c54b3373b725c98f9469e61a1436772b7666a09701d56"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      35,
+      34,
+      85,
+      90
+    ],
+    "sha256": "6f2410697779d4b67918b100444ff68137614f869072ad4b50b4446b6b1588c0"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      43,
+      35,
+      90,
+      90
+    ],
+    "sha256": "5ef4d823f8c923be04b9472f58ecdcd728d5d508d705dbaa4bf3da16b7da378e"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      33,
+      35,
+      86,
+      90
+    ],
+    "sha256": "556c484df6a3f1eb33a8e3cba2bd8e5841d092db6d0325a5d88b398323f42ac1"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      45,
+      35,
+      76,
+      89
+    ],
+    "sha256": "793d933aab92e5b6c49b36d3e627de6e83accad30421167d99456aed2565219c"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      38,
+      34,
+      77,
+      89
+    ],
+    "sha256": "24680ebbac1d272d9715de9b0540bc39d490b60af5a2ac09aaf9662ddca4f5c0"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      39,
+      34,
+      78,
+      89
+    ],
+    "sha256": "a147e6c02b89c1d2b34808147b21f1fb4ada14a79c70deec255439b8e159949d"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      29,
+      34,
+      79,
+      89
+    ],
+    "sha256": "01220e03db376c1e491ce7d43d37f279649a770fd0ef7f54fe33c254b866118c"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      30,
+      34,
+      79,
+      89
+    ],
+    "sha256": "3b0912132ed06b6e3ad96ed1dd4b55d93f89edb84905f074cf5f98f7e4feef6e"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      28,
+      34,
+      77,
+      89
+    ],
+    "sha256": "2594f60ce1ec1c0cb0ff2fc4f556169dc51f82f708075475e9afab38f7b6e60e"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      33,
+      34,
+      78,
+      89
+    ],
+    "sha256": "cc55dcde6108edf7a7bdbf91b886802f69adfa7c7831e1401f7b3b62857d19e8"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "3aef8253eb560956d9b9f805518d2ffd809d1b20469c5a4f4ff7ec96b45ba202"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      43,
+      34,
+      83,
+      90
+    ],
+    "sha256": "3341a6ae6c1b733a7127197239956db8d376ac6ad52d87c4449a4888797351db"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      42,
+      34,
+      80,
+      90
+    ],
+    "sha256": "83755278becc095bfbc591ad1ceeffae682f91cc05433c756702bf11770aaed3"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      41,
+      34,
+      91,
+      90
+    ],
+    "sha256": "f5ba5b26299620a89e800ad75bc9afdcb0a8c280e3d57803a6dc6d35a9c7a592"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      41,
+      34,
+      92,
+      90
+    ],
+    "sha256": "e11082cc593369ce42684609ccd30709f32c7c3a13d81ce91b9e7e149e8d67a2"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      41,
+      34,
+      91,
+      90
+    ],
+    "sha256": "7cee2a3404362f8af6a87d31147f8c6f9b7c347118df08ef9126bf0cc16a777f"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      41,
+      34,
+      86,
+      90
+    ],
+    "sha256": "2da4b76f708aea81c26a0e8647c924ff53be8fdd1ea44554ba68857e8ad6b5d3"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      42,
+      36,
+      78,
+      89
+    ],
+    "sha256": "3cebb54f211e163083f56b9827e12f45c244834d92549cc92b86ad52cb7ef83f"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      39,
+      34,
+      81,
+      89
+    ],
+    "sha256": "ee1366177c5cc86c227e25f6f24051f410873cdfa2e169fdeb7a0106b2c5e672"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      43,
+      34,
+      77,
+      89
+    ],
+    "sha256": "ed117a8f58774f97e4e856e87778f4f6896c18dd9a9c6af0f2e8d49215614f8b"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      38,
+      34,
+      89,
+      89
+    ],
+    "sha256": "109f9b3ef6d59a5c4863e66381736e3da53913acd9e47e4004afcbb902689222"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      34,
+      34,
+      86,
+      89
+    ],
+    "sha256": "cb7fe2f4226891ec557447649a5fa40ebe302698da789826f22c97f6dcfe8f80"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      36,
+      34,
+      89,
+      89
+    ],
+    "sha256": "ad69cfe9ab26346887952e3eaf528bb6f8d37b2a3d3e1b43ab056a3173646625"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      32,
+      34,
+      88,
+      89
+    ],
+    "sha256": "1851c0f598d89c6af6bd40e31933541deb5d7e13be10ac0a0479113d50dbb3cc"
+  },
+  {
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "031e99c79802c193bbcac75d92ce2ce72cee0010c3d55b65edc7b2f545d5cb6f"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      36,
+      47,
+      78,
+      90
+    ],
+    "sha256": "7a03e33a3701655d0f9d552e1011956cd0383ee9ced5142896179bf4cf55b185"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      38,
+      46,
+      72,
+      90
+    ],
+    "sha256": "3b12936d2c8dd4c892c34f31acb3623713f63fd52b9b1a3a9c129bca5a89063a"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      43,
+      41,
+      74,
+      90
+    ],
+    "sha256": "bfc0e2c38b698177ff6ead6126d5b505e7dedad64a58837ae01159d1e90071d0"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      40,
+      47,
+      82,
+      90
+    ],
+    "sha256": "972ce5dfe6991fdf467eb4fea03ebd9345528f75f6ff1b2872a13dfbb1ed2afe"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      41,
+      46,
+      81,
+      90
+    ],
+    "sha256": "09d540e7e2a3b135682229985e85919a7dc36fe413cabf4337d28772979c376e"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      42,
+      41,
+      80,
+      90
+    ],
+    "sha256": "6313daab0f590a23c6d18690c5641c208630b6b1e8f079be79b27ceaf6c73ec8"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      45,
+      35,
+      76,
+      89
+    ],
+    "sha256": "793d933aab92e5b6c49b36d3e627de6e83accad30421167d99456aed2565219c"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      32,
+      49,
+      78,
+      89
+    ],
+    "sha256": "f294104e1ecb781256a93cc96d4339b7eed256e1fcde1cc551c4a2f7358b6489"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      33,
+      44,
+      75,
+      89
+    ],
+    "sha256": "6a6f6c0d1a0d5a213a262e3e703424e2631955ce41c43878ec99cc43faf86aee"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      32,
+      41,
+      75,
+      89
+    ],
+    "sha256": "ae4a73a9192d35f97c137461bbe3e4dd812619cc142a0f42e4ec59b54109ffbf"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      23,
+      48,
+      79,
+      89
+    ],
+    "sha256": "987732d6cd4c717c9839bcd9ffd842b76ece094ac646b2516e80f00ab2b9af78"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      23,
+      47,
+      79,
+      89
+    ],
+    "sha256": "2cf62c9894f2269112c37c90d806e40023114de72f4a8b93dd9a0a2129fc8d3c"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      45,
+      42,
+      79,
+      89
+    ],
+    "sha256": "5e729f3d3c5efc3e6d485abe4e512299d5c6d5c599e29200ee9c7927b16fcf54"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "3aef8253eb560956d9b9f805518d2ffd809d1b20469c5a4f4ff7ec96b45ba202"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      42,
+      49,
+      89,
+      90
+    ],
+    "sha256": "ef100cd4c48a144a8b700ba0de1d108e794eb4df32bd22bf3f19bed167c154de"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      48,
+      42,
+      100,
+      90
+    ],
+    "sha256": "f9881ed16119bfd81de74e7b97ed104601b7fd37e34792ec9fb4dea4bf8aeb68"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      45,
+      39,
+      89,
+      90
+    ],
+    "sha256": "ae2cd25266130dcb16ca46c7bc156d8b97b9c6017f8b84f319729c3e3b7f2678"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      42,
+      46,
+      97,
+      90
+    ],
+    "sha256": "2edca5b5480e24db65af9814f1bee975b3e7f9e309955c96239ece1db688f3fa"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      42,
+      45,
+      98,
+      90
+    ],
+    "sha256": "6ca04b592f38e8e605c85ad5126a1d9c17ac8728335af1fbdb63787a4b219686"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      40,
+      74,
+      90
+    ],
+    "sha256": "96be38839a881b1311fc730c4a75f1d8a3f275c028d1257aa30effaa20716c69"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      42,
+      36,
+      78,
+      89
+    ],
+    "sha256": "3cebb54f211e163083f56b9827e12f45c244834d92549cc92b86ad52cb7ef83f"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      38,
+      43,
+      81,
+      89
+    ],
+    "sha256": "bafeb81d6cd60ca78eb08ec69a3a68f8f996549e9659d6114aa79ddc4f8754be"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      43,
+      37,
+      79,
+      89
+    ],
+    "sha256": "09ae9ef564278f4fdb561f66f875282b370fafa98cbb36c4fc2c8ca487ea2542"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      43,
+      36,
+      73,
+      89
+    ],
+    "sha256": "b3e1effbcd9dfd215fe89ab726b43bdb2b862bb79da7b34c347366fe22d61ad2"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      39,
+      37,
+      72,
+      89
+    ],
+    "sha256": "1238b54c6c376731bd9ebcc6a648a1f4fd541035013b35e4b5021605eca8cbcf"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      42,
+      37,
+      76,
+      89
+    ],
+    "sha256": "93e48a10b7ecb9ea680c0090656a34f9bb885546d0f6d486e0832652d33230e3"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      41,
+      37,
+      79,
+      89
+    ],
+    "sha256": "0cef77a53e7c9431a2c08859f8ccfb423b4fcd776a8363191af9ea3a4373af55"
+  },
+  {
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      39,
+      34,
+      81,
+      90
+    ],
+    "sha256": "dcb5cf1773f7c567126e2b119bb7ebfcb4a17600b67ddd503174b74f6e584e67"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      43,
+      36,
+      86,
+      90
+    ],
+    "sha256": "98e4348c8ba91d76396adf9de1bae36ff1dea8a49a31cc3de3ba4fd88d992228"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      44,
+      36,
+      85,
+      90
+    ],
+    "sha256": "ec103240877b76e78f1d70a03ae2227eece5810f4010dc9e478edd7cbe2b0001"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      43,
+      36,
+      84,
+      90
+    ],
+    "sha256": "177d8f62ef48a793c40f41154b44f1ef989007f577c22d5a06730eda17a7794e"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      44,
+      36,
+      88,
+      90
+    ],
+    "sha256": "7f4e4e98c3d438b47b421fa77e9e7fa4d5094986029830f0140c2d539025e20b"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      46,
+      36,
+      88,
+      90
+    ],
+    "sha256": "dc1d04ee9a62ce775365bc95f7cdbe1ad1ba9527240313d353041510168a374f"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      36,
+      82,
+      90
+    ],
+    "sha256": "f5c6d7241e1ee98c83a1bd9cd85358ed2ee863602c0520b9a0075c6001c7ecbd"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      39,
+      34,
+      81,
+      90
+    ],
+    "sha256": "2c7fc1ebd57671439e2b7f44cfa786a1152418e27de0db9dc0143cac398984c2"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      35,
+      76,
+      89
+    ],
+    "sha256": "448775a9337625279d638cbaebc4a1a905a799d3f4a7915864e9b8f06b6936ef"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      38,
+      36,
+      81,
+      89
+    ],
+    "sha256": "32a6a90f2d5e187a4acc34c85e455e85070d26434be0b2ffba90fda31db4fb0c"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      37,
+      36,
+      74,
+      89
+    ],
+    "sha256": "b254502744972b3a9394d987ebd56e2b0ebd085ab0971901b243d1e6ce0e2931"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      28,
+      36,
+      75,
+      89
+    ],
+    "sha256": "17f6d5b6a80aaf61e905e9831324b95790a53721ecd87770e56d037ff9a620c9"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      31,
+      34,
+      74,
+      89
+    ],
+    "sha256": "2af3ef8f1b42b7892e8040c9b0d9f67e09f46056f813e90f0ae5c4e5a9ade5eb"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      28,
+      36,
+      75,
+      89
+    ],
+    "sha256": "9826dde06869536c3e3cc3186a072c1aa9eb7728b7ae524a8123b52e0f095117"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      36,
+      36,
+      77,
+      89
+    ],
+    "sha256": "69f4bf71dfa8bfb3f79f419815f7a32a0d79f03965c855f00cc523ac80336089"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      43,
+      35,
+      77,
+      89
+    ],
+    "sha256": "261827c598bbd2e0f42666bbab05d766e8be1a78de7772d5c87cce860c18bb11"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      34,
+      77,
+      90
+    ],
+    "sha256": "89c05d69af112ec5d919b8d5757bb41487d6477a434aedbf566e402c3ad2cdd9"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      41,
+      34,
+      82,
+      90
+    ],
+    "sha256": "8b039dfe4f85f6f1a25d5d56812638728b9c71f0848fb8772eaaf8467e4e79de"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      46,
+      36,
+      82,
+      90
+    ],
+    "sha256": "8344955c4c5ba6652e71c965d99a57af0f2179fc98e5466ad51c1a10b7eec7f3"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      46,
+      36,
+      91,
+      90
+    ],
+    "sha256": "7befa057040cd306ed1dee21187a76cd06accfd7706f4df812a5f43104a57bbb"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      46,
+      36,
+      92,
+      90
+    ],
+    "sha256": "2ed35d247c3343050814c51f25528e81008c54851fbe45e2a2f0d4fbd5287fc5"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      46,
+      36,
+      87,
+      90
+    ],
+    "sha256": "4d59e047fcf3ba0770eafddffea1d2c36393bc8ab2b8e5930c60f4f7e8b34b28"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      43,
+      36,
+      82,
+      90
+    ],
+    "sha256": "8bbb3ef80a94cf5049866372845412e760d29c47fb5e88f8f4de7e46940ebde7"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      34,
+      77,
+      90
+    ],
+    "sha256": "020174b1d610cb01e14c6da00117371e6e61b13e04526ac5aac40db40f25e3bb"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      39,
+      34,
+      81,
+      89
+    ],
+    "sha256": "ce173696988470ea9cb3e9d19036b64f55bce06fe03349a45130a552831ceab4"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      37,
+      33,
+      78,
+      89
+    ],
+    "sha256": "bd1e0aa3874c036d07366a1bbd81f4d6c7ffa110e924af6719e7b42555698982"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      37,
+      35,
+      77,
+      89
+    ],
+    "sha256": "8076b64d25ccc2127e3ffaf617fe1ce8297ec4d6d3ad3447754cf2c928aa9423"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      39,
+      34,
+      83,
+      89
+    ],
+    "sha256": "ebfc463107bda7cee58ea0182357e91830f3d842fda2a5cdfa13dacc03a945aa"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      33,
+      34,
+      76,
+      89
+    ],
+    "sha256": "f403ab27d19399927525b92590c65bfb6ab126e775fe4dd68b8de0b29c35d46d"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      43,
+      36,
+      91,
+      89
+    ],
+    "sha256": "0ec9094873376254afe6ec310571e4a450ec1520ed6f90c83411ba2b4cc86bc4"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      41,
+      34,
+      83,
+      89
+    ],
+    "sha256": "9438475ac4efa189522dbb2ec4e8904aac4aa701df0ec478a414619f98b45617"
+  },
+  {
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      39,
+      34,
+      82,
+      89
+    ],
+    "sha256": "a09442dafc6d453739a576a00b603e90d316df68971f65b0f1ed5339aef4bd97"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      38,
+      34,
+      82,
+      90
+    ],
+    "sha256": "8b2604d96a356ad6666c2a8053a84b33f1bf9b7adbb9f0dd5990503ada3be67e"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      43,
+      34,
+      74,
+      90
+    ],
+    "sha256": "b499a757ed1e2e317c8ab751ef166b559fd058890ba9b9749eb2450653816789"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      43,
+      33,
+      77,
+      90
+    ],
+    "sha256": "9d307fb0177b565124419f6cc6b06aa853fb8c1ec865c4bb54b5886c7f8b6530"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      31,
+      34,
+      87,
+      90
+    ],
+    "sha256": "13b9086aa143601ae8d528b14a9cd6b481278ff3cd6298eb7d8c05545593613a"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      42,
+      34,
+      78,
+      90
+    ],
+    "sha256": "0ca6212d691b592e9ebd6b689254f0317fc6c21aaa83eb1f9e1a9fc3109196b4"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      39,
+      32,
+      83,
+      90
+    ],
+    "sha256": "3d02828973301806c1bc2b19d200e69e84835744f3c67727a7093e7483ba0c9e"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      38,
+      33,
+      83,
+      90
+    ],
+    "sha256": "f85f67e17d6640d01b4f421c9c6ef44797963fd6632dbddf386326156bfa57d7"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      38,
+      35,
+      83,
+      90
+    ],
+    "sha256": "a1340b9acfa69454d763200c377b8c671d55f16d5dcb7c198d460315000ce673"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      44,
+      34,
+      79,
+      89
+    ],
+    "sha256": "7b4116edfd7bfcbdc144da2530c01ab8a772792de5e01a9e5f36af879a1a5321"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      45,
+      35,
+      77,
+      89
+    ],
+    "sha256": "14ad420da13c39e8738545f5e718aec4424cbd976d9ae7e0343a301c90735e80"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      42,
+      35,
+      77,
+      89
+    ],
+    "sha256": "24a34e7694962b083dae4451028133d7598330149bf68dee4220dc1940df413d"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      25,
+      35,
+      87,
+      89
+    ],
+    "sha256": "7dceab9d46cac87ba6a8fe201b9cdcbf9ab437f47bada7d4ac41b4ab093ba64a"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      38,
+      35,
+      78,
+      89
+    ],
+    "sha256": "add0489280c53c3d7c70926af6e31ee40b02878a00cbc63f8875ee99f9aae4cc"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      30,
+      33,
+      75,
+      89
+    ],
+    "sha256": "9bda417e9235ad83a8c900fb0bc7ee21dad7622e91036dfc3bb03970b97fb584"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      89
+    ],
+    "sha256": "27eeae1fdf6959e4a42ac7eee1ab0fcdd4483103a6f4e915f042215f108067f4"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      34,
+      77,
+      89
+    ],
+    "sha256": "e33fa4ed1ee7c7e8abdfaa449c99acef19b2e824289aad508f967dd7a77a0180"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      41,
+      34,
+      76,
+      90
+    ],
+    "sha256": "0e291519495710e22ea9c8782dd117db7f11778c07a2a4657755b626dde06655"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      90
+    ],
+    "sha256": "9aaf5e3cda8f6da29c96b48596c7a72aa2826955a8e7515ade75f405d01fee81"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      43,
+      35,
+      79,
+      90
+    ],
+    "sha256": "bcf905e62f24f1037f8af2727e9b6bacd06a943fe31b477d18de876685ace095"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      32,
+      35,
+      95,
+      90
+    ],
+    "sha256": "ade061326e1d40b0c1f9df3906caf016887bcfcd26d099136a26880c31181fa0"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      43,
+      35,
+      81,
+      90
+    ],
+    "sha256": "649d343c585bac00500e64072e5f795c44be525561000374310c2f0299a87f71"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      45,
+      33,
+      89,
+      90
+    ],
+    "sha256": "85855e35f83fe2dd3a2c175e0777d2d5182bd7c6d2eb5eed7fc161c50b0894c1"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "a569dc93b75f6e2a92b2f1d143104bd3147e39e11466e72612c66f4b162010cf"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      35,
+      79,
+      90
+    ],
+    "sha256": "ca61f9d3fd0bd8f99c799823c73a2166c600ea1201783141884848380e23d6fd"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      38,
+      35,
+      82,
+      89
+    ],
+    "sha256": "41156d572c086baad4dc9463f6ec63cc4a2a5bff12c22bd302bce3e138fe4c75"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      44,
+      34,
+      77,
+      89
+    ],
+    "sha256": "8ebb08e4c592d3e4d67005a1d63d8571b594a3b1b63200e970e0f06c69268958"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      42,
+      34,
+      77,
+      89
+    ],
+    "sha256": "2d88ac2d9ec749accd042f6e61a346f97f588dfeaf98c664268eb50d95b64843"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      32,
+      34,
+      95,
+      89
+    ],
+    "sha256": "28739297c748cbb9f37967e63c93e88344540ab1063d3b36c8ab4e579191299a"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      42,
+      34,
+      78,
+      89
+    ],
+    "sha256": "543c0ac7aa7ce70c57735a4dcd9270d0da185f877354b23152d41c63f96d662d"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      32,
+      31,
+      78,
+      89
+    ],
+    "sha256": "5294e87f7a5f6638537514ef6f2fdcd2b406c781f61045e0733c09c5fbedf8f2"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      37,
+      34,
+      84,
+      89
+    ],
+    "sha256": "2a12169b17b657eb996fff00356836ba13b1e0946c989eab96b955ca45d42781"
+  },
+  {
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      38,
+      35,
+      82,
+      89
+    ],
+    "sha256": "055d51b3f10ed686cc06a076e8ce552a5af0d4b5fb744b3ce5d46fb1a9f201bb"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      38,
+      34,
+      83,
+      90
+    ],
+    "sha256": "a9938e90d03bbeabe9845741eb94904cb806b5d69c57984d6c97ebc6eac35c1a"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      32,
+      42,
+      88,
+      90
+    ],
+    "sha256": "4a4dfd4fa19bb09543771848cdc1454fbfe1cd622a5c62a5ac7dc6a2cc9a91dc"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      36,
+      37,
+      86,
+      90
+    ],
+    "sha256": "3004f57293897532227629aad8fa516b36e7534e41bda8864adfc1eff2cb0e9a"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      42,
+      37,
+      97,
+      90
+    ],
+    "sha256": "d96f320c135cf9fa7a39dfd7cc60f7e5ed8f38d32a9727adf151b611e772fd6e"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      39,
+      40,
+      106,
+      90
+    ],
+    "sha256": "023dad7608122a1e1adeba44d4bcfae433887ff9c428f234e882d8f726e58100"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      39,
+      39,
+      108,
+      90
+    ],
+    "sha256": "0faec6d5cf8ecf6e4aa2bae78fb652093c2e62ef556514bcfb7caa817da5c064"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      34,
+      36,
+      85,
+      90
+    ],
+    "sha256": "5ad088614ee1d4342db5f3ff9826b35f17a087308a05c9ddfb2eeebda61ac21c"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      37,
+      35,
+      83,
+      90
+    ],
+    "sha256": "3f744ca29b064aa9adb788eb0b1a9e4f5277a8842ee6d8d3910f3782ad84c3ec"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      34,
+      79,
+      89
+    ],
+    "sha256": "b63932e9c99138f2ef56ed0fb5fb78759db697333e6301168d74b09a86ec9e55"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      30,
+      43,
+      82,
+      89
+    ],
+    "sha256": "b87376099d78d9331141dcb8d096fab194deb9a6fc0ec9e835a14b6988be4738"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      38,
+      37,
+      84,
+      89
+    ],
+    "sha256": "bddef393fb823347ab49615d382448555983b7f5f86c4e8872b95ebf8e4fddc3"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      24,
+      38,
+      79,
+      89
+    ],
+    "sha256": "73f0805ab974aaa2f65e52edab91fb23cc131e689146dd2c4c09d4d4303979d8"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      15,
+      43,
+      82,
+      89
+    ],
+    "sha256": "7cfcf0ff0533f5a389de8b218fc36d0d1b639558faf30521c93f06db74dcdb5c"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      16,
+      41,
+      84,
+      89
+    ],
+    "sha256": "ae7017d756aa7a738fb6b0299c7fa0511ba3453c97302c0a6e20dc6dd10f0f24"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      35,
+      37,
+      87,
+      89
+    ],
+    "sha256": "b3fba42bb5ecd121658e2d347a6ff049b57f44b2c81155257b9f8f1773464580"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      40,
+      34,
+      79,
+      89
+    ],
+    "sha256": "29ac37d64d733b3416c19a960e24948e4e3935688dde498fd470f0af8414687c"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      34,
+      79,
+      90
+    ],
+    "sha256": "04a4f05ac03410a45ab5f684aa56560fa19c999312aaddd8e3d44eba26411a3f"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      39,
+      41,
+      92,
+      90
+    ],
+    "sha256": "899be7fee2ac50c735c416617a701c54f89b4849c540a13fa6f49ed6ab2d850f"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      36,
+      35,
+      81,
+      90
+    ],
+    "sha256": "b898f190784e1ec5a3843ef1c393fdbfe724f6377e18e040c91646f9203443f6"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      39,
+      37,
+      94,
+      90
+    ],
+    "sha256": "dde15689cb43cc2d57bab2363564bd018addde79b5baa0fe56f14f224dd7508b"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      36,
+      41,
+      108,
+      90
+    ],
+    "sha256": "7de10f721a39eaf9c2cf2fd2bbc9274fa0b0eb33260709e500efe0abe1210506"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      35,
+      41,
+      109,
+      90
+    ],
+    "sha256": "d1b93018ef01d5efe26a8f7c01a3c3c28cbab3a21dae1d6712b9714cf3257c72"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      35,
+      37,
+      87,
+      90
+    ],
+    "sha256": "b64c6adc0c8704fe6c1b1914ade4539253c12feb0393cd9884f19a1e0b215c38"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      40,
+      34,
+      79,
+      90
+    ],
+    "sha256": "32250f99546cdffdb54a2d0ce3c63a206a8a1c9de2b8fbf21530eec3f35a2768"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      37,
+      34,
+      83,
+      89
+    ],
+    "sha256": "1ab32c3974db457af10a97c1011d02de82f2a1b00e38d51f8a31eed90af970cf"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      33,
+      39,
+      88,
+      89
+    ],
+    "sha256": "606922cb99663c235b5bcb40c61f1f447673360387a0ed0b77098acfe43df6f3"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      36,
+      35,
+      83,
+      89
+    ],
+    "sha256": "80c114e8b4a6865568990c294d320632257f8495b0217b1257aa79fcbd99362a"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      43,
+      35,
+      79,
+      89
+    ],
+    "sha256": "ed7ef5efece7242edbab10a1d10eb205abafa6ce0cc58940d0face235c0f2556"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      41,
+      35,
+      81,
+      89
+    ],
+    "sha256": "74674491bc555366f02bb10d417f57e87d98005c36e5a31d8dcbe8e40b6f581d"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      40,
+      35,
+      83,
+      89
+    ],
+    "sha256": "39840f79e5906cb0e092265c2229220be2c7317eba9e3e6bac21de1b37f7b1d2"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      32,
+      35,
+      79,
+      89
+    ],
+    "sha256": "0436134d5cfd9e006127b813223f5b96e0496b3a56019aae1dcd910d0afc0659"
+  },
+  {
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      37,
+      34,
+      83,
+      89
+    ],
+    "sha256": "483571a4b393869036f07d87709948d5134d3872a2c29f894e91f1647e19a38e"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      41,
+      79,
+      90
+    ],
+    "sha256": "14424798f6754fd3615c33853721ce4babc5c4e16c55172181bf36e453fa94c1"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      36,
+      41,
+      83,
+      90
+    ],
+    "sha256": "9bccf8d82d862bf2eebe5bd3e6afd28b600f2f60ef63913af935c1dd78c44e6a"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      41,
+      46,
+      88,
+      90
+    ],
+    "sha256": "94fffd8a43a488d062a59955862cd8664a19fe3a87e6155b3346f997167332bd"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      40,
+      39,
+      81,
+      90
+    ],
+    "sha256": "62bfd5bc821108f810267f87ceb22c8ad3c027ae63d48ccf26c96bd8743318d5"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      38,
+      40,
+      88,
+      90
+    ],
+    "sha256": "06c9b2bda666ebdca9eb77a4927af451a7c7c4d20d5dd56f75259ff5536864e8"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      36,
+      34,
+      82,
+      90
+    ],
+    "sha256": "b6a8af1542e9f411bbc1b7307c75d88c0e370f2a30f8d6db9775396016fc4e93"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      42,
+      38,
+      82,
+      90
+    ],
+    "sha256": "0c214780a06a5103461052e1959589b0d92ead23de80ec7bb08a881180e16151"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      39,
+      40,
+      78,
+      89
+    ],
+    "sha256": "b85d18b65c10d01b007d7906a1f19368849eaf289db4186c08879e0699cf0380"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      30,
+      40,
+      73,
+      89
+    ],
+    "sha256": "784e28f62addc18f9aed1fd1688cd5f8d92f305a3a36aad4f4afdc21c1692db5"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      35,
+      43,
+      79,
+      89
+    ],
+    "sha256": "b3db80682e70dd64ab89b0c927358b3725d057a953b851559fa82f90e9e95799"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      37,
+      40,
+      77,
+      89
+    ],
+    "sha256": "6d3c180283949973042a8e2f1bf4fb1ec4615c276f01cf7ad9794020928188fc"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      30,
+      40,
+      80,
+      89
+    ],
+    "sha256": "d025d2ca3b358c43237915fafd39ea61b6dedb79302f9b485e058eac06a7112f"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      27,
+      35,
+      82,
+      89
+    ],
+    "sha256": "7c203b2ad561bd9dee23c508cb5d54a06246a48778c55d22bcd9df134dcb501e"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      37,
+      78,
+      89
+    ],
+    "sha256": "a24fea9a4d9cab0297fef9096c3cbb7da1350d4ec3eb3a45898f23027f0a33a4"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      46,
+      37,
+      81,
+      90
+    ],
+    "sha256": "31f06f37be5dd563930c2fefb54b966ba20ebc8943b5a3b2c2d996b0720bd76f"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      38,
+      80,
+      90
+    ],
+    "sha256": "78b8d05555e8c4fa331d07347c4a092667cdf03d98dbe23941b3c89160eeea28"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      40,
+      41,
+      89,
+      90
+    ],
+    "sha256": "290d467b2a1e9d46b07bfc3b5c03920b076f2c5d28d6e00b621e781b76dab60b"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      41,
+      39,
+      83,
+      90
+    ],
+    "sha256": "522677073da4565ca44810742e574e957c0ed977238f18f8c895dc2a980bb0d3"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      42,
+      41,
+      93,
+      90
+    ],
+    "sha256": "9ae1300c61357c931ba27aa34694d76d4720ff611b72cc26ddd742dd0862167d"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      37,
+      33,
+      89,
+      90
+    ],
+    "sha256": "2ce63c0b6f60671adaa25387aa0b9c58dd6251c64a799f82f8988757445830b5"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      43,
+      36,
+      81,
+      90
+    ],
+    "sha256": "d7011a25752bb7d9eabc5861ecfdfabf41a0b5efc1e22710294370847b880483"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      41,
+      37,
+      80,
+      89
+    ],
+    "sha256": "23fdad6370147464f055df577f6c17920c7bde423c567246a1ff14511cf375f7"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      38,
+      37,
+      80,
+      89
+    ],
+    "sha256": "0f083f803b62076adf49161a63e1fe2ff0c742e534a095f8e01aa2f9c77e5bab"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      33,
+      43,
+      79,
+      89
+    ],
+    "sha256": "7f92afbe59d76fa8b2045342769831a712df76effa012be214946cfdb5549dc9"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      38,
+      38,
+      85,
+      89
+    ],
+    "sha256": "ff5fca1609db9fed55c03999dd68c47981fe28d56b3b804a9f5eaa3b0960d888"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      36,
+      38,
+      85,
+      89
+    ],
+    "sha256": "1bb12430f3c4749b788b1fef322eb56371cef07bee3a73de6fd54fbd961e7bf0"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      34,
+      34,
+      82,
+      89
+    ],
+    "sha256": "743a632f989074ff06cfe1c00e64603917023aff2fd36cc24eaa29a706b72f2f"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      40,
+      35,
+      78,
+      89
+    ],
+    "sha256": "543eefedf0c3de6b44930e44f2b75e241f39b41a53163b44733f2df6b40d92d2"
+  },
+  {
+    "animation": "dash_attack",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "031e99c79802c193bbcac75d92ce2ce72cee0010c3d55b65edc7b2f545d5cb6f"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      39,
+      32,
+      78,
+      90
+    ],
+    "sha256": "5dac87b3ee56057ec45e6731d0962c397f3ed394743cc6cb2e987f83c2837624"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      32,
+      33,
+      76,
+      90
+    ],
+    "sha256": "0bc0d2f496f94592bead41b32beadba1e1f98e7c17826a4076cec9a7bd24b766"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      46,
+      32,
+      81,
+      90
+    ],
+    "sha256": "d7fa73c3bc36ec6039a3cda74cae71304b6b936744adf07e8bc7d0816ea60fcf"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      42,
+      32,
+      80,
+      90
+    ],
+    "sha256": "8f71cdd103e08b7c6265de40205cafdbe99a63eb9c5154c2caed487a1f97d8bc"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      44,
+      32,
+      77,
+      90
+    ],
+    "sha256": "c41308d0dda52b7790283a8b9c1d3cfd7f4494acb11813be939c1243622861cd"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      30,
+      32,
+      88,
+      90
+    ],
+    "sha256": "b87817dfea49c261002d0f6871fa7cdf0542798ab082d91ea90c250cd26bb65f"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      48,
+      33,
+      80,
+      90
+    ],
+    "sha256": "d45bf73105357a831d8ab0cad3be4eb72a09fd5b2350c080d98e130eec62d3c8"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 8,
+    "pixel_bounds": [
+      48,
+      32,
+      98,
+      90
+    ],
+    "sha256": "16729fcb7bbf13d81d4600e9e931e1d9f89c72a5eeaeec3ec6ac85b0681c721b"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 9,
+    "pixel_bounds": [
+      27,
+      30,
+      72,
+      90
+    ],
+    "sha256": "4d247c9766b152f0a756e898df86c06f0b5928db9014488e3c30d94f726492e8"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 10,
+    "pixel_bounds": [
+      39,
+      32,
+      75,
+      90
+    ],
+    "sha256": "21035624f0e9b8ebbea40b3d217b43b500c8fe1db485a8d022d1b820e405804e"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 11,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      45,
+      35,
+      76,
+      89
+    ],
+    "sha256": "793d933aab92e5b6c49b36d3e627de6e83accad30421167d99456aed2565219c"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      41,
+      82,
+      89
+    ],
+    "sha256": "f49c0be29b0fb35e2968b45af8f186d512f761d5d1f2c06d8733537e50778711"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      33,
+      39,
+      83,
+      89
+    ],
+    "sha256": "34820770cae984bf3f61eed0c1d77b9f62d9952750882bf42da33f6228883ef5"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      37,
+      40,
+      81,
+      89
+    ],
+    "sha256": "fd8c3c31e863735a6ebc591bc31c0b89ebcc56c383e115e485337c7472c32ffe"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      27,
+      39,
+      78,
+      89
+    ],
+    "sha256": "c255df8fcf866d1f89fe64f7de0af8d8242edb1902bd64433350ef484037f4c2"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      43,
+      39,
+      77,
+      89
+    ],
+    "sha256": "e2b7ae639bd4b21495385672ece5c60e3ee3465a35ed6289c5e32eab3d94905b"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      30,
+      37,
+      90,
+      89
+    ],
+    "sha256": "48950da51362dd03b8a5e9e6e4ae8219e920f229155f30f1e88196fdcd84b1eb"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      41,
+      77,
+      89
+    ],
+    "sha256": "afe330dce8c802e95d7bc372bd510787e923f8e4f024826da5bb9489fa71808b"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 8,
+    "pixel_bounds": [
+      15,
+      41,
+      83,
+      89
+    ],
+    "sha256": "e06e3cef39b5f7d67311c0a1c96c39ca8e3c971b25308782d946c64e1f5fd27f"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 9,
+    "pixel_bounds": [
+      23,
+      41,
+      81,
+      89
+    ],
+    "sha256": "2e5707602ee11514edfa1d9a60dd5bae05fe18ca565bae30c04afd4d5959a943"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 10,
+    "pixel_bounds": [
+      21,
+      41,
+      81,
+      89
+    ],
+    "sha256": "dfd88d63f2e6481628ca9f7aa2f1d22ddaead4c37993c490d26368e0bb1b5630"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 11,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "3aef8253eb560956d9b9f805518d2ffd809d1b20469c5a4f4ff7ec96b45ba202"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      39,
+      36,
+      83,
+      90
+    ],
+    "sha256": "005f39e9bb70c5d0b5b184c1a41037c8ece20b10ddb8e3c4358ef39511915151"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      38,
+      33,
+      96,
+      90
+    ],
+    "sha256": "638ce2a6790d428cd560f06c41f2c9c41c51ecf66e78248953637f73527a8184"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      43,
+      35,
+      86,
+      90
+    ],
+    "sha256": "0047c16e9d6d8fd854529141b33ebff6b27b778b5935ef365ef4e0b7c0cffc5c"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      38,
+      36,
+      99,
+      90
+    ],
+    "sha256": "76779ae159366a66771865f8e0eb5414f2631a731b058852bc15b4f163015f79"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      44,
+      36,
+      79,
+      90
+    ],
+    "sha256": "64512f368bd67dfa502f22f949778bd8c9f6f66424ee1efc9069e15df1a23cff"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      32,
+      37,
+      99,
+      90
+    ],
+    "sha256": "ea5570f1a5e0fb0cb6ab7d3be14dbfe59de9dd1f1f2a6c6c09495508b726ebc1"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      45,
+      37,
+      84,
+      90
+    ],
+    "sha256": "27ea7c66f6cf276f57189881f399894ba6495e1d3e22714aa33a4bda1e803208"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 8,
+    "pixel_bounds": [
+      36,
+      39,
+      114,
+      90
+    ],
+    "sha256": "f4c5cd94bd5f1978867827d9bf5b7afd8f222de584921ecee12748e69b66afde"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 9,
+    "pixel_bounds": [
+      39,
+      39,
+      99,
+      90
+    ],
+    "sha256": "b0ca754c510473727e68b63735fb85969568b4bba3d5b5b96a7111e25019bed9"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 10,
+    "pixel_bounds": [
+      37,
+      39,
+      106,
+      90
+    ],
+    "sha256": "462f3ae9ac55b3fa18592d047e0d1e5bcf058c19a5b531f33e42d682543ae592"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 11,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      42,
+      36,
+      78,
+      89
+    ],
+    "sha256": "3cebb54f211e163083f56b9827e12f45c244834d92549cc92b86ad52cb7ef83f"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      34,
+      81,
+      89
+    ],
+    "sha256": "3efb066aa5c3a0da57f631c1a6b6c029eaa1e5b877473762e98baa8ac461b118"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      37,
+      35,
+      87,
+      89
+    ],
+    "sha256": "dae6b758e9f80ea521bd325544935ababbd464af646702c86fcbd7167af9fd87"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      40,
+      36,
+      86,
+      89
+    ],
+    "sha256": "4c7bd48b7c342552d21fa58ef755846271bbc39480a7cb71d4e1884f42336695"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      40,
+      36,
+      97,
+      89
+    ],
+    "sha256": "e3acd65633f8d0fe311133a303b672014c1dcdd2c7afb119c9c241231a154d68"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      47,
+      34,
+      80,
+      89
+    ],
+    "sha256": "dfa3640018d89aa3e1532e309b5eff6deb6fe134f34e39476a63310316f98c47"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      26,
+      36,
+      96,
+      89
+    ],
+    "sha256": "2383ad1e6653ed0512253c2dc06a7cb89516a74adb2c5ea00afa3140da227794"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      44,
+      34,
+      78,
+      89
+    ],
+    "sha256": "a78b330e35bd8602aeb6eb8f5681526c022c1c623702fb7e757a5f8150a2b731"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 8,
+    "pixel_bounds": [
+      38,
+      36,
+      93,
+      89
+    ],
+    "sha256": "5a47c8d75d53b4b3fdbe320128f060dde3297940bc4b7130a317050af2eb95d9"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 9,
+    "pixel_bounds": [
+      39,
+      36,
+      85,
+      89
+    ],
+    "sha256": "ae811c3b49623c1761dc7ebecf87d4b9dcd42c14003991d1479317f1941e50ad"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 10,
+    "pixel_bounds": [
+      39,
+      35,
+      92,
+      89
+    ],
+    "sha256": "6bf8c359321d486f073c2b7f211ea53748dd6e2096b4dbbece85ab9bc5c6cbf9"
+  },
+  {
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 11,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 0,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "031e99c79802c193bbcac75d92ce2ce72cee0010c3d55b65edc7b2f545d5cb6f"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 1,
+    "pixel_bounds": [
+      42,
+      52,
+      82,
+      90
+    ],
+    "sha256": "ce6351e9a01e90b6a249384acd7816ff2bb595b6923dc9857397d7c1457b9c19"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 2,
+    "pixel_bounds": [
+      39,
+      50,
+      81,
+      90
+    ],
+    "sha256": "e4b32ab2b3cb1882299d6800f4ca356d09efadbc1bd1eb76f506d6fd161780d8"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 3,
+    "pixel_bounds": [
+      41,
+      35,
+      78,
+      90
+    ],
+    "sha256": "f498b93d646a76c3097371ca327476b90d9c8234191c95d0b36b1aaf3e86cad6"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 4,
+    "pixel_bounds": [
+      44,
+      36,
+      83,
+      90
+    ],
+    "sha256": "bf06899675dd1b7611b587ed6dbe015931e8a1c2936a76a5da4491aed18c04b4"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 5,
+    "pixel_bounds": [
+      40,
+      34,
+      78,
+      90
+    ],
+    "sha256": "e0c5817e5adb7a8846a91ff9adcc25efebdf3ac8fc8c0428cda4cfcdb93ca706"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 6,
+    "pixel_bounds": [
+      41,
+      26,
+      79,
+      90
+    ],
+    "sha256": "4db36dcb8972ceb44b94dc0752509fa2e9e9ad488764b48a90cb045324c552cf"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 7,
+    "pixel_bounds": [
+      42,
+      42,
+      83,
+      90
+    ],
+    "sha256": "527aee5860d45ccffe911b4f463992d852c3a8dfe410b5e1329c0dfebc04d8a3"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 8,
+    "pixel_bounds": [
+      45,
+      35,
+      80,
+      90
+    ],
+    "sha256": "0c853d751c51ce9ec16d7dbcbe7327a81e5b698933cbd40c865ef953170b7290"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 9,
+    "pixel_bounds": [
+      42,
+      48,
+      83,
+      90
+    ],
+    "sha256": "d6c812e7f143e6890b41909e1ca835333c5d966ef40963657c2537cd001f04b4"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 10,
+    "pixel_bounds": [
+      45,
+      43,
+      78,
+      90
+    ],
+    "sha256": "861b0c9c29192d2c182f798c45f315e4f82f8cced0684bee3c0ca5bb072212f7"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 11,
+    "pixel_bounds": [
+      40,
+      35,
+      80,
+      90
+    ],
+    "sha256": "cb69928b630e2516faa35a3ad0daa2ca0ce681034a341f6c0494cf1b073afa39"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 0,
+    "pixel_bounds": [
+      45,
+      35,
+      76,
+      89
+    ],
+    "sha256": "793d933aab92e5b6c49b36d3e627de6e83accad30421167d99456aed2565219c"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 1,
+    "pixel_bounds": [
+      39,
+      48,
+      77,
+      89
+    ],
+    "sha256": "ab618d5bb59deca63cd4cb572a8154da7917d284e84b205f8c588693991fbc73"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 2,
+    "pixel_bounds": [
+      25,
+      49,
+      78,
+      89
+    ],
+    "sha256": "d292af9ac1973c5f1f6e725486de99cebd4493cb5b4703ca25258d937047d5c8"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 3,
+    "pixel_bounds": [
+      24,
+      43,
+      80,
+      89
+    ],
+    "sha256": "d4a9620a8ce74b0b86ba124db3aa3385561ced3286a0a16918bf2e11c3003af1"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 4,
+    "pixel_bounds": [
+      33,
+      44,
+      81,
+      89
+    ],
+    "sha256": "08ff15c31d45fa3db1c2ca6ab7f5a9cb824c5d546d3d71419478c6ba4d45aa46"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 5,
+    "pixel_bounds": [
+      22,
+      41,
+      80,
+      89
+    ],
+    "sha256": "ad303ea226aea7014af1c5caa9e8be907630d40456b6acfd71eea9cf2131eff9"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 6,
+    "pixel_bounds": [
+      38,
+      25,
+      78,
+      89
+    ],
+    "sha256": "a8fab665004443dddf1f1204e60a832258946771dd900ae48da9611b00fa15bb"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 7,
+    "pixel_bounds": [
+      16,
+      45,
+      81,
+      89
+    ],
+    "sha256": "8fd61f71cbfab3a2378cb2de9da0189ee323ceab6c412ba4913a05fe3f1541d9"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 8,
+    "pixel_bounds": [
+      24,
+      41,
+      82,
+      89
+    ],
+    "sha256": "41141b7b7dab0784c5bfe3980c4675341f8e67b8611e58f229a137885bb3eae9"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 9,
+    "pixel_bounds": [
+      36,
+      45,
+      74,
+      89
+    ],
+    "sha256": "bd43cfd2d1baf2834da676a71737a2c349edfd159bf0bac225dc98b6e0e9d5f5"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 10,
+    "pixel_bounds": [
+      45,
+      45,
+      78,
+      89
+    ],
+    "sha256": "9df05d1b2bed17c78bcd9f2fb1e7d7223cadcf9a905eabeb8b9062da81806dc1"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 11,
+    "pixel_bounds": [
+      44,
+      35,
+      76,
+      89
+    ],
+    "sha256": "1b31cf30bd5802ca262d764102f184c723bc96711fd3197ff346cc739444ef19"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 0,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "3aef8253eb560956d9b9f805518d2ffd809d1b20469c5a4f4ff7ec96b45ba202"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 1,
+    "pixel_bounds": [
+      41,
+      48,
+      85,
+      90
+    ],
+    "sha256": "99cdf296d766029790ddfeb94e7ae6ddf697f9de821e380a43f15133688d6f5e"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 2,
+    "pixel_bounds": [
+      44,
+      49,
+      99,
+      90
+    ],
+    "sha256": "1af110cf37a41f8fb980c7bc1fca3a708b48335d1c6c6be83fa7e737cb05ffe7"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 3,
+    "pixel_bounds": [
+      41,
+      40,
+      101,
+      90
+    ],
+    "sha256": "07e375c5e79fdb2977058e8dc9dfd973595d8be3ea40f2c084af972e0fe704a6"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 4,
+    "pixel_bounds": [
+      40,
+      41,
+      94,
+      90
+    ],
+    "sha256": "767d9680fe354cea39654e388c23a0ae1e611da896f3680aac3ac6bc3bcca350"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 5,
+    "pixel_bounds": [
+      41,
+      40,
+      97,
+      90
+    ],
+    "sha256": "784e9efb911b31d97808aa0a143412735378242835da52529f41ac081ff65a48"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 6,
+    "pixel_bounds": [
+      37,
+      25,
+      83,
+      90
+    ],
+    "sha256": "701fef51bbcb4e7525bb74d0e0d0de60fc78c22a0370788cee8c6ae25c088af4"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 7,
+    "pixel_bounds": [
+      38,
+      45,
+      106,
+      90
+    ],
+    "sha256": "bbba209d13031e369b26e05d49e2f792e0418b1f0912c34aec06addcf5e22375"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 8,
+    "pixel_bounds": [
+      37,
+      39,
+      92,
+      90
+    ],
+    "sha256": "4ea6e17a57ac3d90e614a3a8dcb18edb39e8614bb7a8fbff9c27733ab42300b6"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 9,
+    "pixel_bounds": [
+      41,
+      47,
+      84,
+      90
+    ],
+    "sha256": "1ad103e0a5aeb4f0a1bf87c611e18178bc7a922646339eeada2da40f888dd4e9"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 10,
+    "pixel_bounds": [
+      43,
+      44,
+      83,
+      90
+    ],
+    "sha256": "21ee8fa7cc419fca4dfba88588edb73b85e767350fe0b27caf3b34f2bba8f87a"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 11,
+    "pixel_bounds": [
+      43,
+      36,
+      75,
+      90
+    ],
+    "sha256": "f41982750c151104cbfdacad60aa2e4defa75a448d8a9f54f06fca168562c1ad"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 0,
+    "pixel_bounds": [
+      42,
+      36,
+      78,
+      89
+    ],
+    "sha256": "3cebb54f211e163083f56b9827e12f45c244834d92549cc92b86ad52cb7ef83f"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 1,
+    "pixel_bounds": [
+      40,
+      45,
+      81,
+      89
+    ],
+    "sha256": "d064cb1225696f2afa50e9514d64fad5622645347de8ce0f985f83e70b350065"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 2,
+    "pixel_bounds": [
+      46,
+      42,
+      79,
+      89
+    ],
+    "sha256": "0ca4283a534a36d63bd7f0a930c134131c055e1f6df69fc2677c164549f2bd43"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 3,
+    "pixel_bounds": [
+      51,
+      37,
+      91,
+      89
+    ],
+    "sha256": "ae395cdabb81e4725f6342f00477a7f1cf592068a80e440a3527733eaa4e3edc"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 4,
+    "pixel_bounds": [
+      51,
+      39,
+      94,
+      89
+    ],
+    "sha256": "04634ccd157bfab4ecff30890753a449862e9d000ad54e604107388f81b5f9be"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 5,
+    "pixel_bounds": [
+      51,
+      37,
+      99,
+      89
+    ],
+    "sha256": "39035b81c51ae2ae85475a9d9c830583f7ea40d5664ec5bd16b9938e7d7f63cb"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 6,
+    "pixel_bounds": [
+      44,
+      23,
+      81,
+      89
+    ],
+    "sha256": "e75a94382f8b01f08efc3b412cb2cc99f597b156ed05531212d9a3e2131939fc"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 7,
+    "pixel_bounds": [
+      48,
+      38,
+      101,
+      89
+    ],
+    "sha256": "80f99ab4dc6888de24c536b8728327d4a5f7dac9be68f424173e6e1601dd8db0"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 8,
+    "pixel_bounds": [
+      43,
+      37,
+      90,
+      89
+    ],
+    "sha256": "0f5274421d1aac89e57e0dce650e65a0392a5dc3baeac24928cd602a223d63bc"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 9,
+    "pixel_bounds": [
+      43,
+      39,
+      80,
+      89
+    ],
+    "sha256": "f648b53d67f84448af83794fb96afb18739574a0e9e11e87f4acd40c5133d93e"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 10,
+    "pixel_bounds": [
+      40,
+      44,
+      81,
+      89
+    ],
+    "sha256": "440cfe84eb432b3cf00c16dbdc72d16153e9e23c1fdbda2dcada4d4ed5dd1858"
+  },
+  {
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 11,
+    "pixel_bounds": [
+      42,
+      35,
+      78,
+      90
+    ],
+    "sha256": "fe2b5f3e3c3ea26ca49ab26c036d8e4e5565e9da9d6de55461a7b0226cc90525"
+  }
+]

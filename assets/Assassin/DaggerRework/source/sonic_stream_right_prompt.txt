@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset: actual production character animation sprite sheet for a 2D pixel RPG, not concept illustration.
+Reference image role: EXACT APPROVED JINWOO MODEL. Preserve this character's small narrow head, tall slim silhouette, short spiky black hair, open ankle-length navy coat, pale gray shirt, narrow black trousers, pale boot soles, and TWO curved CRIMSON RED daggers. The head including hair is only about one fifth of standing height. Slim long legs, narrow shoulders, slim arms, adult proportions. Every dagger has a visible skin-colored gripping hand. Both hands remain attached to arms. Coat tails stay two narrow panels. Do not inflate the head, body or coat.
+Style: the same coarse pixel density as the reference, approximately 54 native pixels from hair to ground. Clean 16-bit game pixel clusters. Black outline; only 3 navy shades, 2 gray shirt shades, 2 skin shades, and 3 red blade shades. No painted detail, texture, tiny folds, gradients, glow or antialiasing. Precise restrained shapes. Do not turn him into a chibi character.
+Backdrop: flat bright green #00FF00, no scenery, no shadow, no text, no labels, no lines, no VFX, no motion trails. Show just body and physical daggers.
+Layout: SIX columns and TWO rows: TWELVE chronological poses of ONE facing direction. Row1 poses1–6, Row2 poses7–12. All figures the SAME direction. Uniform equal cells, generous margins. Every full figure contained in its own cell. Keep feet on one common row baseline; no effects or printed grid. Each pose has its own real limb position, no translated duplicates.
+ALL TWELVE figures face RIGHT in true right-facing profile. Nose, toes and all attacks toward image RIGHT. Never show the back or turn to face the viewer. No left-facing figures.
+Animation: E / SONIC STREAM — low pursuit dash into five alternating stabbing cuts and a forceful twin-dagger release. TWELVE poses:
+1 exact reference ready guard, both red daggers lowered.
+2 narrow low crouch, elbows drawn back, preparing to spring.
+3 stretched forward dash lunge, chest low, both daggers loaded beside ribs, coat tails trailing.
+4 FIRST CONTACT: lead arm stabs directly forward at lower-chest height, offhand guards neck; bent lead knee.
+5 SECOND CONTACT: offhand short reverse cut forward at waist level, lead hand retracts beside the ribs.
+6 THIRD CONTACT: offhand dagger thrusts forward from shoulder, other dagger guards low; hips lean forward.
+7 FOURTH CONTACT: lead arm snaps upward in a tight rising slash, rear heel turns.
+8 FIFTH CONTACT: long low two-dagger thrust, two separate parallel blades forward at slightly different heights.
+9 strong finishing release: lead leg plants and both hands extend forward from a tight crossed-arm chamber, two daggers aligned toward the target.
+10 brake into a low passing step, elbows retract as coat tails settle, keep looking toward target.
+11 rise to compact low guard with knees still bent, both hands below waist. NO raised or overhead blade.
+12 exact reference low-dagger neutral guard.
+Five fast physical dagger techniques, not repeated standing casting poses. No flames, magic circles, particles or trails in the body sheet.

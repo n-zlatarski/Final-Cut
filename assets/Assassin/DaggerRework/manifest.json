@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "character": "Sung Jinwoo",
+  "cell_size": [
+    120,
+    120
+  ],
+  "pivot": [
+    60,
+    88
+  ],
+  "standing_height_px": 54,
+  "display_size": [
+    240,
+    240
+  ],
+  "draw_offset": [
+    -10,
+    -12
+  ],
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "palette": [
+    "#080b12",
+    "#10121d",
+    "#171b2b",
+    "#22273c",
+    "#30364d",
+    "#444c64",
+    "#5c6680",
+    "#79859a",
+    "#929caf",
+    "#b5bac7",
+    "#d6d9df",
+    "#f1efeb",
+    "#4a2530",
+    "#703543",
+    "#985347",
+    "#bd7759",
+    "#e4a47b",
+    "#f8c89a",
+    "#ffe0b1",
+    "#482126",
+    "#711e2e",
+    "#9d2236",
+    "#cb2b41",
+    "#ee4352",
+    "#ff746c",
+    "#715235",
+    "#a37a49",
+    "#d0a26b",
+    "#15568d",
+    "#238fc2",
+    "#48cde6",
+    "#bbf4fb"
+  ],
+  "animations": {
+    "attack_1": {
+      "sheet": "sheets/attack_1.png",
+      "frames_per_direction": 8,
+      "source": "quick_cut.png",
+      "scale_by_direction": {
+        "down": 0.2903225806451613,
+        "left": 0.2903225806451613,
+        "right": 0.2903225806451613,
+        "up": 0.2967032967032967
+      }
+    },
+    "attack_2": {
+      "sheet": "sheets/attack_2.png",
+      "frames_per_direction": 8,
+      "source": "cross_cut.png",
+      "scale_by_direction": {
+        "down": 0.32335329341317365,
+        "left": 0.3253012048192771,
+        "right": 0.32335329341317365,
+        "up": 0.33540372670807456
+      }
+    },
+    "attack_3": {
+      "sheet": "sheets/attack_3.png",
+      "frames_per_direction": 8,
+      "source": "lunge_finish.png",
+      "scale_by_direction": {
+        "down": 0.2983425414364641,
+        "left": 0.30337078651685395,
+        "right": 0.30857142857142855,
+        "up": 0.30857142857142855
+      }
+    },
+    "walk_attack_1": {
+      "sheet": "sheets/walk_attack_1.png",
+      "frames_per_direction": 8,
+      "source": "quick_cut_moving.png",
+      "scale_by_direction": {
+        "down": 0.3068181818181818,
+        "left": 0.30337078651685395,
+        "right": 0.3068181818181818,
+        "up": 0.30857142857142855
+      }
+    },
+    "walk_attack_2": {
+      "sheet": "sheets/walk_attack_2.png",
+      "frames_per_direction": 8,
+      "source": "cross_cut_moving.png",
+      "scale_by_direction": {
+        "down": 0.3333333333333333,
+        "left": 0.32926829268292684,
+        "right": 0.32926829268292684,
+        "up": 0.3375
+      },
+      "pose_selections": {
+        "up:4": "rear_corrections.png:1"
+      }
+    },
+    "walk_attack_3": {
+      "sheet": "sheets/walk_attack_3.png",
+      "frames_per_direction": 8,
+      "source": "lunge_finish_moving.png",
+      "scale_by_direction": {
+        "down": 0.31952662721893493,
+        "left": 0.3157894736842105,
+        "right": 0.3176470588235294,
+        "up": 0.30857142857142855
+      }
+    },
+    "dash_attack": {
+      "sheet": "sheets/dash_attack.png",
+      "frames_per_direction": 8,
+      "source": "dash_strike.png",
+      "scale_by_direction": {
+        "down": 0.29508196721311475,
+        "left": 0.29508196721311475,
+        "right": 0.2983425414364641,
+        "up": 0.2903225806451613
+      }
+    },
+    "deaths_dance": {
+      "sheet": "sheets/deaths_dance.png",
+      "frames_per_direction": 12,
+      "sources": {
+        "down": "deaths_dance_down.png",
+        "left": "deaths_dance_left.png",
+        "right": "deaths_dance_right.png",
+        "up": "deaths_dance_up.png"
+      },
+      "scale_by_direction": {
+        "down": 0.1992619926199262,
+        "left": 0.20149253731343283,
+        "right": 0.21428571428571427,
+        "up": 0.21951219512195122
+      },
+      "pose_selections": {
+        "up:7": "rear_corrections.png:2"
+      }
+    },
+    "sonic_stream": {
+      "sheet": "sheets/sonic_stream.png",
+      "frames_per_direction": 12,
+      "sources": {
+        "down": "sonic_stream_down.png",
+        "left": "sonic_stream_left.png",
+        "right": "sonic_stream_right.png",
+        "up": "sonic_stream_up.png"
+      },
+      "scale_by_direction": {
+        "down": 0.1782178217821782,
+        "left": 0.2084942084942085,
+        "right": 0.21774193548387097,
+        "up": 0.19708029197080293
+      }
+    }
+  },
+  "aliases": {
+    "walk_attack": "walk_attack_1",
+    "run_attack": "walk_attack_1"
+  },
+  "vfx": {
+    "quick_arc": {
+      "sheet": "VFX/quick_arc.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "cross_slash": {
+      "sheet": "VFX/cross_slash.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "lunge_streak": {
+      "sheet": "VFX/lunge_streak.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "dance_cut": {
+      "sheet": "VFX/dance_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "echo_cut": {
+      "sheet": "VFX/echo_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "contact": {
+      "sheet": "VFX/contact.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "blue_wake": {
+      "sheet": "VFX/blue_wake.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "stabbing_trail": {
+      "sheet": "VFX/stabbing_trail.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "piercing_wave": {
+      "sheet": "VFX/piercing_wave.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    }
+  },
+  "preserves": "All PixelRemake idle, locomotion, hurt, death and portrait files",
+  "source_sha256": {
+    "deaths_dance_down.png": "1fa568fb74bb5bf990c4646a5f69a3073d80af0f609f058087555d76bd5a5f6d",
+    "lunge_finish_moving.png": "720cc7fc8010fc7542512abc3873145aba2992be4a3090b777774a04e49c15b2",
+    "quick_cut.png": "340ace67fe4fe1a6d4c7f48948369913c8f5937c1f777ad805b56af61a14b34e",
+    "cross_cut_moving.png": "0571f0eb4b9a8ebf360533b900a7b243638546724c151deb757b703cd1472a3d",
+    "sonic_stream_right.png": "abb0adf96f95859d942f07b814948f663218db0f0ba86be1e4fd8fce66da10f7",
+    "sonic_stream_up.png": "af1b8570631820c668a597d62a4d4bc600e1664238f9ce75b9d3573b3dfb37a4",
+    "rear_corrections.png": "74d6e06c2288b1a8d5dc7dcba0ef90cec05ef7194d937eab62864f359a66bb0c",
+    "deaths_dance_up.png": "babb0992aa26d82db7b995f204995406e542b1bbf5446bf3af0236ddc6221f16",
+    "dance_fx.png": "c7dc7be802ff3e657e5e849df9830454acc080ac80494576f9a2838c3ece2da9",
+    "sonic_stream_down.png": "b398d390baa7a798bf4a09077b9f496b3cfa0e9c38ffb9f3f9b71fb19116bfa9",
+    "stream_fx.png": "13bffd2ddb87d67e51f003e10a0ef02f513eea260ddcee0c3abda4d7ae6cb04c",
+    "approved_model.png": "44bac22fdb1fe8cda34b525d63ced4824dd8e2a48a92cfb2b47e460f79256727",
+    "cross_cut.png": "d3dbc8c25f04f5fce4c025e75be25c0a7532e9775a0d00e2aa3193026a07b855",
+    "deaths_dance_left.png": "3259733acefef5014507e361e393f3c1c7c9991b2bac45c8ee5730c033213734",
+    "deaths_dance_right.png": "e306c6e4da0c628b522ef38a3a0e69cbb0c673f65e6de7e725946e9b86d7ad7b",
+    "lunge_finish.png": "a466b384856dc788d0b95ca6681d06c8eede369f8d6c83a0b33cc0cb6fb38f1a",
+    "quick_cut_moving.png": "0df725e6933bb4ed5631be3e3c1a2b56614184fe808f329d20cbac02e458f5a2",
+    "dash_strike.png": "3c7083b7f156485f7ae9e5f2f1ec121483f5150ad4f69a363717fb79799a6dba",
+    "blade_fx.png": "52527e418c630b5abe8205ca95edfa8abb01d71bac1b676202544cd7dd929f7d",
+    "sonic_stream_left.png": "e027856ef6e1e6b38906f5b9fb225e6baa3153b4f7719fb921722005520ec35b"
+  }
+}

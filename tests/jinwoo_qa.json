@@ -1,14 +1,14 @@
 {
   "checks": [
-    "16 animations in four directions, 440 distinct nonempty frames, visible crimson blades and unobscured skin in front/side poses, no clipping",
+    "16 animations in four directions, 448 nonempty frames (unique within each clip), visible crimson blades except correctly occluded rear contacts, no clipping",
     "All authored frames visited at 30, 60 and 144 FPS; one-shot clips finish and terminal death remains collapsed",
-    "Fixed world feet pivot (110,164) with transparent padding; original game logic frame counts retained"
+    "Fixed world feet pivot (110,164) with transparent padding; 12-pose Q / thirteen-pose E and six-pose moving combos loaded"
   ],
-  "source_frames": 440,
+  "source_frames": 448,
   "playback_cases": 192,
   "minimum_visible_pixels": {
     "skin_pixels": 0,
-    "red_blade_pixels": 72
+    "red_blade_pixels": 32
   },
   "status": "passed"
 }

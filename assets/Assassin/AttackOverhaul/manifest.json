@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "character": "Sung Jinwoo",
+  "cell_size": [
+    120,
+    120
+  ],
+  "pivot": [
+    60,
+    88
+  ],
+  "standing_height_px": 54,
+  "display_size": [
+    240,
+    240
+  ],
+  "draw_offset": [
+    -10,
+    -12
+  ],
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "palette": [
+    "#080b12",
+    "#10121d",
+    "#171b2b",
+    "#22273c",
+    "#30364d",
+    "#444c64",
+    "#5c6680",
+    "#79859a",
+    "#929caf",
+    "#b5bac7",
+    "#d6d9df",
+    "#f1efeb",
+    "#4a2530",
+    "#703543",
+    "#985347",
+    "#bd7759",
+    "#e4a47b",
+    "#f8c89a",
+    "#ffe0b1",
+    "#482126",
+    "#711e2e",
+    "#9d2236",
+    "#cb2b41",
+    "#ee4352",
+    "#ff746c",
+    "#715235",
+    "#a37a49",
+    "#d0a26b",
+    "#15568d",
+    "#238fc2",
+    "#48cde6",
+    "#bbf4fb"
+  ],
+  "animations": {
+    "attack_1": {
+      "sheet": "sheets/attack_1.png",
+      "frames_per_direction": 6,
+      "source": "carving_sweep.png",
+      "scale_by_direction": {
+        "right": 0.23275862068965517,
+        "down": 0.24,
+        "up": 0.23275862068965517
+      }
+    },
+    "attack_2": {
+      "sheet": "sheets/attack_2.png",
+      "frames_per_direction": 6,
+      "source": "reverse_rake.png",
+      "scale_by_direction": {
+        "right": 0.20930232558139536,
+        "down": 0.2134387351778656,
+        "up": 0.21176470588235294
+      }
+    },
+    "attack_3": {
+      "sheet": "sheets/attack_3.png",
+      "frames_per_direction": 6,
+      "source": "fang_plunge.png",
+      "scale_by_direction": {
+        "right": 0.23684210526315788,
+        "down": 0.23580786026200873,
+        "up": 0.23376623376623376
+      }
+    },
+    "walk_attack_1": {
+      "sheet": "sheets/walk_attack_1.png",
+      "frames_per_direction": 6,
+      "source": "carving_sweep_moving.png",
+      "scale_by_direction": {
+        "right": 0.2231404958677686,
+        "down": 0.23478260869565218,
+        "up": 0.2222222222222222
+      }
+    },
+    "walk_attack_2": {
+      "sheet": "sheets/walk_attack_2.png",
+      "frames_per_direction": 6,
+      "source": "reverse_rake_moving.png",
+      "scale_by_direction": {
+        "right": 0.20532319391634982,
+        "down": 0.2,
+        "up": 0.1992619926199262
+      }
+    },
+    "walk_attack_3": {
+      "sheet": "sheets/walk_attack_3.png",
+      "frames_per_direction": 6,
+      "source": "fang_plunge_moving.png",
+      "scale_by_direction": {
+        "right": 0.21951219512195122,
+        "down": 0.22784810126582278,
+        "up": 0.2076923076923077
+      }
+    },
+    "deaths_dance": {
+      "sheet": "sheets/deaths_dance.png",
+      "frames_per_direction": 12,
+      "source": "deaths_dance.png",
+      "scale_by_direction": {
+        "right": 0.3253012048192771,
+        "down": 0.33540372670807456,
+        "up": 0.33962264150943394
+      }
+    },
+    "sonic_stream": {
+      "sheet": "sheets/sonic_stream.png",
+      "frames_per_direction": 12,
+      "source": "sonic_stream.png",
+      "scale_by_direction": {
+        "right": 0.30857142857142855,
+        "down": 0.3103448275862069,
+        "up": 0.3333333333333333
+      },
+      "pose_selections": {
+        "down:10": "deaths_dance/down:10",
+        "up:7": "attack_3/up:3"
+      }
+    },
+    "dash_attack": {
+      "sheet": "sheets/dash_attack.png",
+      "frames_per_direction": 6,
+      "derived_from": "sonic_stream",
+      "source_indices": [
+        0,
+        1,
+        2,
+        3,
+        10,
+        11
+      ]
+    }
+  },
+  "aliases": {
+    "walk_attack": "walk_attack_1",
+    "run_attack": "walk_attack_1"
+  },
+  "vfx": {
+    "carving_arc": {
+      "sheet": "VFX/carving_arc.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "reverse_arc": {
+      "sheet": "VFX/reverse_arc.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "fang_cut": {
+      "sheet": "VFX/fang_cut.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "scissor_cut": {
+      "sheet": "VFX/scissor_cut.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "ground_fissure": {
+      "sheet": "VFX/ground_fissure.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        66
+      ]
+    },
+    "contact": {
+      "sheet": "VFX/contact.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "blue_wake": {
+      "sheet": "VFX/blue_wake.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "barrage_cut": {
+      "sheet": "VFX/barrage_cut.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    },
+    "twin_wave": {
+      "sheet": "VFX/twin_wave.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "pivot": [
+        48,
+        48
+      ]
+    }
+  },
+  "preserves": "All PixelRemake locomotion, idle, hurt and death files",
+  "source_sha256": {
+    "fang_plunge.png": "c59bcb53207fea2f95c0bfd19fcacd7889c02795370ab73c8e643e2bf9597b75",
+    "dance_fx.png": "bec428dd9398fa56cafc50faccf88ab033f4f990a9ca28012a875878a0e4cbee",
+    "sonic_stream_draft.png": "1bf2d3a2dfebe647c808ba562bab912f0a9cf1025b4316f919d411fcc672e503",
+    "reverse_rake.png": "afa8cae5f94ab4591726398a9ae8fdfa15d1575219a94e048cb047a2f4106110",
+    "sonic_stream.png": "09d9185e86c99326e57896e1634477cb30fd4022252d016af1744e7bd47f5aaa",
+    "deaths_dance.png": "03ea7b5e303f53d531a736d3b0d38b9f2d2b24b98a87eeee73e46b3375dfac95",
+    "blade_fx.png": "c60904c29cef4d1dc48efdbf2f7c9e74f30051fd88c09564e5dba55acf5d9ad8",
+    "fang_plunge_moving.png": "ba118beee402e7d812d457c6fb1c03586e74a15b5575ee46eed49a73f56f5886",
+    "carving_sweep_moving.png": "a4d83cb718e5c9a783ab66156df23114d92d5453699876c3e462bf0dffd9dc91",
+    "reverse_rake_moving.png": "c598ffce03c8fedea10c9dbb8b4637555818477c59d58b379f091d855f157518",
+    "carving_sweep.png": "5a9fc9377712687abd2819bd4e6d11ecbc59a1df33b5033eda2064a7c0d3a4d0",
+    "stream_fx.png": "5cf1709ee54d1dfb24d967d316bb3da0167fd34844a74de0d19e59a260276f86",
+    "approved_model.png": "44bac22fdb1fe8cda34b525d63ced4824dd8e2a48a92cfb2b47e460f79256727",
+    "deaths_dance_draft.png": "a78ce2409937dcb1786719304c24d8c06e5f5092f6eefe4800768d7d8a75ba2c"
+  }
+}

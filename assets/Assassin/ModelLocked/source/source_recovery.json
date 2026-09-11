@@ -1,0 +1,97 @@
+[
+  {
+    "source": "dash_down_correction.png",
+    "recovered_name": "Six front-facing pixel dash poses.png",
+    "sha256": "2ceeac05c76cce05fa8469007d7eeb0992654cafc15cd876887f7ed956d7659a"
+  },
+  {
+    "source": "up_corrections.png",
+    "recovered_name": "Six Rear-View Pixel Fighter Poses.png",
+    "sha256": "08d3daa17e679c2c93b95c070828a762e4ed601acf7d2b46dd281ba93eef45c3"
+  },
+  {
+    "source": "left_corrections.png",
+    "recovered_name": "Six left-facing dagger sprite poses.png",
+    "sha256": "aaef4d1a6310c09653eb53891497af4f9deb35a5d207c2b8ae0d81d68533160b"
+  },
+  {
+    "source": "sonic_stream_up.png",
+    "recovered_name": "Twelve-pose pixel dagger attack animation(1).png",
+    "sha256": "f06ecb045376f16082a117857bb552ede43b5c35997040fe0dc4899e085c57e3"
+  },
+  {
+    "source": "sonic_stream_right.png",
+    "recovered_name": "Twelve-pose red-dagger pixel animation.png",
+    "sha256": "6515316bf73724c674e456e5aa6b2d419afe9a7b37a58fc4e6fd5a979b4a5304"
+  },
+  {
+    "source": "sonic_stream_left.png",
+    "recovered_name": "Left-facing red-dagger sprite animation.png",
+    "sha256": "5068d2843920bff752046b79bc7986fea88a19fd4db156e5b4301be1b2e0f2e3"
+  },
+  {
+    "source": "sonic_stream_down.png",
+    "recovered_name": "Front-facing twelve-pose pixel dagger animation.png",
+    "sha256": "b955153f27d419c8cf8e085c28412183d005537d46aab4b4c23e903823e119f9"
+  },
+  {
+    "source": "deaths_dance_up.png",
+    "recovered_name": "Twelve-pose pixel dagger attack animation.png",
+    "sha256": "cef83c823442c012157557f73076fca66b5cdd71050b056abcdf20694c8dfc81"
+  },
+  {
+    "source": "deaths_dance_right.png",
+    "recovered_name": "Twelve-frame pixel dagger sprite sheet.png",
+    "sha256": "3cb68dcedda908e6f158492e5f96cfcfcf49f1cd02ac473cbd40c24a435c537a"
+  },
+  {
+    "source": "deaths_dance_left.png",
+    "recovered_name": "Twelve-pose left-facing dagger sprite sheet.png",
+    "sha256": "82e48aa0878e2b07fcbed0a33216615172c9fa5db1b635f71dd0d3bd73725adb"
+  },
+  {
+    "source": "deaths_dance_down.png",
+    "recovered_name": "Twelve-Pose Red Dagger Sprite Sheet.png",
+    "sha256": "2a85f9964de7491dfa7cbca6146d39f56caed0fc6c3a068bc2ca9d8e5713018f"
+  },
+  {
+    "source": "dash_attack.png",
+    "recovered_name": "Nightstep dagger dash sprite sheet.png",
+    "sha256": "b7e93e9bbb5fcba7badb313407938a5f1fb157792e5562cf3f088fd2802733c3"
+  },
+  {
+    "source": "moving3.png",
+    "recovered_name": "Four-Direction Twin Dagger Sprite Sheet.png",
+    "sha256": "e9e2a887cf292c83a22a06036a9714bbdb6d88385a4d2e87dca490a6731b489d"
+  },
+  {
+    "source": "moving2.png",
+    "recovered_name": "Six-phase pixel dagger animation.png",
+    "sha256": "36b0b4542a4f8cc7b90b8302a9640c75d29a4b3d1f5c9d980c845694cd2d9f24"
+  },
+  {
+    "source": "moving1.png",
+    "recovered_name": "Six-Pose Red Dagger Attack Sprite Sheet.png",
+    "sha256": "33d9f350de2d4738897e31bf257831393e573ae6ec111e3fd4f2cb15f71c9486"
+  },
+  {
+    "source": "attack3.png",
+    "recovered_name": "Twin Dagger Attack Sprite Sheet.png",
+    "sha256": "91638bc13455aff097556e45265952196862a77483386b86354d24d7cf45b5a0"
+  },
+  {
+    "source": "attack2.png",
+    "recovered_name": "Six-Frame Backhand Dagger Animation Sheet.png",
+    "sha256": "97dedf572582d288bd70779aa7572b6e018e1d2f0647a805e27689a038b19c28"
+  },
+  {
+    "source": "attack1_other.png",
+    "recovered_name": "Three-direction pixel dagger sprite sheet.png",
+    "sha256": "a71a41b12879771619fbf897c3420c9da2e1b9dffc883d14dea1a7fa971d74ce"
+  },
+  {
+    "source": "approved_attack1_right.png",
+    "recovered_name": "Six-frame right-facing dagger animation.png",
+    "sha256": "8c5bc8107c9227edbbf8e7963f399d9891f4f4f801494e9526797ca412427005"
+  }
+]

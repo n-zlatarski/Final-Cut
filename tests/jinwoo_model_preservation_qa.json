@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "protected_files_unchanged": 201,
+  "changed_existing_files": [
+    "game_data.py",
+    "gameplay.py",
+    "jinwoo_vfx.py",
+    "jinwoo_data.py",
+    "README.md",
+    "tests/verify_jinwoo_attacks.py",
+    "tests/verify_jinwoo.py",
+    "tests/jinwoo_qa.json",
+    "tests/jinwoo_attack_qa.json",
+    "tests/screenshots/jinwoo/gameplay_1740.png",
+    "tests/screenshots/jinwoo/contact_4.png",
+    "tests/screenshots/jinwoo/contact_1.png",
+    "tests/screenshots/jinwoo/gameplay_960.png",
+    "tests/screenshots/jinwoo/gameplay_480.png",
+    "tests/screenshots/jinwoo/contact_3.png",
+    "tests/screenshots/jinwoo/contact_2.png",
+    "tests/screenshots/jinwoo/gameplay_1470.png"
+  ],
+  "missing_files": []
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": [
+    "Hurt cancels an unlanded LMB hit and its pose",
+    "Q replaces LMB wind-up without an orphan hit",
+    "Q yields to Hurt during vulnerable recovery",
+    "Interrupting the E flurry suppresses all remaining cuts and effects",
+    "Interrupting Q before landing suppresses its single eruption"
+  ],
+  "frames": 282,
+  "conditions": "Real stage helpers, empty room; invulnerability explicitly cleared only for forced mid-skill interruption checks"
+}

@@ -1,7 +1,7 @@
 {
   "checks": [
     "Real name entry, pause/options, all four campaign rooms, boss spawn, terminal boss death and exit progression",
-    "Real movement, running attack, all three standing/moving combo clips, dash and buffered dash attack, Q Deaths Dance and E Sonic Stream",
+    "Real movement, running attack, all three standing/moving combo clips, dash and buffered dash attack, Q Deaths Dance and E rapid Sonic Stream slashes",
     "Player defeat triggers the seven-frame collapse, holds its final pose, and supports Retry stage"
   ],
   "loaded_clips_in_game": [

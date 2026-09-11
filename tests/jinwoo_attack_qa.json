@@ -1,0 +1,2483 @@
+{
+  "status": "passed",
+  "action_cases": 144,
+  "vfx_frames": 114,
+  "rates": [
+    30,
+    60,
+    144
+  ],
+  "checks": [
+    "Real LMB/Q/E and dash-click input, all four facings, three standing/walking/sprinting combo attacks",
+    "Each authored pose appears, every skill hit coincides with its exact contact pose",
+    "No visible slash during the initial held wind-up; trails begin at contact",
+    "Injected 85ms hit-stop pauses body, skill event clock and pixel effects together",
+    "Q/E neutral wind-up remains planted; every action unlocks and returns to idle",
+    "Q travels 280px with one eruption exactly 96px forward; E enters 250px with no backward step, throw or explosion",
+    "Each input starts one attack; Q/E execute four/ten damage beats once",
+    "Each E emits 21 directional slash layers plus short pose echoes, all cleared after recovery",
+    "Nineteen six-frame effects are nonempty and unique within their animation"
+  ],
+  "cases": [
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "dash_attack",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "dash_attack",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "dash_attack",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "dash_attack",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 2,
+      "rate": 30
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "dash_attack",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "dash_attack",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "dash_attack",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "dash_attack",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 5,
+      "rate": 60
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "down",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "left",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "right",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "walking",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_1",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_2",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "attack_3",
+      "direction": "up",
+      "mode": "sprinting",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "dash_attack",
+      "direction": "down",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "dash_attack",
+      "direction": "left",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "dash_attack",
+      "direction": "right",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "deaths_dance",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "damage_beats": 4,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "sonic_stream",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "damage_beats": 10,
+      "paused_frames": 12,
+      "rate": 144
+    },
+    {
+      "name": "dash_attack",
+      "direction": "up",
+      "mode": "standing",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "damage_beats": 1,
+      "paused_frames": 12,
+      "rate": 144
+    }
+  ]
+}

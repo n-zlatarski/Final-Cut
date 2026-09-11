@@ -6,6 +6,7 @@ import it once, early.
 """
 from settings import *
 from igris_data import load_igris_frames, IGRIS_SCALE, IGRIS_BANK
+from jinwoo_data import animation_overrides
 from sprite_loaders import (
     load_img, load_sheet_all_rows,
     load_sheet, load_side_sheet_raw,
@@ -276,21 +277,17 @@ ASSASSIN_SHEETS = {
     "run_attack":  ("assets/Assassin/PixelRemake/sheets/run_attack.png",   8, 4),
     "dash":        ("assets/Assassin/PixelRemake/sheets/dash.png",         7, 4),
     "dash_attack": ("assets/Assassin/PixelRemake/sheets/dash_attack.png",  6, 4),
-    # Death's Dance is a completely separate ten-phase action: ignition,
-    # accelerating dash, full-body rotation, braking skid, and recovery. The source is
-    # packed into the same transparent 120px cells, so it uses the same stable
-    # four-direction loader as Jinwoo's other production-ready sheets.
+    # These legacy paths are replaced by the twelve-pose attack bank below,
+    # before any Assassin sheet is loaded.
     "deaths_dance": ("assets/Assassin/PixelRemake/sheets/deaths_dance_spin.png", 10, 4),
-    # Sonic Stream is the E-key target-entry barrage: launch, chained crossing
-    # cuts, overhead finisher, landing skid, and recovery.  Its eleven poses
-    # are original body animation, normalized to Q's action scale, Jinwoo's
-    # normal head/torso proportions, and the regular planted root. gameplay.py
-    # renders its trails separately so the character sheet stays reusable.
     "sonic_stream": ("assets/Assassin/PixelRemake/sheets/sonic_stream.png", 11, 4),
     "hurt":        ("assets/Assassin/PixelRemake/sheets/hurt.png",         5, 4),
     "death":       ("assets/Assassin/PixelRemake/sheets/death.png",        7, 4),
 }
 
+# The attack bank replaces only LMB (stationary/moving/dash), Q and E.
+# All approved locomotion, idle alignment and terminal poses stay in PixelRemake.
+ASSASSIN_SHEETS.update(animation_overrides())
 ASSASSIN_ANIM_ROWS = {
     name: load_sheet_all_rows(
         path, cols, rows, ASSASSIN_DISPLAY_SIZE, remove_flat_background=True)
@@ -309,11 +306,10 @@ _a_atk2_rows = ASSASSIN_ANIM_ROWS["attack_2"]
 _a_atk3_rows = ASSASSIN_ANIM_ROWS["attack_3"]
 _a_deaths_dance_rows = ASSASSIN_ANIM_ROWS["deaths_dance"]
 _a_sonic_stream_rows = ASSASSIN_ANIM_ROWS["sonic_stream"]
-# Six transparent, game-sized frames for the restored red ground finisher.
-# They are intentionally separate from the character sheet so the approved
-# ten-frame dash/spin body animation remains untouched.
+# Kept as an exported sheet for asset-preview callers. Gameplay uses JinwooVFX
+# with the pixel scale from the new manifest.
 _a_deaths_dance_fx = load_sheet_all_rows(
-    "assets/Assassin/VFX/deaths_dance_eruption_red.png", 6, 1, (260, 260)
+    "assets/Assassin/VideoMatch/VFX/red_eruption.png", 6, 1, (288, 288)
 )[0]
 _a_walk_atk_rows = (
     ASSASSIN_ANIM_ROWS["walk_attack_1"],
@@ -345,6 +341,6 @@ CLASS_STATS = {
     "Assassin": dict(
         health=105, stamina=320,
         title="SHADOW HUNTER", special="Death's Dance",
-        special_desc="Three crimson dagger cuts ending in ground eruptions",
+        special_desc="Six agile dagger cuts ending in three forward echoes",
     ),
 }

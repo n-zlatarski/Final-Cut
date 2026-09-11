@@ -1,0 +1,21 @@
+Use case: stylized-concept.
+Asset: actual production character animation sprite sheet for a 2D pixel RPG, not concept illustration.
+Reference image role: EXACT APPROVED JINWOO MODEL. Preserve this character's small narrow head, tall slim silhouette, short spiky black hair, open ankle-length navy coat, pale gray shirt, narrow black trousers, pale boot soles, and TWO curved CRIMSON RED daggers. The head including hair is only about one fifth of standing height. Slim long legs, narrow shoulders, slim arms, adult proportions. Every dagger has a visible skin-colored gripping hand. Both hands remain attached to arms. Coat tails stay two narrow panels. Do not inflate the head, body or coat.
+Style: the same coarse pixel density as the reference, approximately 54 native pixels from hair to ground. Clean 16-bit game pixel clusters. Black outline; only 3 navy shades, 2 gray shirt shades, 2 skin shades, and 3 red blade shades. No painted detail, texture, tiny folds, gradients, glow or antialiasing. Precise restrained shapes. Do not turn him into a chibi character.
+Backdrop: flat bright green #00FF00, no scenery, no shadow, no text, no labels, no lines, no VFX, no motion trails. Show just body and physical daggers.
+Layout: SIX columns and TWO rows: TWELVE chronological poses of ONE facing direction. Row1 poses1–6, Row2 poses7–12. All figures the SAME direction. Uniform equal cells, generous margins. Every full figure contained in its own cell. Keep feet on one common row baseline; no effects or printed grid. Each pose has its own real limb position, no translated duplicates.
+ALL TWELVE figures face DOWN/FRONT toward the viewer. Face and pale gray shirt visible in every pose. Feet and attacks toward the viewer with true foreshortening. Never show the back or side profile. No turns away from the camera.
+Animation: Q / DEATH'S DANCE — fluid six-cut dual-dagger technique with nimble steps and compact torso turns. No heavy sword stance and no kneeling ground strike. TWELVE poses:
+1 exact reference low-dagger ready stance.
+2 low coiled step, both hands beside the hips.
+3 FIRST CONTACT: short forward rising slash with lead dagger, other blade guards low; lead knee bent.
+4 compact passing step, shoulders rotate and offhand retracts ready for a reverse cut.
+5 SECOND CONTACT: offhand reverse diagonal cut, blade forward at waist height, lead dagger guards shoulder.
+6 hips wind into a compact pivot with both elbows loaded close to ribs.
+7 THIRD CONTACT: turning scissor cut with two separate daggers and a wide but controlled stance.
+8 low cross-step reload, both hands chamber near opposing hips, coat tails following the turn.
+9 FOURTH CONTACT: quick forward dagger jab with lead hand, rear leg pushing the body into a long but low stance.
+10 FIFTH CONTACT: sharp reverse backhand cut with offhand blade, weight shifts to the other foot.
+11 SIXTH CONTACT: both arms snap forward in a short double-dagger finishing thrust, bent lead knee, two separate red blades in visible skin hands.
+12 recover to the exact reference low-dagger guard.
+Keep head and torso slender and the feet coherent. No ground eruptions, no spinning weapon circles, no duplicates, no VFX. Actual body animation only.

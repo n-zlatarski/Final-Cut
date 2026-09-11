@@ -31,6 +31,7 @@ class JinwooHarness(Harness):
             return super().events()
         anim = self.latest['anim']
         self.hero_directions.add(self.latest['direction'])
+        self.clips.add(anim.current)
         selected = anim.anims[anim.current]
         matched = False
         for name, rows in ASSASSIN_ANIM_ROWS.items():
@@ -104,7 +105,7 @@ def run(record=None):
         assert gameplay.stage_screen('Assassin', 'Jin', 3, new_run_state(), boss_only=True) == 'retry'
         assert 'death' in harness.clips
     report['checks'] += [
-        'Real movement, running attack, all three standing/moving combo clips, dash and buffered dash attack, Q Deaths Dance and E Sonic Stream',
+        'Real movement, running attack, all three standing/moving combo clips, dash and buffered dash attack, Q Deaths Dance and E rapid Sonic Stream slashes',
         'Player defeat triggers the seven-frame collapse, holds its final pose, and supports Retry stage',
     ]
     report.update(status='passed', conditions='SDL dummy video/audio, scripted input and boss HP/stagger transitions; bonus fighter health/stamina and 25% test-only fighter damage for continuous coverage')

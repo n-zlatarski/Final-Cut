@@ -1,0 +1,5282 @@
+[
+  {
+    "box": [
+      63,
+      46,
+      193,
+      218
+    ],
+    "anchor": [
+      127.0,
+      212
+    ],
+    "source": "attack1.png",
+    "source_index": 0,
+    "body_height": 167,
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.31736526946107785,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      304,
+      64,
+      470,
+      219
+    ],
+    "anchor": [
+      392.0,
+      214
+    ],
+    "source": "attack1.png",
+    "source_index": 1,
+    "body_height": 151,
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      562,
+      57,
+      709,
+      219
+    ],
+    "anchor": [
+      637.5,
+      215
+    ],
+    "source": "attack1.png",
+    "source_index": 2,
+    "body_height": 159,
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      778,
+      72,
+      965,
+      221
+    ],
+    "anchor": [
+      903.0,
+      215
+    ],
+    "source": "attack1.png",
+    "source_index": 3,
+    "body_height": 144,
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1045,
+      58,
+      1252,
+      221
+    ],
+    "anchor": [
+      1165.0,
+      216
+    ],
+    "source": "attack1.png",
+    "source_index": 4,
+    "body_height": 159,
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1343,
+      46,
+      1473,
+      219
+    ],
+    "anchor": [
+      1407.5,
+      212
+    ],
+    "source": "attack1.png",
+    "source_index": 5,
+    "body_height": 167,
+    "animation": "attack_1",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.31736526946107785,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      79,
+      298,
+      180,
+      470
+    ],
+    "anchor": [
+      127.5,
+      463
+    ],
+    "source": "attack1.png",
+    "source_index": 6,
+    "body_height": 166,
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      310,
+      304,
+      456,
+      469
+    ],
+    "anchor": [
+      381.0,
+      463
+    ],
+    "source": "attack1.png",
+    "source_index": 7,
+    "body_height": 160,
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      567,
+      303,
+      703,
+      467
+    ],
+    "anchor": [
+      631.5,
+      462
+    ],
+    "source": "attack1.png",
+    "source_index": 8,
+    "body_height": 160,
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      771,
+      311,
+      989,
+      469
+    ],
+    "anchor": [
+      905.0,
+      464
+    ],
+    "source": "attack1.png",
+    "source_index": 9,
+    "body_height": 154,
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1030,
+      301,
+      1235,
+      471
+    ],
+    "anchor": [
+      1156.5,
+      465
+    ],
+    "source": "attack1.png",
+    "source_index": 10,
+    "body_height": 165,
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1359,
+      298,
+      1460,
+      470
+    ],
+    "anchor": [
+      1407.5,
+      463
+    ],
+    "source": "attack1.png",
+    "source_index": 11,
+    "body_height": 166,
+    "animation": "attack_1",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      74,
+      557,
+      176,
+      729
+    ],
+    "anchor": [
+      126.5,
+      722
+    ],
+    "source": "attack1.png",
+    "source_index": 12,
+    "body_height": 166,
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      298,
+      557,
+      455,
+      726
+    ],
+    "anchor": [
+      377.5,
+      720
+    ],
+    "source": "attack1.png",
+    "source_index": 13,
+    "body_height": 164,
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      576,
+      557,
+      709,
+      726
+    ],
+    "anchor": [
+      642.5,
+      720
+    ],
+    "source": "attack1.png",
+    "source_index": 14,
+    "body_height": 164,
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      788,
+      564,
+      1008,
+      724
+    ],
+    "anchor": [
+      869.5,
+      719
+    ],
+    "source": "attack1.png",
+    "source_index": 15,
+    "body_height": 156,
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1069,
+      557,
+      1266,
+      726
+    ],
+    "anchor": [
+      1149.0,
+      720
+    ],
+    "source": "attack1.png",
+    "source_index": 16,
+    "body_height": 164,
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1353,
+      557,
+      1456,
+      729
+    ],
+    "anchor": [
+      1407.5,
+      722
+    ],
+    "source": "attack1.png",
+    "source_index": 17,
+    "body_height": 166,
+    "animation": "attack_1",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      63,
+      807,
+      193,
+      984
+    ],
+    "anchor": [
+      128.0,
+      980
+    ],
+    "source": "attack1.png",
+    "source_index": 18,
+    "body_height": 174,
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.3045977011494253,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      307,
+      822,
+      461,
+      977
+    ],
+    "anchor": [
+      373.5,
+      971
+    ],
+    "source": "attack1.png",
+    "source_index": 19,
+    "body_height": 150,
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      561,
+      810,
+      710,
+      980
+    ],
+    "anchor": [
+      626.5,
+      971
+    ],
+    "source": "attack1.png",
+    "source_index": 20,
+    "body_height": 162,
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      800,
+      828,
+      1015,
+      980
+    ],
+    "anchor": [
+      883.5,
+      974
+    ],
+    "source": "attack1.png",
+    "source_index": 21,
+    "body_height": 147,
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1070,
+      810,
+      1278,
+      981
+    ],
+    "anchor": [
+      1161.5,
+      974
+    ],
+    "source": "attack1.png",
+    "source_index": 22,
+    "body_height": 165,
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1343,
+      807,
+      1473,
+      984
+    ],
+    "anchor": [
+      1408.0,
+      980
+    ],
+    "source": "attack1.png",
+    "source_index": 23,
+    "body_height": 174,
+    "animation": "attack_1",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.3045977011494253,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      64,
+      45,
+      192,
+      218
+    ],
+    "anchor": [
+      127.5,
+      211
+    ],
+    "source": "attack2.png",
+    "source_index": 0,
+    "body_height": 167,
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.31736526946107785,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      314,
+      81,
+      461,
+      218
+    ],
+    "anchor": [
+      398.5,
+      213
+    ],
+    "source": "attack2.png",
+    "source_index": 1,
+    "body_height": 133,
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      584,
+      81,
+      706,
+      218
+    ],
+    "anchor": [
+      642.0,
+      213
+    ],
+    "source": "attack2.png",
+    "source_index": 2,
+    "body_height": 133,
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      816,
+      13,
+      976,
+      218
+    ],
+    "anchor": [
+      892.0,
+      213
+    ],
+    "source": "attack2.png",
+    "source_index": 3,
+    "body_height": 201,
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1089,
+      16,
+      1211,
+      215
+    ],
+    "anchor": [
+      1152.5,
+      209
+    ],
+    "source": "attack2.png",
+    "source_index": 4,
+    "body_height": 194,
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.31736526946107785,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1344,
+      45,
+      1472,
+      218
+    ],
+    "anchor": [
+      1407.5,
+      211
+    ],
+    "source": "attack2.png",
+    "source_index": 5,
+    "body_height": 167,
+    "animation": "attack_2",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.31736526946107785,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      79,
+      298,
+      180,
+      470
+    ],
+    "anchor": [
+      127.5,
+      463
+    ],
+    "source": "attack2.png",
+    "source_index": 6,
+    "body_height": 166,
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      314,
+      329,
+      452,
+      471
+    ],
+    "anchor": [
+      387.5,
+      466
+    ],
+    "source": "attack2.png",
+    "source_index": 7,
+    "body_height": 138,
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      578,
+      330,
+      703,
+      471
+    ],
+    "anchor": [
+      638.5,
+      466
+    ],
+    "source": "attack2.png",
+    "source_index": 8,
+    "body_height": 137,
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      843,
+      259,
+      974,
+      470
+    ],
+    "anchor": [
+      897.0,
+      466
+    ],
+    "source": "attack2.png",
+    "source_index": 9,
+    "body_height": 208,
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1101,
+      250,
+      1220,
+      469
+    ],
+    "anchor": [
+      1149.5,
+      463
+    ],
+    "source": "attack2.png",
+    "source_index": 10,
+    "body_height": 214,
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1360,
+      298,
+      1461,
+      470
+    ],
+    "anchor": [
+      1407.5,
+      463
+    ],
+    "source": "attack2.png",
+    "source_index": 11,
+    "body_height": 166,
+    "animation": "attack_2",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      74,
+      557,
+      176,
+      728
+    ],
+    "anchor": [
+      126.5,
+      722
+    ],
+    "source": "attack2.png",
+    "source_index": 12,
+    "body_height": 166,
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      314,
+      583,
+      453,
+      728
+    ],
+    "anchor": [
+      379.5,
+      723
+    ],
+    "source": "attack2.png",
+    "source_index": 13,
+    "body_height": 141,
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      577,
+      583,
+      702,
+      728
+    ],
+    "anchor": [
+      640.5,
+      723
+    ],
+    "source": "attack2.png",
+    "source_index": 14,
+    "body_height": 141,
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      812,
+      508,
+      944,
+      728
+    ],
+    "anchor": [
+      888.5,
+      722
+    ],
+    "source": "attack2.png",
+    "source_index": 15,
+    "body_height": 215,
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1088,
+      505,
+      1204,
+      727
+    ],
+    "anchor": [
+      1154.5,
+      719
+    ],
+    "source": "attack2.png",
+    "source_index": 16,
+    "body_height": 215,
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1354,
+      557,
+      1456,
+      728
+    ],
+    "anchor": [
+      1407.5,
+      722
+    ],
+    "source": "attack2.png",
+    "source_index": 17,
+    "body_height": 166,
+    "animation": "attack_2",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      70,
+      813,
+      187,
+      982
+    ],
+    "anchor": [
+      128.0,
+      978
+    ],
+    "source": "attack2.png",
+    "source_index": 18,
+    "body_height": 166,
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      320,
+      835,
+      454,
+      982
+    ],
+    "anchor": [
+      385.0,
+      978
+    ],
+    "source": "attack2.png",
+    "source_index": 19,
+    "body_height": 144,
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      580,
+      835,
+      700,
+      982
+    ],
+    "anchor": [
+      639.5,
+      976
+    ],
+    "source": "attack2.png",
+    "source_index": 20,
+    "body_height": 142,
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      816,
+      753,
+      976,
+      982
+    ],
+    "anchor": [
+      891.0,
+      978
+    ],
+    "source": "attack2.png",
+    "source_index": 21,
+    "body_height": 226,
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1087,
+      764,
+      1214,
+      982
+    ],
+    "anchor": [
+      1151.0,
+      978
+    ],
+    "source": "attack2.png",
+    "source_index": 22,
+    "body_height": 215,
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1350,
+      813,
+      1467,
+      982
+    ],
+    "anchor": [
+      1409.0,
+      978
+    ],
+    "source": "attack2.png",
+    "source_index": 23,
+    "body_height": 166,
+    "animation": "attack_2",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      63,
+      45,
+      193,
+      219
+    ],
+    "anchor": [
+      127.5,
+      212
+    ],
+    "source": "attack3.png",
+    "source_index": 0,
+    "body_height": 168,
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.31547619047619047,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      333,
+      48,
+      468,
+      223
+    ],
+    "anchor": [
+      389.5,
+      219
+    ],
+    "source": "attack3.png",
+    "source_index": 1,
+    "body_height": 172,
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      576,
+      24,
+      698,
+      223
+    ],
+    "anchor": [
+      637.0,
+      216
+    ],
+    "source": "attack3.png",
+    "source_index": 2,
+    "body_height": 193,
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      804,
+      75,
+      976,
+      223
+    ],
+    "anchor": [
+      890.0,
+      216
+    ],
+    "source": "attack3.png",
+    "source_index": 3,
+    "body_height": 142,
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1041,
+      90,
+      1263,
+      223
+    ],
+    "anchor": [
+      1154.0,
+      216
+    ],
+    "source": "attack3.png",
+    "source_index": 4,
+    "body_height": 127,
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1344,
+      45,
+      1473,
+      219
+    ],
+    "anchor": [
+      1392.0,
+      211
+    ],
+    "source": "attack3.png",
+    "source_index": 5,
+    "body_height": 167,
+    "animation": "attack_3",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.31547619047619047,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      79,
+      298,
+      180,
+      470
+    ],
+    "anchor": [
+      127.5,
+      463
+    ],
+    "source": "attack3.png",
+    "source_index": 6,
+    "body_height": 166,
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      326,
+      301,
+      475,
+      474
+    ],
+    "anchor": [
+      392.0,
+      469
+    ],
+    "source": "attack3.png",
+    "source_index": 7,
+    "body_height": 169,
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      573,
+      256,
+      715,
+      474
+    ],
+    "anchor": [
+      645.0,
+      468
+    ],
+    "source": "attack3.png",
+    "source_index": 8,
+    "body_height": 213,
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      788,
+      332,
+      968,
+      474
+    ],
+    "anchor": [
+      884.0,
+      468
+    ],
+    "source": "attack3.png",
+    "source_index": 9,
+    "body_height": 137,
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1040,
+      342,
+      1263,
+      474
+    ],
+    "anchor": [
+      1158.5,
+      468
+    ],
+    "source": "attack3.png",
+    "source_index": 10,
+    "body_height": 127,
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1359,
+      298,
+      1461,
+      470
+    ],
+    "anchor": [
+      1407.5,
+      463
+    ],
+    "source": "attack3.png",
+    "source_index": 11,
+    "body_height": 166,
+    "animation": "attack_3",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      73,
+      557,
+      176,
+      729
+    ],
+    "anchor": [
+      126.0,
+      722
+    ],
+    "source": "attack3.png",
+    "source_index": 12,
+    "body_height": 166,
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      303,
+      557,
+      451,
+      730
+    ],
+    "anchor": [
+      383.0,
+      725
+    ],
+    "source": "attack3.png",
+    "source_index": 13,
+    "body_height": 169,
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      558,
+      512,
+      706,
+      729
+    ],
+    "anchor": [
+      632.5,
+      724
+    ],
+    "source": "attack3.png",
+    "source_index": 14,
+    "body_height": 213,
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      789,
+      585,
+      969,
+      729
+    ],
+    "anchor": [
+      870.0,
+      723
+    ],
+    "source": "attack3.png",
+    "source_index": 15,
+    "body_height": 139,
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1049,
+      595,
+      1276,
+      730
+    ],
+    "anchor": [
+      1150.5,
+      724
+    ],
+    "source": "attack3.png",
+    "source_index": 16,
+    "body_height": 130,
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1354,
+      557,
+      1456,
+      729
+    ],
+    "anchor": [
+      1407.0,
+      722
+    ],
+    "source": "attack3.png",
+    "source_index": 17,
+    "body_height": 166,
+    "animation": "attack_3",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      69,
+      813,
+      187,
+      982
+    ],
+    "anchor": [
+      128.0,
+      978
+    ],
+    "source": "attack3.png",
+    "source_index": 18,
+    "body_height": 166,
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      298,
+      810,
+      439,
+      991
+    ],
+    "anchor": [
+      380.0,
+      985
+    ],
+    "source": "attack3.png",
+    "source_index": 19,
+    "body_height": 176,
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      570,
+      773,
+      695,
+      988
+    ],
+    "anchor": [
+      636.0,
+      982
+    ],
+    "source": "attack3.png",
+    "source_index": 20,
+    "body_height": 210,
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      804,
+      834,
+      976,
+      988
+    ],
+    "anchor": [
+      888.5,
+      981
+    ],
+    "source": "attack3.png",
+    "source_index": 21,
+    "body_height": 148,
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1039,
+      848,
+      1264,
+      985
+    ],
+    "anchor": [
+      1150.5,
+      979
+    ],
+    "source": "attack3.png",
+    "source_index": 22,
+    "body_height": 132,
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.3192771084337349,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1350,
+      813,
+      1467,
+      982
+    ],
+    "anchor": [
+      1408.0,
+      978
+    ],
+    "source": "attack3.png",
+    "source_index": 23,
+    "body_height": 166,
+    "animation": "attack_3",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.3192771084337349,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      61,
+      46,
+      193,
+      224
+    ],
+    "anchor": [
+      127.0,
+      218
+    ],
+    "source": "moving1.png",
+    "source_index": 0,
+    "body_height": 173,
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      294,
+      64,
+      475,
+      222
+    ],
+    "anchor": [
+      392.0,
+      215
+    ],
+    "source": "moving1.png",
+    "source_index": 1,
+    "body_height": 152,
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      560,
+      57,
+      715,
+      230
+    ],
+    "anchor": [
+      635.5,
+      225
+    ],
+    "source": "moving1.png",
+    "source_index": 2,
+    "body_height": 169,
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      773,
+      72,
+      978,
+      230
+    ],
+    "anchor": [
+      895.0,
+      225
+    ],
+    "source": "moving1.png",
+    "source_index": 3,
+    "body_height": 154,
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1041,
+      58,
+      1266,
+      230
+    ],
+    "anchor": [
+      1163.5,
+      225
+    ],
+    "source": "moving1.png",
+    "source_index": 4,
+    "body_height": 168,
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1341,
+      46,
+      1473,
+      224
+    ],
+    "anchor": [
+      1408.5,
+      219
+    ],
+    "source": "moving1.png",
+    "source_index": 5,
+    "body_height": 174,
+    "animation": "walk_attack_1",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      69,
+      297,
+      199,
+      477
+    ],
+    "anchor": [
+      131.0,
+      470
+    ],
+    "source": "moving1.png",
+    "source_index": 6,
+    "body_height": 174,
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      307,
+      304,
+      471,
+      469
+    ],
+    "anchor": [
+      382.0,
+      462
+    ],
+    "source": "moving1.png",
+    "source_index": 7,
+    "body_height": 159,
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      568,
+      302,
+      711,
+      472
+    ],
+    "anchor": [
+      636.0,
+      467
+    ],
+    "source": "moving1.png",
+    "source_index": 8,
+    "body_height": 166,
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      763,
+      310,
+      990,
+      472
+    ],
+    "anchor": [
+      910.5,
+      467
+    ],
+    "source": "moving1.png",
+    "source_index": 9,
+    "body_height": 158,
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1032,
+      300,
+      1246,
+      471
+    ],
+    "anchor": [
+      1165.0,
+      464
+    ],
+    "source": "moving1.png",
+    "source_index": 10,
+    "body_height": 165,
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1347,
+      297,
+      1476,
+      477
+    ],
+    "anchor": [
+      1407.0,
+      470
+    ],
+    "source": "moving1.png",
+    "source_index": 11,
+    "body_height": 174,
+    "animation": "walk_attack_1",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      57,
+      556,
+      187,
+      739
+    ],
+    "anchor": [
+      127.0,
+      731
+    ],
+    "source": "moving1.png",
+    "source_index": 12,
+    "body_height": 176,
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.30113636363636365,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      284,
+      556,
+      452,
+      727
+    ],
+    "anchor": [
+      368.5,
+      720
+    ],
+    "source": "moving1.png",
+    "source_index": 13,
+    "body_height": 165,
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.30113636363636365,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      559,
+      556,
+      704,
+      735
+    ],
+    "anchor": [
+      632.5,
+      729
+    ],
+    "source": "moving1.png",
+    "source_index": 14,
+    "body_height": 174,
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.30113636363636365,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      784,
+      564,
+      1012,
+      730
+    ],
+    "anchor": [
+      866.0,
+      725
+    ],
+    "source": "moving1.png",
+    "source_index": 15,
+    "body_height": 162,
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.30113636363636365,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1062,
+      556,
+      1277,
+      733
+    ],
+    "anchor": [
+      1135.0,
+      727
+    ],
+    "source": "moving1.png",
+    "source_index": 16,
+    "body_height": 172,
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.30113636363636365,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1336,
+      556,
+      1465,
+      739
+    ],
+    "anchor": [
+      1405.0,
+      731
+    ],
+    "source": "moving1.png",
+    "source_index": 17,
+    "body_height": 176,
+    "animation": "walk_attack_1",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.30113636363636365,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      57,
+      801,
+      200,
+      988
+    ],
+    "anchor": [
+      128.5,
+      983
+    ],
+    "source": "moving1.png",
+    "source_index": 18,
+    "body_height": 183,
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.2896174863387978,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      312,
+      814,
+      464,
+      980
+    ],
+    "anchor": [
+      372.5,
+      974
+    ],
+    "source": "moving1.png",
+    "source_index": 19,
+    "body_height": 161,
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.2896174863387978,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      546,
+      806,
+      710,
+      985
+    ],
+    "anchor": [
+      624.5,
+      980
+    ],
+    "source": "moving1.png",
+    "source_index": 20,
+    "body_height": 175,
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.2896174863387978,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      796,
+      823,
+      1015,
+      981
+    ],
+    "anchor": [
+      880.5,
+      976
+    ],
+    "source": "moving1.png",
+    "source_index": 21,
+    "body_height": 154,
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.2896174863387978,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1059,
+      806,
+      1280,
+      986
+    ],
+    "anchor": [
+      1160.0,
+      980
+    ],
+    "source": "moving1.png",
+    "source_index": 22,
+    "body_height": 175,
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.2896174863387978,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1337,
+      800,
+      1475,
+      988
+    ],
+    "anchor": [
+      1408.5,
+      983
+    ],
+    "source": "moving1.png",
+    "source_index": 23,
+    "body_height": 184,
+    "animation": "walk_attack_1",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.2896174863387978,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      53,
+      55,
+      204,
+      220
+    ],
+    "anchor": [
+      132.0,
+      214
+    ],
+    "source": "moving2.png",
+    "source_index": 0,
+    "body_height": 160,
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.33125,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      314,
+      81,
+      459,
+      222
+    ],
+    "anchor": [
+      403.5,
+      216
+    ],
+    "source": "moving2.png",
+    "source_index": 1,
+    "body_height": 136,
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.33125,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      584,
+      81,
+      705,
+      220
+    ],
+    "anchor": [
+      642.0,
+      215
+    ],
+    "source": "moving2.png",
+    "source_index": 2,
+    "body_height": 135,
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.33125,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      817,
+      13,
+      977,
+      220
+    ],
+    "anchor": [
+      892.5,
+      214
+    ],
+    "source": "moving2.png",
+    "source_index": 3,
+    "body_height": 202,
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.33125,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1082,
+      20,
+      1210,
+      220
+    ],
+    "anchor": [
+      1149.0,
+      214
+    ],
+    "source": "moving2.png",
+    "source_index": 4,
+    "body_height": 195,
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.33125,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1330,
+      55,
+      1482,
+      220
+    ],
+    "anchor": [
+      1412.5,
+      214
+    ],
+    "source": "moving2.png",
+    "source_index": 5,
+    "body_height": 160,
+    "animation": "walk_attack_2",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.33125,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      71,
+      295,
+      200,
+      473
+    ],
+    "anchor": [
+      134.5,
+      467
+    ],
+    "source": "moving2.png",
+    "source_index": 6,
+    "body_height": 173,
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      314,
+      327,
+      459,
+      473
+    ],
+    "anchor": [
+      400.0,
+      468
+    ],
+    "source": "moving2.png",
+    "source_index": 7,
+    "body_height": 142,
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      577,
+      327,
+      706,
+      473
+    ],
+    "anchor": [
+      640.5,
+      468
+    ],
+    "source": "moving2.png",
+    "source_index": 8,
+    "body_height": 142,
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      844,
+      254,
+      969,
+      473
+    ],
+    "anchor": [
+      893.5,
+      468
+    ],
+    "source": "moving2.png",
+    "source_index": 9,
+    "body_height": 215,
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1082,
+      253,
+      1221,
+      473
+    ],
+    "anchor": [
+      1139.5,
+      468
+    ],
+    "source": "moving2.png",
+    "source_index": 10,
+    "body_height": 216,
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1350,
+      295,
+      1479,
+      474
+    ],
+    "anchor": [
+      1413.5,
+      467
+    ],
+    "source": "moving2.png",
+    "source_index": 11,
+    "body_height": 173,
+    "animation": "walk_attack_2",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      56,
+      556,
+      185,
+      729
+    ],
+    "anchor": [
+      121.5,
+      723
+    ],
+    "source": "moving2.png",
+    "source_index": 12,
+    "body_height": 168,
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      307,
+      583,
+      451,
+      729
+    ],
+    "anchor": [
+      365.5,
+      723
+    ],
+    "source": "moving2.png",
+    "source_index": 13,
+    "body_height": 141,
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      574,
+      582,
+      701,
+      729
+    ],
+    "anchor": [
+      640.5,
+      724
+    ],
+    "source": "moving2.png",
+    "source_index": 14,
+    "body_height": 143,
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      812,
+      508,
+      939,
+      729
+    ],
+    "anchor": [
+      888.0,
+      723
+    ],
+    "source": "moving2.png",
+    "source_index": 15,
+    "body_height": 216,
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1082,
+      508,
+      1221,
+      729
+    ],
+    "anchor": [
+      1163.5,
+      723
+    ],
+    "source": "moving2.png",
+    "source_index": 16,
+    "body_height": 216,
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1336,
+      556,
+      1465,
+      729
+    ],
+    "anchor": [
+      1401.0,
+      723
+    ],
+    "source": "moving2.png",
+    "source_index": 17,
+    "body_height": 168,
+    "animation": "walk_attack_2",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.31547619047619047,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      55,
+      808,
+      201,
+      986
+    ],
+    "anchor": [
+      126.5,
+      980
+    ],
+    "source": "moving2.png",
+    "source_index": 18,
+    "body_height": 173,
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      316,
+      831,
+      458,
+      988
+    ],
+    "anchor": [
+      383.0,
+      982
+    ],
+    "source": "moving2.png",
+    "source_index": 19,
+    "body_height": 152,
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      577,
+      828,
+      701,
+      988
+    ],
+    "anchor": [
+      640.0,
+      982
+    ],
+    "source": "moving2.png",
+    "source_index": 20,
+    "body_height": 155,
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      817,
+      752,
+      975,
+      986
+    ],
+    "anchor": [
+      892.0,
+      979
+    ],
+    "source": "moving2.png",
+    "source_index": 21,
+    "body_height": 228,
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1082,
+      762,
+      1213,
+      988
+    ],
+    "anchor": [
+      1145.5,
+      982
+    ],
+    "source": "moving2.png",
+    "source_index": 22,
+    "body_height": 221,
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1333,
+      807,
+      1481,
+      986
+    ],
+    "anchor": [
+      1404.5,
+      980
+    ],
+    "source": "moving2.png",
+    "source_index": 23,
+    "body_height": 174,
+    "animation": "walk_attack_2",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.3063583815028902,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      49,
+      45,
+      208,
+      229
+    ],
+    "anchor": [
+      126.0,
+      222
+    ],
+    "source": "moving3.png",
+    "source_index": 0,
+    "body_height": 178,
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.29775280898876405,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      325,
+      48,
+      470,
+      229
+    ],
+    "anchor": [
+      397.0,
+      222
+    ],
+    "source": "moving3.png",
+    "source_index": 1,
+    "body_height": 175,
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.29775280898876405,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      574,
+      26,
+      706,
+      229
+    ],
+    "anchor": [
+      624.5,
+      221
+    ],
+    "source": "moving3.png",
+    "source_index": 2,
+    "body_height": 196,
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.29775280898876405,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      792,
+      91,
+      975,
+      231
+    ],
+    "anchor": [
+      888.5,
+      224
+    ],
+    "source": "moving3.png",
+    "source_index": 3,
+    "body_height": 134,
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.29775280898876405,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1029,
+      86,
+      1271,
+      231
+    ],
+    "anchor": [
+      1163.0,
+      224
+    ],
+    "source": "moving3.png",
+    "source_index": 4,
+    "body_height": 139,
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.29775280898876405,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1328,
+      42,
+      1486,
+      229
+    ],
+    "anchor": [
+      1407.5,
+      222
+    ],
+    "source": "moving3.png",
+    "source_index": 5,
+    "body_height": 181,
+    "animation": "walk_attack_3",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.29775280898876405,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      54,
+      296,
+      203,
+      477
+    ],
+    "anchor": [
+      125.5,
+      470
+    ],
+    "source": "moving3.png",
+    "source_index": 6,
+    "body_height": 175,
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.3028571428571429,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      322,
+      300,
+      478,
+      477
+    ],
+    "anchor": [
+      407.5,
+      470
+    ],
+    "source": "moving3.png",
+    "source_index": 7,
+    "body_height": 171,
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.3028571428571429,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      585,
+      258,
+      709,
+      479
+    ],
+    "anchor": [
+      650.0,
+      471
+    ],
+    "source": "moving3.png",
+    "source_index": 8,
+    "body_height": 214,
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.3028571428571429,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      780,
+      336,
+      972,
+      475
+    ],
+    "anchor": [
+      887.0,
+      468
+    ],
+    "source": "moving3.png",
+    "source_index": 9,
+    "body_height": 133,
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.3028571428571429,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1027,
+      342,
+      1264,
+      481
+    ],
+    "anchor": [
+      1167.5,
+      474
+    ],
+    "source": "moving3.png",
+    "source_index": 10,
+    "body_height": 133,
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.3028571428571429,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1331,
+      296,
+      1483,
+      481
+    ],
+    "anchor": [
+      1402.5,
+      471
+    ],
+    "source": "moving3.png",
+    "source_index": 11,
+    "body_height": 176,
+    "animation": "walk_attack_3",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.3028571428571429,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      47,
+      556,
+      188,
+      738
+    ],
+    "anchor": [
+      125.0,
+      729
+    ],
+    "source": "moving3.png",
+    "source_index": 12,
+    "body_height": 174,
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      302,
+      556,
+      461,
+      736
+    ],
+    "anchor": [
+      381.0,
+      729
+    ],
+    "source": "moving3.png",
+    "source_index": 13,
+    "body_height": 174,
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      557,
+      513,
+      698,
+      736
+    ],
+    "anchor": [
+      634.5,
+      729
+    ],
+    "source": "moving3.png",
+    "source_index": 14,
+    "body_height": 217,
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      788,
+      584,
+      967,
+      732
+    ],
+    "anchor": [
+      869.0,
+      725
+    ],
+    "source": "moving3.png",
+    "source_index": 15,
+    "body_height": 142,
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1033,
+      584,
+      1265,
+      735
+    ],
+    "anchor": [
+      1134.5,
+      728
+    ],
+    "source": "moving3.png",
+    "source_index": 16,
+    "body_height": 145,
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1327,
+      556,
+      1460,
+      735
+    ],
+    "anchor": [
+      1399.5,
+      728
+    ],
+    "source": "moving3.png",
+    "source_index": 17,
+    "body_height": 173,
+    "animation": "walk_attack_3",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.3045977011494253,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      51,
+      799,
+      204,
+      982
+    ],
+    "anchor": [
+      130.5,
+      975
+    ],
+    "source": "moving3.png",
+    "source_index": 18,
+    "body_height": 177,
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.2994350282485876,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      293,
+      799,
+      456,
+      992
+    ],
+    "anchor": [
+      388.0,
+      985
+    ],
+    "source": "moving3.png",
+    "source_index": 19,
+    "body_height": 187,
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.2994350282485876,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      555,
+      774,
+      688,
+      992
+    ],
+    "anchor": [
+      629.0,
+      981
+    ],
+    "source": "moving3.png",
+    "source_index": 20,
+    "body_height": 208,
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.2994350282485876,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      794,
+      830,
+      973,
+      987
+    ],
+    "anchor": [
+      884.5,
+      980
+    ],
+    "source": "moving3.png",
+    "source_index": 21,
+    "body_height": 151,
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.2994350282485876,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1024,
+      830,
+      1280,
+      987
+    ],
+    "anchor": [
+      1190.0,
+      980
+    ],
+    "source": "moving3.png",
+    "source_index": 22,
+    "body_height": 151,
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.2994350282485876,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1333,
+      799,
+      1485,
+      994
+    ],
+    "anchor": [
+      1404.0,
+      981
+    ],
+    "source": "moving3.png",
+    "source_index": 23,
+    "body_height": 183,
+    "animation": "walk_attack_3",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.2994350282485876,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      90,
+      66,
+      273,
+      308
+    ],
+    "anchor": [
+      180.0,
+      299
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 0,
+    "body_height": 234,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.2264957264957265,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      412,
+      130,
+      671,
+      307
+    ],
+    "anchor": [
+      539.5,
+      299
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 1,
+    "body_height": 170,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      761,
+      62,
+      1048,
+      318
+    ],
+    "anchor": [
+      900.5,
+      313
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 2,
+    "body_height": 252,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1099,
+      62,
+      1435,
+      316
+    ],
+    "anchor": [
+      1249.5,
+      309
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 3,
+    "body_height": 248,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1460,
+      57,
+      1812,
+      312
+    ],
+    "anchor": [
+      1631.0,
+      305
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 4,
+    "body_height": 249,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1886,
+      9,
+      2105,
+      286
+    ],
+    "anchor": [
+      1982.5,
+      278
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 5,
+    "body_height": 270,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 10
+  },
+  {
+    "box": [
+      94,
+      386,
+      265,
+      604
+    ],
+    "anchor": [
+      176.5,
+      599
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 6,
+    "body_height": 214,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 6,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 17
+  },
+  {
+    "box": [
+      438,
+      486,
+      663,
+      681
+    ],
+    "anchor": [
+      571.0,
+      628
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 7,
+    "body_height": 143,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 7,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      783,
+      486,
+      1041,
+      681
+    ],
+    "anchor": [
+      932.5,
+      633
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 8,
+    "body_height": 148,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 8,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1158,
+      486,
+      1388,
+      676
+    ],
+    "anchor": [
+      1295.0,
+      633
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 9,
+    "body_height": 148,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 9,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1537,
+      433,
+      1733,
+      664
+    ],
+    "anchor": [
+      1633.5,
+      656
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 10,
+    "body_height": 224,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 10,
+    "scale": 0.2264957264957265,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1901,
+      428,
+      2083,
+      671
+    ],
+    "anchor": [
+      1991.0,
+      661
+    ],
+    "source": "deaths_dance_down.png",
+    "source_index": 11,
+    "body_height": 234,
+    "animation": "deaths_dance",
+    "direction": "down",
+    "frame": 11,
+    "scale": 0.2264957264957265,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      91,
+      64,
+      242,
+      310
+    ],
+    "anchor": [
+      164.5,
+      301
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 0,
+    "body_height": 238,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.22268907563025211,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      406,
+      119,
+      616,
+      310
+    ],
+    "anchor": [
+      510.5,
+      301
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 1,
+    "body_height": 183,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      684,
+      75,
+      1050,
+      315
+    ],
+    "anchor": [
+      936.0,
+      309
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 2,
+    "body_height": 235,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1086,
+      67,
+      1443,
+      315
+    ],
+    "anchor": [
+      1249.5,
+      308
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 3,
+    "body_height": 242,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1500,
+      68,
+      1767,
+      319
+    ],
+    "anchor": [
+      1653.0,
+      311
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 4,
+    "body_height": 244,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1841,
+      22,
+      2094,
+      304
+    ],
+    "anchor": [
+      1981.0,
+      299
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 5,
+    "body_height": 278,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 10
+  },
+  {
+    "box": [
+      32,
+      380,
+      284,
+      594
+    ],
+    "anchor": [
+      211.0,
+      589
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 6,
+    "body_height": 210,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 6,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 17
+  },
+  {
+    "box": [
+      380,
+      486,
+      689,
+      669
+    ],
+    "anchor": [
+      563.0,
+      658
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 7,
+    "body_height": 173,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 7,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      769,
+      487,
+      1081,
+      669
+    ],
+    "anchor": [
+      954.5,
+      657
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 8,
+    "body_height": 171,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 8,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1141,
+      472,
+      1426,
+      669
+    ],
+    "anchor": [
+      1306.0,
+      660
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 9,
+    "body_height": 189,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 9,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1538,
+      425,
+      1721,
+      670
+    ],
+    "anchor": [
+      1649.5,
+      662
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 10,
+    "body_height": 238,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 10,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1902,
+      425,
+      2055,
+      670
+    ],
+    "anchor": [
+      1979.0,
+      660
+    ],
+    "source": "deaths_dance_left.png",
+    "source_index": 11,
+    "body_height": 236,
+    "animation": "deaths_dance",
+    "direction": "left",
+    "frame": 11,
+    "scale": 0.22268907563025211,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      104,
+      63,
+      251,
+      309
+    ],
+    "anchor": [
+      178.5,
+      300
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 0,
+    "body_height": 238,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.22268907563025211,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      419,
+      119,
+      626,
+      309
+    ],
+    "anchor": [
+      520.0,
+      300
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 1,
+    "body_height": 182,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      724,
+      75,
+      1063,
+      314
+    ],
+    "anchor": [
+      834.0,
+      308
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 2,
+    "body_height": 234,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1106,
+      67,
+      1462,
+      314
+    ],
+    "anchor": [
+      1291.5,
+      308
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 3,
+    "body_height": 242,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1515,
+      68,
+      1776,
+      318
+    ],
+    "anchor": [
+      1627.5,
+      308
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 4,
+    "body_height": 241,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1871,
+      21,
+      2123,
+      304
+    ],
+    "anchor": [
+      1984.5,
+      299
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 5,
+    "body_height": 279,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 10
+  },
+  {
+    "box": [
+      62,
+      380,
+      307,
+      595
+    ],
+    "anchor": [
+      135.0,
+      590
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 6,
+    "body_height": 211,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 6,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 17
+  },
+  {
+    "box": [
+      359,
+      495,
+      657,
+      673
+    ],
+    "anchor": [
+      479.0,
+      663
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 7,
+    "body_height": 169,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 7,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      734,
+      497,
+      1030,
+      672
+    ],
+    "anchor": [
+      855.0,
+      661
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 8,
+    "body_height": 165,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 8,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1137,
+      472,
+      1406,
+      669
+    ],
+    "anchor": [
+      1248.0,
+      659
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 9,
+    "body_height": 188,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 9,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1527,
+      427,
+      1704,
+      670
+    ],
+    "anchor": [
+      1596.0,
+      662
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 10,
+    "body_height": 236,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 10,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1916,
+      426,
+      2059,
+      669
+    ],
+    "anchor": [
+      1988.0,
+      659
+    ],
+    "source": "deaths_dance_right.png",
+    "source_index": 11,
+    "body_height": 234,
+    "animation": "deaths_dance",
+    "direction": "right",
+    "frame": 11,
+    "scale": 0.22268907563025211,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      97,
+      63,
+      264,
+      305
+    ],
+    "anchor": [
+      182.0,
+      300
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 0,
+    "body_height": 238,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.22268907563025211,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      428,
+      123,
+      663,
+      305
+    ],
+    "anchor": [
+      544.0,
+      300
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 1,
+    "body_height": 178,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      777,
+      68,
+      1060,
+      308
+    ],
+    "anchor": [
+      912.5,
+      304
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 2,
+    "body_height": 237,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1110,
+      68,
+      1430,
+      317
+    ],
+    "anchor": [
+      1265.5,
+      312
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 3,
+    "body_height": 245,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1476,
+      64,
+      1782,
+      312
+    ],
+    "anchor": [
+      1631.0,
+      295
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 4,
+    "body_height": 232,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1900,
+      22,
+      2080,
+      312
+    ],
+    "anchor": [
+      1997.0,
+      291
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 5,
+    "body_height": 270,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 10
+  },
+  {
+    "box": [
+      97,
+      385,
+      267,
+      611
+    ],
+    "anchor": [
+      184.5,
+      606
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 6,
+    "body_height": 222,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 6,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 17
+  },
+  {
+    "box": [
+      406,
+      495,
+      680,
+      666
+    ],
+    "anchor": [
+      532.0,
+      661
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 7,
+    "body_height": 167,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 7,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      770,
+      467,
+      1039,
+      666
+    ],
+    "anchor": [
+      904.0,
+      661
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 8,
+    "body_height": 195,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 8,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1186,
+      482,
+      1349,
+      666
+    ],
+    "anchor": [
+      1267.5,
+      661
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 9,
+    "body_height": 180,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 9,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1544,
+      420,
+      1713,
+      666
+    ],
+    "anchor": [
+      1626.0,
+      661
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 10,
+    "body_height": 242,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 10,
+    "scale": 0.22268907563025211,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1907,
+      424,
+      2075,
+      666
+    ],
+    "anchor": [
+      1991.0,
+      661
+    ],
+    "source": "deaths_dance_up.png",
+    "source_index": 11,
+    "body_height": 238,
+    "animation": "deaths_dance",
+    "direction": "up",
+    "frame": 11,
+    "scale": 0.22268907563025211,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      92,
+      61,
+      272,
+      309
+    ],
+    "anchor": [
+      160.0,
+      300
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 0,
+    "body_height": 240,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 0,
+    "scale": 0.22083333333333333,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      427,
+      144,
+      667,
+      309
+    ],
+    "anchor": [
+      571.0,
+      300
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 1,
+    "body_height": 157,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 1,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      765,
+      92,
+      1025,
+      309
+    ],
+    "anchor": [
+      916.5,
+      300
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 2,
+    "body_height": 209,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 2,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1179,
+      62,
+      1385,
+      309
+    ],
+    "anchor": [
+      1264.5,
+      300
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 3,
+    "body_height": 239,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 3,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1506,
+      119,
+      1755,
+      320
+    ],
+    "anchor": [
+      1654.5,
+      309
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 4,
+    "body_height": 191,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 4,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1913,
+      28,
+      2104,
+      320
+    ],
+    "anchor": [
+      1993.0,
+      309
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 5,
+    "body_height": 282,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 5,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      23,
+      439,
+      347,
+      655
+    ],
+    "anchor": [
+      187.0,
+      647
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 6,
+    "body_height": 209,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 6,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      442,
+      427,
+      659,
+      671
+    ],
+    "anchor": [
+      559.0,
+      663
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 7,
+    "body_height": 237,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 7,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      805,
+      399,
+      1011,
+      671
+    ],
+    "anchor": [
+      908.0,
+      663
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 8,
+    "body_height": 265,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 8,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1175,
+      429,
+      1384,
+      671
+    ],
+    "anchor": [
+      1260.5,
+      663
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 9,
+    "body_height": 235,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 9,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1541,
+      424,
+      1737,
+      671
+    ],
+    "anchor": [
+      1628.5,
+      663
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 10,
+    "body_height": 240,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 10,
+    "scale": 0.22083333333333333,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1902,
+      419,
+      2083,
+      669
+    ],
+    "anchor": [
+      1991.0,
+      660
+    ],
+    "source": "sonic_stream_down.png",
+    "source_index": 11,
+    "body_height": 242,
+    "animation": "sonic_stream",
+    "direction": "down",
+    "frame": 11,
+    "scale": 0.22083333333333333,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      77,
+      64,
+      233,
+      307
+    ],
+    "anchor": [
+      144.0,
+      300
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 0,
+    "body_height": 237,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 0,
+    "scale": 0.22362869198312235,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      378,
+      123,
+      625,
+      307
+    ],
+    "anchor": [
+      513.0,
+      300
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 1,
+    "body_height": 178,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 1,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      723,
+      64,
+      1074,
+      307
+    ],
+    "anchor": [
+      957.5,
+      300
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 2,
+    "body_height": 237,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 2,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1115,
+      58,
+      1374,
+      307
+    ],
+    "anchor": [
+      1244.0,
+      300
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 3,
+    "body_height": 243,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 3,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1492,
+      117,
+      1796,
+      307
+    ],
+    "anchor": [
+      1667.0,
+      300
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 4,
+    "body_height": 184,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 4,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1912,
+      38,
+      2166,
+      307
+    ],
+    "anchor": [
+      2033.5,
+      300
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 5,
+    "body_height": 263,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 5,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      38,
+      432,
+      306,
+      667
+    ],
+    "anchor": [
+      185.0,
+      660
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 6,
+    "body_height": 229,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 6,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      387,
+      428,
+      582,
+      667
+    ],
+    "anchor": [
+      483.0,
+      660
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 7,
+    "body_height": 233,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 7,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      750,
+      415,
+      988,
+      667
+    ],
+    "anchor": [
+      866.5,
+      660
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 8,
+    "body_height": 246,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 8,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1123,
+      428,
+      1407,
+      667
+    ],
+    "anchor": [
+      1279.5,
+      660
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 9,
+    "body_height": 233,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 9,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1547,
+      428,
+      1728,
+      667
+    ],
+    "anchor": [
+      1638.0,
+      660
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 10,
+    "body_height": 233,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 10,
+    "scale": 0.22362869198312235,
+    "approved_guard": false,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1931,
+      425,
+      2089,
+      667
+    ],
+    "anchor": [
+      1999.5,
+      660
+    ],
+    "source": "sonic_stream_left.png",
+    "source_index": 11,
+    "body_height": 236,
+    "animation": "sonic_stream",
+    "direction": "left",
+    "frame": 11,
+    "scale": 0.22362869198312235,
+    "approved_guard": true,
+    "sole_y": 86,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      103,
+      64,
+      249,
+      309
+    ],
+    "anchor": [
+      178.0,
+      299
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 0,
+    "body_height": 236,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 0,
+    "scale": 0.2245762711864407,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      410,
+      124,
+      638,
+      309
+    ],
+    "anchor": [
+      510.0,
+      299
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 1,
+    "body_height": 176,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 1,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      725,
+      68,
+      1073,
+      309
+    ],
+    "anchor": [
+      845.5,
+      299
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 2,
+    "body_height": 232,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 2,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1142,
+      60,
+      1395,
+      309
+    ],
+    "anchor": [
+      1273.5,
+      299
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 3,
+    "body_height": 240,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 3,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1473,
+      113,
+      1763,
+      309
+    ],
+    "anchor": [
+      1603.5,
+      299
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 4,
+    "body_height": 187,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 4,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1855,
+      42,
+      2111,
+      309
+    ],
+    "anchor": [
+      1982.5,
+      299
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 5,
+    "body_height": 258,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 5,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      73,
+      432,
+      329,
+      669
+    ],
+    "anchor": [
+      186.0,
+      658
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 6,
+    "body_height": 227,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 6,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      430,
+      427,
+      629,
+      669
+    ],
+    "anchor": [
+      532.0,
+      658
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 7,
+    "body_height": 232,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 7,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      796,
+      418,
+      1021,
+      669
+    ],
+    "anchor": [
+      915.0,
+      658
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 8,
+    "body_height": 241,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 8,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1130,
+      426,
+      1387,
+      669
+    ],
+    "anchor": [
+      1250.0,
+      658
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 9,
+    "body_height": 233,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 9,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1539,
+      426,
+      1715,
+      669
+    ],
+    "anchor": [
+      1626.5,
+      658
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 10,
+    "body_height": 233,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 10,
+    "scale": 0.2245762711864407,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1914,
+      425,
+      2060,
+      669
+    ],
+    "anchor": [
+      1988.5,
+      659
+    ],
+    "source": "sonic_stream_right.png",
+    "source_index": 11,
+    "body_height": 235,
+    "animation": "sonic_stream",
+    "direction": "right",
+    "frame": 11,
+    "scale": 0.2245762711864407,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      96,
+      61,
+      267,
+      304
+    ],
+    "anchor": [
+      183.0,
+      299
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 0,
+    "body_height": 239,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 0,
+    "scale": 0.2217573221757322,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      422,
+      117,
+      663,
+      305
+    ],
+    "anchor": [
+      544.5,
+      300
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 1,
+    "body_height": 184,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 1,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      806,
+      32,
+      984,
+      309
+    ],
+    "anchor": [
+      901.0,
+      304
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 2,
+    "body_height": 273,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 2,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1187,
+      71,
+      1326,
+      302
+    ],
+    "anchor": [
+      1264.0,
+      297
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 3,
+    "body_height": 227,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 3,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1530,
+      117,
+      1727,
+      309
+    ],
+    "anchor": [
+      1614.5,
+      304
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 4,
+    "body_height": 188,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 4,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1881,
+      4,
+      2063,
+      313
+    ],
+    "anchor": [
+      1986.0,
+      309
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 5,
+    "body_height": 306,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 5,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      47,
+      418,
+      323,
+      667
+    ],
+    "anchor": [
+      176.5,
+      663
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 6,
+    "body_height": 246,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 6,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      438,
+      441,
+      649,
+      659
+    ],
+    "anchor": [
+      534.5,
+      655
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 7,
+    "body_height": 215,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 7,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      798,
+      382,
+      973,
+      667
+    ],
+    "anchor": [
+      898.0,
+      663
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 8,
+    "body_height": 282,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 8,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1162,
+      399,
+      1343,
+      671
+    ],
+    "anchor": [
+      1262.5,
+      667
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 9,
+    "body_height": 269,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 9,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1522,
+      417,
+      1694,
+      667
+    ],
+    "anchor": [
+      1628.0,
+      664
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 10,
+    "body_height": 248,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 10,
+    "scale": 0.2217573221757322,
+    "approved_guard": false,
+    "sole_y": 87,
+    "aerial_lift": 0
+  },
+  {
+    "box": [
+      1906,
+      422,
+      2078,
+      666
+    ],
+    "anchor": [
+      1992.0,
+      662
+    ],
+    "source": "sonic_stream_up.png",
+    "source_index": 11,
+    "body_height": 241,
+    "animation": "sonic_stream",
+    "direction": "up",
+    "frame": 11,
+    "scale": 0.2217573221757322,
+    "approved_guard": true,
+    "sole_y": 87,
+    "aerial_lift": 0
+  }
+]
