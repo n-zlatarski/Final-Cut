@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "revision": "Extra E spark bursts and finishing flash",
+  "baseline_version": 14,
+  "E_slashes_per_use": 10,
+  "E_effect_layers_per_use": 32,
+  "new_effects": {
+    "forward_spark_bursts_per_cast": 10,
+    "spark_count_ordinary_burst": 5,
+    "spark_count_finisher_burst": 9,
+    "finishing_flashes_per_cast": 1
+  },
+  "checks": {
+    "real_attack_cases": 144,
+    "frame_rates": [
+      30,
+      60,
+      144
+    ],
+    "directions": [
+      "down",
+      "left",
+      "right",
+      "up"
+    ],
+    "interruption_checks": 5,
+    "unchanged_baseline_files": 621,
+    "missing_baseline_files": [],
+    "all_character_and_effect_images_unchanged": true,
+    "gameplay_timing_movement_damage_unchanged": true
+  },
+  "changed_baseline_files": [
+    "README.md",
+    "assets/Assassin/EFlurry/ART_NOTES.md",
+    "jinwoo_vfx.py",
+    "tests/jinwoo_attack_qa.json",
+    "tests/verify_jinwoo_attacks.py"
+  ],
+  "preview": {
+    "file": "Jinwoo_E_Extra_Effects.mp4",
+    "duration_seconds": 5.333333,
+    "frames": 160,
+    "fps": 30,
+    "resolution": [
+      1280,
+      880
+    ],
+    "source": "Actual stage loop at 60 FPS; one E cast in each direction in an empty room; one injected 85 ms hit-stop per cast"
+  },
+  "validation": "SDL dummy display/audio; directional screenshots reviewed. Attack playback, effect expiration, input recovery and interruption checked. Desktop display and live audio were not tested.",
+  "reports": [
+    "jinwoo_attack_qa.json",
+    "jinwoo_interruption_qa.json"
+  ]
+}

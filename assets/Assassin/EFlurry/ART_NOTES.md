@@ -28,6 +28,14 @@ Only these effect textures are scaled for the larger finishing cross;
 character frames retain their original scale. Short red pose echoes use
 the actual displayed frame at its sampled world position.
 
+The extra E effects add one forward spark fan per cut, with five sparks
+on ordinary cuts and nine on the finisher. These use code-drawn pixels at
+native resolution and exact 2× scaling, with a warm-white, coral and crimson
+palette. A larger copy of the approved contact strip adds the finishing
+flash. The 21 slash layers, ten spark bursts and one finishing flash total
+32 effect layers per cast; all expire by the end of E's recovery. Timing,
+damage, movement and body artwork are unchanged by this effects pass.
+
 Other animations and effects resolve through the previous AbilityPolish
 bank. Rebuild this bank with tools/build_jinwoo_e_flurry.py (Pillow).
 frame_metrics.json records the 52 source mappings, bounds and frame hashes.

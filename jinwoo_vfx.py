@@ -68,10 +68,47 @@ class JinwooVFX:
         secondary=self.add('sweep_cut' if index%2 else 'rising_cut',point,facing,now,
             start=start+20,life=140 if last else 95,peak=True,scale=2 if last else 1)
         secondary.update(skill='sonic_stream',strike=index,layer='offhand')
+        spark_point=(center[0]+dx*70-dy*side*.6,
+                     center[1]+dy*52+dx*side*.6-8)
+        sparks=self.add('flurry_sparks',spark_point,facing,now,
+            start=start+10,life=180 if last else 144)
+        sparks.update(skill='sonic_stream',strike=index,layer='sparks',finisher=last)
         if last:
             finish=self.add('flame_cut',(center[0]+dx*64,center[1]+dy*42-10),facing,now,
                 start=start+35,life=135,peak=True,scale=2)
             finish.update(skill='sonic_stream',strike=index,layer='finish')
+            flare=self.add('contact',(center[0]+dx*84,center[1]+dy*58-8),facing,now,
+                start=start+12,life=130,peak=True,scale=2)
+            flare.update(skill='sonic_stream',strike=index,layer='flare')
+
+    def _draw_flurry_sparks(self, surface, fx, elapsed, ox, oy):
+        """Short forward fans, drawn on a native pixel grid then doubled."""
+        tile=pygame.Surface((96,96),pygame.SRCALPHA)
+        dx,dy=VECTORS[fx['facing']]
+        angles=((-1.15,-.85,-.55,-.25,0,.25,.55,.85,1.15)
+                if fx['finisher'] else (-1,-.48,.08,.55,1))
+        palette=((255,230,189),(255,152,125),(240,69,80),(168,30,55))
+        t=elapsed/fx['life']
+        for i,angle in enumerate(angles):
+            delay=(i%3)*.06
+            progress=(t-delay)/(1-delay)
+            if progress<0 or progress>=1:
+                continue
+            # A repeatable slight variation keeps the ten bursts distinct.
+            angle+=(fx['strike']%3-1)*.1
+            forward,side=math.cos(angle),math.sin(angle)
+            vx,vy=dx*forward-dy*side,dy*forward+dx*side
+            radius=2+(14+(i%3)*4)*progress
+            tail=max(1,round(5*(1-progress)))
+            head=(round(48+vx*radius),round(48+vy*radius*.72))
+            end=(round(48+vx*max(0,radius-tail)),
+                 round(48+vy*max(0,radius-tail)*.72))
+            color=palette[min(3,int(progress*4))]
+            pygame.draw.line(tile,color,end,head,1)
+            if progress<.45:
+                pygame.draw.rect(tile,palette[0],(*head,2,1))
+        frame=pygame.transform.scale(tile,(192,192))
+        surface.blit(frame,(round(fx['pos'][0]+ox-96),round(fx['pos'][1]+oy-96)))
 
     def sample_shadow(self, frame, pos, now, color, *, interval=75, life=225, opacity=90):
         """Snapshot an actual pose at its world position, without sliding it."""
@@ -201,6 +238,9 @@ class JinwooVFX:
                 is_behind=True
             ring=fx['name']=='spin_ring'
             if not ring and is_behind != behind:
+                continue
+            if fx['name']=='flurry_sparks':
+                self._draw_flurry_sparks(surface,fx,elapsed,ox,oy)
                 continue
             t=elapsed/fx['life']
             index=min(5,(2+int(t*4)) if fx['peak'] else int(t*6))

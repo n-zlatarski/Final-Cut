@@ -195,7 +195,8 @@ class AttackProbe(Harness):
                         steps=[sum((b-a)*v for a,b,v in zip(p0,p1,vec))
                             for (_,p0),(_,p1) in zip(self.trace,self.trace[1:])]
                         assert min(steps)>=-0.001,'E moved backward'
-                        assert self.flurry_layers=={(i,layer) for i in range(10) for layer in ('main','offhand')}|{(9,'finish')}
+                        assert self.flurry_layers=={(i,layer) for i in range(10)
+                            for layer in ('main','offhand','sparks')}|{(9,'finish'),(9,'flare')}
                         assert self.flurry_echo_seen,'E pose echoes never appeared'
                         assert not self.latest['jinwoo_fx'].effects and not self.latest['jinwoo_fx'].shadows,'E effects outlived recovery'
                     else:
@@ -269,7 +270,7 @@ def run(record=None):
             'Q/E neutral wind-up remains planted; every action unlocks and returns to idle',
             'Q travels 280px with one eruption exactly 96px forward; E enters 250px with no backward step, throw or explosion',
             'Each input starts one attack; Q/E execute four/ten damage beats once',
-            'Each E emits 21 directional slash layers plus short pose echoes, all cleared after recovery',
+            'Each E emits 21 directional slash layers, ten forward spark bursts, one finishing flash and short pose echoes; all clear after recovery',
             'Nineteen six-frame effects are nonempty and unique within their animation'],cases=reports)
     (ROOT/'tests/jinwoo_attack_qa.json').write_text(json.dumps(report,indent=2)+'\n')
     if record:

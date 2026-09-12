@@ -15,7 +15,7 @@
     "Q/E neutral wind-up remains planted; every action unlocks and returns to idle",
     "Q travels 280px with one eruption exactly 96px forward; E enters 250px with no backward step, throw or explosion",
     "Each input starts one attack; Q/E execute four/ten damage beats once",
-    "Each E emits 21 directional slash layers plus short pose echoes, all cleared after recovery",
+    "Each E emits 21 directional slash layers, ten forward spark bursts, one finishing flash and short pose echoes; all clear after recovery",
     "Nineteen six-frame effects are nonempty and unique within their animation"
   ],
   "cases": [
