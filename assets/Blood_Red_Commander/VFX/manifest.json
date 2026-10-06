@@ -1,55 +1,162 @@
 {
-  "cell_size": [
-    64,
-    64
-  ],
-  "grid": [
-    6,
-    3
-  ],
-  "rows": [
-    "spark",
-    "dash_wake",
-    "dust"
-  ],
-  "durations_ms": {
-    "spark": [
-      30,
-      40,
-      45,
-      55,
-      60,
-      70
+  "dust": {
+    "sheet": "dust.png",
+    "cell_size": [
+      64,
+      64
     ],
-    "dash_wake": [
-      25,
-      30,
-      35,
-      45,
-      50,
-      55
-    ],
-    "dust": [
+    "frames": 6,
+    "durations_ms": [
       40,
       50,
       55,
       60,
       65,
       80
-    ]
-  },
-  "origins": {
-    "spark": [
-      32,
-      36
     ],
-    "dash_wake": [
-      45,
-      33
-    ],
-    "dust": [
+    "origin": [
       32,
       49
+    ]
+  },
+  "forehand": {
+    "sheet": "forehand.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "origin": [
+      64,
+      64
+    ]
+  },
+  "rising_cut": {
+    "sheet": "rising_cut.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "origin": [
+      64,
+      64
+    ]
+  },
+  "sweep": {
+    "sheet": "sweep.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "origin": [
+      64,
+      64
+    ]
+  },
+  "plunge": {
+    "sheet": "plunge.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "origin": [
+      64,
+      64
+    ]
+  },
+  "rupture": {
+    "sheet": "rupture.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      25,
+      35,
+      65,
+      80,
+      100,
+      115
+    ],
+    "origin": [
+      64,
+      96
+    ]
+  },
+  "pierce": {
+    "sheet": "pierce.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      20,
+      30,
+      45,
+      45,
+      50,
+      60
+    ],
+    "origin": [
+      64,
+      64
+    ]
+  },
+  "spark": {
+    "sheet": "spark.png",
+    "cell_size": [
+      128,
+      128
+    ],
+    "frames": 6,
+    "durations_ms": [
+      20,
+      25,
+      30,
+      40,
+      45,
+      60
+    ],
+    "origin": [
+      64,
+      64
     ]
   }
 }

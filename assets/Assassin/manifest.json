@@ -1,0 +1,242 @@
+{
+  "version": 3,
+  "character": "Sung Jinwoo",
+  "cell_size": [
+    120,
+    120
+  ],
+  "pivot": [
+    60,
+    88
+  ],
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "animations": {
+    "attack_1": {
+      "sheet": "sheets/attack_1.png",
+      "frames_per_direction": 6
+    },
+    "attack_2": {
+      "sheet": "sheets/attack_2.png",
+      "frames_per_direction": 6
+    },
+    "attack_3": {
+      "sheet": "sheets/attack_3.png",
+      "frames_per_direction": 6
+    },
+    "walk_attack_1": {
+      "sheet": "sheets/walk_attack_1.png",
+      "frames_per_direction": 6
+    },
+    "walk_attack_2": {
+      "sheet": "sheets/walk_attack_2.png",
+      "frames_per_direction": 6
+    },
+    "walk_attack_3": {
+      "sheet": "sheets/walk_attack_3.png",
+      "frames_per_direction": 6
+    },
+    "deaths_dance": {
+      "sheet": "sheets/deaths_dance.png",
+      "frames_per_direction": 12
+    },
+    "sonic_stream": {
+      "sheet": "sheets/sonic_stream.png",
+      "frames_per_direction": 13
+    },
+    "dash_attack": {
+      "sheet": "sheets/dash_attack.png",
+      "frames_per_direction": 6
+    }
+  },
+  "aliases": {
+    "walk_attack": "walk_attack_1",
+    "run_attack": "walk_attack_1"
+  },
+  "vfx": {
+    "echo_cut": {
+      "sheet": "vfx/echo_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "contact": {
+      "sheet": "vfx/contact.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "blue_wake": {
+      "sheet": "vfx/blue_wake.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "pivot": [
+        32,
+        32
+      ]
+    },
+    "sweep_cut": {
+      "sheet": "vfx/sweep_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "rising_cut": {
+      "sheet": "vfx/rising_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "cross_finish": {
+      "sheet": "vfx/cross_finish.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "flame_cut": {
+      "sheet": "vfx/flame_cut.png",
+      "frames": 6,
+      "cell_size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "directional": true,
+      "scale": 2
+    },
+    "spin_ring": {
+      "sheet": "vfx/spin_ring.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": false,
+      "scale": 3
+    },
+    "red_eruption": {
+      "sheet": "vfx/red_eruption.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        89
+      ],
+      "directional": false,
+      "scale": 3
+    },
+    "blue_dash_burst": {
+      "sheet": "vfx/blue_dash_burst.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        77
+      ],
+      "directional": false,
+      "scale": 2,
+      "ground": true
+    },
+    "blue_dash_stream": {
+      "sheet": "vfx/blue_dash_stream.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": true,
+      "scale": 2,
+      "ground": false
+    },
+    "blue_dash_cut": {
+      "sheet": "vfx/blue_dash_cut.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": true,
+      "scale": 2,
+      "ground": false
+    },
+    "blue_dash_sparks": {
+      "sheet": "vfx/blue_dash_sparks.png",
+      "frames": 6,
+      "cell_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        48
+      ],
+      "directional": true,
+      "scale": 1,
+      "ground": false
+    }
+  }
+}

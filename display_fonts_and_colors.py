@@ -1,0 +1,53 @@
+"""Initialize Pygame, the drawing canvas, clock, fonts and interface colors."""
+import pygame
+import window_settings
+
+pygame.init()
+
+WIDTH, HEIGHT = 1920, 1080
+
+# 'screen' is a fixed-resolution VIRTUAL canvas — every draw call in the
+# game targets this, regardless of the player's actual chosen resolution.
+# window_settings.apply() creates the real OS window, and window_settings.present(screen)
+# scales this canvas onto it once per frame. This is what lets the window_settings
+# display_fonts_and_colors menu change resolution/fullscreen freely without any layout
+# code anywhere else needing to know about it.
+screen = pygame.Surface((WIDTH, HEIGHT))
+window_settings.apply()
+pygame.display.set_caption("Final Cut")
+clock = pygame.time.Clock()
+
+DISPLAY_SIZE = (220, 220)
+
+# ── Fonts ─────────────────────────────────────────────────────────────────────
+font_big = pygame.font.SysFont("Consolas", 28, bold=True)
+font_med = pygame.font.SysFont("Consolas", 20)
+font_small = pygame.font.SysFont("Consolas", 16)
+font_title = pygame.font.SysFont("Georgia", 58, bold=True)
+font_huge = pygame.font.SysFont("Georgia", 82, bold=True)
+font_header = pygame.font.SysFont("Georgia", 24, bold=True)
+font_label = pygame.font.SysFont("Georgia", 17, italic=True)
+font_micro = pygame.font.SysFont("Consolas", 13, bold=True)
+
+# ── Basic colors ──────────────────────────────────────────────────────────────
+WHITE = (255, 255, 255)
+BLACK = (0,   0,   0)
+RED = (200, 40,  40)
+GREEN = (50,  200, 80)
+YELLOW = (255, 220, 50)
+
+# ── UI theme palette ──────────────────────────────────────────────────────────
+GOLD = (198, 165, 92)
+GOLD_BRIGHT = (236, 205, 125)
+GOLD_DIM = (120, 100, 62)
+CREAM = (232, 222, 200)
+DIM_TEXT = (168, 158, 144)
+COL_HP = (176, 34, 42)
+COL_HP_DARK = (46, 12, 14)
+COL_STA = (64, 146, 196)
+COL_STA_DARK = (14, 40, 58)
+COL_FOCUS = (130, 72, 205)
+COL_FOCUS_DARK = (31, 16, 52)
+COL_DANGER = (235, 68, 72)
+PANEL_TOP = (27, 22, 29)
+PANEL_BOTTOM = (9, 8, 12)
